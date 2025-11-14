@@ -1,0 +1,32 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Flutter Web (Fixed Port)",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "-d",
+                "chrome",
+                "--web-port=8080",
+                "--web-hostname=localhost"
+            ],
+            "webLaunchUrl": "http://localhost:8080"
+        },
+        {
+            "name": "Flutter Web (Debug)",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "-d",
+                "chrome",
+                "--web-port=8080",
+                "--web-hostname=localhost",
+                "--web-renderer=html"
+            ],
+            "webLaunchUrl": "http://localhost:8080"
+        }
+    ]
+}

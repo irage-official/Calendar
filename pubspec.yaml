@@ -1,0 +1,79 @@
+name: iranian_heritage_calendar
+description: A professional Irage (Iranian Heritage) Calendar app with cross-platform support
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=3.10.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  
+  # State Management
+  provider: ^6.1.1
+  
+  # Date Handling
+  intl: ^0.20.2
+  shamsi_date: ^1.1.1
+  
+  # UI Components
+  flutter_svg: ^2.0.10+1
+  cached_network_image: ^3.3.1
+  
+  # Data Storage
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  path_provider: ^2.1.2
+  
+  # Utilities
+  url_launcher: ^6.2.2
+  share_plus: ^10.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  build_runner: ^2.4.13
+  hive_generator: ^2.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter:
+  uses-material-design: true
+  generate: true
+  
+  assets:
+    - assets/images/
+    - assets/images/icons/
+    - assets/fonts/
+    - assets/data/
+  
+  fonts:
+    - family: Vazir
+      fonts:
+        - asset: assets/fonts/vazir.ttf
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/inter.ttf
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  web:
+    generate: true
+    image_path: "assets/images/logo_launcher.png"
+  # Main icon image - logo.svg converted to PNG (1024x1024 with transparent background)
+  # Logo will be centered on purple gradient background
+  image_path: "assets/images/logo_launcher.png"
+  min_sdk_android: 21
+  # Keep alpha channel for iOS (don't remove transparency)
+  remove_alpha_ios: false
+  # Android adaptive icon configuration
+  # Use logo on purple background
+  adaptive_icon_foreground: "assets/images/logo_launcher.png"
+  adaptive_icon_background: "#735BF2"  # Primary500 purple color
+  # iOS background color (purple gradient background)
+  background_color_ios: "#735BF2"  # Primary500 purple color

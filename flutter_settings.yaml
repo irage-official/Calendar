@@ -1,0 +1,15 @@
+# Flutter Configuration
+# This file contains Flutter-specific settings
+
+# Web development settings
+web-port: 8080
+web-hostname: localhost
+web-renderer: html
+
+# Hot reload settings
+hot-reload: true
+hot-restart: true
+
+# Debug settings
+debug-mode: true
+verbose-logging: true
