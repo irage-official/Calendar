@@ -217,7 +217,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 children: [
                   // Background Image
                   Image.asset(
-                    'assets/images/splash-img.png',
+                    'assets/images/adjective/splash-img.png',
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) {
                       return Container(
@@ -265,19 +265,11 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Widget _buildLogo() {
-    // Try PNG first, fallback to SVG
-    return Image.asset(
-      'assets/images/logo_2.png',
+    // Use logo_launcher.svg
+    return SvgPicture.asset(
+      AppIcons.logoLauncher,
       width: 60,
       height: 60,
-      errorBuilder: (context, error, stackTrace) {
-        // Fallback to SVG
-        return SvgPicture.asset(
-          AppIcons.logo_2,
-          width: 60,
-          height: 60,
-        );
-      },
     );
   }
 }

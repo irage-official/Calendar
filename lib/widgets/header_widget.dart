@@ -32,8 +32,8 @@ class HeaderWidget extends StatelessWidget {
         
         return Container(
         color: TBg.home(context),
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          height: 74,
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+          height: 94,
           child: SizedBox(
             height: 42,
             child: Directionality(
@@ -44,7 +44,7 @@ class HeaderWidget extends StatelessWidget {
               children: [
                 // Logo - Fixed 52x52 SVG
                 SvgPicture.asset(
-                  AppIcons.logo_2,
+                  AppIcons.logoLauncher,
                   width: 52,
                   height: 52,
                   fit: BoxFit.contain,
