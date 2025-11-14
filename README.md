@@ -10,10 +10,10 @@ Just pure love for our homeland and a commitment to tell the truth.
 
 This project brings together two powerful stories:
 
-⭐ 1. Our Heritage
+**⭐ 1. Our Heritage**
 The festivals, traditions, myths, heroes, and ancient culture that shaped who we truly are as a nation long before the regime existed.
 
-🔥 2. Our Reality
+**🔥 2. Our Reality**
 A clear, uncensored record of the crimes committed by the Islamic Republic regime against the people of Iran — so no life, no name, and no injustice is ever forgotten.
 
 Together, they remind us of something essential:
@@ -29,8 +29,8 @@ A tribute to our heritage.
 A reminder of our collective strength.
 And a small step toward the Iran we deserve.
 
-Contact us
+**Contact us**
 If you’d like to reach out to us, you can send an email to info@irage.site. Alternatively, if you have any reports or feedback, you can contact us via the email feedback@irage.site.
 
 
-Developer: Irage Development Team
+**Developer**: Irage Development Team
