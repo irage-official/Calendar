@@ -5,6 +5,7 @@ We are the first Iranian nationalist calendar app with zero connection to the Is
 * No sponsorship
 * No political ties
 * No propaganda
+
 Just pure love for our homeland and a commitment to tell the truth. 
 
 This project brings together two powerful stories:
