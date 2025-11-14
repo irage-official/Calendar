@@ -48,6 +48,8 @@ flutter:
   assets:
     - assets/images/
     - assets/images/icons/
+    - assets/images/references/
+    - assets/images/adjective/
     - assets/fonts/
     - assets/data/
   
@@ -64,16 +66,18 @@ flutter_launcher_icons:
   ios: true
   web:
     generate: true
-    image_path: "assets/images/logo_launcher.png"
-  # Main icon image - logo.svg converted to PNG (1024x1024 with transparent background)
-  # Logo will be centered on purple gradient background
-  image_path: "assets/images/logo_launcher.png"
+    image_path: "assets/images/logo_mipmap.png"
+  # Main icon image - logo_mipmap.png (1024x1024 with larger logo + reversed gradient)
+  # This will be used for: mipmap icons (APK thumbnail, installation icon for older Android)
+  # logo_mipmap.png has larger logo and reversed gradient (A45BF2 top-left to 735BF2 bottom-right)
+  image_path: "assets/images/logo_mipmap.png"
   min_sdk_android: 21
   # Keep alpha channel for iOS (don't remove transparency)
   remove_alpha_ios: false
   # Android adaptive icon configuration
-  # Use logo on purple background
-  adaptive_icon_foreground: "assets/images/logo_launcher.png"
-  adaptive_icon_background: "#735BF2"  # Primary500 purple color
+  # Use logo_centered.png for adaptive icon foreground (logo only, no background)
+  # This will be used for: drawable icons (adaptive icon foreground for Android 8.0+)
+  # Background gradient is defined in ic_launcher_background.xml (735BF2 top-left to A45BF2 bottom-right)
+  adaptive_icon_foreground: "assets/images/logo_centered.png"
   # iOS background color (purple gradient background)
   background_color_ios: "#735BF2"  # Primary500 purple color

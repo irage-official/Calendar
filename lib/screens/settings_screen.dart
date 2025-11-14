@@ -600,7 +600,7 @@ class SettingsScreen extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16),
           child: Image.asset(
-            'assets/images/qr-code.jpeg',
+            'assets/images/adjective/qr-code.jpeg',
             fit: BoxFit.cover,
           ),
         ),
@@ -718,7 +718,7 @@ class SettingsScreen extends StatelessWidget {
   Future<File?> _getQRCodeFile(String walletAddress) async {
     try {
       // Load image from assets
-      final ByteData data = await rootBundle.load('assets/images/qr-code.jpeg');
+      final ByteData data = await rootBundle.load('assets/images/adjective/qr-code.jpeg');
       final Uint8List bytes = data.buffer.asUint8List();
       
       // Get temporary directory
@@ -737,7 +737,7 @@ class SettingsScreen extends StatelessWidget {
   Future<void> _downloadQRCode(BuildContext context, String walletAddress, bool isPersian) async {
     try {
       // Load image directly from assets
-      final ByteData data = await rootBundle.load('assets/images/qr-code.jpeg');
+      final ByteData data = await rootBundle.load('assets/images/adjective/qr-code.jpeg');
       final Uint8List imageBytes = data.buffer.asUint8List();
       
       // Get application documents directory (accessible to user)

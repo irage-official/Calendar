@@ -62,12 +62,12 @@ class AppIcons {
   static const String infoCircleFill = 'assets/images/icons/info-circle-fill.svg';
 
   // Human Rights Organizations Images
-  static const String ihrdc = 'assets/images/IHRDC.png';
-  static const String iranrights = 'assets/images/iranrights.png';
-  static const String justiceForIran = 'assets/images/justice4iran.png';
-  static const String hrana = 'assets/images/HRANA.png';
-  static const String unitedForIran = 'assets/images/united4iran.png';
-  static const String amnestyInternational = 'assets/images/amnesty.png';
+  static const String ihrdc = 'assets/images/references/IHRDC.png';
+  static const String iranrights = 'assets/images/references/iranrights.png';
+  static const String justiceForIran = 'assets/images/references/justice4iran.png';
+  static const String hrana = 'assets/images/references/HRANA.png';
+  static const String unitedForIran = 'assets/images/references/united4iran.png';
+  static const String amnestyInternational = 'assets/images/references/amnesty.png';
 
   // Social Media Icons
   static const String xSocial = 'assets/images/icons/x-social.svg';
@@ -75,8 +75,7 @@ class AppIcons {
   static const String github = 'assets/images/icons/gifhub.svg';
 
   // Logo
-  static const String logo = 'assets/images/logo.png';
-  static const String logo_2 = 'assets/images/logo_2.svg';
+  static const String logoLauncher = 'assets/images/logo_launcher.svg';
 }
 
 
