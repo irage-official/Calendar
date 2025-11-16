@@ -12,6 +12,15 @@ class AppLogger {
     );
   }
 
+  /// Log warning message
+  static void warning(String message, {String? tag}) {
+    developer.log(
+      message,
+      name: tag ?? _tag,
+      level: 900, // Warning level
+    );
+  }
+
   /// Log error message
   static void error(String message, {String? tag, Object? error, StackTrace? stackTrace}) {
     developer.log(
