@@ -1,18 +1,18 @@
 # Update Files
 
-این فایل‌ها برای سیستم آپدیت اپ استفاده می‌شوند.
+These files are used for the app update system.
 
-## فایل‌ها
+## Files
 
 ### 1. `events-metadata.json`
-این فایل برای چک کردن آپدیت events استفاده می‌شود.
+This file is used to check for events updates.
 
-**هر بار که `events.json` را تغییر می‌دهید:**
-- `version` را افزایش دهید (مثلاً از `1.0.0` به `1.0.1`)
-- `updated_at` را به تاریخ/زمان فعلی تغییر دهید
-- `total_events` را به تعداد کل events تغییر دهید
+**Every time you modify `events.json`:**
+- Increase the `version` (e.g., from `1.0.0` to `1.0.1`)
+- Update `updated_at` to the current date/time
+- Update `total_events` to the total number of events
 
-**مثال:**
+**Example:**
 ```json
 {
   "version": "1.0.1",
@@ -22,15 +22,15 @@
 ```
 
 ### 2. `version.json`
-این فایل برای چک کردن آپدیت اپ استفاده می‌شود.
+This file is used to check for app updates.
 
-**وقتی می‌خواهید ورژن اپ را تغییر دهید:**
+**When you want to change the app version:**
 
-- **Bug fix / تغییرات کوچک:** `0.9.0` → `0.9.1` (update_type: `"normal"`)
-- **Feature جدید:** `0.9.0` → `1.0.0` (update_type: `"critical"` یا `"major"`)
-- **آپدیت اجباری:** `force_update: true`
+- **Bug fix / minor changes:** `0.9.0` → `0.9.1` (update_type: `"normal"`)
+- **New feature:** `0.9.0` → `1.0.0` (update_type: `"critical"` or `"major"`)
+- **Force update:** `force_update: true`
 
-**مثال برای bug fix:**
+**Example for bug fix:**
 ```json
 {
   "version": "0.9.1",
@@ -43,7 +43,7 @@
 }
 ```
 
-**مثال برای feature جدید:**
+**Example for new feature:**
 ```json
 {
   "version": "1.0.0",
@@ -56,18 +56,18 @@
 }
 ```
 
-## نحوه استفاده
+## How to Use
 
-1. این فایل‌ها را در گیت repository خود در پوشه `data/` قرار دهید
-2. URL گیت را در `lib/config/app_config.dart` تنظیم کنید:
+1. Place these files in your git repository in the `data/` folder
+2. Configure the git URL in `lib/config/app_config.dart`:
    ```dart
    static const String githubRawBase = 'https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/data';
    ```
-3. اپ به صورت خودکار در splash screen این فایل‌ها را چک می‌کند
+3. The app automatically checks these files on the splash screen
 
-## نکات مهم
+## Important Notes
 
-- این فایل‌ها باید در **گیت repository** باشند (نه در assets)
-- URL باید به branch و path درست اشاره کند
-- برای تست، می‌توانید از این فایل‌های محلی استفاده کنید
+- These files must be in the **git repository** (not in assets)
+- The URL must point to the correct branch and path
+- For testing, you can use these local files
 
