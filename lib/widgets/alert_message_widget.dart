@@ -28,7 +28,7 @@ class AlertMessageWidget extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: _getBackgroundColor(context).withOpacity(
-          Theme.of(context).brightness == Brightness.dark ? 0.5 : 1.0,
+          Theme.of(context).brightness == Brightness.dark ? 0.6 : 1.0,
         ),
         borderRadius: BorderRadius.circular(18),
         border: Border.all(

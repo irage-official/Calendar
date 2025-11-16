@@ -13,6 +13,7 @@ import '../services/date_converter_service.dart';
 import '../utils/calendar_utils.dart';
 import '../utils/svg_helper.dart';
 import '../providers/app_provider.dart';
+import '../widgets/alert_message_widget.dart';
 
 class EventDetailBottomSheet extends StatefulWidget {
   final Event event;
@@ -811,66 +812,11 @@ class _EventDetailBottomSheetState extends State<EventDetailBottomSheet> {
       return const SizedBox.shrink();
     }
 
-    // Use warning tint for yellow background
-    final warningTint = Theme.of(context).brightness == Brightness.dark 
-        ? DarkBg.warningTint 
-        : LightBg.warningTint;
-    final warningMain = TCnt.warningMain(context);
-
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: warningTint,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: warningMain.withOpacity(0.2),
-          width: 1,
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Significance header
-          Row(
-            children: [
-              SvgPicture.asset(
-                AppIcons.alertTriangle,
-                width: 20,
-                height: 20,
-                colorFilter: ColorFilter.mode(
-                  warningMain,
-                  BlendMode.srcIn,
-                ),
-              ),
-              const SizedBox(width: 8),
-              Text(
-                language == 'fa' ? 'اهمیت' : 'Significance',
-                style: TextStyle(
-                  fontSize: 14,
-                  height: 1.4,
-                  letterSpacing: -0.28, // -2% of 14
-                  color: TCnt.neutralMain(context),
-                  fontWeight: FontWeight.w700,
-                  fontFamily: isPersian ? 'Vazir' : 'Inter',
-                ),
-              ),
-            ],
-          ),
-          
-          // Significance text
-          const SizedBox(height: 8),
-          Text(
-            significanceText,
-            style: TextStyle(
-              fontSize: 14,
-              height: 1.6,
-              letterSpacing: -0.098, // -0.7% of 14
-              color: TCnt.neutralSecond(context),
-              fontFamily: isPersian ? 'Vazir' : 'Inter',
-            ),
-          ),
-        ],
-      ),
+    return AlertMessageWidget(
+      type: AlertType.warning,
+      title: language == 'fa' ? 'اهمیت' : 'Significance',
+      description: significanceText,
+      isPersian: isPersian,
     );
   }
 }

@@ -20,6 +20,8 @@ import '../widgets/alert_message_widget.dart';
 import '../widgets/custom_radio_button.dart';
 import '../utils/svg_helper.dart';
 import '../utils/extensions.dart';
+import '../utils/calendar_utils.dart';
+import '../config/app_config.dart';
 import '../services/date_converter_service.dart';
 import '../services/update_service.dart';
 import '../services/event_service.dart';
@@ -65,8 +67,8 @@ class SettingsScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 32.0),
                 child: Text(
-                  'v 0.9',
-            style: AppTextStyles.bodySmall.copyWith(
+                  _formatVersion(AppConfig.appVersion, isPersian),
+                  style: AppTextStyles.bodySmall.copyWith(
                     color: TCnt.neutralWeak(context),
                   ),
                 ),
@@ -507,11 +509,11 @@ class SettingsScreen extends StatelessWidget {
               child: isPersian
                   ? Text.rich(
                       TextSpan(
-              style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 14,
                           height: 1.6,
                           letterSpacing: -0.098,
-                color: LightCnt.neutralSecond,
+                          color: _getDescriptionColor(context),
                           fontWeight: FontWeight.w400,
                         ),
                         children: const [
@@ -1226,90 +1228,121 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24),
-            // Developer Section
-            Text(
-              isPersian 
-                  ? 'توسعه‌دهنده: تیم توسعه ایراژ'
-                  : 'Developer: Irage Development Team',
-              style: TextStyle(
-                fontSize: 14,
-                color: _getDescriptionColor(context),
-              ),
-            ),
-            const SizedBox(height: 24),
-            // Follow Us On Section
-            Text(
-              isPersian ? 'ما را دنبال کنید' : 'Follow us on',
-              style: TextStyle(
-                fontSize: 16,
-                height: 1.4,
-                letterSpacing: -0.32,
-                color: TCnt.neutralMain(context),
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            const SizedBox(height: 12),
+            // Developer and Follow Us Section with Image
             Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              textDirection: isPersian ? TextDirection.rtl : TextDirection.ltr,
               children: [
-                _buildSocialButton(
-                  context: context,
-                  iconPath: AppIcons.xSocial,
-                  onTap: () async {
-                    // Try to open in X app first, fallback to browser
-                    final Uri appUri = Uri.parse('twitter://user?screen_name=irage_official');
-                    final Uri webUri = Uri.parse('https://x.com/irage_official');
-                    
-                    try {
-                      // Try app first
-                      if (await canLaunchUrl(appUri)) {
-                        await launchUrl(appUri, mode: LaunchMode.externalApplication);
-                      } else if (await canLaunchUrl(webUri)) {
-                        // Fallback to web - platform will open in app if available
-                        await launchUrl(webUri, mode: LaunchMode.platformDefault);
-                      }
-                    } catch (e) {
-                      // If app launch fails, try web
-                      if (await canLaunchUrl(webUri)) {
-                        await launchUrl(webUri, mode: LaunchMode.platformDefault);
-                      }
-                    }
-                  },
+                // Left side (or right in RTL): Developer and Follow Us
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Developer Section
+                      Text(
+                        isPersian 
+                            ? 'توسعه‌دهنده: تیم توسعه ایراژ'
+                            : 'Developer: Irage Development Team',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: _getDescriptionColor(context),
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                      // Follow Us On Section
+                      Text(
+                        isPersian ? 'ما را دنبال کنید' : 'Follow us on',
+                        style: TextStyle(
+                          fontSize: 16,
+                          height: 1.4,
+                          letterSpacing: -0.32,
+                          color: TCnt.neutralMain(context),
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          _buildSocialButton(
+                            context: context,
+                            iconPath: AppIcons.xSocial,
+                            onTap: () async {
+                              // Try to open in X app first, fallback to browser
+                              final Uri appUri = Uri.parse('twitter://user?screen_name=irage_official');
+                              final Uri webUri = Uri.parse('https://x.com/irage_official');
+                              
+                              try {
+                                // Try app first
+                                if (await canLaunchUrl(appUri)) {
+                                  await launchUrl(appUri, mode: LaunchMode.externalApplication);
+                                } else if (await canLaunchUrl(webUri)) {
+                                  // Fallback to web - platform will open in app if available
+                                  await launchUrl(webUri, mode: LaunchMode.platformDefault);
+                                }
+                              } catch (e) {
+                                // If app launch fails, try web
+                                if (await canLaunchUrl(webUri)) {
+                                  await launchUrl(webUri, mode: LaunchMode.platformDefault);
+                                }
+                              }
+                            },
+                          ),
+                          const SizedBox(width: 10),
+                          _buildSocialButton(
+                            context: context,
+                            iconPath: AppIcons.instagram,
+                            onTap: () async {
+                              // Try to open in Instagram app first, fallback to browser
+                              final Uri appUri = Uri.parse('instagram://user?username=irage.site');
+                              final Uri webUri = Uri.parse('https://instagram.com/irage.site');
+                              
+                              try {
+                                // Try app first
+                                if (await canLaunchUrl(appUri)) {
+                                  await launchUrl(appUri, mode: LaunchMode.externalApplication);
+                                } else if (await canLaunchUrl(webUri)) {
+                                  // Fallback to web - platform will open in app if available
+                                  await launchUrl(webUri, mode: LaunchMode.platformDefault);
+                                }
+                              } catch (e) {
+                                // If app launch fails, try web
+                                if (await canLaunchUrl(webUri)) {
+                                  await launchUrl(webUri, mode: LaunchMode.platformDefault);
+                                }
+                              }
+                            },
+                          ),
+                          const SizedBox(width: 10),
+                          _buildSocialButton(
+                            context: context,
+                            iconPath: AppIcons.github,
+                            onTap: () async {
+                              final Uri uri = Uri.parse('https://github.com/irage-official/iranian-heritage');
+                              if (await canLaunchUrl(uri)) {
+                                await launchUrl(uri, mode: LaunchMode.externalApplication);
+                              }
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-                const SizedBox(width: 10),
-                _buildSocialButton(
-                  context: context,
-                  iconPath: AppIcons.instagram,
-                  onTap: () async {
-                    // Try to open in Instagram app first, fallback to browser
-                    final Uri appUri = Uri.parse('instagram://user?username=irage.site');
-                    final Uri webUri = Uri.parse('https://instagram.com/irage.site');
-                    
-                    try {
-                      // Try app first
-                      if (await canLaunchUrl(appUri)) {
-                        await launchUrl(appUri, mode: LaunchMode.externalApplication);
-                      } else if (await canLaunchUrl(webUri)) {
-                        // Fallback to web - platform will open in app if available
-                        await launchUrl(webUri, mode: LaunchMode.platformDefault);
-                      }
-                    } catch (e) {
-                      // If app launch fails, try web
-                      if (await canLaunchUrl(webUri)) {
-                        await launchUrl(webUri, mode: LaunchMode.platformDefault);
-                      }
-                    }
-                  },
-                ),
-                const SizedBox(width: 10),
-                _buildSocialButton(
-                  context: context,
-                  iconPath: AppIcons.github,
-                  onTap: () async {
-                    final Uri uri = Uri.parse('https://github.com/irage-official/iranian-heritage');
-                    if (await canLaunchUrl(uri)) {
-                      await launchUrl(uri, mode: LaunchMode.externalApplication);
-                    }
-                  },
+                // Right side (or left in RTL): Image
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: isPersian ? 0 : 16,
+                    right: isPersian ? 16 : 0,
+                  ),
+                  child: Opacity(
+                    opacity: 0.7,
+                    child: Image.asset(
+                      'assets/images/adjective/hamkari-meli.png',
+                      width: 84,
+                      height: 112,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -2971,5 +3004,33 @@ https://ir-heritage.com/download
         ],
       ),
     );
+  }
+
+  /// Format version string based on language
+  /// - English: "v0.9" or "v0.9.1" (hide patch if 0)
+  /// - Persian: "ورژن ۰.۹" or "ورژن ۰.۹.۱" (hide patch if 0)
+  String _formatVersion(String version, bool isPersian) {
+    final parts = version.split('.');
+    if (parts.isEmpty) return isPersian ? 'ورژن' : 'v';
+    
+    final major = parts.length > 0 ? parts[0] : '0';
+    final minor = parts.length > 1 ? parts[1] : '0';
+    final patch = parts.length > 2 ? parts[2] : '0';
+    
+    String formattedVersion;
+    if (patch == '0') {
+      // Hide patch if it's 0
+      formattedVersion = '$major.$minor';
+    } else {
+      formattedVersion = '$major.$minor.$patch';
+    }
+    
+    if (isPersian) {
+      // Convert to Persian digits and add "ورژن" prefix
+      return 'ورژن ${CalendarUtils.englishToPersianDigits(formattedVersion)}';
+    } else {
+      // Add "v" prefix with space for English
+      return 'v $formattedVersion';
+    }
   }
 }
