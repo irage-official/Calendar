@@ -32,6 +32,11 @@ dependencies:
   # Utilities
   url_launcher: ^6.2.2
   share_plus: ^10.1.2
+  
+  # Network & Updates
+  http: ^1.1.0
+  package_info_plus: ^9.0.0
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:

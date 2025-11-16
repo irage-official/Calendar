@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../config/app_icons.dart';
 import '../config/theme_colors.dart';
 import '../widgets/loading_lines_animation.dart';
@@ -10,6 +11,9 @@ import '../providers/event_provider.dart';
 import '../providers/calendar_provider.dart';
 import '../utils/logger.dart';
 import '../services/year_cache_service.dart';
+import '../services/update_service.dart';
+import '../services/event_service.dart';
+import '../models/app_version.dart';
 import '../utils/calendar_utils.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -35,13 +39,46 @@ class _SplashScreenState extends State<SplashScreen> {
     try {
       // Initialize providers
       await context.read<AppProvider>().initialize();
-      await context.read<EventProvider>().initialize();
       
       // Get current language from AppProvider
       final appProvider = context.read<AppProvider>();
       final currentLanguage = appProvider.language;
       // Normalize language: 'fa' -> 'fa', everything else -> 'en'
       final normalizedLanguage = currentLanguage == 'fa' ? 'fa' : 'en';
+      
+      // Check for events update
+      final updateService = UpdateService.instance;
+      bool needsEventsUpdate = false;
+      
+      try {
+        needsEventsUpdate = await updateService.checkEventsUpdate();
+        
+        if (needsEventsUpdate) {
+          AppLogger.info('Splash screen: Events update available, downloading...');
+          // Download and update events
+          final newEvents = await updateService.downloadEvents();
+          if (newEvents.isNotEmpty) {
+            final eventService = EventService.instance;
+            await eventService.saveEvents(newEvents);
+            // Reload events in provider
+            await context.read<EventProvider>().reload();
+            AppLogger.info('Splash screen: Events updated successfully (${newEvents.length} events)');
+          } else {
+            AppLogger.warning('Splash screen: Failed to download events, using cached version');
+            await context.read<EventProvider>().initialize();
+          }
+        } else {
+          // Load existing events
+          await context.read<EventProvider>().initialize();
+        }
+      } catch (e) {
+        AppLogger.error('Splash screen: Error checking/updating events', error: e);
+        // Continue with existing events
+        await context.read<EventProvider>().initialize();
+      }
+      
+      // Check for app version update (in background, don't block startup)
+      unawaited(_checkAppVersionUpdate(appProvider));
       
       // Preload year cache for both calendar systems in background
       final calendarProvider = context.read<CalendarProvider>();
@@ -76,6 +113,11 @@ class _SplashScreenState extends State<SplashScreen> {
     } catch (e) {
       AppLogger.error('Splash screen: Error initializing app', error: e);
       // Continue to app even if update fails
+      try {
+        await context.read<EventProvider>().initialize();
+      } catch (e2) {
+        AppLogger.error('Splash screen: Error initializing events provider', error: e2);
+      }
     } finally {
       // Ensure minimum display time
       final elapsed = DateTime.now().difference(startTime);
@@ -91,6 +133,91 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.of(context).pushReplacementNamed('/home');
       }
     }
+  }
+
+  /// Check for app version update and show dialog if needed
+  Future<void> _checkAppVersionUpdate(AppProvider appProvider) async {
+    try {
+      final updateService = UpdateService.instance;
+      final appVersion = await updateService.checkAppVersion();
+      
+      if (appVersion != null && mounted) {
+        // Wait a bit before showing dialog to ensure navigation is complete
+        await Future.delayed(const Duration(milliseconds: 500));
+        
+        if (mounted) {
+          _showUpdateDialog(context, appVersion, appProvider);
+        }
+      }
+    } catch (e) {
+      AppLogger.error('Splash screen: Error checking app version', error: e);
+    }
+  }
+
+  /// Show update dialog based on update type
+  void _showUpdateDialog(BuildContext context, AppVersion version, AppProvider appProvider) {
+    final isPersian = appProvider.language == 'fa';
+    final releaseNotes = version.getReleaseNotes(appProvider.language) ?? 
+        (isPersian ? 'آپدیت جدید در دسترس است' : 'New update is available');
+
+    showDialog(
+      context: context,
+      barrierDismissible: !version.isCritical,
+      builder: (context) => AlertDialog(
+        title: Text(
+          isPersian ? 'آپدیت جدید' : 'New Update',
+          style: TextStyle(
+            fontFamily: isPersian ? 'Vazir' : 'Inter',
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: SingleChildScrollView(
+          child: Text(
+            releaseNotes,
+            style: TextStyle(
+              fontFamily: isPersian ? 'Vazir' : 'Inter',
+            ),
+          ),
+        ),
+        actions: [
+          if (!version.isCritical)
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text(
+                isPersian ? 'بعداً' : 'Later',
+                style: TextStyle(
+                  fontFamily: isPersian ? 'Vazir' : 'Inter',
+                ),
+              ),
+            ),
+          TextButton(
+            onPressed: () async {
+              if (version.downloadUrl != null) {
+                final uri = Uri.parse(version.downloadUrl!);
+                if (await canLaunchUrl(uri)) {
+                  await launchUrl(uri, mode: LaunchMode.externalApplication);
+                } else {
+                  AppLogger.error('Splash screen: Cannot launch URL: ${version.downloadUrl}');
+                }
+              }
+              if (version.isCritical) {
+                // For critical updates, keep dialog open until user updates
+                return;
+              } else {
+                Navigator.of(context).pop();
+              }
+            },
+            child: Text(
+              isPersian ? 'آپدیت' : 'Update',
+              style: TextStyle(
+                fontFamily: isPersian ? 'Vazir' : 'Inter',
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   @override

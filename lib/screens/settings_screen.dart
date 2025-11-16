@@ -11,6 +11,7 @@ import '../config/app_icons.dart';
 import '../config/theme_colors.dart';
 import '../config/theme_roles.dart';
 import '../providers/app_provider.dart';
+import '../providers/event_provider.dart';
 import '../widgets/header_page_widget.dart';
 import '../widgets/setting_item_widget.dart';
 import '../widgets/settings_bottom_sheet.dart';
@@ -20,6 +21,9 @@ import '../widgets/custom_radio_button.dart';
 import '../utils/svg_helper.dart';
 import '../utils/extensions.dart';
 import '../services/date_converter_service.dart';
+import '../services/update_service.dart';
+import '../services/event_service.dart';
+import '../models/app_version.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -170,6 +174,13 @@ class SettingsScreen extends StatelessWidget {
         //   showArrow: false,
         //   margin: EdgeInsets.zero,
         // ),
+        SettingItem(
+          icon: AppIcons.download,
+          title: isPersian ? 'بررسی آپدیت' : 'Check for Updates',
+          onTap: () => _checkForUpdates(context, isPersian),
+          showArrow: false,
+          margin: EdgeInsets.zero,
+        ),
         SettingItem(
           icon: AppIcons.share,
           title: isPersian ? 'اشتراک با دوستان' : 'Share with your Friends',
@@ -1771,6 +1782,179 @@ class SettingsScreen extends StatelessWidget {
         height: 1.6,
         letterSpacing: -0.098,
         color: TCnt.neutralSecond(context),
+      ),
+    );
+  }
+
+  Future<void> _checkForUpdates(BuildContext context, bool isPersian) async {
+    // Show loading dialog
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => Center(
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: TBg.main(context),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const CircularProgressIndicator(),
+              const SizedBox(height: 16),
+              Text(
+                isPersian ? 'در حال بررسی...' : 'Checking...',
+                style: TextStyle(
+                  fontFamily: isPersian ? 'Vazir' : 'Inter',
+                  color: TCnt.neutralMain(context),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    try {
+      final updateService = UpdateService.instance;
+      bool eventsUpdated = false;
+      AppVersion? appVersion;
+
+      // Check events update
+      final needsEventsUpdate = await updateService.forceCheckEventsUpdate();
+      if (needsEventsUpdate) {
+        final newEvents = await updateService.downloadEvents();
+        if (newEvents.isNotEmpty) {
+          await EventService.instance.saveEvents(newEvents);
+          await context.read<EventProvider>().reload();
+          eventsUpdated = true;
+        }
+      }
+
+      // Check app version
+      appVersion = await updateService.checkAppVersion();
+
+      // Close loading dialog
+      if (context.mounted) {
+        Navigator.of(context).pop();
+      }
+
+      // Show results
+      if (appVersion != null) {
+        // Show app update dialog
+        if (context.mounted) {
+          _showUpdateDialog(context, appVersion, isPersian);
+        }
+      } else if (eventsUpdated) {
+        // Show events updated message
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                isPersian ? 'ایونت‌ها با موفقیت به‌روزرسانی شدند' : 'Events updated successfully',
+                style: TextStyle(
+                  fontFamily: isPersian ? 'Vazir' : 'Inter',
+                ),
+              ),
+              backgroundColor: ThemeColors.primary500,
+            ),
+          );
+        }
+      } else {
+        // Show no update message
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                isPersian ? 'همه چیز به‌روز است!' : 'Everything is up to date!',
+                style: TextStyle(
+                  fontFamily: isPersian ? 'Vazir' : 'Inter',
+                ),
+              ),
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      // Close loading dialog
+      if (context.mounted) {
+        Navigator.of(context).pop();
+      }
+
+      // Show error message
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              isPersian ? 'خطا در بررسی آپدیت' : 'Error checking for updates',
+              style: TextStyle(
+                fontFamily: isPersian ? 'Vazir' : 'Inter',
+              ),
+            ),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
+  }
+
+  /// Show update dialog
+  void _showUpdateDialog(BuildContext context, AppVersion version, bool isPersian) {
+    final releaseNotes = version.getReleaseNotes(isPersian ? 'fa' : 'en') ??
+        (isPersian ? 'آپدیت جدید در دسترس است' : 'New update is available');
+
+    showDialog(
+      context: context,
+      barrierDismissible: !version.isCritical,
+      builder: (context) => AlertDialog(
+        title: Text(
+          isPersian ? 'آپدیت جدید' : 'New Update',
+          style: TextStyle(
+            fontFamily: isPersian ? 'Vazir' : 'Inter',
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: SingleChildScrollView(
+          child: Text(
+            releaseNotes,
+            style: TextStyle(
+              fontFamily: isPersian ? 'Vazir' : 'Inter',
+            ),
+          ),
+        ),
+        actions: [
+          if (!version.isCritical)
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text(
+                isPersian ? 'بعداً' : 'Later',
+                style: TextStyle(
+                  fontFamily: isPersian ? 'Vazir' : 'Inter',
+                ),
+              ),
+            ),
+          TextButton(
+            onPressed: () async {
+              if (version.downloadUrl != null) {
+                final uri = Uri.parse(version.downloadUrl!);
+                if (await canLaunchUrl(uri)) {
+                  await launchUrl(uri, mode: LaunchMode.externalApplication);
+                }
+              }
+              if (!version.isCritical) {
+                Navigator.of(context).pop();
+              }
+            },
+            child: Text(
+              isPersian ? 'آپدیت' : 'Update',
+              style: TextStyle(
+                fontFamily: isPersian ? 'Vazir' : 'Inter',
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/event.dart';
 import '../config/constants.dart';
+import '../utils/logger.dart';
 
 /// Service for loading and managing calendar events
 class EventService {
@@ -16,26 +18,100 @@ class EventService {
     return _instance!;
   }
 
-  /// Load all events from JSON file
-  Future<List<Event>> loadEvents() async {
-    if (_cachedEvents != null) {
+  /// Load all events from local storage (cached remote) or assets
+  /// If forceRemote is true, it will try to load from remote first
+  Future<List<Event>> loadEvents({bool forceRemote = false}) async {
+    // Return cached events if available and not forcing remote
+    if (!forceRemote && _cachedEvents != null) {
       return _cachedEvents!;
     }
 
+    // Try to load from local storage (saved remote events)
+    if (!forceRemote) {
+      try {
+        final prefs = await SharedPreferences.getInstance();
+        final savedEventsJson = prefs.getString('cached_events');
+
+        if (savedEventsJson != null && savedEventsJson.isNotEmpty) {
+          final List<dynamic> jsonList = json.decode(savedEventsJson) as List<dynamic>;
+          _cachedEvents = jsonList
+              .map((json) => Event.fromJson(json as Map<String, dynamic>))
+              .where((event) => event.isActive)
+              .toList();
+
+          AppLogger.info('EventService: Loaded ${_cachedEvents!.length} events from local cache');
+          return _cachedEvents!;
+        }
+      } catch (e) {
+        AppLogger.error('EventService: Error loading cached events', error: e);
+        // Continue to fallback
+      }
+    }
+
+    // Fallback to assets
     try {
       final String jsonString = await rootBundle.loadString('assets/data/events.json');
       final List<dynamic> jsonList = json.decode(jsonString) as List<dynamic>;
-      
+
       _cachedEvents = jsonList
           .map((json) => Event.fromJson(json as Map<String, dynamic>))
           .where((event) => event.isActive)
           .toList();
 
+      AppLogger.info('EventService: Loaded ${_cachedEvents!.length} events from assets');
       return _cachedEvents!;
     } catch (e) {
-      // Error loading events - return empty list
+      AppLogger.error('EventService: Error loading events from assets', error: e);
       return [];
     }
+  }
+
+  /// Save events to local storage (for remote events)
+  Future<void> saveEvents(List<Event> events) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final jsonList = events.map((e) => _eventToJson(e)).toList();
+      await prefs.setString('cached_events', json.encode(jsonList));
+      _cachedEvents = events;
+      AppLogger.info('EventService: Saved ${events.length} events to local storage');
+    } catch (e) {
+      AppLogger.error('EventService: Error saving events', error: e);
+    }
+  }
+
+  /// Convert Event to JSON (helper method)
+  Map<String, dynamic> _eventToJson(Event event) {
+    return {
+      'id': event.id,
+      'source': event.source,
+      'type': event.type,
+      'origin': event.origin,
+      'image': event.image,
+      'title': {'en': event.title.en, 'fa': event.title.fa},
+      'description': {'en': event.description.en, 'fa': event.description.fa},
+      'significance': event.significance != null
+          ? {'en': event.significance!.en, 'fa': event.significance!.fa}
+          : null,
+      'tags': {'en': event.tags.en, 'fa': event.tags.fa},
+      'location': {'en': event.location.en, 'fa': event.location.fa},
+      'date': {'solar': event.date.solar, 'gregorian': event.date.gregorian},
+      'time': {
+        'isActive': event.time.isActive,
+        'start': event.time.start,
+        'end': event.time.end,
+      },
+      'repeat': {'isActive': event.repeat.isActive, 'interval': event.repeat.interval},
+      'visibility': {
+        'showInCalendar': event.visibility.showInCalendar,
+        'showInFeed': event.visibility.showInFeed,
+      },
+      'reminder': {
+        'enabled': event.reminder.enabled,
+        'offset_minutes': event.reminder.offsetMinutes,
+      },
+      'created_at': event.createdAt.toIso8601String(),
+      'updated_at': event.updatedAt.toIso8601String(),
+    };
   }
 
   /// Get events for a specific Gregorian date
