@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../config/constants.dart';
 import '../config/theme_roles.dart';
 import '../utils/svg_helper.dart';
+import '../utils/font_helper.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class EmptyStateWidget extends StatelessWidget {
   final bool isPersian;
@@ -48,14 +50,21 @@ class EmptyStateWidget extends StatelessWidget {
             // Title - font size 14, semi-bold, neutral main, line height 140%, letter spacing -2%
             Text(
               isPersian ? 'یک روز آرام در تقویم' : 'A Quiet Day on the Calendar.',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: TCnt.neutralMain(context),
-                height: 1.4,
-                letterSpacing: -0.28, // -2% of 14px
-                fontFamily: isPersian ? 'Vazir' : 'Inter',
-              ),
+              style: isPersian
+                  ? FontHelper.getYekanBakh(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: TCnt.neutralMain(context),
+                      height: 1.4,
+                      letterSpacing: -0.28, // -2% of 14px
+                    )
+                  : GoogleFonts.inter(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: TCnt.neutralMain(context),
+                      height: 1.4,
+                      letterSpacing: -0.28, // -2% of 14px
+                    ),
               textAlign: TextAlign.center,
             ),
             
@@ -65,14 +74,21 @@ class EmptyStateWidget extends StatelessWidget {
             // Description - font size 12, neutral tertiary, line height 140%, letter spacing -0.7%
             Text(
               isPersian ? 'هیچ رویداد ملی یا جهانی مهمی برای این تاریخ ثبت نشده است. از آرامش امروز لذت ببرید.' : 'No significant national or global events are marked for this date. Enjoy the calm.',
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.normal,
-                color: TCnt.neutralTertiary(context),
-                height: 1.4,
-                letterSpacing: -0.084, // -0.7% of 12px
-                fontFamily: isPersian ? 'Vazir' : 'Inter',
-              ),
+              style: isPersian
+                  ? FontHelper.getYekanBakh(
+                      fontSize: 12,
+                      fontWeight: FontWeight.normal,
+                      color: TCnt.neutralTertiary(context),
+                      height: 1.4,
+                      letterSpacing: -0.084, // -0.7% of 12px
+                    )
+                  : GoogleFonts.inter(
+                      fontSize: 12,
+                      fontWeight: FontWeight.normal,
+                      color: TCnt.neutralTertiary(context),
+                      height: 1.4,
+                      letterSpacing: -0.084, // -0.7% of 12px
+                    ),
               textAlign: TextAlign.center,
             ),
           ],

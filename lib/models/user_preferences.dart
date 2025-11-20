@@ -46,21 +46,34 @@ class UserPreferences extends HiveObject {
   @HiveField(13)
   final String? themeMode;
 
+  @HiveField(14)
+  final String? startWeekOn; // 'saturday', 'sunday', 'monday'
+
+  @HiveField(15)
+  final List<String>? daysOff; // ['saturday', 'sunday', 'friday', 'thursday']
+
+  @HiveField(16)
+  final List<String>?
+      enabledOrigins; // ['iranian', 'international', 'mixed', 'local']
+
   UserPreferences({
     this.language = 'system',
     this.isDarkMode = false,
     this.showGregorianDates = true,
-    this.calendarSystem = 'gregorian',
+    this.calendarSystem = 'shahanshahi',
     this.showNotifications = true,
     this.showWeekends = true,
-    this.defaultCalendarView = 'week',
+    this.defaultCalendarView = 'month',
     this.autoSync = true,
     this.notificationTime = '09:00',
-    this.enabledEventTypes = const ['festival', 'remembrance', 'gregorian'],
+    this.enabledEventTypes = const ['celebration', 'historical', 'anniversary', 'memorial', 'awareness'],
     required this.lastSyncDate,
     required this.createdAt,
     required this.updatedAt,
     this.themeMode,
+    this.startWeekOn,
+    this.daysOff,
+    this.enabledOrigins,
   });
 
   UserPreferences copyWith({
@@ -78,6 +91,9 @@ class UserPreferences extends HiveObject {
     DateTime? createdAt,
     DateTime? updatedAt,
     String? themeMode,
+    String? startWeekOn,
+    List<String>? daysOff,
+    List<String>? enabledOrigins,
   }) {
     return UserPreferences(
       language: language ?? this.language,
@@ -94,6 +110,9 @@ class UserPreferences extends HiveObject {
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
       themeMode: themeMode ?? this.themeMode,
+      startWeekOn: startWeekOn ?? this.startWeekOn,
+      daysOff: daysOff ?? this.daysOff,
+      enabledOrigins: enabledOrigins ?? this.enabledOrigins,
     );
   }
 
@@ -113,6 +132,9 @@ class UserPreferences extends HiveObject {
       'createdAt': createdAt.toIso8601String(),
       'updatedAt': updatedAt.toIso8601String(),
       'themeMode': themeMode,
+      'startWeekOn': startWeekOn,
+      'daysOff': daysOff,
+      'enabledOrigins': enabledOrigins,
     };
   }
 
@@ -127,11 +149,18 @@ class UserPreferences extends HiveObject {
       defaultCalendarView: json['defaultCalendarView'] ?? 'week',
       autoSync: json['autoSync'] ?? true,
       notificationTime: json['notificationTime'] ?? '09:00',
-      enabledEventTypes: List<String>.from(json['enabledEventTypes'] ?? ['festival', 'remembrance', 'gregorian']),
+      enabledEventTypes: List<String>.from(json['enabledEventTypes'] ??
+          ['celebration', 'historical', 'anniversary', 'memorial', 'awareness']),
       lastSyncDate: DateTime.parse(json['lastSyncDate']),
       createdAt: DateTime.parse(json['createdAt']),
       updatedAt: DateTime.parse(json['updatedAt']),
       themeMode: json['themeMode'],
+      startWeekOn: json['startWeekOn'],
+      daysOff:
+          json['daysOff'] != null ? List<String>.from(json['daysOff']) : null,
+      enabledOrigins: json['enabledOrigins'] != null
+          ? List<String>.from(json['enabledOrigins'])
+          : null,
     );
   }
 }

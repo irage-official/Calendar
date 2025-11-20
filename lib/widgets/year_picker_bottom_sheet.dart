@@ -10,8 +10,10 @@ import '../providers/app_provider.dart';
 import '../providers/calendar_provider.dart';
 import '../utils/calendar_utils.dart';
 import '../utils/svg_helper.dart';
+import '../utils/font_helper.dart';
 import '../services/date_converter_service.dart';
 import '../services/year_cache_service.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 // Custom scroll physics for 50% faster scrolling
 class FastScrollPhysics extends ClampingScrollPhysics {
@@ -422,7 +424,7 @@ class _YearPickerBottomSheetState extends State<YearPickerBottomSheet> {
                           controller: _scrollController,
                           physics: const FastScrollPhysics(), // 50% faster scrolling
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20), // 20px horizontal padding
+                            padding: const EdgeInsets.symmetric(horizontal: 24), // 24px horizontal padding
                             child: Column(
                               children: [
                                 // Year blocks
@@ -453,7 +455,7 @@ class _YearPickerBottomSheetState extends State<YearPickerBottomSheet> {
                     final calendarSystem = appProvider.calendarSystem;
                     final dateConverter = DateConverterService();
                     
-                    if (calendarSystem == 'solar') {
+                      if (calendarSystem == 'solar') {
                       // For solar calendar: select the first day of the solar month
                       final solarYear = _visibleYears[i];
                       final solarMonth = month;
@@ -462,7 +464,10 @@ class _YearPickerBottomSheetState extends State<YearPickerBottomSheet> {
                         firstDaySolar.year, firstDaySolar.month, firstDaySolar.day);
                       
                       // Switch to month view and set selected date (also aligns displayedMonth to solar month)
-                      calendarProvider.setWeekView(false);
+                        calendarProvider.applyDefaultCalendarView(
+                          'month',
+                          calendarSystem: calendarSystem,
+                        );
                       calendarProvider.setSelectedDateForSolar(gregorianFirstDay);
                     } else if (calendarSystem == 'shahanshahi') {
                       // For shahanshahi calendar: convert shahanshahi year to jalali year first
@@ -474,7 +479,10 @@ class _YearPickerBottomSheetState extends State<YearPickerBottomSheet> {
                         firstDayJalali.year, firstDayJalali.month, firstDayJalali.day);
                       
                       // Switch to month view and set selected date (also aligns displayedMonth to solar month)
-                      calendarProvider.setWeekView(false);
+                      calendarProvider.applyDefaultCalendarView(
+                        'month',
+                        calendarSystem: calendarSystem,
+                      );
                       calendarProvider.setSelectedDateForSolar(gregorianFirstDay);
                     } else {
                       // Gregorian: select the first day of the chosen month
@@ -599,13 +607,19 @@ class _YearPickerBottomSheetState extends State<YearPickerBottomSheet> {
                                     child: Center(
                                       child: Text(
                                         isPersianLang ? 'امروز' : 'Today',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          height: 1.4,
-                                          fontWeight: FontWeight.w600, // Semibold
-                                          color: TCnt.neutralSecond(context),
-                                          fontFamily: isPersianLang ? 'Vazir' : 'Inter',
-                                        ),
+                                        style: isPersianLang
+                                            ? FontHelper.getYekanBakh(
+                                                fontSize: 14,
+                                                height: 1.4,
+                                                fontWeight: FontWeight.w600, // Semibold
+                                                color: TCnt.neutralSecond(context),
+                                              )
+                                            : GoogleFonts.inter(
+                                                fontSize: 14,
+                                                height: 1.4,
+                                                fontWeight: FontWeight.w600, // Semibold
+                                                color: TCnt.neutralSecond(context),
+                                              ),
                                       ),
                                     ),
                                   ),
@@ -758,14 +772,21 @@ class _YearBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-        final yearStyle = TextStyle(
-      fontSize: 24,
-      height: 1.4,
-      letterSpacing: -0.48, // -2%
-      fontWeight: FontWeight.w700,
-          color: highlight ? TCnt.brandMain(context) : TCnt.neutralMain(context),
-      fontFamily: isPersianLang ? 'Vazir' : 'Inter',
-    );
+        final yearStyle = isPersianLang
+            ? FontHelper.getYekanBakh(
+                fontSize: 24,
+                height: 1.4,
+                letterSpacing: -0.48, // -2%
+                fontWeight: FontWeight.w700,
+                color: highlight ? TCnt.brandMain(context) : TCnt.neutralMain(context),
+              )
+            : GoogleFonts.inter(
+                fontSize: 24,
+                height: 1.4,
+                letterSpacing: -0.48, // -2%
+                fontWeight: FontWeight.w700,
+                color: highlight ? TCnt.brandMain(context) : TCnt.neutralMain(context),
+              );
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -825,13 +846,13 @@ class _MonthsGrid extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         // Calculate month width for 3 months per row
-        // 3 months with 2 gaps of 16px = 32px for gaps
+        // 3 months with 2 gaps of 24px = 48px for gaps
         final totalWidth = constraints.maxWidth;
-        final availableWidth = totalWidth - 32; // Subtract gaps (padding already in parent)
+        final availableWidth = totalWidth - 48; // Subtract gaps (padding already in parent)
         final monthWidth = availableWidth / 3;
         
         return Wrap(
-          spacing: 16, // horizontal gap between months
+          spacing: 24, // horizontal gap between months
           runSpacing: 16, // vertical gap between months
           alignment: WrapAlignment.start,
           children: months.map((m) => SizedBox(
@@ -877,6 +898,28 @@ class _MiniMonth extends StatelessWidget {
     required this.selectedDate,
   });
 
+  // Helper to get weekday name from DateTime weekday
+  String _weekdayName(int weekday) {
+    switch (weekday) {
+      case DateTime.monday:
+        return 'monday';
+      case DateTime.tuesday:
+        return 'tuesday';
+      case DateTime.wednesday:
+        return 'wednesday';
+      case DateTime.thursday:
+        return 'thursday';
+      case DateTime.friday:
+        return 'friday';
+      case DateTime.saturday:
+        return 'saturday';
+      case DateTime.sunday:
+        return 'sunday';
+      default:
+        return '';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // Check if this month is the active month
@@ -895,15 +938,27 @@ class _MiniMonth extends StatelessWidget {
       isActiveMonth = year == currentMonth.year && month == currentMonth.month;
     }
     
-    final labelStyle = TextStyle(
-      fontSize: 14,
-      height: 1.4,
-      letterSpacing: -0.28, // -2%
-      color: isActiveMonth ? TCnt.brandMain(context) : TCnt.neutralSecond(context),
-      fontFamily: isPersianLang ? 'Vazir' : 'Inter',
-      fontWeight: FontWeight.w600,
-    );
+    final labelStyle = isPersianLang
+        ? FontHelper.getYekanBakh(
+            fontSize: 14,
+            height: 1.4,
+            letterSpacing: -0.28, // -2%
+            color: isActiveMonth ? TCnt.brandMain(context) : TCnt.neutralSecond(context),
+            fontWeight: FontWeight.w600,
+          )
+        : GoogleFonts.inter(
+            fontSize: 14,
+            height: 1.4,
+            letterSpacing: -0.28, // -2%
+            color: isActiveMonth ? TCnt.brandMain(context) : TCnt.neutralSecond(context),
+            fontWeight: FontWeight.w600,
+          );
 
+    // Get settings from AppProvider
+    final appProvider = Provider.of<AppProvider>(context);
+    final startWeekOn = appProvider.effectiveStartWeekOn;
+    final daysOff = appProvider.effectiveDaysOff;
+    
     // Build calendar grid cells (7 columns), only days of target month are shown
     // For solar/shahanshahi calendar, we need to convert solar year/month to Gregorian first
     final DateTime firstDay;
@@ -927,8 +982,13 @@ class _MiniMonth extends StatelessWidget {
       lastDay = DateTime(year, month + 1, 0).day;
     }
     
+    // Use startWeekOn setting to get week start
     final weekStartCalendarSystem = isSolarHijri ? 'solar' : 'gregorian';
-    final weekStart = CalendarUtils.getWeekStart(firstDay, calendarSystem: weekStartCalendarSystem);
+    final weekStart = CalendarUtils.getWeekStart(
+      firstDay,
+      calendarSystem: weekStartCalendarSystem,
+      startWeekOn: startWeekOn,
+    );
     final offset = firstDay.difference(weekStart).inDays; // leading blanks
     final totalCells = offset + lastDay;
     final rows = (totalCells / 7).ceil();
@@ -978,8 +1038,9 @@ class _MiniMonth extends StatelessWidget {
                                       date.month == selectedDate.month && 
                                       date.day == selectedDate.day;
                     
-                    // Determine special coloring for Fridays in Solar Hijri year view
-                    final bool isFridayInSolar = isSolarHijri && date.weekday == DateTime.friday; // 5
+                    // Check if this day is a day off based on settings
+                    final weekdayName = _weekdayName(date.weekday);
+                    final isOffDay = daysOff.contains(weekdayName);
                     
                     Color textColor;
                     Color? backgroundColor;
@@ -990,23 +1051,25 @@ class _MiniMonth extends StatelessWidget {
                       backgroundColor = TCnt.brandMain(context);
                       textWeight = FontWeight.bold;
                     } else if (isActiveMonth) {
-                      // Active month days: neutral_secondary for regular days, neutral_tertiary for weekends, errorMd for Fridays in solar
-                      final isWeekendGregorian = date.weekday == DateTime.saturday || date.weekday == DateTime.sunday;
-                      if (isFridayInSolar) {
-                        // For solar calendar, show Fridays in active month with errorMd color
+                      // Active month days: errorMd for days off, neutral_secondary for regular days, neutral_tertiary for weekends
+                      if (isOffDay) {
+                        // Days off in active month: show with errorMd (red) color
                         textColor = TCnt.errorMd(context);
-                      } else if (isWeekendGregorian) {
-                        // Saturday and Sunday
-                        textColor = TCnt.neutralTertiary(context);
                       } else {
-                        // Regular days in active month
-                        textColor = TCnt.neutralSecond(context);
+                        final isWeekendGregorian = date.weekday == DateTime.saturday || date.weekday == DateTime.sunday;
+                        if (isWeekendGregorian) {
+                          // Saturday and Sunday (if not in daysOff)
+                          textColor = TCnt.neutralTertiary(context);
+                        } else {
+                          // Regular days in active month
+                          textColor = TCnt.neutralSecond(context);
+                        }
                       }
                     } else {
-                      // Inactive months: Fridays with errorWeak, rest with neutralTertiary
-                      if (isFridayInSolar) {
-                        // For solar calendar, show Fridays in inactive months with errorWeak color
-                        textColor = TCnt.errorWeak(context);
+                      // Inactive months: errorMd for days off, rest with neutralTertiary
+                      if (isOffDay) {
+                        // Days off in inactive months: show with errorMd (red) color
+                        textColor = TCnt.errorMd(context);
                       } else {
                         textColor = TCnt.neutralTertiary(context);
                       }
@@ -1029,13 +1092,19 @@ class _MiniMonth extends StatelessWidget {
                       child: Center(
                         child: Text(
                           text,
-                          style: TextStyle(
-                            fontSize: 9,
-                            height: 1.3,
-                            color: textColor,
-                            fontFamily: isPersianLang ? 'Vazir' : 'Inter',
-                            fontWeight: textWeight,
-                          ),
+                          style: isPersianLang
+                              ? FontHelper.getYekanBakh(
+                                  fontSize: 9,
+                                  height: 1.3,
+                                  color: textColor,
+                                  fontWeight: textWeight,
+                                )
+                              : GoogleFonts.inter(
+                                  fontSize: 9,
+                                  height: 1.3,
+                                  color: textColor,
+                                  fontWeight: textWeight,
+                                ),
                         ),
                       ),
                     );

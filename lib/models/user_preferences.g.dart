@@ -31,13 +31,16 @@ class UserPreferencesAdapter extends TypeAdapter<UserPreferences> {
       createdAt: fields[11] as DateTime,
       updatedAt: fields[12] as DateTime,
       themeMode: fields[13] as String?,
+      startWeekOn: fields[14] as String?,
+      daysOff: (fields[15] as List?)?.cast<String>(),
+      enabledOrigins: (fields[16] as List?)?.cast<String>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, UserPreferences obj) {
     writer
-      ..writeByte(14)
+      ..writeByte(17)
       ..writeByte(0)
       ..write(obj.language)
       ..writeByte(1)
@@ -65,7 +68,13 @@ class UserPreferencesAdapter extends TypeAdapter<UserPreferences> {
       ..writeByte(12)
       ..write(obj.updatedAt)
       ..writeByte(13)
-      ..write(obj.themeMode);
+      ..write(obj.themeMode)
+      ..writeByte(14)
+      ..write(obj.startWeekOn)
+      ..writeByte(15)
+      ..write(obj.daysOff)
+      ..writeByte(16)
+      ..write(obj.enabledOrigins);
   }
 
   @override

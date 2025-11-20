@@ -54,17 +54,75 @@ class _EventListWidgetState extends State<EventListWidget> {
         final calendarSystem = appProvider.calendarSystem;
 
         // Get events for the selected date
-        List<Event> events;
+        List<Event> allEvents;
         if (calendarSystem == 'solar' || calendarSystem == 'shahanshahi') {
           final jalali = CalendarUtils.gregorianToJalali(selectedDate);
-          events = eventProvider.getEventsForSolarDate(
+          allEvents = eventProvider.getEventsForSolarDate(
             jalali.year,
             jalali.month,
             jalali.day,
           );
         } else {
-          events = eventProvider.getEventsForDate(selectedDate);
+          allEvents = eventProvider.getEventsForDate(selectedDate);
         }
+
+        // Filter events based on enabled origins and event types for home screen
+        // If an origin is disabled, hide all events from that origin
+        // If an event type is disabled, hide events of that type
+        final enabledOrigins = appProvider.enabledOrigins ??
+            ['iranian', 'international', 'mixed', 'local'];
+        final enabledEventTypes = appProvider.enabledEventTypes;
+        
+        // All possible event types
+        const allEventTypes = ['celebration', 'historical', 'anniversary', 'memorial', 'awareness'];
+        
+        final Set<String> allowedOrigins = enabledOrigins
+            .map((origin) => origin.toLowerCase())
+            .toSet();
+        
+        // Check if all event types are enabled (user hasn't disabled any)
+        // If enabledEventTypes contains all types, don't filter by type
+        final bool allTypesEnabled = enabledEventTypes.length == allEventTypes.length &&
+            allEventTypes.every((type) => enabledEventTypes.contains(type));
+        
+        final Set<String>? allowedTypes = allTypesEnabled
+            ? null // Don't filter by type if all types are enabled
+            : enabledEventTypes.map((type) => type.toLowerCase()).toSet();
+
+        // Debug: Print filtering info
+        // print('DEBUG: enabledOrigins = $enabledOrigins');
+        // print('DEBUG: allowedOrigins = $allowedOrigins');
+        // print('DEBUG: enabledEventTypes = $enabledEventTypes');
+        // print('DEBUG: allTypesEnabled = $allTypesEnabled');
+        // print('DEBUG: allEvents count = ${allEvents.length}');
+        // for (final event in allEvents) {
+        //   print('DEBUG: event origin=${event.origin}, type=${event.type}');
+        // }
+
+        final List<Event> events = allEvents.where((event) {
+          final String origin = event.origin.toLowerCase();
+          final String type = event.type.toLowerCase();
+
+          // Check if origin is enabled
+          final bool originAllowed = allowedOrigins.contains(origin);
+          if (!originAllowed) {
+            // print('DEBUG: Filtered out event ${event.id} - origin $origin not allowed');
+            return false;
+          }
+
+          // Check if event type is enabled (only if not all types are enabled)
+          if (allowedTypes != null) {
+            final bool typeAllowed = allowedTypes.contains(type);
+            if (!typeAllowed) {
+              // print('DEBUG: Filtered out event ${event.id} - type $type not allowed');
+              return false;
+            }
+          }
+
+          return true;
+        }).toList();
+        
+        // print('DEBUG: Filtered events count = ${events.length}');
 
         // Padding values as specified:
         // - Left/Right: 24px
@@ -112,9 +170,23 @@ class _EventListWidgetState extends State<EventListWidget> {
             listWidget,
             // Top gradient with reverse blur - only show when scrolled
             // Smooth blur transition like iOS 16 - more layers with smaller blur increments for smoother fade
-            if (_isScrolled)
+            // Offset from top to avoid clipping logo (6px offset)
+            if (_isScrolled) ...[
+              // Fill empty space above blur with home background color
               Positioned(
                 top: 0,
+                left: 0,
+                right: 0,
+                child: IgnorePointer(
+                  child: Container(
+                    height: 6,
+                    color: TBg.home(context),
+                  ),
+                ),
+              ),
+              // Blur effect starting from 6px offset
+              Positioned(
+                top: 6,
                 left: 0,
                 right: 0,
                 child: IgnorePointer(
@@ -266,6 +338,7 @@ class _EventListWidgetState extends State<EventListWidget> {
                   ),
                 ),
               ),
+            ],
           ],
         );
       },

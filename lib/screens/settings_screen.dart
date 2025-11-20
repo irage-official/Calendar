@@ -18,7 +18,11 @@ import '../widgets/settings_bottom_sheet.dart';
 import '../widgets/content_bottom_sheet.dart';
 import '../widgets/alert_message_widget.dart';
 import '../widgets/custom_radio_button.dart';
+import '../utils/font_helper.dart';
 import '../utils/svg_helper.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../utils/about_content_helpers.dart';
+import '../widgets/about_bottom_sheet.dart';
 import '../utils/extensions.dart';
 import '../utils/calendar_utils.dart';
 import '../config/app_config.dart';
@@ -26,9 +30,41 @@ import '../services/date_converter_service.dart';
 import '../services/update_service.dart';
 import '../services/event_service.dart';
 import '../models/app_version.dart';
+import 'calendar_events_settings_screen.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
+
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  final ScrollController _scrollController = ScrollController();
+  bool _isScrolled = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_handleScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_handleScroll);
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _handleScroll() {
+    final isScrolled = _scrollController.hasClients && 
+                       _scrollController.position.pixels > 0;
+    if (isScrolled != _isScrolled) {
+      setState(() {
+        _isScrolled = isScrolled;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,31 +82,97 @@ class SettingsScreen extends StatelessWidget {
                   title: isPersian ? 'تنظیمات' : 'Settings',
                 ),
               Expanded(
-                child: ListView(
+                child: Stack(
                   children: [
-                    // App Settings Section
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: _buildAppSettingsSection(context, isPersian),
+                    ListView(
+                      controller: _scrollController,
+                      children: [
+                        // Personalization Section
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: _buildPersonalizationSection(context, isPersian),
+                        ),
+                        
+                        // Support & Extras Section
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: _buildSupportAndExtrasSection(context, isPersian),
+                        ),
+                        
+                        // System & Policies Section
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: _buildSystemAndPoliciesSection(context, isPersian),
+                        ),
+                        
+                        // Version at bottom (inside ListView)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 32.0),
+                          child: Center(
+                            child: Text(
+                              _formatVersion(AppConfig.appVersion, isPersian),
+                              style: isPersian
+                                  ? FontHelper.getYekanBakh(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.normal,
+                                      color: TCnt.neutralWeak(context),
+                                    )
+                                  : AppTextStyles.bodySmall.copyWith(
+                                      color: TCnt.neutralWeak(context),
+                                    ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    
-                    // More Settings Section
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: _buildMoreSettingsSection(context, isPersian),
+                    // Top gradient overlay (below header) - only show when scrolled
+                    if (_isScrolled)
+                      Positioned(
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        height: 32,
+                        child: IgnorePointer(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  TBg.main(context),
+                                  TBg.main(context).withOpacity(0.8),
+                                  TBg.main(context).withOpacity(0),
+                                ],
+                                stops: const [0.0, 0.3, 1.0],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    // Bottom gradient overlay
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      height: 32,
+                      child: IgnorePointer(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.bottomCenter,
+                              end: Alignment.topCenter,
+                              colors: [
+                                TBg.main(context),
+                                TBg.main(context).withOpacity(0.8),
+                                TBg.main(context).withOpacity(0),
+                              ],
+                              stops: const [0.0, 0.3, 1.0],
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ],
-                ),
-              ),
-              
-              // Version at bottom
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 32.0),
-                child: Text(
-                  _formatVersion(AppConfig.appVersion, isPersian),
-                  style: AppTextStyles.bodySmall.copyWith(
-                    color: TCnt.neutralWeak(context),
-                  ),
                 ),
               ),
             ],
@@ -81,23 +183,43 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildAppSettingsSection(BuildContext context, bool isPersian) {
+  Widget _buildPersonalizationSection(BuildContext context, bool isPersian) {
     return Consumer<AppProvider>(
       builder: (context, appProvider, child) {
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SettingItem(
-              icon: AppIcons.globe,
-              title: isPersian ? 'تغییر زبان' : 'Change Language',
-              subtitle: _getCurrentLanguageText(appProvider.language, isPersian),
-              onTap: () => _showLanguageBottomSheet(context, isPersian),
-              margin: EdgeInsets.zero,
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24.0, 0.0, 24.0, 16.0),
+              child: Text(
+                isPersian ? 'شخصی سازی' : 'Personalization',
+                style: isPersian
+                    ? FontHelper.getYekanBakh(
+                        fontSize: 14,
+                        height: 1.4,
+                        letterSpacing: -0.007,
+                        fontWeight: FontWeight.w500,
+                        color: TCnt.neutralMain(context).withOpacity(0.5),
+                      )
+                    : AppTextStyles.bodyMedium.copyWith(
+                        fontSize: 14,
+                        height: 1.4,
+                        letterSpacing: -0.007,
+                        fontWeight: FontWeight.w500,
+                        color: TCnt.neutralMain(context).withOpacity(0.5),
+                      ),
+              ),
             ),
             SettingItem(
-              icon: AppIcons.calendar,
-              title: isPersian ? 'سیستم تقویم' : 'Calendar System',
-              subtitle: _getCurrentCalendarSystemText(appProvider.calendarSystem, isPersian),
-              onTap: () => _showCalendarSystemBottomSheet(context, isPersian),
+              icon: AppIcons.calendarDays,
+              title: isPersian ? 'تقویم و رویدادها' : 'Calendar & Events',
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const CalendarEventsSettingsScreen(),
+                  ),
+                );
+              },
               margin: EdgeInsets.zero,
             ),
             Consumer<AppProvider>(
@@ -112,17 +234,10 @@ class SettingsScreen extends StatelessWidget {
               },
             ),
             SettingItem(
-              icon: AppIcons.heartFun,
-              title: isPersian ? 'حمایت مالی' : 'Donation',
-              onTap: () => _showDonationDialog(context, isPersian),
-              showArrow: false,
-              margin: EdgeInsets.zero,
-            ),
-            SettingItem(
-              icon: AppIcons.book,
-              title: isPersian ? 'منابع' : 'Resources',
-              onTap: () => _showResourcesDialog(context, isPersian),
-              showArrow: false,
+              icon: AppIcons.globe,
+              title: isPersian ? ' تغییر زبان اپلیکیشن' : 'Change Language',
+              subtitle: _getCurrentLanguageText(appProvider.language, isPersian),
+              onTap: () => _showLanguageBottomSheet(context, isPersian),
               margin: EdgeInsets.zero,
             ),
           ],
@@ -131,22 +246,44 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildMoreSettingsSection(BuildContext context, bool isPersian) {
+  Widget _buildSupportAndExtrasSection(BuildContext context, bool isPersian) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(24.0, 0.0, 24.0, 16.0),
           child: Text(
-            isPersian ? 'تنظیمات بیشتر' : 'More Settings',
-            style: AppTextStyles.bodyMedium.copyWith(
-              fontSize: 14,
-              height: 1.4,
-              letterSpacing: -0.007,
-              fontWeight: FontWeight.w600,
-              color: TCnt.neutralMain(context).withOpacity(0.4),
-            ),
+            isPersian ? 'پشتیبانی و موارد اضافی' : 'Support & Extras',
+            style: isPersian
+                ? FontHelper.getYekanBakh(
+                    fontSize: 14,
+                    height: 1.4,
+                    letterSpacing: -0.007,
+                    fontWeight: FontWeight.w500,
+                    color: TCnt.neutralMain(context).withOpacity(0.5),
+                  )
+                : AppTextStyles.bodyMedium.copyWith(
+                    fontSize: 14,
+                    height: 1.4,
+                    letterSpacing: -0.007,
+                    fontWeight: FontWeight.w500,
+                    color: TCnt.neutralMain(context).withOpacity(0.5),
+                  ),
           ),
+        ),
+        SettingItem(
+          icon: AppIcons.heartFun,
+          title: isPersian ? 'حمایت مالی' : 'Donation',
+          onTap: () => _showDonationDialog(context, isPersian),
+          showArrow: false,
+          margin: EdgeInsets.zero,
+        ),
+        SettingItem(
+          icon: AppIcons.book,
+          title: isPersian ? 'منابع' : 'Resources',
+          onTap: () => _showResourcesDialog(context, isPersian),
+          showArrow: false,
+          margin: EdgeInsets.zero,
         ),
         SettingItem(
           icon: AppIcons.infoCircle,
@@ -154,6 +291,35 @@ class SettingsScreen extends StatelessWidget {
           onTap: () => _showAboutDialog(context, isPersian),
           showArrow: false,
           margin: EdgeInsets.zero,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSystemAndPoliciesSection(BuildContext context, bool isPersian) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(24.0, 0.0, 24.0, 16.0),
+          child: Text(
+            isPersian ? 'سیستم و سیاست‌ها' : 'System & Policies',
+            style: isPersian
+                ? FontHelper.getYekanBakh(
+                    fontSize: 14,
+                    height: 1.4,
+                    letterSpacing: -0.007,
+                    fontWeight: FontWeight.w500,
+                    color: TCnt.neutralMain(context).withOpacity(0.5),
+                  )
+                : AppTextStyles.bodyMedium.copyWith(
+                    fontSize: 14,
+                    height: 1.4,
+                    letterSpacing: -0.007,
+                    fontWeight: FontWeight.w500,
+                    color: TCnt.neutralMain(context).withOpacity(0.5),
+                  ),
+          ),
         ),
         SettingItem(
           icon: AppIcons.lock,
@@ -164,20 +330,13 @@ class SettingsScreen extends StatelessWidget {
         ),
         SettingItem(
           icon: AppIcons.document,
-          title: isPersian ? 'شرایط استفاده' : 'Terms and Conditions',
+          title: isPersian ? 'شرایط استفاده' : 'Terms of Service',
           onTap: () => _showTermsOfServiceDialog(context, isPersian),
           showArrow: false,
           margin: EdgeInsets.zero,
         ),
-        // SettingItem(
-        //   icon: AppIcons.feedback,
-        //   title: isPersian ? 'بازخورد' : 'Feedback',
-        //   onTap: () => _showFeedbackDialog(context, isPersian),
-        //   showArrow: false,
-        //   margin: EdgeInsets.zero,
-        // ),
         SettingItem(
-          icon: AppIcons.download,
+          icon: AppIcons.update,
           title: isPersian ? 'بررسی آپدیت' : 'Check for Updates',
           onTap: () => _checkForUpdates(context, isPersian),
           showArrow: false,
@@ -208,16 +367,6 @@ class SettingsScreen extends StatelessWidget {
     }
   }
 
-  String _getCurrentCalendarSystemText(String calendarSystem, bool isPersian) {
-    if (calendarSystem == 'solar') {
-      return isPersian ? 'شمسی' : 'Solar Hijri';
-    } else if (calendarSystem == 'shahanshahi') {
-      return isPersian ? 'شاهنشاهی' : 'Shahanshahi';
-    } else {
-      return isPersian ? 'میلادی' : 'Gregorian';
-    }
-  }
-
   String _getCurrentAppearanceTextStatic(AppProvider appProvider, bool isPersian) {
     final mode = appProvider.themeModeString;
     if (mode == 'system') {
@@ -231,12 +380,6 @@ class SettingsScreen extends StatelessWidget {
     return appProvider.isDarkMode 
         ? (isPersian ? 'تاریک' : 'Dark')
         : (isPersian ? 'روشن' : 'Light');
-  }
-
-  Color _getDescriptionColor(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.dark
-        ? TCnt.neutralSecond(context).withOpacity(0.9)
-        : TCnt.neutralSecond(context);
   }
 
   String _formatLastUpdatedDate(AppProvider appProvider, bool isPersian) {
@@ -333,59 +476,6 @@ class SettingsScreen extends StatelessWidget {
       ),
     );
   }
-
-
-  void _showCalendarSystemBottomSheet(BuildContext context, bool isPersian) {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      barrierColor: Colors.black.withOpacity(0.3), // 30% opacity black backdrop
-      isScrollControlled: true,
-      builder: (context) => Consumer<AppProvider>(
-        builder: (context, appProvider, child) {
-          return SettingsBottomSheet(
-            title: isPersian ? 'تغییر تقویم' : 'Change Calendar',
-            description: isPersian ? 'سیستم تقویم تاریخ را انتخاب کنید.' : 'Choose the calendar system of date.',
-            content: Column(
-              children: [
-                // Gregorian option
-                CustomRadioButton(
-                  label: isPersian ? 'میلادی (Gregorian)' : 'Gregorian',
-                  isSelected: appProvider.calendarSystem == 'gregorian',
-                  onTap: () {
-                    appProvider.setCalendarSystem('gregorian');
-                    Navigator.of(context).pop();
-                  },
-                ),
-                const SizedBox(height: 8),
-                // Shahanshahi option
-                CustomRadioButton(
-                  label: isPersian ? 'شاهنشاهی (Shahanshahi)' : 'Shahanshahi (شاهنشاهی)',
-                  isSelected: appProvider.calendarSystem == 'shahanshahi',
-                  onTap: () {
-                    appProvider.setCalendarSystem('shahanshahi');
-                    Navigator.of(context).pop();
-                  },
-                ),
-                const SizedBox(height: 8),
-                // Solar Hijri option
-                CustomRadioButton(
-                  label: isPersian ? 'شمسی (Solar Hijri)' : 'Solar Hijri (شمسی)',
-                  isSelected: appProvider.calendarSystem == 'solar',
-                  onTap: () {
-                    appProvider.setCalendarSystem('solar');
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            ),
-          );
-        },
-      ),
-    );
-  }
-
-
   void _showAppearanceBottomSheet(BuildContext context, bool isPersian) {
     showModalBottomSheet(
       context: context,
@@ -468,12 +558,19 @@ class SettingsScreen extends StatelessWidget {
               isPersian
                   ? 'این پروژه بر پایه تعهد رشد می‌کند، نه سود — ساخته شده توسط کسانی که حقیقت را بر سکوت ترجیح می‌دهند. حمایت شما این آرشیو را مستقل و زنده نگه می‌دارد.'
                   : 'This project thrives on dedication, not profit — crafted by those who value truth over silence. Your support keeps this archive independent and vibrant.',
-              style: TextStyle(
-                fontSize: 14,
-                height: 1.6,
-                letterSpacing: -0.098,
-                color: _getDescriptionColor(context),
-              ),
+              style: isPersian
+                  ? FontHelper.getYekanBakh(
+                      fontSize: 14,
+                      height: 1.6,
+                      letterSpacing: -0.098,
+                      color: aboutDescriptionColor(context),
+                    )
+                  : TextStyle(
+                      fontSize: 14,
+                      height: 1.6,
+                      letterSpacing: -0.098,
+                      color: aboutDescriptionColor(context),
+                    ),
             ),
             const SizedBox(height: 24),
             // Wallet Info Container
@@ -509,41 +606,41 @@ class SettingsScreen extends StatelessWidget {
               child: isPersian
                   ? Text.rich(
                       TextSpan(
-                        style: TextStyle(
+                        style: FontHelper.getYekanBakh(
                           fontSize: 14,
                           height: 1.6,
                           letterSpacing: -0.098,
-                          color: _getDescriptionColor(context),
+                          color: aboutDescriptionColor(context),
                           fontWeight: FontWeight.w400,
                         ),
-                        children: const [
-                          TextSpan(text: 'برای محافظت از حریم خصوصی شما، کمک‌های مالی را به کیف پول تتر ('),
-                          TextSpan(text: 'USDT', style: TextStyle(fontWeight: FontWeight.bold)),
-                          TextSpan(text: ') ما در شبکه '),
-                          TextSpan(text: 'TRON', style: TextStyle(fontWeight: FontWeight.bold)),
-                          TextSpan(text: ' ('),
-                          TextSpan(text: 'TRC20', style: TextStyle(fontWeight: FontWeight.bold)),
-                          TextSpan(text: ') ارسال کنید. هیچ داده شخصی جمع‌آوری نخواهد شد.'),
+                        children: [
+                          const TextSpan(text: 'برای محافظت از حریم خصوصی شما، کمک‌های مالی را به کیف پول تتر ('),
+                          TextSpan(text: 'USDT', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
+                          const TextSpan(text: ') ما در شبکه '),
+                          TextSpan(text: 'TRON', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
+                          const TextSpan(text: ' ('),
+                          TextSpan(text: 'TRC20', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
+                          const TextSpan(text: ') ارسال کنید. هیچ داده شخصی جمع‌آوری نخواهد شد.'),
                         ],
                       ),
                     )
                   : Text.rich(
                       TextSpan(
-                        style: TextStyle(
+                        style: GoogleFonts.inter(
                           fontSize: 14,
                           height: 1.6,
                           letterSpacing: -0.098,
-                          color: _getDescriptionColor(context),
+                          color: aboutDescriptionColor(context),
                           fontWeight: FontWeight.w400,
                         ),
-                        children: const [
-                          TextSpan(text: 'To protect your privacy, send contributions to our Tether ('),
-                          TextSpan(text: 'USDT', style: TextStyle(fontWeight: FontWeight.bold)),
-                          TextSpan(text: ') wallet on '),
-                          TextSpan(text: 'TRON', style: TextStyle(fontWeight: FontWeight.bold)),
-                          TextSpan(text: ' ('),
-                          TextSpan(text: 'TRC20', style: TextStyle(fontWeight: FontWeight.bold)),
-                          TextSpan(text: '). No personal data will be collected.'),
+                        children: [
+                          const TextSpan(text: 'To protect your privacy, send contributions to our Tether ('),
+                          TextSpan(text: 'USDT', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
+                          const TextSpan(text: ') wallet on '),
+                          TextSpan(text: 'TRON', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
+                          const TextSpan(text: ' ('),
+                          TextSpan(text: 'TRC20', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
+                          const TextSpan(text: '). No personal data will be collected.'),
                         ],
                       ),
                     ),
@@ -693,34 +790,6 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSocialButton({
-    required BuildContext context,
-    required String iconPath,
-    required VoidCallback onTap,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 32,
-        height: 32,
-        padding: const EdgeInsets.all(6),
-        decoration: BoxDecoration(
-          color: Theme.of(context).brightness == Brightness.dark
-              ? ThemeColors.gray100.withOpacity(0.1)
-              : ThemeColors.gray900.withOpacity(0.06),
-          shape: BoxShape.circle,
-        ),
-        child: Center(
-          child: SvgIconWidget(
-            assetPath: iconPath,
-            size: 20,
-            color: TCnt.neutralSecond(context),
-          ),
-        ),
-      ),
-    );
-  }
-
   Future<void> _copyToClipboard(BuildContext context, String text, bool isPersian) async {
     await Clipboard.setData(ClipboardData(text: text));
     if (context.mounted) {
@@ -829,25 +898,40 @@ class SettingsScreen extends StatelessWidget {
               isPersian 
                   ? 'این پروژه بر اساس داده‌های تأیید شده از سازمان‌های مستقل حقوق بشر و آرشیوهای مستندسازی جنایات رژیم جمهوری اسلامی ساخته شده است.'
                   : 'This project was built on verified data from independent human rights organizations and archives documenting the crimes of the Islamic Republic regime.',
-              style: TextStyle(
-                fontSize: 14,
-                height: 1.6,
-                letterSpacing: -0.098,
-                color: _getDescriptionColor(context),
-              ),
+              style: isPersian
+                  ? FontHelper.getYekanBakh(
+                      fontSize: 14,
+                      height: 1.6,
+                      letterSpacing: -0.098,
+                      color: aboutDescriptionColor(context),
+                    )
+                  : TextStyle(
+                      fontSize: 14,
+                      height: 1.6,
+                      letterSpacing: -0.098,
+                      color: aboutDescriptionColor(context),
+                    ),
             ),
             const SizedBox(height: 16),
             Text(
               isPersian 
                   ? 'در زیر منابع کلیدی که در حفظ حقیقت و حافظه مشارکت داشته‌اند را خواهید یافت:'
                   : 'Below you\'ll find key sources that have contributed to preserving truth and memory.',
-              style: TextStyle(
-                fontSize: 14,
-                height: 1.6,
-                letterSpacing: -0.098, // -0.7% of 14
-                color: _getDescriptionColor(context),
-                fontWeight: FontWeight.w400,
-              ),
+              style: isPersian
+                  ? FontHelper.getYekanBakh(
+                      fontSize: 14,
+                      height: 1.6,
+                      letterSpacing: -0.098, // -0.7% of 14
+                      color: aboutDescriptionColor(context),
+                      fontWeight: FontWeight.w400,
+                    )
+                  : TextStyle(
+                      fontSize: 14,
+                      height: 1.6,
+                      letterSpacing: -0.098, // -0.7% of 14
+                      color: aboutDescriptionColor(context),
+                      fontWeight: FontWeight.w400,
+                    ),
             ),
             const SizedBox(height: 24),
             _buildResourceItem(context,
@@ -911,446 +995,7 @@ class SettingsScreen extends StatelessWidget {
   }
 
   void _showAboutDialog(BuildContext context, bool isPersian) {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      barrierColor: Colors.black.withOpacity(0.3), // 30% opacity black backdrop
-      isScrollControlled: true,
-      builder: (context) => ContentBottomSheet(
-        title: isPersian ? 'درباره ما' : 'About Us',
-        titleIconEmoji: '🕊️',
-          content: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Introduction
-            _buildRichTextWithIrage(
-              context,
-              isPersian 
-                  ? 'ایراژ (میراث ایران) یک برنامه تقویم مستقل و ساخته شده توسط جامعه است که توسط افرادی که به ایران - ایران واقعی - اعتقاد دارند، ایجاد شده است.'
-                  : 'The Irage (Iranian Heritage) is a community-built, independent calendar app created by people who believe in Iran — the real Iran.',
-            ),
-            const SizedBox(height: 16),
-            Text(
-              isPersian 
-                  ? 'نه نسخه‌ای که توسط رژیم جمهوری اسلامی بازنویسی شده است، بلکه ایرانِ غرور، فرهنگ، هویت و آزادی باستانی.'
-                  : 'Not the version rewritten by the Islamic Republic regime, but the Iran of ancient pride, culture, identity, and freedom.',
-              style: TextStyle(
-                fontSize: 14,
-                height: 1.6,
-                color: _getDescriptionColor(context),
-              ),
-            ),
-            const SizedBox(height: 24),
-            // Independence statement
-            Text(
-              isPersian 
-                  ? 'ما اولین برنامه تقویم ملی‌گرای ایرانی هستیم و هیچ ارتباطی با جمهوری اسلامی ندارد.'
-                  : 'We are the first Iranian nationalist calendar app with zero connection to the Islamic Republic.',
-              style: TextStyle(
-                fontSize: 14,
-                height: 1.6,
-                color: _getDescriptionColor(context),
-              ),
-            ),
-            const SizedBox(height: 12),
-            // Bullet points
-            Padding(
-              padding: const EdgeInsets.only(left: 8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    isPersian ? '• بدون حمایت مالی' : '• No sponsorship',
-                    style: TextStyle(
-                      fontSize: 14,
-                      height: 1.6,
-                      color: _getDescriptionColor(context),
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    isPersian ? '• بدون روابط سیاسی' : '• No political ties',
-                    style: TextStyle(
-                      fontSize: 14,
-                      height: 1.6,
-                      color: _getDescriptionColor(context),
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    isPersian ? '• بدون تبلیغات' : '• No propaganda',
-                    style: TextStyle(
-                      fontSize: 14,
-                      height: 1.6,
-                      color: _getDescriptionColor(context),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 12),
-            Text(
-              isPersian 
-                  ? 'فقط عشق خالص به میهن و تعهد به بیان حقیقت.'
-                  : 'Just pure love for our homeland and a commitment to tell the truth.',
-              style: TextStyle(
-                fontSize: 14,
-                height: 1.6,
-                color: _getDescriptionColor(context),
-              ),
-            ),
-            const SizedBox(height: 24),
-            // Two stories introduction
-            Text(
-              isPersian 
-                  ? 'این پروژه دو داستان قدرتمند را گرد هم می‌آورد:'
-                  : 'This project brings together two powerful stories:',
-              style: TextStyle(
-                fontSize: 14,
-                height: 1.6,
-                color: _getDescriptionColor(context),
-              ),
-            ),
-            const SizedBox(height: 16),
-            // Our Heritage section
-            Text(
-              isPersian ? '⭐ ۱. میراث ما' : '⭐ 1. Our Heritage',
-              style: TextStyle(
-                fontSize: 16,
-                height: 1.4,
-                letterSpacing: -0.32,
-                color: TCnt.neutralMain(context),
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            const SizedBox(height: 6),
-            Text(
-              isPersian 
-                  ? 'جشن‌ها، سنت‌ها، اسطوره‌ها، قهرمانان و فرهنگ باستانی که مدت‌ها قبل از وجود رژیم، هویت واقعی ما را به عنوان یک ملت شکل داده‌اند.'
-                  : 'The festivals, traditions, myths, heroes, and ancient culture that shaped who we truly are as a nation long before the regime existed.',
-              style: TextStyle(
-                fontSize: 14,
-                height: 1.6,
-                letterSpacing: -0.098,
-                color: _getDescriptionColor(context),
-              ),
-            ),
-            const SizedBox(height: 16),
-            // Our Reality section
-            Text(
-              isPersian ? '🔥 ۲. واقعیت ما' : '🔥 2. Our Reality',
-              style: TextStyle(
-                fontSize: 16,
-                height: 1.4,
-                letterSpacing: -0.32,
-                color: TCnt.neutralMain(context),
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            const SizedBox(height: 6),
-            Text(
-              isPersian 
-                  ? 'یک سابقه روشن و بدون سانسور از جنایاتی که رژیم جمهوری اسلامی علیه مردم ایران مرتکب شده است - بنابراین هیچ زندگی، هیچ نامی و هیچ بی‌عدالتی هرگز فراموش نمی‌شود.'
-                  : 'A clear, uncensored record of the crimes committed by the Islamic Republic regime against the people of Iran — so no life, no name, and no injustice is ever forgotten.',
-              style: TextStyle(
-                fontSize: 14,
-                height: 1.6,
-                letterSpacing: -0.098,
-                color: _getDescriptionColor(context),
-              ),
-            ),
-            const SizedBox(height: 16),
-            // Together statement
-            Text(
-              isPersian 
-                  ? 'آنها با هم چیزی اساسی را به ما یادآوری می‌کنند:'
-                  : 'Together, they remind us of something essential:',
-              style: TextStyle(
-                fontSize: 14,
-                height: 1.6,
-                color: _getDescriptionColor(context),
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              isPersian 
-                  ? 'ما قبل از این رژیم هویتی داشتیم. و مدت‌ها پس از آن نیز هویتی خواهیم داشت.'
-                  : 'We had an identity before this regime. And we will have one long after it.',
-              style: TextStyle(
-                fontSize: 14,
-                height: 1.6,
-                color: _getDescriptionColor(context),
-              ),
-            ),
-            const SizedBox(height: 24),
-            // Anonymous builders statement
-            Text(
-              isPersian 
-                  ? 'این برنامه به صورت ناشناس، توسط ایرانیانی ساخته شده است که حقیقت را به ترس ترجیح دادند - افرادی که می‌خواهند هر کاربر افتخار ایرانی بودن و مسئولیت یادآوری کسانی را که جنگیدند، رنج کشیدند یا ساکت شدند، احساس کند.'
-                  : 'This app is built anonymously, by Iranians who chose truth over fear — people who want every user to feel the pride of being Iranian and the responsibility of remembering those who fought, suffered, or were silenced.',
-              style: TextStyle(
-                fontSize: 14,
-                height: 1.6,
-                color: _getDescriptionColor(context),
-              ),
-            ),
-            const SizedBox(height: 16),
-            // Note callout section
-            _buildNoteCallout(
-              context,
-              isPersian 
-                  ? 'اگر اینجا هستید، شما هم بخشی از این ماموریت هستید.'
-                  : 'If you\'re here, you\'re part of that mission too.',
-              null,
-            ),
-            const SizedBox(height: 24),
-            // "This isn't just a calendar" section
-            Padding(
-              padding: const EdgeInsets.only(left: 8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    isPersian ? '• این فقط یک تقویم نیست.' : '• This isn\'t just a calendar.',
-                    style: TextStyle(
-                      fontSize: 14,
-                      height: 1.6,
-                      color: _getDescriptionColor(context),
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    isPersian ? '• این یک عمل آرام مقاومت است.' : '• It\'s a quiet act of resistance.',
-                    style: TextStyle(
-                      fontSize: 14,
-                      height: 1.6,
-                      color: _getDescriptionColor(context),
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    isPersian ? '• ادای احترام به میراث ما.' : '• A tribute to our heritage.',
-                    style: TextStyle(
-                      fontSize: 14,
-                      height: 1.6,
-                      color: _getDescriptionColor(context),
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    isPersian ? '• یادآوری قدرت جمعی ما.' : '• A reminder of our collective strength.',
-                    style: TextStyle(
-                      fontSize: 14,
-                      height: 1.6,
-                      color: _getDescriptionColor(context),
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    isPersian ? '• و گامی کوچک به سوی ایرانی که شایسته آن هستیم.' : '• And a small step toward the Iran we deserve.',
-                    style: TextStyle(
-                      fontSize: 14,
-                      height: 1.6,
-                      color: _getDescriptionColor(context),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 24),
-            // Contact Us Section
-            Text(
-              isPersian ? 'تماس با ما' : 'Contact us',
-              style: TextStyle(
-                fontSize: 16,
-                height: 1.4,
-                letterSpacing: -0.32,
-                color: TCnt.neutralMain(context),
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            const SizedBox(height: 6),
-            Text.rich(
-              TextSpan(
-                style: TextStyle(
-                fontSize: 14,
-                  height: 1.6,
-                  letterSpacing: -0.098,
-                  color: _getDescriptionColor(context),
-                ),
-                children: [
-                  TextSpan(
-                    text: isPersian 
-                        ? 'اگر مایل به ارتباط با ما هستید، می‌توانید به آدرس '
-                        : 'If you\'d like to reach out to us, you can send an email to ',
-                  ),
-                  TextSpan(
-                    text: 'info@irage.site',
-                    style: TextStyle(
-                      color: TCnt.brandMain(context),
-                      fontWeight: FontWeight.w500,
-                    ),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () async {
-                        const emailText = 'info@irage.site';
-                        final Uri emailUri = Uri.parse('mailto:$emailText');
-                        if (await canLaunchUrl(emailUri)) {
-                          await launchUrl(emailUri);
-                        }
-                      },
-                  ),
-                  TextSpan(
-                    text: isPersian 
-                        ? ' ایمیل ارسال کنید. همچنین، در صورت داشتن هرگونه گزارش یا بازخورد، می‌توانید از طریق ایمیل '
-                        : '. Alternatively, if you have any reports or feedback, you can contact us via ',
-                  ),
-                  TextSpan(
-                    text: 'feedback@irage.site',
-                    style: TextStyle(
-                      color: TCnt.brandMain(context),
-                      fontWeight: FontWeight.w500,
-                    ),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () async {
-                        const emailText = 'feedback@irage.site';
-                        final Uri emailUri = Uri.parse('mailto:$emailText');
-                        if (await canLaunchUrl(emailUri)) {
-                          await launchUrl(emailUri);
-                        }
-                      },
-                  ),
-                  TextSpan(
-                    text: isPersian 
-                        ? ' با ما تماس بگیرید.'
-                        : '.',
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 24),
-            // Developer and Follow Us Section with Image
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              textDirection: isPersian ? TextDirection.rtl : TextDirection.ltr,
-              children: [
-                // Left side (or right in RTL): Developer and Follow Us
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Developer Section
-                      Text(
-                        isPersian 
-                            ? 'توسعه‌دهنده: تیم توسعه ایراژ'
-                            : 'Developer: Irage Development Team',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: _getDescriptionColor(context),
-                        ),
-                      ),
-                      const SizedBox(height: 24),
-                      // Follow Us On Section
-                      Text(
-                        isPersian ? 'ما را دنبال کنید' : 'Follow us on',
-                        style: TextStyle(
-                          fontSize: 16,
-                          height: 1.4,
-                          letterSpacing: -0.32,
-                          color: TCnt.neutralMain(context),
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      Row(
-                        children: [
-                          _buildSocialButton(
-                            context: context,
-                            iconPath: AppIcons.xSocial,
-                            onTap: () async {
-                              // Try to open in X app first, fallback to browser
-                              final Uri appUri = Uri.parse('twitter://user?screen_name=irage_official');
-                              final Uri webUri = Uri.parse('https://x.com/irage_official');
-                              
-                              try {
-                                // Try app first
-                                if (await canLaunchUrl(appUri)) {
-                                  await launchUrl(appUri, mode: LaunchMode.externalApplication);
-                                } else if (await canLaunchUrl(webUri)) {
-                                  // Fallback to web - platform will open in app if available
-                                  await launchUrl(webUri, mode: LaunchMode.platformDefault);
-                                }
-                              } catch (e) {
-                                // If app launch fails, try web
-                                if (await canLaunchUrl(webUri)) {
-                                  await launchUrl(webUri, mode: LaunchMode.platformDefault);
-                                }
-                              }
-                            },
-                          ),
-                          const SizedBox(width: 10),
-                          _buildSocialButton(
-                            context: context,
-                            iconPath: AppIcons.instagram,
-                            onTap: () async {
-                              // Try to open in Instagram app first, fallback to browser
-                              final Uri appUri = Uri.parse('instagram://user?username=irage.site');
-                              final Uri webUri = Uri.parse('https://instagram.com/irage.site');
-                              
-                              try {
-                                // Try app first
-                                if (await canLaunchUrl(appUri)) {
-                                  await launchUrl(appUri, mode: LaunchMode.externalApplication);
-                                } else if (await canLaunchUrl(webUri)) {
-                                  // Fallback to web - platform will open in app if available
-                                  await launchUrl(webUri, mode: LaunchMode.platformDefault);
-                                }
-                              } catch (e) {
-                                // If app launch fails, try web
-                                if (await canLaunchUrl(webUri)) {
-                                  await launchUrl(webUri, mode: LaunchMode.platformDefault);
-                                }
-                              }
-                            },
-                          ),
-                          const SizedBox(width: 10),
-                          _buildSocialButton(
-                            context: context,
-                            iconPath: AppIcons.github,
-                            onTap: () async {
-                              final Uri uri = Uri.parse('https://github.com/irage-official/iranian-heritage');
-                              if (await canLaunchUrl(uri)) {
-                                await launchUrl(uri, mode: LaunchMode.externalApplication);
-                              }
-                            },
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                // Right side (or left in RTL): Image
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: isPersian ? 0 : 16,
-                    right: isPersian ? 16 : 0,
-                  ),
-                  child: Opacity(
-                    opacity: 0.7,
-                    child: Image.asset(
-                      'assets/images/adjective/hamkari-meli.png',
-                      width: 84,
-                      height: 112,
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-        onClose: () => Navigator.of(context).pop(),
-      ),
-    );
+    showAboutBottomSheet(context, isPersian: isPersian);
   }
 
   void _showPrivacyPolicyDialog(BuildContext context, bool isPersian) {
@@ -1441,7 +1086,7 @@ class SettingsScreen extends StatelessWidget {
                           fontSize: 14,
                           height: 1.6,
                           letterSpacing: -0.098,
-                          color: _getDescriptionColor(context),
+                          color: aboutDescriptionColor(context),
                         ),
                       ),
                       const SizedBox(height: 6),
@@ -1518,7 +1163,7 @@ class SettingsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // 1. Introduction
-            _buildTermsSectionWithIrage(context,
+            buildTermsSectionWithIrage(context,
               number: '1',
               title: isPersian ? 'معرفی' : 'Introduction',
               content: isPersian 
@@ -1608,7 +1253,7 @@ class SettingsScreen extends StatelessWidget {
             ),
             
             // 7. Limitation of Liability
-            _buildTermsSectionWithIrageQuoted(context,
+            buildTermsSectionWithIrageQuoted(context,
               number: '7',
               title: isPersian ? 'محدودیت مسئولیت' : 'Limitation of Liability',
               content: isPersian 
@@ -1633,221 +1278,14 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
-  void _showHelpSupportDialog(BuildContext context, bool isPersian) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(isPersian ? 'راهنما و پشتیبانی' : 'Help & Support'),
-        content: Text(
-          isPersian 
-              ? 'راهنمای استفاده و پشتیبانی فنی برنامه.'
-              : 'User guide and technical support for the app.',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: Text(isPersian ? 'بستن' : 'Close'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showFeedbackDialog(BuildContext context, bool isPersian) {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      barrierColor: Colors.black.withOpacity(0.3), // 30% opacity black backdrop
-      isScrollControlled: true,
-      builder: (context) => ContentBottomSheet(
-        title: isPersian ? 'به اشتراک بگذارید بازخورد شما' : 'Share your Feedback',
-        titleIconEmoji: '📬',
-        description: isPersian 
-            ? 'نظرات و پیشنهادات خود را با ما در میان بگذارید. بازخورد شما به ما کمک می‌کند تا برنامه را بهتر کنیم.'
-            : 'Share your thoughts and suggestions with us. Your feedback helps us improve the app.',
-        content: LayoutBuilder(
-          builder: (context, constraints) {
-            return SizedBox(
-              width: constraints.maxWidth,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // How to Send Feedback
-                  _buildFeedbackSection(context,
-              title: isPersian ? 'نحوه ارسال بازخورد' : 'How to Send Feedback',
-              bullets: isPersian 
-                  ? [
-                      'ایمیل: feedback@irage.site',
-                      'توییتر: @irage_official',
-                      'اینستاگرام: irage.site',
-                      'گیت‌هاب: github.com/irage-official/iranian-heritage',
-                    ]
-                  : [
-                      'Email: feedback@irage.site',
-                      'Twitter: @irage_official',
-                      'Instagram: irage.site',
-                      'GitHub: github.com/irage-official/iranian-heritage',
-                    ],
-            ),
-            
-            // Suggested Topics
-            _buildFeedbackSection(context,
-              title: isPersian ? 'موضوعات پیشنهادی' : 'Suggested Topics',
-              bullets: isPersian 
-                  ? [
-                      'گزارش باگ‌ها و مشکلات',
-                      'پیشنهادات برای ویژگی‌های جدید',
-                      'بهبود رابط کاربری',
-                      'دقت اطلاعات تقویم',
-                    ]
-                  : [
-                      'Bug reports and issues',
-                      'Suggestions for new features',
-                      'UI/UX improvements',
-                      'Calendar information accuracy',
-                    ],
-            ),
-                ],
-              ),
-            );
-          },
-        ),
-        onClose: () => Navigator.of(context).pop(),
-      ),
-    );
-  }
-
-  Widget _buildFeedbackSection(BuildContext context, {
-    required String title,
-    required List<String> bullets,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-            Text(
-          title,
-            style: TextStyle(
-                fontSize: 14,
-            height: 1.4,
-            letterSpacing: -0.28,
-            color: TCnt.neutralMain(context),
-            fontWeight: FontWeight.w700,
-           ),
-        ),
-        const SizedBox(height: 6),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            for (var bullet in bullets)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 4),
-                child: _buildFeedbackBullet(context, bullet),
-              ),
-          ],
-        ),
-        const SizedBox(height: 16),
-      ],
-    );
-  }
-
-  Widget _buildFeedbackBullet(BuildContext context, String text) {
-    // Check if text has link
-    if (text.contains('@') || text.contains('twitter.com') || text.contains('instagram.com') || text.contains('github.com')) {
-      // Extract link text (email, Twitter handle, Instagram handle, or GitHub URL)
-      final linkMatch = RegExp(r'(https?://[^\s]+|[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}|@[A-Za-z0-9_]+|[A-Za-z0-9._-]+\.[A-Za-z]{2,})').firstMatch(text);
-      if (linkMatch != null) {
-        final linkText = linkMatch.group(0)!;
-        final textBefore = text.substring(0, linkMatch.start);
-        final textAfter = text.substring(linkMatch.end);
-        
-        // Check if it's a Twitter handle, Instagram handle, or email
-        final isTwitterHandle = linkText.startsWith('@');
-        final isInstagramHandle = linkText.contains('.') && !linkText.contains('@') && !linkText.startsWith('http');
-        final isEmail = linkText.contains('@') && linkText.contains('.');
-        final isUrl = linkText.startsWith('http');
-        
-        return Text.rich(
-          TextSpan(
-              style: TextStyle(
-              fontSize: 14,
-                height: 1.6,
-              letterSpacing: -0.098,
-              color: TCnt.neutralSecond(context),
-            ),
-            children: [
-              TextSpan(text: textBefore),
-              TextSpan(
-                text: linkText,
-                style: const TextStyle(
-                  color: ThemeColors.primary500,
-                ),
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () async {
-                    Uri? uri;
-                    if (isTwitterHandle) {
-                      uri = Uri.parse('https://twitter.com/${linkText.substring(1)}');
-                    } else if (isInstagramHandle) {
-                      uri = Uri.parse('https://instagram.com/$linkText');
-                    } else if (isEmail) {
-                      uri = Uri.parse('mailto:$linkText');
-                    } else if (isUrl) {
-                      uri = Uri.parse(linkText);
-                    }
-                    
-                    if (uri != null && await canLaunchUrl(uri)) {
-                      await launchUrl(uri, mode: LaunchMode.externalApplication);
-                    }
-                  },
-              ),
-              TextSpan(text: textAfter),
-            ],
-          ),
-        );
-      }
-    }
-    
-    return Text(
-      text,
-      style: TextStyle(
-        fontSize: 14,
-        height: 1.6,
-        letterSpacing: -0.098,
-        color: TCnt.neutralSecond(context),
-      ),
-    );
-  }
-
   Future<void> _checkForUpdates(BuildContext context, bool isPersian) async {
-    // Show loading dialog
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => Center(
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            color: TBg.main(context),
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const CircularProgressIndicator(),
-              const SizedBox(height: 16),
-              Text(
-                isPersian ? 'در حال بررسی...' : 'Checking...',
-                style: TextStyle(
-                  fontFamily: isPersian ? 'Vazir' : 'Inter',
-                  color: TCnt.neutralMain(context),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+    // Show checking toast
+    if (context.mounted) {
+      context.showToast(
+        isPersian ? 'در حال بررسی...' : 'Checking...',
+        duration: const Duration(seconds: 2),
+      );
+    }
 
     try {
       final updateService = UpdateService.instance;
@@ -1868,11 +1306,6 @@ class SettingsScreen extends StatelessWidget {
       // Check app version
       appVersion = await updateService.checkAppVersion();
 
-      // Close loading dialog
-      if (context.mounted) {
-        Navigator.of(context).pop();
-      }
-
       // Show results
       if (appVersion != null) {
         // Show app update dialog
@@ -1882,51 +1315,23 @@ class SettingsScreen extends StatelessWidget {
       } else if (eventsUpdated) {
         // Show events updated message
         if (context.mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                isPersian ? 'ایونت‌ها با موفقیت به‌روزرسانی شدند' : 'Events updated successfully',
-                style: TextStyle(
-                  fontFamily: isPersian ? 'Vazir' : 'Inter',
-                ),
-              ),
-              backgroundColor: ThemeColors.primary500,
-            ),
+          context.showToast(
+            isPersian ? 'ایونت‌ها با موفقیت به‌روزرسانی شدند' : 'Events updated successfully',
           );
         }
       } else {
         // Show no update message
         if (context.mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                isPersian ? 'همه چیز به‌روز است!' : 'Everything is up to date!',
-                style: TextStyle(
-                  fontFamily: isPersian ? 'Vazir' : 'Inter',
-                ),
-              ),
-            ),
+          context.showToast(
+            isPersian ? 'همه چیز به‌روز است!' : 'Everything is up to date!',
           );
         }
       }
     } catch (e) {
-      // Close loading dialog
-      if (context.mounted) {
-        Navigator.of(context).pop();
-      }
-
       // Show error message
       if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              isPersian ? 'خطا در بررسی آپدیت' : 'Error checking for updates',
-              style: TextStyle(
-                fontFamily: isPersian ? 'Vazir' : 'Inter',
-              ),
-            ),
-            backgroundColor: Colors.red,
-          ),
+        context.showToast(
+          isPersian ? 'خطا در بررسی آپدیت' : 'Error checking for updates',
         );
       }
     }
@@ -1943,17 +1348,16 @@ class SettingsScreen extends StatelessWidget {
       builder: (context) => AlertDialog(
         title: Text(
           isPersian ? 'آپدیت جدید' : 'New Update',
-          style: TextStyle(
-            fontFamily: isPersian ? 'Vazir' : 'Inter',
-            fontWeight: FontWeight.bold,
-          ),
+          style: isPersian
+              ? FontHelper.getYekanBakh(fontWeight: FontWeight.bold)
+              : GoogleFonts.inter(fontWeight: FontWeight.bold),
         ),
         content: SingleChildScrollView(
           child: Text(
             releaseNotes,
-            style: TextStyle(
-              fontFamily: isPersian ? 'Vazir' : 'Inter',
-            ),
+            style: isPersian
+                ? FontHelper.getYekanBakh()
+                : GoogleFonts.inter(),
           ),
         ),
         actions: [
@@ -1962,9 +1366,9 @@ class SettingsScreen extends StatelessWidget {
               onPressed: () => Navigator.of(context).pop(),
               child: Text(
                 isPersian ? 'بعداً' : 'Later',
-                style: TextStyle(
-                  fontFamily: isPersian ? 'Vazir' : 'Inter',
-                ),
+                style: isPersian
+                    ? FontHelper.getYekanBakh()
+                    : GoogleFonts.inter(),
               ),
             ),
           TextButton(
@@ -1981,10 +1385,9 @@ class SettingsScreen extends StatelessWidget {
             },
             child: Text(
               isPersian ? 'آپدیت' : 'Update',
-              style: TextStyle(
-                fontFamily: isPersian ? 'Vazir' : 'Inter',
-                fontWeight: FontWeight.bold,
-              ),
+              style: isPersian
+                  ? FontHelper.getYekanBakh(fontWeight: FontWeight.bold)
+                  : GoogleFonts.inter(fontWeight: FontWeight.bold),
             ),
           ),
         ],
@@ -2033,6 +1436,9 @@ https://ir-heritage.com/download
     required String description,
     required VoidCallback onTap,
   }) {
+    final appProvider = Provider.of<AppProvider>(context);
+    final isPersian = appProvider.language == 'fa';
+    
     return GestureDetector(
       onTap: onTap,
       child: Row(
@@ -2059,23 +1465,38 @@ https://ir-heritage.com/download
               children: [
                 Text(
                   title,
-                  style: TextStyle(
-                    fontSize: 14,
-                    height: 1.4, // 140%
-                    letterSpacing: -0.098, // -0.7% of 14
-                    color: TCnt.neutralMain(context),
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: isPersian
+                      ? FontHelper.getYekanBakh(
+                          fontSize: 14,
+                          height: 1.4, // 140%
+                          letterSpacing: -0.098, // -0.7% of 14
+                          color: TCnt.neutralMain(context),
+                          fontWeight: FontWeight.w500,
+                        )
+                      : TextStyle(
+                          fontSize: 14,
+                          height: 1.4, // 140%
+                          letterSpacing: -0.098, // -0.7% of 14
+                          color: TCnt.neutralMain(context),
+                          fontWeight: FontWeight.w500,
+                        ),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   description,
-                  style: TextStyle(
-                    fontSize: 12,
-                    height: 1.5, // 150%
-                    letterSpacing: -0.084, // -0.7% of 12
-                    color: TCnt.neutralFourth(context),
-                  ),
+                  style: isPersian
+                      ? FontHelper.getYekanBakh(
+                          fontSize: 12,
+                          height: 1.5, // 150%
+                          letterSpacing: -0.084, // -0.7% of 12
+                          color: TCnt.neutralFourth(context),
+                        )
+                      : TextStyle(
+                          fontSize: 12,
+                          height: 1.5, // 150%
+                          letterSpacing: -0.084, // -0.7% of 12
+                          color: TCnt.neutralFourth(context),
+                        ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -2105,345 +1526,6 @@ https://ir-heritage.com/download
     }
   }
 
-  Widget _buildSectionTitle(BuildContext context, String title) {
-    return Text(
-      title,
-      style: TextStyle(
-        fontSize: 16,
-        height: 1.4, // 140%
-        letterSpacing: -0.32, // -2% of 16
-        color: TCnt.neutralMain(context),
-        fontWeight: FontWeight.w700,
-      ),
-    );
-  }
-
-  Widget _buildTermsSectionWithMultipleEmails(BuildContext context, {
-    required String number,
-    required String title,
-    required String content,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        number.isNotEmpty
-            ? Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 24,
-                    child: Text(
-                      '$number.',
-                      style: TextStyle(
-                        fontSize: 16,
-                        height: 1.4,
-                        letterSpacing: -0.32,
-                        color: TCnt.neutralMain(context),
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Text(
-                      title,
-                      style: TextStyle(
-                        fontSize: 16,
-                        height: 1.4,
-                        letterSpacing: -0.32,
-                        color: TCnt.neutralMain(context),
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                  ),
-                ],
-              )
-            : Text(
-                title,
-                style: TextStyle(
-                  fontSize: 16,
-                  height: 1.4,
-                  letterSpacing: -0.32,
-                  color: TCnt.neutralMain(context),
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
-        const SizedBox(height: 6),
-        Padding(
-          padding: number.isEmpty ? EdgeInsets.zero : const EdgeInsets.only(left: 24),
-          child: _buildRichTextWithMultipleEmails(context, content),
-        ),
-        const SizedBox(height: 16),
-      ],
-    );
-  }
-
-  Widget _buildTermsSectionWithIrage(BuildContext context, {
-    required String number,
-    required String title,
-    required String content,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        number.isNotEmpty
-            ? Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 24,
-                    child: Text(
-                      '$number.',
-                      style: TextStyle(
-                        fontSize: 16,
-                        height: 1.4,
-                        letterSpacing: -0.32,
-                        color: TCnt.neutralMain(context),
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Text(
-                      title,
-                      style: TextStyle(
-                        fontSize: 16,
-                        height: 1.4,
-                        letterSpacing: -0.32,
-                        color: TCnt.neutralMain(context),
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ],
-              )
-            : Text(
-                title,
-                style: TextStyle(
-                  fontSize: 16,
-                  height: 1.4,
-                  letterSpacing: -0.32,
-                  color: TCnt.neutralMain(context),
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-        const SizedBox(height: 6),
-        Padding(
-          padding: number.isEmpty ? EdgeInsets.zero : const EdgeInsets.only(left: 24),
-          child: _buildRichTextWithIrage(context, content),
-        ),
-        const SizedBox(height: 16),
-      ],
-    );
-  }
-
-  Widget _buildTermsSectionWithIrageQuoted(BuildContext context, {
-    required String number,
-    required String title,
-    required String content,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        number.isNotEmpty
-            ? Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 24,
-                    child: Text(
-                      '$number.',
-                      style: TextStyle(
-                        fontSize: 16,
-                        height: 1.4,
-                        letterSpacing: -0.32,
-                        color: TCnt.neutralMain(context),
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Text(
-                      title,
-                      style: TextStyle(
-                        fontSize: 16,
-                        height: 1.4,
-                        letterSpacing: -0.32,
-                        color: TCnt.neutralMain(context),
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ],
-              )
-            : Text(
-                title,
-                style: TextStyle(
-                  fontSize: 16,
-                  height: 1.4,
-                  letterSpacing: -0.32,
-                  color: TCnt.neutralMain(context),
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-        const SizedBox(height: 6),
-        Padding(
-          padding: number.isEmpty ? EdgeInsets.zero : const EdgeInsets.only(left: 24),
-          child: _buildRichTextWithIrageQuoted(context, content),
-        ),
-        const SizedBox(height: 16),
-      ],
-    );
-  }
-
-  Widget _buildRichTextWithIrage(BuildContext context, String text) {
-    // Get isPersian from AppProvider
-    final appProvider = Provider.of<AppProvider>(context, listen: false);
-    final isPersian = appProvider.language == 'fa';
-    
-    // Find "Irage (Iranian Heritage)" or "Irage (میراث ایرانی)" or "ایراژ (میراث ایرانی)"
-    final iragePattern = RegExp(r'(Irage|ایراژ)\s*\(([^)]+)\)');
-    final match = iragePattern.firstMatch(text);
-    
-    if (match == null) {
-      // If pattern not found, return regular text
-      return Text(
-        text,
-        style: TextStyle(
-          fontSize: 14,
-          height: 1.6,
-          letterSpacing: -0.098,
-          color: TCnt.neutralSecond(context),
-        ),
-      );
-    }
-    
-    final beforeText = text.substring(0, match.start);
-    final irageText = isPersian ? 'ایراژ' : 'Irage';
-    final heritageText = ' (${match.group(2)})';
-    final afterText = text.substring(match.end);
-    
-    return Text.rich(
-      TextSpan(
-        style: TextStyle(
-          fontSize: 14,
-          height: 1.6,
-          letterSpacing: -0.098,
-          color: TCnt.neutralSecond(context),
-        ),
-        children: [
-          if (beforeText.isNotEmpty) TextSpan(text: beforeText),
-          TextSpan(
-            text: irageText,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Theme.of(context).brightness == Brightness.dark
-                  ? TCnt.neutralMain(context)
-                  : null,
-            ),
-          ),
-          TextSpan(
-            text: heritageText,
-            style: TextStyle(
-              color: Theme.of(context).brightness == Brightness.dark
-                  ? TCnt.neutralTertiary(context)
-                  : TCnt.neutralTertiary(context).withOpacity(0.7),
-            ),
-          ),
-          if (afterText.isNotEmpty) TextSpan(text: afterText),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildRichTextWithIrageQuoted(BuildContext context, String text) {
-    // Get isPersian from AppProvider
-    final appProvider = Provider.of<AppProvider>(context, listen: false);
-    final isPersian = appProvider.language == 'fa';
-    
-    // Find "Irage" (Iranian Heritage)" or «ایراژ» (میراث ایرانی)" pattern - Irage in quotes, heritage outside
-    // Support both English quotes (") and Persian quotes («»)
-    final iragePattern = RegExp(r'["«](Irage|ایراژ)["»]\s*\(([^)]+)\)');
-    final match = iragePattern.firstMatch(text);
-    
-    if (match == null) {
-      // If pattern not found, return regular text
-      return Text(
-        text,
-        style: TextStyle(
-          fontSize: 14,
-          height: 1.6,
-          letterSpacing: -0.098,
-          color: TCnt.neutralSecond(context),
-        ),
-      );
-    }
-    
-    final beforeText = text.substring(0, match.start);
-    final quoteStart = match.group(0)!.startsWith('«') ? '«' : '"';
-    final irageText = isPersian ? 'ایراژ' : 'Irage';
-    final quoteEnd = match.group(0)!.contains('»') ? '»' : '"';
-    final heritageText = ' (${match.group(2)})';
-    final afterText = text.substring(match.end);
-    
-    // Handle newlines in text
-    final textParts = afterText.split('\n\n');
-    
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text.rich(
-          TextSpan(
-            style: TextStyle(
-              fontSize: 14,
-              height: 1.6,
-              letterSpacing: -0.098,
-              color: TCnt.neutralSecond(context),
-            ),
-            children: [
-              if (beforeText.isNotEmpty) TextSpan(text: beforeText),
-              TextSpan(text: quoteStart),
-              TextSpan(
-                text: irageText,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).brightness == Brightness.dark
-                      ? TCnt.neutralMain(context)
-                      : null,
-                ),
-              ),
-              TextSpan(text: quoteEnd),
-              TextSpan(
-                text: heritageText,
-                style: TextStyle(
-                  color: Theme.of(context).brightness == Brightness.dark
-                      ? TCnt.neutralTertiary(context)
-                      : TCnt.neutralTertiary(context).withOpacity(0.7),
-                ),
-              ),
-              if (textParts.isNotEmpty && textParts[0].isNotEmpty) TextSpan(text: textParts[0]),
-            ],
-          ),
-        ),
-        if (textParts.length > 1) ...[
-          const SizedBox(height: 16),
-          for (int i = 1; i < textParts.length; i++)
-            Padding(
-              padding: const EdgeInsets.only(top: 16),
-              child: Text(
-                textParts[i],
-                style: TextStyle(
-                  fontSize: 14,
-                  height: 1.6,
-                  letterSpacing: -0.098,
-                  color: _getDescriptionColor(context),
-                ),
-              ),
-            ),
-        ],
-      ],
-    );
-  }
-
   Widget _buildTermsSection(BuildContext context, {
     required String number,
     required String title,
@@ -2451,6 +1533,9 @@ https://ir-heritage.com/download
     String? boldText,
     String? emailText,
   }) {
+    final appProvider = Provider.of<AppProvider>(context);
+    final isPersian = appProvider.language == 'fa';
+    
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -2462,25 +1547,41 @@ https://ir-heritage.com/download
                     width: 24,
                     child: Text(
                       '$number.',
-                      style: TextStyle(
-                        fontSize: 16,
-                        height: 1.4,
-                        letterSpacing: -0.32,
-                        color: TCnt.neutralMain(context),
-                        fontWeight: FontWeight.w800,
-                      ),
+                      style: isPersian
+                          ? FontHelper.getYekanBakh(
+                              fontSize: 16,
+                              height: 1.4,
+                              letterSpacing: -0.32,
+                              color: TCnt.neutralMain(context),
+                              fontWeight: FontWeight.w800,
+                            )
+                          : TextStyle(
+                              fontSize: 16,
+                              height: 1.4,
+                              letterSpacing: -0.32,
+                              color: TCnt.neutralMain(context),
+                              fontWeight: FontWeight.w800,
+                            ),
                     ),
                   ),
                   Expanded(
                     child: Text(
                       title,
-                      style: TextStyle(
-                        fontSize: 16,
-                        height: 1.4,
-                        letterSpacing: -0.32,
-                        color: TCnt.neutralMain(context),
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: isPersian
+                          ? FontHelper.getYekanBakh(
+                              fontSize: 16,
+                              height: 1.4,
+                              letterSpacing: -0.32,
+                              color: TCnt.neutralMain(context),
+                              fontWeight: FontWeight.w600,
+                            )
+                          : TextStyle(
+                              fontSize: 16,
+                              height: 1.4,
+                              letterSpacing: -0.32,
+                              color: TCnt.neutralMain(context),
+                              fontWeight: FontWeight.w600,
+                            ),
                     ),
                   ),
                 ],
@@ -2517,6 +1618,9 @@ https://ir-heritage.com/download
     bool hasAdditionalText = false,
     String? additionalText,
   }) {
+    final appProvider = Provider.of<AppProvider>(context);
+    final isPersian = appProvider.language == 'fa';
+    
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -2527,25 +1631,41 @@ https://ir-heritage.com/download
               width: 24,
               child: Text(
                 '$number.',
-                style: TextStyle(
-                  fontSize: 16,
-                  height: 1.4,
-                  letterSpacing: -0.32,
-                  color: TCnt.neutralMain(context),
-                  fontWeight: FontWeight.w800,
-                ),
+                style: isPersian
+                    ? FontHelper.getYekanBakh(
+                        fontSize: 16,
+                        height: 1.4,
+                        letterSpacing: -0.32,
+                        color: TCnt.neutralMain(context),
+                        fontWeight: FontWeight.w800,
+                      )
+                    : TextStyle(
+                        fontSize: 16,
+                        height: 1.4,
+                        letterSpacing: -0.32,
+                        color: TCnt.neutralMain(context),
+                        fontWeight: FontWeight.w800,
+                      ),
               ),
             ),
             Expanded(
               child: Text(
                 title,
-                style: TextStyle(
-                  fontSize: 16,
-                  height: 1.4,
-                  letterSpacing: -0.32,
-                  color: TCnt.neutralMain(context),
-                  fontWeight: FontWeight.w600,
-                ),
+                style: isPersian
+                    ? FontHelper.getYekanBakh(
+                        fontSize: 16,
+                        height: 1.4,
+                        letterSpacing: -0.32,
+                        color: TCnt.neutralMain(context),
+                        fontWeight: FontWeight.w600,
+                      )
+                    : TextStyle(
+                        fontSize: 16,
+                        height: 1.4,
+                        letterSpacing: -0.32,
+                        color: TCnt.neutralMain(context),
+                        fontWeight: FontWeight.w600,
+                      ),
               ),
             ),
           ],
@@ -2565,12 +1685,19 @@ https://ir-heritage.com/download
                     children: [
                       Text(
                         '• ',
-                        style: TextStyle(
-                          fontSize: 14,
-                          height: 1.6,
-                          letterSpacing: -0.098,
-                          color: _getDescriptionColor(context),
-                        ),
+              style: isPersian
+                  ? FontHelper.getYekanBakh(
+                      fontSize: 14,
+                      height: 1.6,
+                      letterSpacing: -0.098,
+                      color: aboutDescriptionColor(context),
+                    )
+                  : TextStyle(
+                      fontSize: 14,
+                      height: 1.6,
+                      letterSpacing: -0.098,
+                      color: aboutDescriptionColor(context),
+                    ),
                       ),
                       Expanded(
                         child: _buildRichTextWithBold(context, bullet),
@@ -2598,23 +1725,36 @@ https://ir-heritage.com/download
   }
 
   Widget _buildRichTextWithBold(BuildContext context, String text) {
+    final appProvider = Provider.of<AppProvider>(context);
+    final isPersian = appProvider.language == 'fa';
     final parts = text.split('**');
     return Text.rich(
       TextSpan(
-        style: TextStyle(
-          fontSize: 14,
-          height: 1.6, // 160%
-          letterSpacing: -0.098, // -0.7% of 14
-          color: TCnt.neutralSecond(context),
-        ),
+        style: isPersian
+            ? FontHelper.getYekanBakh(
+                fontSize: 14,
+                height: 1.6, // 160%
+                letterSpacing: -0.098, // -0.7% of 14
+                color: TCnt.neutralSecond(context),
+              )
+            : TextStyle(
+                fontSize: 14,
+                height: 1.6, // 160%
+                letterSpacing: -0.098, // -0.7% of 14
+                color: TCnt.neutralSecond(context),
+              ),
         children: parts.asMap().entries.map((entry) {
           final index = entry.key;
           final part = entry.value;
           return TextSpan(
             text: part,
             style: index.isOdd
-                ? const TextStyle(fontWeight: FontWeight.bold)
-                : null,
+                ? (isPersian
+                    ? FontHelper.getYekanBakh(fontWeight: FontWeight.bold)
+                    : TextStyle(fontWeight: FontWeight.bold))
+                : (isPersian
+                    ? FontHelper.getYekanBakh()
+                    : null),
           );
         }).toList(),
       ),
@@ -2622,6 +1762,8 @@ https://ir-heritage.com/download
   }
 
   Widget _buildRichTextWithBoldAndLink(BuildContext context, String text, String? boldText, String? linkText) {
+    final appProvider = Provider.of<AppProvider>(context);
+    final isPersian = appProvider.language == 'fa';
     final parts = text.split('**');
     final spans = <TextSpan>[];
     
@@ -2633,118 +1775,56 @@ https://ir-heritage.com/download
         // Bold text
         spans.add(TextSpan(
           text: part,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          style: isPersian
+              ? FontHelper.getYekanBakh(fontWeight: FontWeight.bold)
+              : TextStyle(fontWeight: FontWeight.bold),
         ));
       } else {
         // Regular text - check for links
         if (linkText != null && part.contains(linkText)) {
           final linkIndex = part.indexOf(linkText);
           if (linkIndex > 0) {
-            spans.add(TextSpan(text: part.substring(0, linkIndex)));
+            spans.add(TextSpan(
+              text: part.substring(0, linkIndex),
+              style: isPersian ? FontHelper.getYekanBakh() : null,
+            ));
           }
           spans.add(TextSpan(
             text: linkText,
-            style: const TextStyle(
-              color: ThemeColors.indigo500,
-            ),
+            style: isPersian
+                ? FontHelper.getYekanBakh(color: ThemeColors.indigo500)
+                : TextStyle(color: ThemeColors.indigo500),
           ));
           if (linkIndex + linkText.length < part.length) {
-            spans.add(TextSpan(text: part.substring(linkIndex + linkText.length)));
+            spans.add(TextSpan(
+              text: part.substring(linkIndex + linkText.length),
+              style: isPersian ? FontHelper.getYekanBakh() : null,
+            ));
           }
         } else {
-          spans.add(TextSpan(text: part));
+          spans.add(TextSpan(
+            text: part,
+            style: isPersian ? FontHelper.getYekanBakh() : null,
+          ));
         }
       }
     }
     
     return Text.rich(
       TextSpan(
-        style: TextStyle(
-          fontSize: 14,
-          height: 1.6, // 160%
-          letterSpacing: -0.098, // -0.7% of 14
-          color: TCnt.neutralSecond(context),
-        ),
-        children: spans,
-      ),
-    );
-  }
-
-  Widget _buildRichTextWithMultipleEmails(BuildContext context, String text) {
-    final emailRegex = RegExp(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b');
-    final parts = text.split('**');
-    final spans = <TextSpan>[];
-    
-    for (int i = 0; i < parts.length; i++) {
-      final part = parts[i];
-      final isOdd = i % 2 == 1;
-      
-      if (isOdd) {
-        // Bold text - check if it contains email
-        final emailMatch = emailRegex.firstMatch(part);
-        if (emailMatch != null && emailMatch.group(0) == part) {
-          // The entire bold text is an email
-          spans.add(TextSpan(
-            text: part,
-            style: const TextStyle(
-              fontWeight: FontWeight.w500,
-              color: ThemeColors.primary500,
-            ),
-            recognizer: TapGestureRecognizer()
-              ..onTap = () async {
-                final Uri emailUri = Uri.parse('mailto:$part');
-                if (await canLaunchUrl(emailUri)) {
-                  await launchUrl(emailUri);
-                }
-              },
-          ));
-        } else {
-          spans.add(TextSpan(
-            text: part,
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          ));
-        }
-      } else {
-        // Regular text - find all emails
-        int lastIndex = 0;
-        for (final match in emailRegex.allMatches(part)) {
-          // Add text before email
-          if (match.start > lastIndex) {
-            spans.add(TextSpan(text: part.substring(lastIndex, match.start)));
-          }
-          // Add clickable email
-          final email = match.group(0)!;
-          spans.add(TextSpan(
-            text: email,
-            style: const TextStyle(
-              color: ThemeColors.primary500,
-              fontWeight: FontWeight.w500,
-            ),
-            recognizer: TapGestureRecognizer()
-              ..onTap = () async {
-                final Uri emailUri = Uri.parse('mailto:$email');
-                if (await canLaunchUrl(emailUri)) {
-                  await launchUrl(emailUri);
-                }
-              },
-          ));
-          lastIndex = match.end;
-        }
-        // Add remaining text
-        if (lastIndex < part.length) {
-          spans.add(TextSpan(text: part.substring(lastIndex)));
-        }
-      }
-    }
-    
-    return Text.rich(
-      TextSpan(
-        style: TextStyle(
-          fontSize: 14,
-          height: 1.6,
-          letterSpacing: -0.098,
-          color: TCnt.neutralSecond(context),
-        ),
+        style: isPersian
+            ? FontHelper.getYekanBakh(
+                fontSize: 14,
+                height: 1.6, // 160%
+                letterSpacing: -0.098, // -0.7% of 14
+                color: TCnt.neutralSecond(context),
+              )
+            : TextStyle(
+                fontSize: 14,
+                height: 1.6, // 160%
+                letterSpacing: -0.098, // -0.7% of 14
+                color: TCnt.neutralSecond(context),
+              ),
         children: spans,
       ),
     );

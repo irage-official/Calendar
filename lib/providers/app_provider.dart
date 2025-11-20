@@ -5,7 +5,7 @@ import '../utils/logger.dart';
 
 class AppProvider extends ChangeNotifier {
   final LocalStorageService _storage = LocalStorageService();
-  
+
   UserPreferences? _userPreferences;
   bool _isInitialized = false;
 
@@ -16,14 +16,40 @@ class AppProvider extends ChangeNotifier {
   String get language => _userPreferences?.language ?? 'system';
   bool get isDarkMode => _userPreferences?.isDarkMode ?? false;
   bool get showGregorianDates => _userPreferences?.showGregorianDates ?? true;
-  String get calendarSystem => _userPreferences?.calendarSystem ?? 'gregorian';
+  String get calendarSystem =>
+      _userPreferences?.calendarSystem ?? 'shahanshahi';
   bool get showNotifications => _userPreferences?.showNotifications ?? true;
   bool get showWeekends => _userPreferences?.showWeekends ?? true;
-  String get defaultCalendarView => _userPreferences?.defaultCalendarView ?? 'week';
+  String get defaultCalendarView =>
+      _userPreferences?.defaultCalendarView ?? 'month';
   bool get autoSync => _userPreferences?.autoSync ?? true;
   String get notificationTime => _userPreferences?.notificationTime ?? '09:00';
-  List<String> get enabledEventTypes => _userPreferences?.enabledEventTypes ?? ['festival', 'remembrance', 'gregorian'];
+  List<String> get enabledEventTypes =>
+      _userPreferences?.enabledEventTypes ??
+      ['celebration', 'historical', 'anniversary', 'memorial', 'awareness'];
+  List<String>? get enabledOrigins => _userPreferences?.enabledOrigins;
   String? get themeModeString => _userPreferences?.themeMode;
+  String? get startWeekOn => _userPreferences?.startWeekOn;
+  List<String>? get daysOff => _userPreferences?.daysOff;
+
+  String get effectiveStartWeekOn {
+    final stored = startWeekOn;
+    if (stored != null && stored.isNotEmpty && stored != 'region') {
+      return stored;
+    }
+    return calendarSystem == 'gregorian' ? 'monday' : 'saturday';
+  }
+
+  List<String> get effectiveDaysOff {
+    final stored = daysOff;
+    if (stored != null && stored.isNotEmpty) {
+      return List<String>.from(stored);
+    }
+    if (calendarSystem == 'solar' || calendarSystem == 'shahanshahi') {
+      return ['friday'];
+    }
+    return ['saturday', 'sunday'];
+  }
 
   ThemeMode get themeMode {
     final mode = _userPreferences?.themeMode;
@@ -37,6 +63,7 @@ class AppProvider extends ChangeNotifier {
     // Fallback to isDarkMode for backward compatibility
     return isDarkMode ? ThemeMode.dark : ThemeMode.light;
   }
+
   Locale get locale => Locale(language);
 
   Future<void> initialize() async {
@@ -45,11 +72,12 @@ class AppProvider extends ChangeNotifier {
     try {
       await _storage.initializeDefaultPreferences();
       _userPreferences = _storage.userPreferences;
-      
+
       // If language is 'system' and system language is Persian, set default calendar to shahanshahi
       if (_userPreferences != null && _userPreferences!.language == 'system') {
         final systemLocale = WidgetsBinding.instance.platformDispatcher.locale;
-        if (systemLocale.languageCode == 'fa' && _userPreferences!.calendarSystem == 'gregorian') {
+        if (systemLocale.languageCode == 'fa' &&
+            _userPreferences!.calendarSystem == 'gregorian') {
           // Only change if it's still the default gregorian (user hasn't changed it)
           final updated = _userPreferences!.copyWith(
             calendarSystem: 'shahanshahi',
@@ -59,7 +87,7 @@ class AppProvider extends ChangeNotifier {
           _userPreferences = updated;
         }
       }
-      
+
       _isInitialized = true;
       notifyListeners();
     } catch (e) {
@@ -69,46 +97,27 @@ class AppProvider extends ChangeNotifier {
 
   Future<void> setLanguage(String language) async {
     if (_userPreferences == null) return;
-    
+
+    // Only change language, do NOT change calendar system or any other settings
     final updated = _userPreferences!.copyWith(
       language: language,
       updatedAt: DateTime.now(),
     );
-    
-    // Auto-switch calendar based on language
-    String newCalendarSystem = updated.calendarSystem;
-    if (language == 'en') {
-      newCalendarSystem = 'gregorian';
-    } else if (language == 'fa') {
-      newCalendarSystem = 'shahanshahi';
-    } else if (language == 'system') {
-      // If language is 'system', check system locale and set calendar accordingly
-      final systemLocale = WidgetsBinding.instance.platformDispatcher.locale;
-      if (systemLocale.languageCode == 'fa') {
-        newCalendarSystem = 'shahanshahi';
-      } else {
-        newCalendarSystem = 'gregorian';
-      }
-    }
-    
-    final finalUpdated = updated.copyWith(
-      calendarSystem: newCalendarSystem,
-    );
-    
-    await _storage.saveUserPreferences(finalUpdated);
-    _userPreferences = finalUpdated;
+
+    await _storage.saveUserPreferences(updated);
+    _userPreferences = updated;
     notifyListeners();
   }
 
   Future<void> setThemeMode(bool isDarkMode) async {
     if (_userPreferences == null) return;
-    
+
     final updated = _userPreferences!.copyWith(
       isDarkMode: isDarkMode,
       themeMode: isDarkMode ? 'dark' : 'light',
       updatedAt: DateTime.now(),
     );
-    
+
     await _storage.saveUserPreferences(updated);
     _userPreferences = updated;
     notifyListeners();
@@ -116,12 +125,12 @@ class AppProvider extends ChangeNotifier {
 
   Future<void> setThemeModeToSystem() async {
     if (_userPreferences == null) return;
-    
+
     final updated = _userPreferences!.copyWith(
       themeMode: 'system',
       updatedAt: DateTime.now(),
     );
-    
+
     await _storage.saveUserPreferences(updated);
     _userPreferences = updated;
     notifyListeners();
@@ -129,7 +138,7 @@ class AppProvider extends ChangeNotifier {
 
   Future<void> setThemeModeFromString(String themeMode) async {
     if (_userPreferences == null) return;
-    
+
     bool isDarkMode = false;
     if (themeMode == 'dark') {
       isDarkMode = true;
@@ -139,12 +148,12 @@ class AppProvider extends ChangeNotifier {
       // System mode - we'll handle this differently
       isDarkMode = false; // Default to light for now
     }
-    
+
     final updated = _userPreferences!.copyWith(
       isDarkMode: isDarkMode,
       updatedAt: DateTime.now(),
     );
-    
+
     await _storage.saveUserPreferences(updated);
     _userPreferences = updated;
     notifyListeners();
@@ -152,12 +161,12 @@ class AppProvider extends ChangeNotifier {
 
   Future<void> setShowGregorianDates(bool showGregorianDates) async {
     if (_userPreferences == null) return;
-    
+
     final updated = _userPreferences!.copyWith(
       showGregorianDates: showGregorianDates,
       updatedAt: DateTime.now(),
     );
-    
+
     await _storage.saveUserPreferences(updated);
     _userPreferences = updated;
     notifyListeners();
@@ -165,12 +174,12 @@ class AppProvider extends ChangeNotifier {
 
   Future<void> setCalendarSystem(String calendarSystem) async {
     if (_userPreferences == null) return;
-    
+
     final updated = _userPreferences!.copyWith(
       calendarSystem: calendarSystem,
       updatedAt: DateTime.now(),
     );
-    
+
     await _storage.saveUserPreferences(updated);
     _userPreferences = updated;
     notifyListeners();
@@ -178,12 +187,12 @@ class AppProvider extends ChangeNotifier {
 
   Future<void> setShowNotifications(bool showNotifications) async {
     if (_userPreferences == null) return;
-    
+
     final updated = _userPreferences!.copyWith(
       showNotifications: showNotifications,
       updatedAt: DateTime.now(),
     );
-    
+
     await _storage.saveUserPreferences(updated);
     _userPreferences = updated;
     notifyListeners();
@@ -191,12 +200,12 @@ class AppProvider extends ChangeNotifier {
 
   Future<void> setShowWeekends(bool showWeekends) async {
     if (_userPreferences == null) return;
-    
+
     final updated = _userPreferences!.copyWith(
       showWeekends: showWeekends,
       updatedAt: DateTime.now(),
     );
-    
+
     await _storage.saveUserPreferences(updated);
     _userPreferences = updated;
     notifyListeners();
@@ -204,12 +213,12 @@ class AppProvider extends ChangeNotifier {
 
   Future<void> setDefaultCalendarView(String view) async {
     if (_userPreferences == null) return;
-    
+
     final updated = _userPreferences!.copyWith(
       defaultCalendarView: view,
       updatedAt: DateTime.now(),
     );
-    
+
     await _storage.saveUserPreferences(updated);
     _userPreferences = updated;
     notifyListeners();
@@ -217,12 +226,12 @@ class AppProvider extends ChangeNotifier {
 
   Future<void> setAutoSync(bool autoSync) async {
     if (_userPreferences == null) return;
-    
+
     final updated = _userPreferences!.copyWith(
       autoSync: autoSync,
       updatedAt: DateTime.now(),
     );
-    
+
     await _storage.saveUserPreferences(updated);
     _userPreferences = updated;
     notifyListeners();
@@ -230,12 +239,12 @@ class AppProvider extends ChangeNotifier {
 
   Future<void> setNotificationTime(String time) async {
     if (_userPreferences == null) return;
-    
+
     final updated = _userPreferences!.copyWith(
       notificationTime: time,
       updatedAt: DateTime.now(),
     );
-    
+
     await _storage.saveUserPreferences(updated);
     _userPreferences = updated;
     notifyListeners();
@@ -243,12 +252,51 @@ class AppProvider extends ChangeNotifier {
 
   Future<void> setEnabledEventTypes(List<String> eventTypes) async {
     if (_userPreferences == null) return;
-    
+
     final updated = _userPreferences!.copyWith(
       enabledEventTypes: eventTypes,
       updatedAt: DateTime.now(),
     );
-    
+
+    await _storage.saveUserPreferences(updated);
+    _userPreferences = updated;
+    notifyListeners();
+  }
+
+  Future<void> setStartWeekOn(String startWeekOn) async {
+    if (_userPreferences == null) return;
+
+    final updated = _userPreferences!.copyWith(
+      startWeekOn: startWeekOn,
+      updatedAt: DateTime.now(),
+    );
+
+    await _storage.saveUserPreferences(updated);
+    _userPreferences = updated;
+    notifyListeners();
+  }
+
+  Future<void> setDaysOff(List<String> daysOff) async {
+    if (_userPreferences == null) return;
+
+    final updated = _userPreferences!.copyWith(
+      daysOff: daysOff,
+      updatedAt: DateTime.now(),
+    );
+
+    await _storage.saveUserPreferences(updated);
+    _userPreferences = updated;
+    notifyListeners();
+  }
+
+  Future<void> setEnabledOrigins(List<String>? enabledOrigins) async {
+    if (_userPreferences == null) return;
+
+    final updated = _userPreferences!.copyWith(
+      enabledOrigins: enabledOrigins,
+      updatedAt: DateTime.now(),
+    );
+
     await _storage.saveUserPreferences(updated);
     _userPreferences = updated;
     notifyListeners();
@@ -258,7 +306,8 @@ class AppProvider extends ChangeNotifier {
   bool get isLanguagePersian => language == 'fa';
 
   // Helper method to check if calendar is Solar or Shahanshahi
-  bool get isCalendarSolar => calendarSystem == 'solar' || calendarSystem == 'shahanshahi';
+  bool get isCalendarSolar =>
+      calendarSystem == 'solar' || calendarSystem == 'shahanshahi';
 
   /// Get the actual language being used (resolves 'system' to actual system language)
   String get effectiveLanguage {

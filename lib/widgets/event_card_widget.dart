@@ -9,6 +9,8 @@ import '../widgets/event_detail_bottom_sheet.dart';
 import '../providers/calendar_provider.dart';
 import '../providers/app_provider.dart';
 import '../utils/calendar_utils.dart';
+import '../utils/font_helper.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 /// Event card widget for displaying event information
 class EventCard extends StatelessWidget {
@@ -221,14 +223,21 @@ class EventCard extends StatelessWidget {
                             const SizedBox(width: 6),
                             Text(
                               originTypeLabel,
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
-                                color: TCnt.neutralTertiary(context),
-                                height: 1.4,
-                                letterSpacing: -0.084, // -0.7% of 12
-                                fontFamily: isPersian ? 'Vazir' : 'Inter',
-                              ),
+                              style: isPersian
+                                  ? FontHelper.getYekanBakh(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400,
+                                      color: TCnt.neutralTertiary(context),
+                                      height: 1.4,
+                                      letterSpacing: -0.084, // -0.7% of 12
+                                    )
+                                  : GoogleFonts.inter(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400,
+                                      color: TCnt.neutralTertiary(context),
+                                      height: 1.4,
+                                      letterSpacing: -0.084, // -0.7% of 12
+                                    ),
                             ),
                           ],
                         ),
@@ -258,14 +267,21 @@ class EventCard extends StatelessWidget {
                       event.title.getText(language),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        color: TCnt.neutralMain(context),
-                        height: 1.2,
-                        letterSpacing: -0.32, // -2% of 16
-                        fontFamily: isPersian ? 'Vazir' : 'Inter',
-                      ),
+                      style: isPersian
+                          ? FontHelper.getYekanBakh(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                              color: TCnt.neutralMain(context),
+                              height: 1.2,
+                              letterSpacing: -0.32, // -2% of 16
+                            )
+                          : GoogleFonts.inter(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                              color: TCnt.neutralMain(context),
+                              height: 1.2,
+                              letterSpacing: -0.32, // -2% of 16
+                            ),
                     ),
                     
                     const SizedBox(height: 6),
@@ -283,14 +299,21 @@ class EventCard extends StatelessWidget {
                           descriptionText,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                            color: TCnt.neutralSecond(context).withOpacity(isDark ? 0.75 : 1.0),
-                            height: 1.6,
-                            letterSpacing: -0.084, // -0.7% of 12
-                            fontFamily: isPersian ? 'Vazir' : 'Inter',
-                          ),
+                          style: isPersian
+                              ? FontHelper.getYekanBakh(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                  color: TCnt.neutralSecond(context).withOpacity(isDark ? 0.75 : 1.0),
+                                  height: 1.6,
+                                  letterSpacing: -0.084, // -0.7% of 12
+                                )
+                              : GoogleFonts.inter(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                  color: TCnt.neutralSecond(context).withOpacity(isDark ? 0.75 : 1.0),
+                                  height: 1.6,
+                                  letterSpacing: -0.084, // -0.7% of 12
+                                ),
                         );
                       },
                     ),

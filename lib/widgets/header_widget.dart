@@ -7,13 +7,17 @@ import '../config/app_icons.dart';
 import '../providers/app_provider.dart';
 import '../services/date_converter_service.dart';
 import '../utils/calendar_utils.dart';
+import '../utils/font_helper.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HeaderWidget extends StatelessWidget {
   final VoidCallback onTodayPressed;
+  final VoidCallback? onLogoPressed;
 
   const HeaderWidget({
     Key? key,
     required this.onTodayPressed,
+    this.onLogoPressed,
   }) : super(key: key);
 
   @override
@@ -42,12 +46,16 @@ class HeaderWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Logo - Fixed 52x52 SVG
-                SvgPicture.asset(
-                  AppIcons.logoLauncher,
-                  width: 52,
-                  height: 52,
-                  fit: BoxFit.contain,
+                // Logo - tappable for About sheet
+                GestureDetector(
+                  onTap: onLogoPressed,
+                  behavior: HitTestBehavior.opaque,
+                  child: SvgPicture.asset(
+                    AppIcons.logoLauncher,
+                    width: 48,
+                    height: 48,
+                    fit: BoxFit.contain,
+                  ),
                 ),
                 // Today's Date - NO Background, aligned horizontally
                 GestureDetector(
@@ -62,15 +70,21 @@ class HeaderWidget extends StatelessWidget {
                       Text(
                         dayMonthText,
                           textDirection: isPersian ? TextDirection.rtl : TextDirection.ltr,
-                        style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.w800,
-                          color: TCnt.neutralMain(context),
-                          height: 1.4, /* 42px */
-                          letterSpacing: -0.6,
-                          fontFamily: isPersian ? 'Vazir' : 'Inter',
-                          leadingDistribution: TextLeadingDistribution.even,
-                        ),
+                        style: isPersian
+                            ? FontHelper.getYekanBakh(
+                                fontSize: 30,
+                                fontWeight: FontWeight.w800,
+                                color: TCnt.neutralMain(context),
+                                height: 1.4, /* 42px */
+                                letterSpacing: -0.6,
+                              )
+                            : GoogleFonts.inter(
+                                fontSize: 30,
+                                fontWeight: FontWeight.w800,
+                                color: TCnt.neutralMain(context),
+                                height: 1.4, /* 42px */
+                                letterSpacing: -0.6,
+                              ),
                       ),
                       const SizedBox(width: 8),
                       // Year and Today - Stacked vertically on the right
@@ -83,44 +97,42 @@ class HeaderWidget extends StatelessWidget {
                           Text(
                               yearText,
                               textDirection: isPersian ? TextDirection.rtl : TextDirection.ltr,
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: TCnt.neutralSecond(context),
-                                height: 1.4,
-                                fontFamily: isPersian ? 'Vazir' : 'Inter',
-                              ),
+                              style: isPersian
+                                  ? FontHelper.getYekanBakh(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                      color: TCnt.neutralSecond(context),
+                                      height: 1.4,
+                                    )
+                                  : GoogleFonts.inter(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                      color: TCnt.neutralSecond(context),
+                                      height: 1.4,
+                                    ),
                             ),
                             // Today label - Font size 14, Light gray (700)
                             Row(
                               mainAxisSize: MainAxisSize.min,
-                              children: isPersian
-                                  ? [
-                                      Text(
-                                        todayLabel,
-                                        textDirection: TextDirection.rtl,
-                                        style: TextStyle(
+                              children: [
+                                Text(
+                                  todayLabel,
+                                  textDirection: isPersian ? TextDirection.rtl : TextDirection.ltr,
+                                  style: isPersian
+                                      ? FontHelper.getYekanBakh(
                                           fontSize: 14,
                                           fontWeight: FontWeight.w400,
                                           color: TCnt.neutralTertiary(context),
                                           height: 1.4,
-                                          fontFamily: 'Vazir',
-                                        ),
-                                      ),
-                                    ]
-                                  : [
-                                      Text(
-                                        todayLabel,
-                                        textDirection: TextDirection.ltr,
-                                        style: TextStyle(
+                                        )
+                                      : GoogleFonts.inter(
                                           fontSize: 14,
                                           fontWeight: FontWeight.w400,
                                           color: TCnt.neutralTertiary(context),
                                           height: 1.4,
-                                          fontFamily: 'Inter',
                                         ),
-                                      ),
-                                    ],
+                                ),
+                              ],
                             ),
                         ],
                       ),

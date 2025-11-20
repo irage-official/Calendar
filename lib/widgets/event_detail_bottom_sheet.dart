@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shamsi_date/shamsi_date.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../models/event.dart';
@@ -12,8 +10,10 @@ import '../config/app_icons.dart';
 import '../services/date_converter_service.dart';
 import '../utils/calendar_utils.dart';
 import '../utils/svg_helper.dart';
+import '../utils/font_helper.dart';
 import '../providers/app_provider.dart';
 import '../widgets/alert_message_widget.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class EventDetailBottomSheet extends StatefulWidget {
   final Event event;
@@ -101,14 +101,21 @@ class _EventDetailBottomSheetState extends State<EventDetailBottomSheet> {
             // Title - font size 14, semi-bold, neutral secondary, line height 140%, letter spacing -2%
             Text(
               isPersian ? 'نمی‌توان تصویر را بارگذاری کرد' : 'Cannot load image',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: TCnt.neutralSecond(context),
-                height: 1.4,
-                letterSpacing: -0.28, // -2% of 14px
-                fontFamily: isPersian ? 'Vazir' : 'Inter',
-              ),
+              style: isPersian
+                  ? FontHelper.getYekanBakh(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: TCnt.neutralSecond(context),
+                      height: 1.4,
+                      letterSpacing: -0.28, // -2% of 14px
+                    )
+                  : GoogleFonts.inter(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: TCnt.neutralSecond(context),
+                      height: 1.4,
+                      letterSpacing: -0.28, // -2% of 14px
+                    ),
               textAlign: TextAlign.center,
             ),
             
@@ -120,14 +127,21 @@ class _EventDetailBottomSheetState extends State<EventDetailBottomSheet> {
               isPersian 
                   ? 'نمی‌توانیم تصویر یا ویدیو را بارگذاری کنیم. لطفاً دوباره تلاش کنید.' 
                   : 'We couldn\'t load photo or video. Please try again.',
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.normal,
-                color: TCnt.neutralTertiary(context),
-                height: 1.4,
-                letterSpacing: -0.084, // -0.7% of 12px
-                fontFamily: isPersian ? 'Vazir' : 'Inter',
-              ),
+              style: isPersian
+                  ? FontHelper.getYekanBakh(
+                      fontSize: 12,
+                      fontWeight: FontWeight.normal,
+                      color: TCnt.neutralTertiary(context),
+                      height: 1.4,
+                      letterSpacing: -0.084, // -0.7% of 12px
+                    )
+                  : GoogleFonts.inter(
+                      fontSize: 12,
+                      fontWeight: FontWeight.normal,
+                      color: TCnt.neutralTertiary(context),
+                      height: 1.4,
+                      letterSpacing: -0.084, // -0.7% of 12px
+                    ),
               textAlign: TextAlign.center,
             ),
             
@@ -159,14 +173,21 @@ class _EventDetailBottomSheetState extends State<EventDetailBottomSheet> {
                     const SizedBox(width: 6),
                     Text(
                       isPersian ? 'تلاش مجدد' : 'Retry',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: ThemeColors.primary500,
-                        height: 1.4,
-                        letterSpacing: -0.28, // -2% of 14px
-                        fontFamily: isPersian ? 'Vazir' : 'Inter',
-                      ),
+                      style: isPersian
+                          ? FontHelper.getYekanBakh(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: ThemeColors.primary500,
+                              height: 1.4,
+                              letterSpacing: -0.28, // -2% of 14px
+                            )
+                          : GoogleFonts.inter(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: ThemeColors.primary500,
+                              height: 1.4,
+                              letterSpacing: -0.28, // -2% of 14px
+                            ),
                     ),
                   ],
                 ),
@@ -605,14 +626,21 @@ class _EventDetailBottomSheetState extends State<EventDetailBottomSheet> {
                 padding: const EdgeInsets.symmetric(horizontal: 6), // 6px padding left and right of label
                 child: Text(
                   originTypeLabel,
-                  style: TextStyle(
-                    fontSize: 12,
-                    height: 1.4,
-                    letterSpacing: -0.084, // -0.7% of 12
-                    color: originColor,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: isPersian ? 'Vazir' : 'Inter',
-                  ),
+                  style: isPersian
+                      ? FontHelper.getYekanBakh(
+                          fontSize: 12,
+                          height: 1.4,
+                          letterSpacing: -0.084, // -0.7% of 12
+                          color: originColor,
+                          fontWeight: FontWeight.w500,
+                        )
+                      : GoogleFonts.inter(
+                          fontSize: 12,
+                          height: 1.4,
+                          letterSpacing: -0.084, // -0.7% of 12
+                          color: originColor,
+                          fontWeight: FontWeight.w500,
+                        ),
                 ),
               ),
             ],
@@ -651,27 +679,40 @@ class _EventDetailBottomSheetState extends State<EventDetailBottomSheet> {
         // Title
         Text(
           event.title.getText(language),
-          style: TextStyle(
-            fontSize: 20,
-            height: 1.4, // 140%
-            letterSpacing: -0.4, // -2% of 20
-            color: TCnt.neutralMain(context),
-            fontWeight: FontWeight.w700,
-            fontFamily: isPersian ? 'Vazir' : 'Inter',
-          ),
+          style: isPersian
+              ? FontHelper.getYekanBakh(
+                  fontSize: 20,
+                  height: 1.4, // 140%
+                  letterSpacing: -0.4, // -2% of 20
+                  color: TCnt.neutralMain(context),
+                  fontWeight: FontWeight.w700,
+                )
+              : GoogleFonts.inter(
+                  fontSize: 20,
+                  height: 1.4, // 140%
+                  letterSpacing: -0.4, // -2% of 20
+                  color: TCnt.neutralMain(context),
+                  fontWeight: FontWeight.w700,
+                ),
         ),
         
         // Location
         const SizedBox(height: 6),
         Text(
           event.location.getText(language),
-          style: TextStyle(
-            fontSize: 12,
-            height: 1.4, // 140%
-            letterSpacing: -0.084, // -0.7% of 12
-            color: TCnt.neutralFourth(context),
-            fontFamily: isPersian ? 'Vazir' : 'Inter',
-          ),
+          style: isPersian
+              ? FontHelper.getYekanBakh(
+                  fontSize: 12,
+                  height: 1.4, // 140%
+                  letterSpacing: -0.084, // -0.7% of 12
+                  color: TCnt.neutralFourth(context),
+                )
+              : GoogleFonts.inter(
+                  fontSize: 12,
+                  height: 1.4, // 140%
+                  letterSpacing: -0.084, // -0.7% of 12
+                  color: TCnt.neutralFourth(context),
+                ),
         ),
       ],
     );
@@ -687,13 +728,19 @@ class _EventDetailBottomSheetState extends State<EventDetailBottomSheet> {
     
     return Text(
       descriptionText,
-      style: TextStyle(
-        fontSize: 14,
-        height: 1.6, // 160%
-        letterSpacing: -0.098, // -0.7% of 14
-        color: TCnt.neutralSecond(context),
-        fontFamily: isPersian ? 'Vazir' : 'Inter',
-      ),
+      style: isPersian
+          ? FontHelper.getYekanBakh(
+              fontSize: 14,
+              height: 1.6, // 160%
+              letterSpacing: -0.098, // -0.7% of 14
+              color: TCnt.neutralSecond(context),
+            )
+          : GoogleFonts.inter(
+              fontSize: 14,
+              height: 1.6, // 160%
+              letterSpacing: -0.098, // -0.7% of 14
+              color: TCnt.neutralSecond(context),
+            ),
     );
   }
 
@@ -761,13 +808,19 @@ class _EventDetailBottomSheetState extends State<EventDetailBottomSheet> {
           // Label
           Text(
             label,
-            style: TextStyle(
-              fontSize: 12,
-              height: 1.4, // 140%
-              letterSpacing: -0.084, // -0.7% of 12
-              color: TCnt.neutralFourth(context),
-              fontFamily: isPersian ? 'Vazir' : 'Inter',
-            ),
+            style: isPersian
+                ? FontHelper.getYekanBakh(
+                    fontSize: 12,
+                    height: 1.4, // 140%
+                    letterSpacing: -0.084, // -0.7% of 12
+                    color: TCnt.neutralFourth(context),
+                  )
+                : GoogleFonts.inter(
+                    fontSize: 12,
+                    height: 1.4, // 140%
+                    letterSpacing: -0.084, // -0.7% of 12
+                    color: TCnt.neutralFourth(context),
+                  ),
           ),
           
           // Value
@@ -777,25 +830,38 @@ class _EventDetailBottomSheetState extends State<EventDetailBottomSheet> {
               children: [
                 TextSpan(
                   text: value,
-                  style: TextStyle(
-                    fontSize: 14,
-                    height: 1.4, // 140%
-                    letterSpacing: -0.28, // -2% of 14
-                    color: TCnt.neutralMain(context),
-                    fontWeight: FontWeight.w700,
-                    fontFamily: isPersian ? 'Vazir' : 'Inter',
-                  ),
+                  style: isPersian
+                      ? FontHelper.getYekanBakh(
+                          fontSize: 14,
+                          height: 1.4, // 140%
+                          letterSpacing: -0.28, // -2% of 14
+                          color: TCnt.neutralMain(context),
+                          fontWeight: FontWeight.w700,
+                        )
+                      : GoogleFonts.inter(
+                          fontSize: 14,
+                          height: 1.4, // 140%
+                          letterSpacing: -0.28, // -2% of 14
+                          color: TCnt.neutralMain(context),
+                          fontWeight: FontWeight.w700,
+                        ),
                 ),
                 if (equivalentValue != null) ...[
                   TextSpan(
                     text: ' ($equivalentValue)',
-                    style: TextStyle(
-                      fontSize: 12,
-                      height: 1.4, // 140%
-                      letterSpacing: -0.084, // -0.7% of 12
-                      color: TCnt.neutralFourth(context),
-                      fontFamily: isPersian ? 'Vazir' : 'Inter',
-                    ),
+                    style: isPersian
+                        ? FontHelper.getYekanBakh(
+                            fontSize: 12,
+                            height: 1.4, // 140%
+                            letterSpacing: -0.084, // -0.7% of 12
+                            color: TCnt.neutralFourth(context),
+                          )
+                        : GoogleFonts.inter(
+                            fontSize: 12,
+                            height: 1.4, // 140%
+                            letterSpacing: -0.084, // -0.7% of 12
+                            color: TCnt.neutralFourth(context),
+                          ),
                   ),
                 ],
               ],

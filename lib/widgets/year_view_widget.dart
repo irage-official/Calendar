@@ -3,9 +3,11 @@ import 'package:provider/provider.dart';
 import '../config/theme_colors.dart';
 import '../config/theme_roles.dart';
 import '../utils/calendar_utils.dart';
+import '../utils/font_helper.dart';
 import '../providers/app_provider.dart';
 import '../providers/calendar_provider.dart';
-import '../models/calendar_data.dart';
+import '../models/calendar_data.dart'; // For MonthData
+import 'package:google_fonts/google_fonts.dart';
 
 /// Year view widget showing all 12 months
 class YearViewWidget extends StatelessWidget {
@@ -38,12 +40,17 @@ class YearViewWidget extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 16),
             child: Text(
               _formatYear(year, appProvider.language),
-              style: TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.w700,
-                color: _getYearHeaderColor(context, year, calendarType),
-                fontFamily: appProvider.language == 'fa' ? 'Vazir' : 'Inter',
-              ),
+              style: appProvider.language == 'fa'
+                  ? FontHelper.getYekanBakh(
+                      fontSize: 32,
+                      fontWeight: FontWeight.w700,
+                      color: _getYearHeaderColor(context, year, calendarType),
+                    )
+                  : GoogleFonts.inter(
+                      fontSize: 32,
+                      fontWeight: FontWeight.w700,
+                      color: _getYearHeaderColor(context, year, calendarType),
+                    ),
             ),
           ),
           
@@ -127,12 +134,17 @@ class YearViewWidget extends StatelessWidget {
                   Flexible(
                     child: Text(
                       monthName,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: isActiveMonth ? TCnt.brandMain(context) : TCnt.neutralSecond(context),
-                        fontFamily: appProvider.language == 'fa' ? 'Vazir' : 'Inter',
-                      ),
+                      style: appProvider.language == 'fa'
+                          ? FontHelper.getYekanBakh(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: isActiveMonth ? TCnt.brandMain(context) : TCnt.neutralSecond(context),
+                            )
+                          : GoogleFonts.inter(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: isActiveMonth ? TCnt.brandMain(context) : TCnt.neutralSecond(context),
+                            ),
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.center,
                       maxLines: 1,

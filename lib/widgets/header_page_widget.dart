@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../config/theme_colors.dart';
 import '../config/theme_roles.dart';
 import '../config/app_icons.dart';
 import '../utils/svg_helper.dart';
+import '../utils/font_helper.dart';
+import '../providers/app_provider.dart';
 
 class HeaderPageWidget extends StatelessWidget {
   final String title;
@@ -20,6 +23,9 @@ class HeaderPageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appProvider = Provider.of<AppProvider>(context);
+    final isPersian = appProvider.language == 'fa';
+    
     return Container(
       height: 80.0,
       color: backgroundColor ?? TBg.main(context),
@@ -61,13 +67,21 @@ class HeaderPageWidget extends StatelessWidget {
             child: Center(
               child: Text(
                 title,
-                style: TextStyle(
-                  fontSize: 14.0,
-                  height: 1.4,
-                  letterSpacing: -0.007,
-                  fontWeight: FontWeight.w600,
-                  color: TCnt.neutralMain(context),
-                ),
+                style: isPersian
+                    ? FontHelper.getYekanBakh(
+                        fontSize: 14.0,
+                        height: 1.4,
+                        letterSpacing: -0.007,
+                        fontWeight: FontWeight.w600,
+                        color: TCnt.neutralMain(context),
+                      )
+                    : TextStyle(
+                        fontSize: 14.0,
+                        height: 1.4,
+                        letterSpacing: -0.007,
+                        fontWeight: FontWeight.w600,
+                        color: TCnt.neutralMain(context),
+                      ),
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,

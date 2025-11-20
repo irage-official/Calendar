@@ -24,6 +24,9 @@ dependencies:
   flutter_svg: ^2.0.10+1
   cached_network_image: ^3.3.1
   
+  # Fonts
+  google_fonts: ^6.1.0
+  
   # Data Storage
   hive: ^2.2.3
   hive_flutter: ^1.1.0
@@ -59,12 +62,12 @@ flutter:
     - assets/data/
   
   fonts:
-    - family: Vazir
+    - family: YekanBakh
       fonts:
-        - asset: assets/fonts/vazir.ttf
-    - family: Inter
-      fonts:
-        - asset: assets/fonts/inter.ttf
+        - asset: assets/fonts/YekanBakh-VF.ttf
+          # Variable Font - weights are controlled via fontVariations in code
+          # YekanBakh weights: Thin: 1, Light: 150, Regular: 325, Medium: 390, 
+          # SemiBold: 450, Bold: 600, ExtraBold: 725, Black: 875, ExtraBlack: 1000
 
 flutter_launcher_icons:
   android: true

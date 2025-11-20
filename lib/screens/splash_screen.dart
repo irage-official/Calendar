@@ -15,6 +15,8 @@ import '../services/update_service.dart';
 import '../services/event_service.dart';
 import '../models/app_version.dart';
 import '../utils/calendar_utils.dart';
+import '../utils/font_helper.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -166,17 +168,20 @@ class _SplashScreenState extends State<SplashScreen> {
       builder: (context) => AlertDialog(
         title: Text(
           isPersian ? 'آپدیت جدید' : 'New Update',
-          style: TextStyle(
-            fontFamily: isPersian ? 'Vazir' : 'Inter',
-            fontWeight: FontWeight.bold,
-          ),
+          style: isPersian
+              ? FontHelper.getYekanBakh(
+                  fontWeight: FontWeight.bold,
+                )
+              : GoogleFonts.inter(
+                  fontWeight: FontWeight.bold,
+                ),
         ),
         content: SingleChildScrollView(
           child: Text(
             releaseNotes,
-            style: TextStyle(
-              fontFamily: isPersian ? 'Vazir' : 'Inter',
-            ),
+            style: isPersian
+                ? FontHelper.getYekanBakh()
+                : GoogleFonts.inter(),
           ),
         ),
         actions: [
@@ -185,9 +190,9 @@ class _SplashScreenState extends State<SplashScreen> {
               onPressed: () => Navigator.of(context).pop(),
               child: Text(
                 isPersian ? 'بعداً' : 'Later',
-                style: TextStyle(
-                  fontFamily: isPersian ? 'Vazir' : 'Inter',
-                ),
+                style: isPersian
+                    ? FontHelper.getYekanBakh()
+                    : GoogleFonts.inter(),
               ),
             ),
           TextButton(
@@ -209,10 +214,13 @@ class _SplashScreenState extends State<SplashScreen> {
             },
             child: Text(
               isPersian ? 'آپدیت' : 'Update',
-              style: TextStyle(
-                fontFamily: isPersian ? 'Vazir' : 'Inter',
-                fontWeight: FontWeight.bold,
-              ),
+              style: isPersian
+                  ? FontHelper.getYekanBakh(
+                      fontWeight: FontWeight.bold,
+                    )
+                  : GoogleFonts.inter(
+                      fontWeight: FontWeight.bold,
+                    ),
             ),
           ),
         ],
@@ -286,13 +294,19 @@ class _SplashScreenState extends State<SplashScreen> {
                               // Welcome Message
                               Text(
                                 isPersian ? 'اپلیکیشن' : 'Welcome to',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  height: 1.4,
-                                  letterSpacing: -0.7 / 100 * 12,
-                                  color: TCnt.neutralTertiary(context),
-                                  fontFamily: isPersian ? 'Vazir' : 'Inter',
-                                ),
+                                style: isPersian
+                                    ? FontHelper.getYekanBakh(
+                                        fontSize: 12,
+                                        height: 1.4,
+                                        letterSpacing: -0.7 / 100 * 12,
+                                        color: TCnt.neutralTertiary(context),
+                                      )
+                                    : GoogleFonts.inter(
+                                        fontSize: 12,
+                                        height: 1.4,
+                                        letterSpacing: -0.7 / 100 * 12,
+                                        color: TCnt.neutralTertiary(context),
+                                      ),
                               ),
 
                               const SizedBox(height: 4),
@@ -300,14 +314,21 @@ class _SplashScreenState extends State<SplashScreen> {
                               // App Name
                               Text(
                                 isPersian ? 'میراث ایران' : 'Iranian Heritage',
-                                style: TextStyle(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.w800,
-                                  height: 1.2,
-                                  letterSpacing: -2.0 / 100 * 30,
-                                  color: TCnt.neutralMain(context),
-                                  fontFamily: isPersian ? 'Vazir' : 'Inter',
-                                ),
+                                style: isPersian
+                                    ? FontHelper.getYekanBakh(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.w800,
+                                        height: 1.2,
+                                        letterSpacing: -2.0 / 100 * 30,
+                                        color: TCnt.neutralMain(context),
+                                      )
+                                    : GoogleFonts.inter(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.w800,
+                                        height: 1.2,
+                                        letterSpacing: -2.0 / 100 * 30,
+                                        color: TCnt.neutralMain(context),
+                                      ),
                               ),
 
                               const SizedBox(height: 4),
@@ -318,13 +339,19 @@ class _SplashScreenState extends State<SplashScreen> {
                                   ? 'اولین تقویم ملی و سنت‌های فرهنگی ایران، به همراه بزرگداشت کسانی که برای آزادی ما جنگیدند.'
                                   : 'The first national calendar and cultural traditions of Iran, along with honoring those who fought for our freedom.',
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  height: 1.6,
-                                  letterSpacing: -0.7 / 100 * 14,
-                                  color: TCnt.neutralSecond(context),
-                                  fontFamily: isPersian ? 'Vazir' : 'Inter',
-                                ),
+                                style: isPersian
+                                    ? FontHelper.getYekanBakh(
+                                        fontSize: 14,
+                                        height: 1.6,
+                                        letterSpacing: -0.7 / 100 * 14,
+                                        color: TCnt.neutralSecond(context),
+                                      )
+                                    : GoogleFonts.inter(
+                                        fontSize: 14,
+                                        height: 1.6,
+                                        letterSpacing: -0.7 / 100 * 14,
+                                        color: TCnt.neutralSecond(context),
+                                      ),
                               ),
                             ],
                           ),

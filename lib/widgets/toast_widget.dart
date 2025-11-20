@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import '../config/theme_colors.dart';
+import '../utils/font_helper.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppToast {
   static OverlayEntry? _currentEntry;
@@ -67,16 +69,24 @@ class _ToastBubble extends StatelessWidget {
           color: ThemeColors.black.withOpacity(0.85),
           borderRadius: BorderRadius.circular(12),
         ),
-        child: DefaultTextStyle(
-          style: TextStyle(
-            color: ThemeColors.white,
-            fontSize: 12,
-            height: 1.4,
-            fontWeight: FontWeight.w400,
-            fontFamily: isPersian ? 'Vazir' : 'Inter',
-            letterSpacing: -0.084,
-          ),
-          child: Text(message, textAlign: TextAlign.start),
+        child: Text(
+          message,
+          textAlign: TextAlign.start,
+          style: isPersian
+              ? FontHelper.getYekanBakh(
+                  color: ThemeColors.white,
+                  fontSize: 12,
+                  height: 1.4,
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: -0.084,
+                )
+              : GoogleFonts.inter(
+                  color: ThemeColors.white,
+                  fontSize: 12,
+                  height: 1.4,
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: -0.084,
+                ),
         ),
       ),
     );
