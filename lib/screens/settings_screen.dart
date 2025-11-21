@@ -200,7 +200,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         fontWeight: FontWeight.w500,
                         color: TCnt.neutralMain(context).withOpacity(0.5),
                       )
-                    : AppTextStyles.bodyMedium.copyWith(
+                    : FontHelper.getInter(
                         fontSize: 14,
                         height: 1.4,
                         letterSpacing: -0.007,
@@ -564,7 +564,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       letterSpacing: -0.098,
                       color: aboutDescriptionColor(context),
                     )
-                  : TextStyle(
+                  : FontHelper.getInter(
                       fontSize: 14,
                       height: 1.6,
                       letterSpacing: -0.098,
@@ -664,7 +664,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         const SizedBox(width: 4),
         Text(
           'USDT',
-          style: TextStyle(
+          style: FontHelper.getInter(
             fontSize: 16,
             height: 1.4,
             letterSpacing: -0.32,
@@ -683,7 +683,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           child: Text(
             'Tron',
-            style: TextStyle(
+            style: FontHelper.getInter(
               fontSize: 12,
               height: 1.4,
               letterSpacing: -0.084,
@@ -904,7 +904,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       letterSpacing: -0.098,
                       color: aboutDescriptionColor(context),
                     )
-                  : TextStyle(
+                  : FontHelper.getInter(
                       fontSize: 14,
                       height: 1.6,
                       letterSpacing: -0.098,
@@ -924,7 +924,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       color: aboutDescriptionColor(context),
                       fontWeight: FontWeight.w400,
                     )
-                  : TextStyle(
+                  : FontHelper.getInter(
                       fontSize: 14,
                       height: 1.6,
                       letterSpacing: -0.098, // -0.7% of 14
@@ -1048,7 +1048,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       width: 24,
                       child: Text(
                         '3.',
-                        style: TextStyle(
+                        style: FontHelper.getInter(
                           fontSize: 16,
                           height: 1.4,
                           letterSpacing: -0.32,
@@ -1060,7 +1060,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     Expanded(
                       child: Text(
                         isPersian ? 'ذخیره‌سازی و حفاظت از داده‌ها' : 'Data Storage and Protection',
-                        style: TextStyle(
+                        style: FontHelper.getInter(
                           fontSize: 16,
                           height: 1.4,
                           letterSpacing: -0.32,
@@ -1081,7 +1081,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         isPersian 
                             ? 'تمام رکوردهای جمع‌آوری‌شده به طور ایمن در سرورهای رمزگذاری‌شده ذخیره می‌شوند و دسترسی به آنها محدود به تیم تأیید است.'
                             : 'All collected records are securely stored on encrypted servers, and access is limited to the verification team.',
-                        style: TextStyle(
+                        style: FontHelper.getInter(
                           fontSize: 14,
                           height: 1.6,
                           letterSpacing: -0.098,
@@ -1472,7 +1472,7 @@ https://ir-heritage.com/download
                           color: TCnt.neutralMain(context),
                           fontWeight: FontWeight.w500,
                         )
-                      : TextStyle(
+                      : FontHelper.getInter(
                           fontSize: 14,
                           height: 1.4, // 140%
                           letterSpacing: -0.098, // -0.7% of 14
@@ -1490,7 +1490,7 @@ https://ir-heritage.com/download
                           letterSpacing: -0.084, // -0.7% of 12
                           color: TCnt.neutralFourth(context),
                         )
-                      : TextStyle(
+                      : FontHelper.getInter(
                           fontSize: 12,
                           height: 1.5, // 150%
                           letterSpacing: -0.084, // -0.7% of 12
@@ -1554,7 +1554,7 @@ https://ir-heritage.com/download
                               color: TCnt.neutralMain(context),
                               fontWeight: FontWeight.w800,
                             )
-                          : TextStyle(
+                          : FontHelper.getInter(
                               fontSize: 16,
                               height: 1.4,
                               letterSpacing: -0.32,
@@ -1574,7 +1574,7 @@ https://ir-heritage.com/download
                               color: TCnt.neutralMain(context),
                               fontWeight: FontWeight.w600,
                             )
-                          : TextStyle(
+                          : FontHelper.getInter(
                               fontSize: 16,
                               height: 1.4,
                               letterSpacing: -0.32,
@@ -1587,7 +1587,7 @@ https://ir-heritage.com/download
               )
             : Text(
                 title,
-                style: TextStyle(
+                style: FontHelper.getInter(
                   fontSize: 16,
                   height: 1.4,
                   letterSpacing: -0.32,
@@ -1638,7 +1638,7 @@ https://ir-heritage.com/download
                         color: TCnt.neutralMain(context),
                         fontWeight: FontWeight.w800,
                       )
-                    : TextStyle(
+                    : FontHelper.getInter(
                         fontSize: 16,
                         height: 1.4,
                         letterSpacing: -0.32,
@@ -1691,7 +1691,7 @@ https://ir-heritage.com/download
                       letterSpacing: -0.098,
                       color: aboutDescriptionColor(context),
                     )
-                  : TextStyle(
+                  : FontHelper.getInter(
                       fontSize: 14,
                       height: 1.6,
                       letterSpacing: -0.098,
@@ -1736,7 +1736,7 @@ https://ir-heritage.com/download
                 letterSpacing: -0.098, // -0.7% of 14
                 color: TCnt.neutralSecond(context),
               )
-            : TextStyle(
+            : FontHelper.getInter(
                 fontSize: 14,
                 height: 1.6, // 160%
                 letterSpacing: -0.098, // -0.7% of 14
@@ -1750,7 +1750,7 @@ https://ir-heritage.com/download
             style: index.isOdd
                 ? (isPersian
                     ? FontHelper.getYekanBakh(fontWeight: FontWeight.bold)
-                    : TextStyle(fontWeight: FontWeight.bold))
+                    : FontHelper.getInter(fontWeight: FontWeight.bold))
                 : (isPersian
                     ? FontHelper.getYekanBakh()
                     : null),
@@ -1776,7 +1776,7 @@ https://ir-heritage.com/download
           text: part,
           style: isPersian
               ? FontHelper.getYekanBakh(fontWeight: FontWeight.bold)
-              : TextStyle(fontWeight: FontWeight.bold),
+              : FontHelper.getInter(fontWeight: FontWeight.bold),
         ));
       } else {
         // Regular text - check for links
@@ -1792,7 +1792,7 @@ https://ir-heritage.com/download
             text: linkText,
             style: isPersian
                 ? FontHelper.getYekanBakh(color: ThemeColors.indigo500)
-                : TextStyle(color: ThemeColors.indigo500),
+                : FontHelper.getInter(color: ThemeColors.indigo500),
           ));
           if (linkIndex + linkText.length < part.length) {
             spans.add(TextSpan(
@@ -1818,7 +1818,7 @@ https://ir-heritage.com/download
                 letterSpacing: -0.098, // -0.7% of 14
                 color: TCnt.neutralSecond(context),
               )
-            : TextStyle(
+            : FontHelper.getInter(
                 fontSize: 14,
                 height: 1.6, // 160%
                 letterSpacing: -0.098, // -0.7% of 14
@@ -1842,7 +1842,7 @@ https://ir-heritage.com/download
         if (part == emailText) {
           spans.add(TextSpan(
             text: part,
-            style: const TextStyle(
+            style: FontHelper.getInter(
               fontWeight: FontWeight.w500,
               color: ThemeColors.primary500,
             ),
@@ -1857,7 +1857,7 @@ https://ir-heritage.com/download
         } else {
           spans.add(TextSpan(
             text: part,
-            style: const TextStyle(fontWeight: FontWeight.bold),
+            style: FontHelper.getInter(fontWeight: FontWeight.bold),
           ));
         }
       } else {
@@ -1869,7 +1869,7 @@ https://ir-heritage.com/download
           }
           spans.add(TextSpan(
             text: emailText,
-            style: const TextStyle(
+            style: FontHelper.getInter(
               color: ThemeColors.primary500,
               fontWeight: FontWeight.w500,
             ),
@@ -1892,7 +1892,7 @@ https://ir-heritage.com/download
     
     return Text.rich(
       TextSpan(
-        style: TextStyle(
+        style: FontHelper.getInter(
           fontSize: 14,
           height: 1.6,
           letterSpacing: -0.098,
@@ -1907,7 +1907,7 @@ https://ir-heritage.com/download
     if (linkText == null) {
       return Text(
         text,
-        style: TextStyle(
+        style: FontHelper.getInter(
           fontSize: 14,
           height: 1.6,
           letterSpacing: -0.098,
@@ -1945,7 +1945,7 @@ https://ir-heritage.com/download
               if (i < parts.length - 1)
                 TextSpan(
                   text: linkText,
-                  style: TextStyle(
+                  style: FontHelper.getInter(
                     fontWeight: FontWeight.w500,
                     color: TCnt.brandMain(context),
                   ),
@@ -1986,7 +1986,7 @@ https://ir-heritage.com/download
             TextSpan(text: text.substring(0, index)),
             TextSpan(
               text: linkText,
-              style: TextStyle(
+              style: FontHelper.getInter(
                 fontWeight: FontWeight.bold,
                 color: TCnt.brandMain(context),
               ),
@@ -2017,7 +2017,7 @@ https://ir-heritage.com/download
     if (simpleIndex == -1) {
       return Text(
         text,
-        style: TextStyle(
+        style: FontHelper.getInter(
           fontSize: 14,
           height: 1.6,
           letterSpacing: -0.098,
@@ -2028,7 +2028,7 @@ https://ir-heritage.com/download
     
     return Text.rich(
       TextSpan(
-        style: TextStyle(
+        style: FontHelper.getInter(
           fontSize: 14,
           height: 1.6,
           letterSpacing: -0.098,

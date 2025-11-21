@@ -73,6 +73,8 @@ flutter:
     - family: Inter
       fonts:
         - asset: assets/fonts/Inter.ttf
+          # Variable Font - weights are controlled via fontVariations in code
+          # Inter uses standard weight values (100-900)
 
 flutter_launcher_icons:
   android: true

@@ -695,7 +695,7 @@ class _CalendarEventsSettingsScreenState
                     letterSpacing: -0.28, // -2% of 14 = -0.28
                     color: TCnt.neutralTertiary(context),
                   )
-                : AppTextStyles.bodyMedium.copyWith(
+                : FontHelper.getInter(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
                     height: 1.4,

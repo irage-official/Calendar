@@ -75,7 +75,7 @@ class HeaderPageWidget extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                         color: TCnt.neutralMain(context),
                       )
-                    : TextStyle(
+                    : FontHelper.getInter(
                         fontSize: 14.0,
                         height: 1.4,
                         letterSpacing: -0.007,

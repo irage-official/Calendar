@@ -96,7 +96,7 @@ class ToggleItem extends StatelessWidget {
                                   : FontWeight.w400, // regular
                               color: TCnt.neutralMain(context),
                             )
-                          : TextStyle(
+                          : FontHelper.getInter(
                               fontSize: 14,
                               height: 1.4, // 140%
                               letterSpacing: -0.098, // -0.7% of 14 = -0.098
@@ -118,7 +118,7 @@ class ToggleItem extends StatelessWidget {
                                   ? TCnt.neutralTertiary(context)
                                   : TCnt.neutralFourth(context),
                             )
-                          : TextStyle(
+                          : FontHelper.getInter(
                               fontSize: 12,
                               height: 1.4, // 140%
                               letterSpacing: -0.084, // -0.7% of 12 = -0.084

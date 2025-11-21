@@ -101,50 +101,44 @@ class AppDimensions {
 
 class AppTextStyles {
   // English text styles using local Inter font
-  static TextStyle get heading1 => const TextStyle(
-    fontFamily: 'Inter',
+  // Note: Cannot be const because FontHelper.getInter() uses fontVariations
+  static TextStyle get heading1 => FontHelper.getInter(
     fontSize: 32,
     fontWeight: FontWeight.bold,
     color: LightCnt.neutralMain,
   );
   
-  static TextStyle get heading2 => const TextStyle(
-    fontFamily: 'Inter',
+  static TextStyle get heading2 => FontHelper.getInter(
     fontSize: 24,
     fontWeight: FontWeight.bold,
     color: LightCnt.neutralMain,
   );
   
-  static TextStyle get heading3 => const TextStyle(
-    fontFamily: 'Inter',
+  static TextStyle get heading3 => FontHelper.getInter(
     fontSize: 20,
     fontWeight: FontWeight.w600,
     color: LightCnt.neutralMain,
   );
   
-  static TextStyle get bodyLarge => const TextStyle(
-    fontFamily: 'Inter',
+  static TextStyle get bodyLarge => FontHelper.getInter(
     fontSize: 16,
     fontWeight: FontWeight.normal,
     color: LightCnt.neutralMain,
   );
   
-  static TextStyle get bodyMedium => const TextStyle(
-    fontFamily: 'Inter',
+  static TextStyle get bodyMedium => FontHelper.getInter(
     fontSize: 14,
     fontWeight: FontWeight.normal,
     color: LightCnt.neutralMain,
   );
   
-  static TextStyle get bodySmall => const TextStyle(
-    fontFamily: 'Inter',
+  static TextStyle get bodySmall => FontHelper.getInter(
     fontSize: 12,
     fontWeight: FontWeight.normal,
     color: LightCnt.neutralWeak,
   );
   
-  static TextStyle get caption => const TextStyle(
-    fontFamily: 'Inter',
+  static TextStyle get caption => FontHelper.getInter(
     fontSize: 10,
     fontWeight: FontWeight.normal,
     color: LightCnt.neutralWeak,

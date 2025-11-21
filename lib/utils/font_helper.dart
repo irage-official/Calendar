@@ -34,7 +34,40 @@ class FontHelper {
     }
   }
   
+  /// Get Inter font weight value (standard 100-900 for Variable Font)
+  /// Inter Variable Font uses standard weight values
+  static double getInterWeight(FontWeight? fontWeight) {
+    if (fontWeight == null) return 400.0; // Regular
+    
+    // Map Flutter FontWeight to Inter Variable Font weights (100-900)
+    switch (fontWeight) {
+      case FontWeight.w100:
+        return 100.0;
+      case FontWeight.w200:
+        return 200.0;
+      case FontWeight.w300:
+        return 300.0;
+      case FontWeight.w400:
+      case FontWeight.normal:
+        return 400.0;
+      case FontWeight.w500:
+        return 500.0;
+      case FontWeight.w600:
+        return 600.0;
+      case FontWeight.w700:
+      case FontWeight.bold:
+        return 700.0;
+      case FontWeight.w800:
+        return 800.0;
+      case FontWeight.w900:
+        return 900.0;
+      default:
+        return 400.0; // Regular as default
+    }
+  }
+  
   /// Get Inter font from local assets for English text
+  /// Inter is a Variable Font, so we use fontVariations for proper weight control
   static TextStyle getInter({
     double? fontSize,
     FontWeight? fontWeight,
@@ -42,13 +75,18 @@ class FontHelper {
     double? height,
     double? letterSpacing,
   }) {
+    final interWeight = getInterWeight(fontWeight);
+    
     return TextStyle(
       fontFamily: 'Inter',
       fontSize: fontSize,
-      fontWeight: fontWeight,
+      fontWeight: fontWeight, // Keep for compatibility and fallback
       color: color,
       height: height,
       letterSpacing: letterSpacing,
+      fontVariations: [
+        FontVariation('wght', interWeight),
+      ],
     );
   }
   
