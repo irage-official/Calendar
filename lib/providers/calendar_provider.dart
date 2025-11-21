@@ -293,6 +293,29 @@ class CalendarProvider extends ChangeNotifier {
   // Toggle between week and month view
   void toggleWeekView() {
     _isWeekView = !_isWeekView;
+    // When switching to week view, update currentWeekStart to match selectedDate
+    // But if selectedDate is not in displayedMonth, use displayedMonth instead
+    if (_isWeekView) {
+      // Check if selectedDate is in displayedMonth
+      bool isSelectedInDisplayedMonth = false;
+      if (_calendarSystem == 'solar' || _calendarSystem == 'shahanshahi') {
+        final selectedJalali = gregorianToJalali(_selectedDate);
+        final displayedJalali = gregorianToJalali(_displayedMonth);
+        isSelectedInDisplayedMonth = selectedJalali.year == displayedJalali.year && 
+                                     selectedJalali.month == displayedJalali.month;
+      } else {
+        isSelectedInDisplayedMonth = _selectedDate.year == _displayedMonth.year &&
+                                      _selectedDate.month == _displayedMonth.month;
+      }
+      
+      // Use selectedDate if it's in displayedMonth, otherwise use displayedMonth
+      final dateToUse = isSelectedInDisplayedMonth ? _selectedDate : _displayedMonth;
+      _currentWeekStart = CalendarUtils.getWeekStart(
+        dateToUse,
+        calendarSystem: _calendarSystem,
+        startWeekOn: _startWeekOn,
+      );
+    }
     notifyListeners();
   }
 
@@ -462,57 +485,45 @@ class CalendarProvider extends ChangeNotifier {
   // For solar/shahanshahi calendar, needs to work with solar dates properly
   int getWeekIndexOfSelectedDate({String? calendarSystem}) {
     final system = calendarSystem ?? _calendarSystem;
+    
+    // Use the same logic as _getMonthDatesForDisplayedMonth to ensure consistency
+    // This is especially important for Farvardin (first month) where week calculation can be tricky
+    final monthDates = _getMonthDatesForDisplayedMonth();
+    
+    // Group dates by weeks (same logic as MonthDays widget)
+    final weeks = <List<DateTime>>[];
+    for (int i = 0; i < monthDates.length; i += 7) {
+      weeks.add(monthDates.sublist(i, (i + 7 > monthDates.length) ? monthDates.length : i + 7));
+    }
+    
+    // For solar/shahanshahi calendar, we need to check if selected date is in the displayed month
     if (system == 'solar' || system == 'shahanshahi') {
-      // For solar calendar, calculate based on Jalali dates
       final selectedJalali = gregorianToJalali(_selectedDate);
       final displayedJalali = gregorianToJalali(_displayedMonth);
       
       // If selected date is in the displayed month
       if (selectedJalali.year == displayedJalali.year && 
           selectedJalali.month == displayedJalali.month) {
-        // Calculate week index by finding which week contains the selected day
-        // Solar calendar weeks start on Saturday
-        // Get first day of month in Jalali and convert to Gregorian
-        final firstDayJalali = Jalali(displayedJalali.year, displayedJalali.month, 1);
-        final firstDayGregorian = _dateConverter.jalaliToGregorian(
-          firstDayJalali.year, firstDayJalali.month, firstDayJalali.day);
-        
-        // Get week start for solar (Saturday) - this is the start of the first week containing the month
-        final firstWeekStart = CalendarUtils.getWeekStart(
-          firstDayGregorian,
-          calendarSystem: system,
-          startWeekOn: _startWeekOn,
-        );
-        
-        // Find the week start containing the selected date
-        final selectedWeekStart = CalendarUtils.getWeekStart(
-          _selectedDate,
-          calendarSystem: system,
-          startWeekOn: _startWeekOn,
-        );
-        
-        // Calculate which week index by counting weeks from first week start
-        final daysFromFirstWeek = selectedWeekStart.difference(firstWeekStart).inDays;
-        final weekIndex = (daysFromFirstWeek / 7).floor();
-        
-        // Clamp to valid range (0-5)
-        return weekIndex >= 0 ? weekIndex.clamp(0, 5) : 0;
+        // Find which week contains the selected date by checking all dates in each week
+        for (int weekIndex = 0; weekIndex < weeks.length; weekIndex++) {
+          final week = weeks[weekIndex];
+          for (final date in week) {
+            // Convert date to Jalali and check if it matches selected date
+            final dateJalali = gregorianToJalali(date);
+            if (dateJalali.year == selectedJalali.year && 
+                dateJalali.month == selectedJalali.month && 
+                dateJalali.day == selectedJalali.day) {
+              return weekIndex;
+            }
+          }
+        }
       }
       
-      // If not in current month, return 0
+      // If selected date is not in current month, return 0 (first week of displayed month)
       return 0;
     }
     
-    // For Gregorian calendar, use existing logic
-    final monthDates = _getMonthDatesForDisplayedMonth();
-    
-    // Group dates by weeks
-    final weeks = <List<DateTime>>[];
-    for (int i = 0; i < monthDates.length; i += 7) {
-      weeks.add(monthDates.sublist(i, (i + 7 > monthDates.length) ? monthDates.length : i + 7));
-    }
-    
-    // Find which week contains the selected date
+    // For Gregorian calendar, find which week contains the selected date
     for (int weekIndex = 0; weekIndex < weeks.length; weekIndex++) {
       final week = weeks[weekIndex];
       for (final date in week) {
@@ -524,7 +535,7 @@ class CalendarProvider extends ChangeNotifier {
       }
     }
     
-    // Fallback: return 0 if not found
+    // If selected date is not in current month, return 0 (first week of displayed month)
     return 0;
   }
   
@@ -535,7 +546,63 @@ class CalendarProvider extends ChangeNotifier {
   }
 
   // Helper method to get month dates for the displayed month
+  // For solar/shahanshahi calendar, _displayedMonth is a Gregorian date representing the first day of the solar month
   List<DateTime> _getMonthDatesForDisplayedMonth() {
+    if (_calendarSystem == 'solar' || _calendarSystem == 'shahanshahi') {
+      // For solar calendar, _displayedMonth is already the Gregorian equivalent of the first day of the solar month
+      // Use the same logic as CalendarUtils.getMonthDates but synchronously
+      final dates = <DateTime>[];
+      
+      // _displayedMonth is already the first day of the solar month in Gregorian
+      final firstDayOfMonth = _displayedMonth;
+      
+      // Get the first day of the week containing the first day of month
+      final firstWeekStart = CalendarUtils.getWeekStart(
+        firstDayOfMonth,
+        calendarSystem: _calendarSystem,
+        startWeekOn: _startWeekOn,
+      );
+      
+      // Add days from previous month to fill first week
+      if (firstWeekStart.isBefore(firstDayOfMonth)) {
+        for (int i = 0; i < firstDayOfMonth.difference(firstWeekStart).inDays; i++) {
+          dates.add(firstWeekStart.add(Duration(days: i)));
+        }
+      }
+      
+      // Get the solar month info to know how many days to add
+      final displayedJalali = gregorianToJalali(_displayedMonth);
+      final firstDayJalali = Jalali(displayedJalali.year, displayedJalali.month, 1);
+      final daysInMonth = firstDayJalali.monthLength;
+      
+      // Add days of current solar month
+      for (int i = 0; i < daysInMonth; i++) {
+        final jalaliDate = Jalali(displayedJalali.year, displayedJalali.month, i + 1);
+        final gregorianDate = _dateConverter.jalaliToGregorian(
+          jalaliDate.year, jalaliDate.month, jalaliDate.day);
+        dates.add(gregorianDate);
+      }
+      
+      // Get the last day of the solar month
+      final lastDayJalali = Jalali(displayedJalali.year, displayedJalali.month, daysInMonth);
+      final lastDayGregorian = _dateConverter.jalaliToGregorian(
+        lastDayJalali.year, lastDayJalali.month, lastDayJalali.day);
+      
+      // Add days from next month to fill last week
+      final lastWeekStart = CalendarUtils.getWeekStart(
+        lastDayGregorian,
+        calendarSystem: _calendarSystem,
+        startWeekOn: _startWeekOn,
+      );
+      final lastWeekEnd = lastWeekStart.add(const Duration(days: 6));
+      for (int i = 1; i <= lastWeekEnd.difference(lastDayGregorian).inDays; i++) {
+        dates.add(lastDayGregorian.add(Duration(days: i)));
+      }
+      
+      return dates;
+    }
+    
+    // For Gregorian calendar, use existing logic
     final dates = <DateTime>[];
     
     // Get the first day of the month
