@@ -764,8 +764,8 @@
       "fa": "ایران"
     },
     "date": {
-      "solar": "1404-08-01",
-      "gregorian": "2025-10-23"
+      "solar": "1404-08-04",
+      "gregorian": "2025-10-26"
     },
     "time": {
       "isActive": false,
@@ -6230,8 +6230,8 @@
       "fa": "ایران و جوامع زرتشتی در جهان"
     },
     "date": {
-      "solar": "1404-01-09",
-      "gregorian": "2025-03-28"
+      "solar": "1404-01-06",
+      "gregorian": "2025-03-26"
     },
     "time": {
       "isActive": false,
@@ -6504,8 +6504,8 @@
       "fa": "میذیو زرم (آفرینش آسمان) ☀️"
     },
     "description": {
-      "fa": "میذیو زرم یکی از شش گاهنبار زرتشتی است که از ۱۱ تا ۱۵ اردیبهشت برگزار می‌شود و به مناسبت آفرینش آسمان است. گاهنبارها جشن‌های زرتشتی هستند که به شش دوره آفرینش جهان اختصاص دارند و در این روزها زرتشتیان به نیایش، شکرگزاری و کمک به نیازمندان می‌پردازند.",
-      "en": "Maidyozarem Gahambar is one of the six Zoroastrian Gahambars observed from the 11th to the 15th of Ordibehesht, commemorating the creation of the sky. Gahambars are Zoroastrian festivals dedicated to the six periods of world creation, and during these days, Zoroastrians engage in prayer, thanksgiving, and helping the needy."
+      "fa": "میذیو زرم (چله بهار) یکی از شش گاهنبار زرتشتی است که از ۱۰ تا ۱۴ اردیبهشت برگزار می‌شود و به مناسبت آفرینش آسمان است. گاهنبارها جشن‌های زرتشتی هستند که به شش دوره آفرینش جهان اختصاص دارند و در این روزها زرتشتیان به نیایش، شکرگزاری و کمک به نیازمندان می‌پردازند.",
+      "en": "Maidyozarem Gahambar (Spring Equinox) is one of the six Zoroastrian Gahambars observed from the 10th to the 14th of Ordibehesht, commemorating the creation of the sky. Gahambars are Zoroastrian festivals dedicated to the six periods of world creation, and during these days, Zoroastrians engage in prayer, thanksgiving, and helping the needy."
     },
     "significance": {
       "fa": "به عنوان یکی از شش جشن و نمادهای آفرینش است که شش بار در سال برگزار می‌شود. این جشن نماد آفرینش آسمان است",
@@ -6530,7 +6530,7 @@
       "fa": "ایران و جوامع زرتشتی در جهان"
     },
     "date": {
-      "solar": "1404-02-11",
+      "solar": "1404-02-10",
       "gregorian": "2025-04-30"
     },
     "time": {
@@ -6620,8 +6620,8 @@
     "origin": "iranian",
     "image": null,
     "title": {
-      "en": "Ferdowsi Day",
-      "fa": "روز فردوسی"
+      "en": "Persian Language Day / Ferdowsi Day",
+      "fa": "روز پاسداشت زبان فارسی و بزرگداشت فردوسی"
     },
     "description": {
       "fa": "روز فردوسی در بیست و پنجم اردیبهشت برگزار می‌شود و به یاد ابوالقاسم فردوسی، شاعر بزرگ ایرانی و خالق شاهنامه است. فردوسی با سرودن شاهنامه، زبان و فرهنگ فارسی را حفظ کرد و یکی از بزرگ‌ترین آثار ادبیات فارسی را خلق کرد. این روز به منظور گرامی‌داشت خدمات او به زبان و ادبیات فارسی است.",
@@ -6651,7 +6651,7 @@
     },
     "date": {
       "solar": "1404-02-25",
-      "gregorian": "2025-05-14"
+      "gregorian": "2025-05-15"
     },
     "time": {
       "isActive": false,
@@ -6684,8 +6684,8 @@
       "fa": "روز بزرگداشت حکیم عمر خیام"
     },
     "description": {
-      "fa": "روز بزرگداشت حکیم عمر خیام در بیست و نهم اردیبهشت برگزار می‌شود و به یاد عمر خیام، شاعر، ریاضیدان و منجم بزرگ ایرانی است. خیام با رباعیات خود به شهرت جهانی رسید و در ریاضیات و نجوم نیز دستاوردهای بزرگی داشت. این روز به منظور گرامی‌داشت خدمات او به ادبیات، ریاضیات و نجوم است.",
-      "en": "Omar Khayyam Day is observed on the 29th of Ordibehesht, commemorating Omar Khayyam, the great Iranian poet, mathematician, and astronomer. Khayyam gained worldwide fame with his quatrains and also made great achievements in mathematics and astronomy. This day honors his contributions to literature, mathematics, and astronomy."
+      "fa": "روز بزرگداشت حکیم عمر خیام در بیست و هشتم اردیبهشت برگزار می‌شود و به یاد عمر خیام، شاعر، ریاضیدان و منجم بزرگ ایرانی است. خیام با رباعیات خود به شهرت جهانی رسید و در ریاضیات و نجوم نیز دستاوردهای بزرگی داشت. این روز به منظور گرامی‌داشت خدمات او به ادبیات، ریاضیات و نجوم است.",
+      "en": "Omar Khayyam Day is observed on the 28th of Ordibehesht, commemorating Omar Khayyam, the great Iranian poet, mathematician, and astronomer. Khayyam gained worldwide fame with his quatrains and also made great achievements in mathematics and astronomy. This day honors his contributions to literature, mathematics, and astronomy."
     },
     "significance": {
       "fa": null,
@@ -6710,7 +6710,7 @@
       "fa": "ایران و جوامع فارسی‌زبان در جهان"
     },
     "date": {
-      "solar": "1404-02-29",
+      "solar": "1404-02-28",
       "gregorian": "2025-05-18"
     },
     "time": {
@@ -6744,8 +6744,8 @@
       "fa": "جشن خردادگان"
     },
     "description": {
-      "fa": "جشن خردادگان در ششم خرداد برگزار می‌شود و به مناسبت نام ماه خرداد است. این جشن یکی از جشن‌های ماهانه ایرانی است که به ایزد خرداد، نماد کمال و رسایی اختصاص دارد. در این روز مردم به طبیعت می‌روند و جشن می‌گیرند.",
-      "en": "Khordādgān Festival is observed on the 6th of Khordad, commemorating the name of the month Khordad. This festival is one of the monthly Iranian celebrations dedicated to the deity Khordad, symbolizing perfection and completeness. On this day, people go to nature and celebrate."
+      "fa": "جشن خردادگان در چهارم خرداد برگزار می‌شود و به مناسبت نام ماه خرداد است. این جشن یکی از جشن‌های ماهانه ایرانی است که به ایزد خرداد، نماد کمال و رسایی اختصاص دارد. در این روز مردم به طبیعت می‌روند و جشن می‌گیرند.",
+      "en": "Khordādgān Festival is observed on the 4th of Khordad, commemorating the name of the month Khordad. This festival is one of the monthly Iranian celebrations dedicated to the deity Khordad, symbolizing perfection and completeness. On this day, people go to nature and celebrate."
     },
     "significance": {
       "fa": null,
@@ -6770,8 +6770,8 @@
       "fa": "ایران و جوامع ایرانی در جهان"
     },
     "date": {
-      "solar": "1404-03-06",
-      "gregorian": "2025-05-26"
+      "solar": "1404-03-04",
+      "gregorian": "2025-05-25"
     },
     "time": {
       "isActive": false,
@@ -6924,8 +6924,8 @@
       "fa": "میذیو شِم (آفرینش آب) 💧"
     },
     "description": {
-      "fa": "میذیو شِم یکی از شش گاهنبار زرتشتی است که از ۱۱ تا ۱۵ تیر برگزار می‌شود و به مناسبت آفرینش آب است. گاهنبارها جشن‌های زرتشتی هستند که به شش دوره آفرینش جهان اختصاص دارند و در این روزها زرتشتیان به نیایش، شکرگزاری و کمک به نیازمندان می‌پردازند.",
-      "en": "Maidyoshahem Gahambar is one of the six Zoroastrian Gahambars observed from the 11th to the 15th of Tir, commemorating the creation of water. Gahambars are Zoroastrian festivals dedicated to the six periods of world creation, and during these days, Zoroastrians engage in prayer, thanksgiving, and helping the needy."
+      "fa": "میذیو شِم یکی از شش گاهنبار زرتشتی است که از ۸ تا ۱۲ تیر برگزار می‌شود و به مناسبت آفرینش آب است. گاهنبارها جشن‌های زرتشتی هستند که به شش دوره آفرینش جهان اختصاص دارند و در این روزها زرتشتیان به نیایش، شکرگزاری و کمک به نیازمندان می‌پردازند.",
+      "en": "Maidyoshahem Gahambar is one of the six Zoroastrian Gahambars observed from the 8th to the 12th of Tir, commemorating the creation of water. Gahambars are Zoroastrian festivals dedicated to the six periods of world creation, and during these days, Zoroastrians engage in prayer, thanksgiving, and helping the needy."
     },
     "significance": {
       "fa": "به عنوان یکی از شش جشن و نمادهای آفرینش است که شش بار در سال برگزار می‌شود. این جشن نماد آفرینش آب است",
@@ -6950,8 +6950,8 @@
       "fa": "ایران و جوامع زرتشتی در جهان"
     },
     "date": {
-      "solar": "1404-04-11",
-      "gregorian": "2025-07-01"
+      "solar": "1404-04-08",
+      "gregorian": "2025-06-29"
     },
     "time": {
       "isActive": false,
@@ -7044,8 +7044,8 @@
       "fa": "جشن آب‌پاشان"
     },
     "description": {
-      "fa": "جشن آب‌پاشان در پانزدهم تیر برگزار می‌شود و گونه‌ای از آیین‌های تیرگان است که در خراسان و بلخ قدیم رواج داشته است. این جشن با آیین آب‌پاشی و جشن‌های آبی همراه است و نماد شکرگزاری برای باران و آب و تبرک گرفتن از آب است.",
-      "en": "Aab-pashān Festival is observed on the 15th of Tir and is a type of Tirgan ritual that was popular in Khorasan and ancient Balkh. This festival is accompanied by water splashing rituals and water celebrations, symbolizing thanksgiving for rain and water and seeking blessings from water."
+      "fa": "جشن آب‌پاشان در دهم تیر برگزار می‌شود و گونه‌ای از آیین‌های تیرگان است که در خراسان و بلخ قدیم رواج داشته است. این جشن با آیین آب‌پاشی و جشن‌های آبی همراه است و نماد شکرگزاری برای باران و آب و تبرک گرفتن از آب است.",
+      "en": "Aab-pashān Festival is observed on the 10th of Tir and is a type of Tirgan ritual that was popular in Khorasan and ancient Balkh. This festival is accompanied by water splashing rituals and water celebrations, symbolizing thanksgiving for rain and water and seeking blessings from water."
     },
     "significance": {
       "fa": null,
@@ -7070,8 +7070,8 @@
       "fa": "ایران (منطقه خراسان)"
     },
     "date": {
-      "solar": "1404-04-15",
-      "gregorian": "2025-07-05"
+      "solar": "1404-04-10",
+      "gregorian": "2025-07-01"
     },
     "time": {
       "isActive": false,
@@ -7224,8 +7224,8 @@
       "fa": "جشن امردادگان"
     },
     "description": {
-      "fa": "جشن امردادگان در هفتم مرداد برگزار می‌شود و به مناسبت نام ماه مرداد است. این جشن یکی از جشن‌های ماهانه ایرانی است که به ایزد امرداد، نماد جاودانگی و بی‌مرگی اختصاص دارد. در این روز مردم به طبیعت می‌روند و جشن می‌گیرند.",
-      "en": "Amordādgān Festival is observed on the 7th of Mordad, commemorating the name of the month Mordad. This festival is one of the monthly Iranian celebrations dedicated to the deity Amordad, symbolizing immortality and eternity. On this day, people go to nature and celebrate."
+      "fa": "جشن امردادگان در سوم مرداد برگزار می‌شود و به مناسبت نام ماه مرداد است. این جشن یکی از جشن‌های ماهانه ایرانی است که به ایزد امرداد، نماد جاودانگی و بی‌مرگی اختصاص دارد. در این روز مردم به طبیعت می‌روند و جشن می‌گیرند.",
+      "en": "Amordādgān Festival is observed on the 3rd of Mordad, commemorating the name of the month Mordad. This festival is one of the monthly Iranian celebrations dedicated to the deity Amordad, symbolizing immortality and eternity. On this day, people go to nature and celebrate."
     },
     "significance": {
       "fa": null,
@@ -7250,8 +7250,8 @@
       "fa": "ایران و جوامع ایرانی در جهان"
     },
     "date": {
-      "solar": "1404-05-07",
-      "gregorian": "2025-07-28"
+      "solar": "1404-05-03",
+      "gregorian": "2025-07-25"
     },
     "time": {
       "isActive": false,
@@ -7344,8 +7344,8 @@
       "fa": "روز بزرگداشت ابوریحان بیرونی"
     },
     "description": {
-      "fa": "روز بزرگداشت ابوریحان بیرونی در بیست و چهارم شهریور برگزار می‌شود و به یاد ابوریحان بیرونی، دانشمند، ریاضیدان، منجم و جغرافیدان بزرگ ایرانی است. این روز نماد خرد ایرانی و دانش‌دوستی است و به منظور گرامی‌داشت خدمات او به علم و دانش است.",
-      "en": "Abu Rayhan Biruni Day is observed on the 24th of Shahrivar, commemorating Abu Rayhan Biruni, the great Iranian scientist, mathematician, astronomer, and geographer. This day symbolizes Iranian wisdom and love of knowledge and honors his contributions to science and knowledge."
+      "fa": "روز بزرگداشت ابوریحان بیرونی در سیزدهم شهریور برگزار می‌شود و به یاد ابوریحان بیرونی، دانشمند، ریاضیدان، منجم و جغرافیدان بزرگ ایرانی است. این روز نماد خرد ایرانی و دانش‌دوستی است و به منظور گرامی‌داشت خدمات او به علم و دانش است.",
+      "en": "Abu Rayhan Biruni Day is observed on the 13th of Shahrivar, commemorating Abu Rayhan Biruni, the great Iranian scientist, mathematician, astronomer, and geographer. This day symbolizes Iranian wisdom and love of knowledge and honors his contributions to science and knowledge."
     },
     "significance": {
       "fa": "این روز نماد خرد ایرانی و دانش‌دوستی است.",
@@ -7370,8 +7370,8 @@
       "fa": "ایران و جوامع فارسی‌زبان در جهان"
     },
     "date": {
-      "solar": "1404-06-24",
-      "gregorian": "2025-09-14"
+      "solar": "1404-06-13",
+      "gregorian": "2025-09-04"
     },
     "time": {
       "isActive": false,
@@ -7524,8 +7524,8 @@
       "fa": "پَیتی شَهِم (آفرینش زمین) 🌍"
     },
     "description": {
-      "fa": "پَیتی شَهِم یکی از شش گاهنبار زرتشتی است که از ۲۶ تا ۳۰ شهریور برگزار می‌شود و به مناسبت آفرینش زمین است. گاهنبارها جشن‌های زرتشتی هستند که به شش دوره آفرینش جهان اختصاص دارند و در این روزها زرتشتیان به نیایش، شکرگزاری و کمک به نیازمندان می‌پردازند.",
-      "en": "Paitishahem Gahambar is one of the six Zoroastrian Gahambars observed from the 26th to the 30th of Shahrivar, commemorating the creation of the earth. Gahambars are Zoroastrian festivals dedicated to the six periods of world creation, and during these days, Zoroastrians engage in prayer, thanksgiving, and helping the needy."
+      "fa": "پَیتی شَهِم یکی از شش گاهنبار زرتشتی است که از ۲۱ تا ۲۵ شهریور برگزار می‌شود و به مناسبت آفرینش زمین است. گاهنبارها جشن‌های زرتشتی هستند که به شش دوره آفرینش جهان اختصاص دارند و در این روزها زرتشتیان به نیایش، شکرگزاری و کمک به نیازمندان می‌پردازند.",
+      "en": "Paitishahem Gahambar is one of the six Zoroastrian Gahambars observed from the 21st to the 25th of Shahrivar, commemorating the creation of the earth. Gahambars are Zoroastrian festivals dedicated to the six periods of world creation, and during these days, Zoroastrians engage in prayer, thanksgiving, and helping the needy."
     },
     "significance": {
       "fa": "به عنوان یکی از شش جشن و نمادهای آفرینش است که شش بار در سال برگزار می‌شود. این جشن نماد آفرینش زمین است",
@@ -7584,8 +7584,8 @@
       "fa": "جشن مهرگان"
     },
     "description": {
-      "fa": "جشن مهرگان در اول مهر برگزار می‌شود و یکی از مهم‌ترین جشن‌های ایرانی است که به مناسبت نام ماه مهر و ایزد مهر برگزار می‌شود. این جشن که از جشن‌های باستانی ایرانی است، نماد دوستی، پیمان و عدالت است و در این روز مردم به جشن و شادی می‌پردازند.",
-      "en": "Mehregān Festival is observed on the 1st of Mehr and is one of the most important Iranian festivals, commemorating the name of the month Mehr and the deity Mehr. This ancient Iranian festival symbolizes friendship, covenant, and justice, and on this day people celebrate and rejoice."
+      "fa": "جشن مهرگان در دهم مهر برگزار می‌شود و یکی از مهم‌ترین جشن‌های ایرانی است که به مناسبت نام ماه مهر و ایزد مهر برگزار می‌شود. این جشن که از جشن‌های باستانی ایرانی است، نماد دوستی، پیمان و عدالت است و در این روز مردم به جشن و شادی می‌پردازند.",
+      "en": "Mehregān Festival is observed on the 10th of Mehr and is one of the most important Iranian festivals, commemorating the name of the month Mehr and the deity Mehr. This ancient Iranian festival symbolizes friendship, covenant, and justice, and on this day people celebrate and rejoice."
     },
     "significance": {
       "fa": null,
@@ -7610,8 +7610,8 @@
       "fa": "ایران و جوامع ایرانی در جهان"
     },
     "date": {
-      "solar": "1404-07-01",
-      "gregorian": "2025-09-21"
+      "solar": "1404-07-10",
+      "gregorian": "2025-10-02"
     },
     "time": {
       "isActive": false,
@@ -8632,6 +8632,3904 @@
     "date": {
       "solar": "1404-12-29",
       "gregorian": "2026-03-17"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "245",
+    "source": "system",
+    "type": "awareness",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "World Radio Day",
+      "fa": "روز جهانی رادیو"
+    },
+    "description": {
+      "fa": "روز جهانی رادیو اهمیت رادیو را به عنوان رسانه‌ای که اطلاعات، آموزش و سرگرمی را در دسترس همه قرار می‌دهد، گرامی می‌دارد. این روز نقش رادیو در ترویج تنوع، گفتگوی بین‌فرهنگی و صلح را برجسته می‌کند.",
+      "en": "World Radio Day celebrates the importance of radio as a medium that provides information, education, and entertainment accessible to all. This day highlights radio's role in promoting diversity, intercultural dialogue, and peace."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "awareness",
+        "media",
+        "communication",
+        "radio"
+      ],
+      "fa": [
+        "آگاهی",
+        "رسانه",
+        "ارتباطات",
+        "رادیو"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1403-11-25",
+      "gregorian": "2025-02-13"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "246",
+    "source": "system",
+    "type": "awareness",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "Zero Discrimination Day",
+      "fa": "روز عدم تبعیض"
+    },
+    "description": {
+      "fa": "روز عدم تبعیض به منظور ترویج برابری و عدالت برای همه، بدون توجه به سن، جنسیت، نژاد، قومیت، مذهب، وضعیت اقتصادی یا هر ویژگی دیگر برگزار می‌شود. این روز بر اهمیت ایجاد جوامع فراگیر و عادلانه تأکید می‌کند.",
+      "en": "Zero Discrimination Day is observed to promote equality and justice for all, regardless of age, gender, race, ethnicity, religion, economic status, or any other characteristic. This day emphasizes the importance of creating inclusive and fair societies."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "awareness",
+        "equality",
+        "human rights",
+        "inclusion"
+      ],
+      "fa": [
+        "آگاهی",
+        "برابری",
+        "حقوق بشر",
+        "شمولیت"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1403-12-11",
+      "gregorian": "2025-03-01"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "247",
+    "source": "system",
+    "type": "awareness",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "World Down Syndrome Day",
+      "fa": "روز جهانی سندرم داون"
+    },
+    "description": {
+      "fa": "روز جهانی سندرم داون به منظور افزایش آگاهی در مورد سندرم داون و ترویج حقوق، شمولیت و رفاه افراد دارای سندرم داون برگزار می‌شود. این روز بر اهمیت ایجاد جوامع فراگیر که در آن همه افراد بتوانند به طور کامل مشارکت کنند، تأکید می‌کند.",
+      "en": "World Down Syndrome Day is observed to raise awareness about Down syndrome and promote the rights, inclusion, and well-being of people with Down syndrome. This day emphasizes the importance of creating inclusive societies where all individuals can fully participate."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "awareness",
+        "health",
+        "disability rights",
+        "inclusion"
+      ],
+      "fa": [
+        "آگاهی",
+        "سلامت",
+        "حقوق معلولیت",
+        "شمولیت"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-01-01",
+      "gregorian": "2025-03-21"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "248",
+    "source": "system",
+    "type": "awareness",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "International Day of Forests 🌳",
+      "fa": "روز جهانی جنگل‌ها 🌳"
+    },
+    "description": {
+      "fa": "روز جهانی جنگل‌ها اهمیت جنگل‌ها و درختان را در حفظ تعادل اکولوژیکی، مبارزه با تغییرات آب و هوایی و حمایت از تنوع زیستی برجسته می‌کند. این روز بر ضرورت حفاظت و مدیریت پایدار جنگل‌ها برای نسل‌های آینده تأکید می‌کند.",
+      "en": "International Day of Forests highlights the importance of forests and trees in maintaining ecological balance, combating climate change, and supporting biodiversity. This day emphasizes the need for sustainable forest conservation and management for future generations."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "awareness",
+        "environment",
+        "forests",
+        "conservation"
+      ],
+      "fa": [
+        "آگاهی",
+        "محیط زیست",
+        "جنگل‌ها",
+        "حفاظت"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-01-01",
+      "gregorian": "2025-03-21"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "249",
+    "source": "system",
+    "type": "awareness",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "World Meteorological Day",
+      "fa": "روز جهانی هواشناسی"
+    },
+    "description": {
+      "fa": "روز جهانی هواشناسی اهمیت علم هواشناسی و نقش آن در حفاظت از زندگی و اموال، مدیریت منابع طبیعی و سازگاری با تغییرات آب و هوایی را گرامی می‌دارد. این روز بر ضرورت همکاری بین‌المللی در زمینه هواشناسی تأکید می‌کند.",
+      "en": "World Meteorological Day celebrates the importance of meteorology and its role in protecting life and property, managing natural resources, and adapting to climate change. This day emphasizes the need for international cooperation in meteorology."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "awareness",
+        "science",
+        "weather",
+        "climate"
+      ],
+      "fa": [
+        "آگاهی",
+        "علم",
+        "هوا",
+        "اقلیم"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-01-03",
+      "gregorian": "2025-03-23"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "250",
+    "source": "system",
+    "type": "awareness",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "World Tuberculosis Day",
+      "fa": "روز جهانی سل"
+    },
+    "description": {
+      "fa": "روز جهانی سل به منظور افزایش آگاهی در مورد بیماری سل و تلاش‌های جهانی برای ریشه‌کنی این بیماری برگزار می‌شود. این روز بر اهمیت تشخیص زودهنگام، درمان مناسب و پیشگیری از سل تأکید می‌کند.",
+      "en": "World Tuberculosis Day is observed to raise awareness about tuberculosis and global efforts to eliminate the disease. This day emphasizes the importance of early diagnosis, proper treatment, and prevention of tuberculosis."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "awareness",
+        "health",
+        "disease",
+        "public health"
+      ],
+      "fa": [
+        "آگاهی",
+        "سلامت",
+        "بیماری",
+        "سلامت عمومی"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-01-04",
+      "gregorian": "2025-03-24"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "251",
+    "source": "system",
+    "type": "celebration",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "World Art Day 🎨",
+      "fa": "روز جهانی هنر 🎨"
+    },
+    "description": {
+      "fa": "روز جهانی هنر به منظور ترویج آفرینش، توسعه، به‌اشتراک‌گذاری و لذت بردن از هنر در سراسر جهان برگزار می‌شود. این روز اهمیت هنر در فرهنگ، آموزش و توسعه اجتماعی را برجسته می‌کند.",
+      "en": "World Art Day is observed to promote the creation, development, sharing, and enjoyment of art worldwide. This day highlights the importance of art in culture, education, and social development."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "art",
+        "culture",
+        "creativity"
+      ],
+      "fa": [
+        "جشن",
+        "هنر",
+        "فرهنگ",
+        "خلاقیت"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-01-26",
+      "gregorian": "2025-04-15"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "252",
+    "source": "system",
+    "type": "awareness",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "World Liver Day",
+      "fa": "روز جهانی کبد"
+    },
+    "description": {
+      "fa": "روز جهانی کبد به منظور افزایش آگاهی در مورد سلامت کبد و بیماری‌های کبدی برگزار می‌شود. این روز بر اهمیت پیشگیری، تشخیص زودهنگام و درمان بیماری‌های کبدی تأکید می‌کند.",
+      "en": "World Liver Day is observed to raise awareness about liver health and liver diseases. This day emphasizes the importance of prevention, early diagnosis, and treatment of liver diseases."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "awareness",
+        "health",
+        "liver",
+        "medical"
+      ],
+      "fa": [
+        "آگاهی",
+        "سلامت",
+        "کبد",
+        "پزشکی"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-01-30",
+      "gregorian": "2025-04-19"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "253",
+    "source": "system",
+    "type": "awareness",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "World Malaria Day",
+      "fa": "روز جهانی مالاریا"
+    },
+    "description": {
+      "fa": "روز جهانی مالاریا به منظور افزایش آگاهی در مورد بیماری مالاریا و تلاش‌های جهانی برای ریشه‌کنی این بیماری برگزار می‌شود. این روز بر اهمیت پیشگیری، تشخیص و درمان مالاریا تأکید می‌کند.",
+      "en": "World Malaria Day is observed to raise awareness about malaria and global efforts to eliminate the disease. This day emphasizes the importance of prevention, diagnosis, and treatment of malaria."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "awareness",
+        "health",
+        "disease",
+        "public health"
+      ],
+      "fa": [
+        "آگاهی",
+        "سلامت",
+        "بیماری",
+        "سلامت عمومی"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-02-05",
+      "gregorian": "2025-04-25"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "254",
+    "source": "system",
+    "type": "celebration",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "World Graphics Day",
+      "fa": "روز جهانی گرافیک"
+    },
+    "description": {
+      "fa": "روز جهانی گرافیک به منظور ترویج طراحی گرافیک و نقش آن در ارتباطات بصری، تبلیغات و فرهنگ بصری برگزار می‌شود. این روز اهمیت طراحی گرافیک در زندگی روزمره و ارتباطات را برجسته می‌کند.",
+      "en": "World Graphics Day is observed to promote graphic design and its role in visual communication, advertising, and visual culture. This day highlights the importance of graphic design in daily life and communication."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "design",
+        "graphics",
+        "visual arts"
+      ],
+      "fa": [
+        "جشن",
+        "طراحی",
+        "گرافیک",
+        "هنرهای بصری"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-02-07",
+      "gregorian": "2025-04-27"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "255",
+    "source": "system",
+    "type": "memorial",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "International Workers' Memorial Day / Safety at Work 🛠️",
+      "fa": "روز جهانی یادبود کارگران / ایمنی در کار 🛠️"
+    },
+    "description": {
+      "fa": "روز جهانی یادبود کارگران به منظور گرامیداشت کارگرانی که در محل کار جان خود را از دست داده‌اند و افزایش آگاهی در مورد ایمنی و سلامت در محیط کار برگزار می‌شود. این روز بر اهمیت ایجاد محیط‌های کاری ایمن و سالم تأکید می‌کند.",
+      "en": "International Workers' Memorial Day is observed to remember workers who have lost their lives at work and raise awareness about workplace safety and health. This day emphasizes the importance of creating safe and healthy work environments."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "memorial",
+        "workers",
+        "safety",
+        "labor rights"
+      ],
+      "fa": [
+        "یادبود",
+        "کارگران",
+        "ایمنی",
+        "حقوق کار"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-02-08",
+      "gregorian": "2025-04-28"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "256",
+    "source": "system",
+    "type": "celebration",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "International Day of the Midwife",
+      "fa": "روز جهانی ماما"
+    },
+    "description": {
+      "fa": "روز جهانی ماما به منظور گرامیداشت نقش ماماها در سلامت مادران و نوزادان و ترویج مراقبت‌های بهداشتی مادر و کودک برگزار می‌شود. این روز بر اهمیت خدمات مامایی در کاهش مرگ و میر مادران و نوزادان تأکید می‌کند.",
+      "en": "International Day of the Midwife is observed to honor the role of midwives in maternal and newborn health and promote maternal and child healthcare. This day emphasizes the importance of midwifery services in reducing maternal and infant mortality."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "health",
+        "midwifery",
+        "maternal health"
+      ],
+      "fa": [
+        "جشن",
+        "سلامت",
+        "مامایی",
+        "سلامت مادر"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-02-15",
+      "gregorian": "2025-05-05"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "257",
+    "source": "system",
+    "type": "celebration",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "Red Cross & Red Crescent Day",
+      "fa": "روز صلیب سرخ و هلال احمر"
+    },
+    "description": {
+      "fa": "روز صلیب سرخ و هلال احمر به منظور گرامیداشت جنبش بین‌المللی صلیب سرخ و هلال احمر و نقش آن در کمک‌های بشردوستانه، کاهش رنج و حفاظت از زندگی و کرامت انسانی برگزار می‌شود.",
+      "en": "Red Cross & Red Crescent Day is observed to honor the International Red Cross and Red Crescent Movement and its role in humanitarian aid, alleviating suffering, and protecting human life and dignity."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "humanitarian",
+        "aid",
+        "volunteer"
+      ],
+      "fa": [
+        "جشن",
+        "بشردوستانه",
+        "کمک",
+        "داوطلب"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-02-18",
+      "gregorian": "2025-05-08"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "258",
+    "source": "system",
+    "type": "celebration",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "International Nurses Day",
+      "fa": "روز جهانی پرستار"
+    },
+    "description": {
+      "fa": "روز جهانی پرستار به منظور گرامیداشت نقش پرستاران در سیستم سلامت و خدمات آن‌ها به بیماران برگزار می‌شود. این روز بر اهمیت حرفه پرستاری و تأثیر آن در بهبود سلامت جامعه تأکید می‌کند.",
+      "en": "International Nurses Day is observed to honor the role of nurses in the healthcare system and their services to patients. This day emphasizes the importance of the nursing profession and its impact on improving community health."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "health",
+        "nursing",
+        "healthcare"
+      ],
+      "fa": [
+        "جشن",
+        "سلامت",
+        "پرستاری",
+        "مراقبت‌های بهداشتی"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-02-22",
+      "gregorian": "2025-05-12"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "259",
+    "source": "system",
+    "type": "celebration",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "Women in Mathematics Day",
+      "fa": "روز زنان در ریاضیات"
+    },
+    "description": {
+      "fa": "روز زنان در ریاضیات به منظور گرامیداشت دستاوردهای زنان در ریاضیات و ترویج مشارکت زنان در این رشته برگزار می‌شود. این روز بر اهمیت برابری جنسیتی در علوم و ریاضیات تأکید می‌کند.",
+      "en": "Women in Mathematics Day is observed to honor the achievements of women in mathematics and promote women's participation in the field. This day emphasizes the importance of gender equality in science and mathematics."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "mathematics",
+        "women",
+        "gender equality"
+      ],
+      "fa": [
+        "جشن",
+        "ریاضیات",
+        "زنان",
+        "برابری جنسیتی"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-02-22",
+      "gregorian": "2025-05-12"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "260",
+    "source": "system",
+    "type": "awareness",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "World Bee Day 🐝",
+      "fa": "روز جهانی زنبور 🐝"
+    },
+    "description": {
+      "fa": "روز جهانی زنبور به منظور افزایش آگاهی در مورد اهمیت زنبورها و سایر گرده‌افشان‌ها در اکوسیستم و امنیت غذایی برگزار می‌شود. این روز بر ضرورت حفاظت از زنبورها و زیستگاه‌های آن‌ها تأکید می‌کند.",
+      "en": "World Bee Day is observed to raise awareness about the importance of bees and other pollinators in ecosystems and food security. This day emphasizes the need to protect bees and their habitats."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "awareness",
+        "environment",
+        "bees",
+        "biodiversity"
+      ],
+      "fa": [
+        "آگاهی",
+        "محیط زیست",
+        "زنبورها",
+        "تنوع زیستی"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-02-30",
+      "gregorian": "2025-05-20"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "261",
+    "source": "system",
+    "type": "celebration",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "UN Peacekeepers Day",
+      "fa": "روز نگهبانان صلح سازمان ملل"
+    },
+    "description": {
+      "fa": "روز نگهبانان صلح سازمان ملل به منظور گرامیداشت افرادی که در عملیات حفظ صلح سازمان ملل خدمت کرده‌اند و جان خود را در راه صلح از دست داده‌اند برگزار می‌شود. این روز بر اهمیت حفظ صلح و امنیت بین‌المللی تأکید می‌کند.",
+      "en": "UN Peacekeepers Day is observed to honor those who have served in UN peacekeeping operations and lost their lives in the cause of peace. This day emphasizes the importance of maintaining international peace and security."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "peace",
+        "UN",
+        "international"
+      ],
+      "fa": [
+        "جشن",
+        "صلح",
+        "سازمان ملل",
+        "بین‌المللی"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-03-08",
+      "gregorian": "2025-05-29"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "262",
+    "source": "system",
+    "type": "awareness",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "World No Tobacco Day 🚭",
+      "fa": "روز جهانی بدون دخانیات 🚭"
+    },
+    "description": {
+      "fa": "روز جهانی بدون دخانیات به منظور افزایش آگاهی در مورد خطرات مصرف دخانیات و ترویج سیاست‌های مؤثر برای کاهش مصرف دخانیات برگزار می‌شود. این روز بر اهمیت ترک سیگار و محافظت از سلامت عمومی تأکید می‌کند.",
+      "en": "World No Tobacco Day is observed to raise awareness about the dangers of tobacco use and promote effective policies to reduce tobacco consumption. This day emphasizes the importance of quitting smoking and protecting public health."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "awareness",
+        "health",
+        "tobacco",
+        "public health"
+      ],
+      "fa": [
+        "آگاهی",
+        "سلامت",
+        "دخانیات",
+        "سلامت عمومی"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-03-10",
+      "gregorian": "2025-05-31"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "263",
+    "source": "system",
+    "type": "memorial",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "Innocent Children Victims of Aggression",
+      "fa": "روز کودکان بی‌گناه قربانی تجاوز"
+    },
+    "description": {
+      "fa": "روز کودکان بی‌گناه قربانی تجاوز به منظور گرامیداشت کودکان بی‌گناهی که در درگیری‌ها و جنگ‌ها آسیب دیده‌اند و افزایش آگاهی در مورد محافظت از حقوق کودکان در زمان جنگ برگزار می‌شود.",
+      "en": "Innocent Children Victims of Aggression is observed to honor innocent children who have been affected by conflicts and wars, and to raise awareness about protecting children's rights during times of war."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "memorial",
+        "children",
+        "human rights",
+        "peace"
+      ],
+      "fa": [
+        "یادبود",
+        "کودکان",
+        "حقوق بشر",
+        "صلح"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-03-14",
+      "gregorian": "2025-06-04"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "264",
+    "source": "system",
+    "type": "awareness",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "World Day Against Child Labour",
+      "fa": "روز جهانی مبارزه با کار کودکان"
+    },
+    "description": {
+      "fa": "روز جهانی مبارزه با کار کودکان به منظور افزایش آگاهی در مورد کار کودکان و تلاش برای ریشه‌کنی اشکال مختلف کار کودکان برگزار می‌شود. این روز بر اهمیت محافظت از حقوق کودکان و تضمین دسترسی آن‌ها به آموزش تأکید می‌کند.",
+      "en": "World Day Against Child Labour is observed to raise awareness about child labour and efforts to eliminate various forms of child labour. This day emphasizes the importance of protecting children's rights and ensuring their access to education."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "awareness",
+        "children",
+        "labor rights",
+        "human rights"
+      ],
+      "fa": [
+        "آگاهی",
+        "کودکان",
+        "حقوق کار",
+        "حقوق بشر"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-03-22",
+      "gregorian": "2025-06-12"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "265",
+    "source": "system",
+    "type": "awareness",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "World Day to Combat Desertification",
+      "fa": "روز جهانی مبارزه با بیابان‌زایی"
+    },
+    "description": {
+      "fa": "روز جهانی مبارزه با بیابان‌زایی به منظور افزایش آگاهی در مورد بیابان‌زایی و خشکسالی و ترویج اقدامات برای مبارزه با این چالش‌های محیط زیستی برگزار می‌شود. این روز بر اهمیت مدیریت پایدار زمین و حفاظت از اکوسیستم‌ها تأکید می‌کند.",
+      "en": "World Day to Combat Desertification is observed to raise awareness about desertification and drought, and to promote actions to combat these environmental challenges. This day emphasizes the importance of sustainable land management and ecosystem protection."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "awareness",
+        "environment",
+        "desertification",
+        "climate"
+      ],
+      "fa": [
+        "آگاهی",
+        "محیط زیست",
+        "بیابان‌زایی",
+        "اقلیم"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-03-27",
+      "gregorian": "2025-06-17"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "266",
+    "source": "system",
+    "type": "celebration",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "World Music Day 🎵",
+      "fa": "روز جهانی موسیقی 🎵"
+    },
+    "description": {
+      "fa": "روز جهانی موسیقی به منظور ترویج موسیقی در همه اشکال و سبک‌های آن و جشن گرفتن قدرت موسیقی در اتحاد مردم و فرهنگ‌ها برگزار می‌شود. این روز بر اهمیت موسیقی در زندگی روزمره و فرهنگ جهانی تأکید می‌کند.",
+      "en": "World Music Day is observed to promote music in all its forms and styles, and to celebrate the power of music in uniting people and cultures. This day emphasizes the importance of music in daily life and global culture."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "music",
+        "culture",
+        "arts"
+      ],
+      "fa": [
+        "جشن",
+        "موسیقی",
+        "فرهنگ",
+        "هنرها"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-03-31",
+      "gregorian": "2025-06-21"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "267",
+    "source": "system",
+    "type": "awareness",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "International Day Against Drug Abuse",
+      "fa": "روز جهانی مبارزه با سوء مصرف مواد مخدر"
+    },
+    "description": {
+      "fa": "روز جهانی مبارزه با سوء مصرف مواد مخدر به منظور افزایش آگاهی در مورد خطرات سوء مصرف مواد مخدر و ترویج اقدامات برای پیشگیری و درمان اعتیاد برگزار می‌شود. این روز بر اهمیت سلامت عمومی و رفاه جامعه تأکید می‌کند.",
+      "en": "International Day Against Drug Abuse is observed to raise awareness about the dangers of drug abuse and promote actions for prevention and treatment of addiction. This day emphasizes the importance of public health and community well-being."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "awareness",
+        "health",
+        "drug abuse",
+        "public health"
+      ],
+      "fa": [
+        "آگاهی",
+        "سلامت",
+        "سوء مصرف مواد",
+        "سلامت عمومی"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-04-05",
+      "gregorian": "2025-06-26"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "268",
+    "source": "system",
+    "type": "memorial",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "International Day in Support of Victims of Torture",
+      "fa": "روز جهانی حمایت از قربانیان شکنجه"
+    },
+    "description": {
+      "fa": "روز جهانی حمایت از قربانیان شکنجه به منظور گرامیداشت قربانیان شکنجه و افزایش آگاهی در مورد ممنوعیت مطلق شکنجه و سایر رفتارهای ظالمانه، غیرانسانی یا تحقیرآمیز برگزار می‌شود. این روز بر اهمیت احترام به کرامت انسانی و حقوق بشر تأکید می‌کند.",
+      "en": "International Day in Support of Victims of Torture is observed to honor victims of torture and raise awareness about the absolute prohibition of torture and other cruel, inhuman or degrading treatment. This day emphasizes the importance of respecting human dignity and human rights."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "memorial",
+        "human rights",
+        "torture",
+        "justice"
+      ],
+      "fa": [
+        "یادبود",
+        "حقوق بشر",
+        "شکنجه",
+        "عدالت"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-04-05",
+      "gregorian": "2025-06-26"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "269",
+    "source": "system",
+    "type": "awareness",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "World Population Day",
+      "fa": "روز جهانی جمعیت"
+    },
+    "description": {
+      "fa": "روز جهانی جمعیت به منظور افزایش آگاهی در مورد مسائل جمعیتی و تأثیر آن‌ها بر توسعه پایدار و رفاه انسان‌ها برگزار می‌شود. این روز بر اهمیت برنامه‌ریزی خانواده، سلامت باروری و حقوق زنان تأکید می‌کند.",
+      "en": "World Population Day is observed to raise awareness about population issues and their impact on sustainable development and human well-being. This day emphasizes the importance of family planning, reproductive health, and women's rights."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "awareness",
+        "population",
+        "development",
+        "health"
+      ],
+      "fa": [
+        "آگاهی",
+        "جمعیت",
+        "توسعه",
+        "سلامت"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-04-20",
+      "gregorian": "2025-07-11"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "270",
+    "source": "system",
+    "type": "celebration",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "International Left-Handers Day ✋",
+      "fa": "روز جهانی چپ‌دست‌ها ✋"
+    },
+    "description": {
+      "fa": "روز جهانی چپ‌دست‌ها به منظور افزایش آگاهی در مورد چالش‌ها و مشکلاتی که چپ‌دست‌ها در دنیای راست‌دست‌ها با آن مواجه می‌شوند و ترویج تنوع و شمولیت برگزار می‌شود.",
+      "en": "International Left-Handers Day is observed to raise awareness about the challenges and difficulties that left-handed people face in a right-handed world, and to promote diversity and inclusion."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "diversity",
+        "inclusion",
+        "awareness"
+      ],
+      "fa": [
+        "جشن",
+        "تنوع",
+        "شمولیت",
+        "آگاهی"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-05-22",
+      "gregorian": "2025-08-13"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "271",
+    "source": "system",
+    "type": "celebration",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "World Photography Day 📸",
+      "fa": "روز جهانی عکاسی 📸"
+    },
+    "description": {
+      "fa": "روز جهانی عکاسی به منظور ترویج هنر و علم عکاسی و جشن گرفتن نقش عکاسی در ثبت لحظات، داستان‌سرایی و ارتباطات بصری برگزار می‌شود. این روز بر اهمیت عکاسی در فرهنگ و تاریخ تأکید می‌کند.",
+      "en": "World Photography Day is observed to promote the art and science of photography and celebrate photography's role in capturing moments, storytelling, and visual communication. This day emphasizes the importance of photography in culture and history."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "photography",
+        "arts",
+        "culture"
+      ],
+      "fa": [
+        "جشن",
+        "عکاسی",
+        "هنرها",
+        "فرهنگ"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-05-28",
+      "gregorian": "2025-08-19"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "272",
+    "source": "system",
+    "type": "awareness",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "International Day Against Nuclear Tests ☢️",
+      "fa": "روز جهانی مبارزه با آزمایش‌های هسته‌ای ☢️"
+    },
+    "description": {
+      "fa": "روز جهانی مبارزه با آزمایش‌های هسته‌ای به منظور افزایش آگاهی در مورد خطرات آزمایش‌های هسته‌ای و ترویج تلاش‌های جهانی برای منع کامل آزمایش‌های هسته‌ای برگزار می‌شود. این روز بر اهمیت صلح و امنیت جهانی تأکید می‌کند.",
+      "en": "International Day Against Nuclear Tests is observed to raise awareness about the dangers of nuclear testing and promote global efforts to completely ban nuclear tests. This day emphasizes the importance of peace and global security."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "awareness",
+        "peace",
+        "nuclear",
+        "security"
+      ],
+      "fa": [
+        "آگاهی",
+        "صلح",
+        "هسته‌ای",
+        "امنیت"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-06-07",
+      "gregorian": "2025-08-29"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "273",
+    "source": "system",
+    "type": "awareness",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "World Suicide Prevention Day",
+      "fa": "روز جهانی پیشگیری از خودکشی"
+    },
+    "description": {
+      "fa": "روز جهانی پیشگیری از خودکشی به منظور افزایش آگاهی در مورد خودکشی و ترویج اقدامات برای پیشگیری از آن برگزار می‌شود. این روز بر اهمیت سلامت روان، حمایت از افراد در معرض خطر و کاهش انگ اجتماعی مرتبط با خودکشی تأکید می‌کند.",
+      "en": "World Suicide Prevention Day is observed to raise awareness about suicide and promote actions to prevent it. This day emphasizes the importance of mental health, supporting people at risk, and reducing the social stigma associated with suicide."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "awareness",
+        "mental health",
+        "suicide prevention",
+        "health"
+      ],
+      "fa": [
+        "آگاهی",
+        "سلامت روان",
+        "پیشگیری از خودکشی",
+        "سلامت"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-06-19",
+      "gregorian": "2025-09-10"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "274",
+    "source": "system",
+    "type": "celebration",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "Programmers' Day (256th day) 💻",
+      "fa": "روز برنامه‌نویس (روز ۲۵۶ام) 💻"
+    },
+    "description": {
+      "fa": "روز برنامه‌نویس در روز ۲۵۶ام سال (۲^۸) برگزار می‌شود که نمادی از قدرت عدد ۲ در برنامه‌نویسی است. این روز به منظور گرامیداشت برنامه‌نویسان و نقش آن‌ها در توسعه فناوری و نوآوری برگزار می‌شود.",
+      "en": "Programmers' Day is observed on the 256th day of the year (2^8), symbolizing the power of the number 2 in programming. This day honors programmers and their role in technology development and innovation."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "programming",
+        "technology",
+        "innovation"
+      ],
+      "fa": [
+        "جشن",
+        "برنامه‌نویسی",
+        "فناوری",
+        "نوآوری"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-06-22",
+      "gregorian": "2025-09-13"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "275",
+    "source": "system",
+    "type": "awareness",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "Ozone Layer Preservation Day",
+      "fa": "روز حفاظت از لایه اوزون"
+    },
+    "description": {
+      "fa": "روز حفاظت از لایه اوزون به منظور افزایش آگاهی در مورد اهمیت لایه اوزون و ترویج اقدامات برای حفاظت و ترمیم آن برگزار می‌شود. این روز بر اهمیت همکاری بین‌المللی در مبارزه با تخریب لایه اوزون تأکید می‌کند.",
+      "en": "Ozone Layer Preservation Day is observed to raise awareness about the importance of the ozone layer and promote actions to protect and restore it. This day emphasizes the importance of international cooperation in combating ozone layer depletion."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "awareness",
+        "environment",
+        "ozone",
+        "climate"
+      ],
+      "fa": [
+        "آگاهی",
+        "محیط زیست",
+        "اوزون",
+        "اقلیم"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-06-25",
+      "gregorian": "2025-09-16"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "276",
+    "source": "system",
+    "type": "awareness",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "World Alzheimer's Day",
+      "fa": "روز جهانی آلزایمر"
+    },
+    "description": {
+      "fa": "روز جهانی آلزایمر به منظور افزایش آگاهی در مورد بیماری آلزایمر و سایر انواع زوال عقل و ترویج حمایت از بیماران و خانواده‌های آن‌ها برگزار می‌شود. این روز بر اهمیت تحقیق، پیشگیری و مراقبت از افراد مبتلا به آلزایمر تأکید می‌کند.",
+      "en": "World Alzheimer's Day is observed to raise awareness about Alzheimer's disease and other forms of dementia, and to promote support for patients and their families. This day emphasizes the importance of research, prevention, and care for people with Alzheimer's."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "awareness",
+        "health",
+        "alzheimer",
+        "dementia"
+      ],
+      "fa": [
+        "آگاهی",
+        "سلامت",
+        "آلزایمر",
+        "زوال عقل"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-06-30",
+      "gregorian": "2025-09-21"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "277",
+    "source": "system",
+    "type": "awareness",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "World Maritime Day 🚢",
+      "fa": "روز جهانی دریانوردی 🚢"
+    },
+    "description": {
+      "fa": "روز جهانی دریانوردی به منظور افزایش آگاهی در مورد اهمیت حمل و نقل دریایی و نقش آن در تجارت جهانی و اقتصاد برگزار می‌شود. این روز بر اهمیت ایمنی دریایی، حفاظت از محیط زیست دریایی و توسعه پایدار صنعت دریانوردی تأکید می‌کند.",
+      "en": "World Maritime Day is observed to raise awareness about the importance of maritime transport and its role in global trade and economy. This day emphasizes the importance of maritime safety, marine environment protection, and sustainable development of the maritime industry."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "awareness",
+        "maritime",
+        "transport",
+        "trade"
+      ],
+      "fa": [
+        "آگاهی",
+        "دریانوردی",
+        "حمل و نقل",
+        "تجارت"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-07-03",
+      "gregorian": "2025-09-25"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "278",
+    "source": "system",
+    "type": "awareness",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "International Day of the Deaf",
+      "fa": "روز جهانی ناشنوایان"
+    },
+    "description": {
+      "fa": "روز جهانی ناشنوایان به منظور افزایش آگاهی در مورد حقوق ناشنوایان و ترویج زبان اشاره و فرهنگ ناشنوایان برگزار می‌شود. این روز بر اهمیت دسترسی، شمولیت و احترام به حقوق ناشنوایان تأکید می‌کند.",
+      "en": "International Day of the Deaf is observed to raise awareness about the rights of deaf people and promote sign language and deaf culture. This day emphasizes the importance of accessibility, inclusion, and respect for the rights of deaf people."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "awareness",
+        "deaf",
+        "accessibility",
+        "human rights"
+      ],
+      "fa": [
+        "آگاهی",
+        "ناشنوایان",
+        "دسترسی",
+        "حقوق بشر"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-07-08",
+      "gregorian": "2025-09-30"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "279",
+    "source": "system",
+    "type": "awareness",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "International Day of Older Persons",
+      "fa": "روز جهانی سالمندان"
+    },
+    "description": {
+      "fa": "روز جهانی سالمندان به منظور گرامیداشت سالمندان و افزایش آگاهی در مورد چالش‌ها و فرصت‌های جمعیت سالخورده برگزار می‌شود. این روز بر اهمیت احترام به حقوق سالمندان و تضمین رفاه و مشارکت آن‌ها در جامعه تأکید می‌کند.",
+      "en": "International Day of Older Persons is observed to honor older persons and raise awareness about the challenges and opportunities of an aging population. This day emphasizes the importance of respecting the rights of older persons and ensuring their well-being and participation in society."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "awareness",
+        "elderly",
+        "human rights",
+        "welfare"
+      ],
+      "fa": [
+        "آگاهی",
+        "سالمندان",
+        "حقوق بشر",
+        "رفاه"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-07-09",
+      "gregorian": "2025-10-01"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "280",
+    "source": "system",
+    "type": "celebration",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "World Children's Day 👶",
+      "fa": "روز جهانی کودک 👶"
+    },
+    "description": {
+      "fa": "روز جهانی کودک به منظور ترویج رفاه و حقوق کودکان در سراسر جهان برگزار می‌شود. این روز بر اهمیت محافظت از کودکان، تضمین دسترسی آن‌ها به آموزش و مراقبت‌های بهداشتی و ایجاد محیطی امن برای رشد آن‌ها تأکید می‌کند.",
+      "en": "World Children's Day is observed to promote the welfare and rights of children worldwide. This day emphasizes the importance of protecting children, ensuring their access to education and healthcare, and creating a safe environment for their development."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "children",
+        "rights",
+        "welfare"
+      ],
+      "fa": [
+        "جشن",
+        "کودکان",
+        "حقوق",
+        "رفاه"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-07-20",
+      "gregorian": "2025-10-12"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "281",
+    "source": "system",
+    "type": "celebration",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "World Post Day",
+      "fa": "روز جهانی پست"
+    },
+    "description": {
+      "fa": "روز جهانی پست به منظور گرامیداشت نقش خدمات پستی در ارتباطات و تجارت جهانی و ترویج نوآوری در صنعت پست برگزار می‌شود. این روز بر اهمیت خدمات پستی در زندگی روزمره و توسعه اقتصادی تأکید می‌کند.",
+      "en": "World Post Day is observed to honor the role of postal services in global communication and trade, and to promote innovation in the postal industry. This day emphasizes the importance of postal services in daily life and economic development."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "post",
+        "communication",
+        "trade"
+      ],
+      "fa": [
+        "جشن",
+        "پست",
+        "ارتباطات",
+        "تجارت"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-07-17",
+      "gregorian": "2025-10-09"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "282",
+    "source": "system",
+    "type": "awareness",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "World Standards Day",
+      "fa": "روز جهانی استاندارد"
+    },
+    "description": {
+      "fa": "روز جهانی استاندارد به منظور افزایش آگاهی در مورد اهمیت استانداردهای بین‌المللی در تسهیل تجارت، بهبود کیفیت و ایمنی محصولات و خدمات و ترویج نوآوری برگزار می‌شود.",
+      "en": "World Standards Day is observed to raise awareness about the importance of international standards in facilitating trade, improving quality and safety of products and services, and promoting innovation."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "awareness",
+        "standards",
+        "quality",
+        "trade"
+      ],
+      "fa": [
+        "آگاهی",
+        "استاندارد",
+        "کیفیت",
+        "تجارت"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-07-22",
+      "gregorian": "2025-10-14"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "283",
+    "source": "system",
+    "type": "awareness",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "White Cane Safety Day (Blind Day)",
+      "fa": "روز ایمنی عصای سفید (روز نابینایان)"
+    },
+    "description": {
+      "fa": "روز ایمنی عصای سفید به منظور افزایش آگاهی در مورد حقوق نابینایان و کم‌بینایان و ترویج استقلال و مشارکت آن‌ها در جامعه برگزار می‌شود. این روز بر اهمیت دسترسی و شمولیت برای افراد نابینا تأکید می‌کند.",
+      "en": "White Cane Safety Day is observed to raise awareness about the rights of blind and visually impaired people and promote their independence and participation in society. This day emphasizes the importance of accessibility and inclusion for blind people."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "awareness",
+        "blind",
+        "accessibility",
+        "human rights"
+      ],
+      "fa": [
+        "آگاهی",
+        "نابینایان",
+        "دسترسی",
+        "حقوق بشر"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-07-23",
+      "gregorian": "2025-10-15"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "284",
+    "source": "system",
+    "type": "awareness",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "World Cities Day 🌆",
+      "fa": "روز جهانی شهرها 🌆"
+    },
+    "description": {
+      "fa": "روز جهانی شهرها به منظور افزایش آگاهی در مورد چالش‌های شهری و ترویج توسعه پایدار شهری برگزار می‌شود. این روز بر اهمیت ایجاد شهرهای فراگیر، ایمن، مقاوم و پایدار برای همه تأکید می‌کند.",
+      "en": "World Cities Day is observed to raise awareness about urban challenges and promote sustainable urban development. This day emphasizes the importance of creating inclusive, safe, resilient, and sustainable cities for all."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "awareness",
+        "cities",
+        "urban development",
+        "sustainability"
+      ],
+      "fa": [
+        "آگاهی",
+        "شهرها",
+        "توسعه شهری",
+        "پایداری"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-08-09",
+      "gregorian": "2025-10-31"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "285",
+    "source": "system",
+    "type": "celebration",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "World Philosophy Day",
+      "fa": "روز جهانی فلسفه"
+    },
+    "description": {
+      "fa": "روز جهانی فلسفه به منظور ترویج تفکر فلسفی و افزایش آگاهی در مورد اهمیت فلسفه در زندگی روزمره و توسعه جوامع برگزار می‌شود. این روز بر اهمیت تفکر انتقادی، گفتگوی فلسفی و جستجوی حقیقت تأکید می‌کند.",
+      "en": "World Philosophy Day is observed to promote philosophical thinking and raise awareness about the importance of philosophy in daily life and societal development. This day emphasizes the importance of critical thinking, philosophical dialogue, and the search for truth."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "philosophy",
+        "education",
+        "thinking"
+      ],
+      "fa": [
+        "جشن",
+        "فلسفه",
+        "آموزش",
+        "تفکر"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-08-29",
+      "gregorian": "2025-11-20"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "286",
+    "source": "system",
+    "type": "celebration",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "Black Friday 🛍️",
+      "fa": "جمعه سیاه 🛍️"
+    },
+    "description": {
+      "fa": "جمعه سیاه یک رویداد خرید بزرگ است که پس از روز شکرگزاری در ایالات متحده برگزار می‌شود و به یک پدیده جهانی تبدیل شده است. این روز با تخفیف‌های بزرگ و فروش ویژه در خرده‌فروشی‌ها همراه است.",
+      "en": "Black Friday is a major shopping event that takes place after Thanksgiving in the United States and has become a global phenomenon. This day is marked by significant discounts and special sales in retail stores."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "shopping",
+        "retail",
+        "commerce"
+      ],
+      "fa": [
+        "جشن",
+        "خرید",
+        "خرده‌فروشی",
+        "تجارت"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-09-07",
+      "gregorian": "2025-11-28"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "287",
+    "source": "system",
+    "type": "awareness",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "International Anti-Corruption Day",
+      "fa": "روز جهانی مبارزه با فساد"
+    },
+    "description": {
+      "fa": "روز جهانی مبارزه با فساد به منظور افزایش آگاهی در مورد فساد و ترویج اقدامات برای مبارزه با آن در همه سطوح برگزار می‌شود. این روز بر اهمیت شفافیت، پاسخگویی و حکومت خوب در ایجاد جوامع عادلانه و پایدار تأکید می‌کند.",
+      "en": "International Anti-Corruption Day is observed to raise awareness about corruption and promote actions to combat it at all levels. This day emphasizes the importance of transparency, accountability, and good governance in creating fair and sustainable societies."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "awareness",
+        "corruption",
+        "governance",
+        "justice"
+      ],
+      "fa": [
+        "آگاهی",
+        "فساد",
+        "حکومت",
+        "عدالت"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-09-18",
+      "gregorian": "2025-12-09"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "288",
+    "source": "system",
+    "type": "awareness",
+    "origin": "international",
+    "image": null,
+    "title": {
+      "en": "International Mountain Day ⛰️",
+      "fa": "روز جهانی کوهستان ⛰️"
+    },
+    "description": {
+      "fa": "روز جهانی کوهستان به منظور افزایش آگاهی در مورد اهمیت کوه‌ها و ترویج توسعه پایدار کوهستانی برگزار می‌شود. این روز بر اهمیت حفاظت از اکوسیستم‌های کوهستانی، تنوع زیستی و فرهنگ‌های کوهستانی تأکید می‌کند.",
+      "en": "International Mountain Day is observed to raise awareness about the importance of mountains and promote sustainable mountain development. This day emphasizes the importance of protecting mountain ecosystems, biodiversity, and mountain cultures."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "awareness",
+        "mountains",
+        "environment",
+        "biodiversity"
+      ],
+      "fa": [
+        "آگاهی",
+        "کوهستان",
+        "محیط زیست",
+        "تنوع زیستی"
+      ]
+    },
+    "location": {
+      "en": "Worldwide",
+      "fa": "جهان"
+    },
+    "date": {
+      "solar": "1404-09-20",
+      "gregorian": "2025-12-11"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "289",
+    "source": "system",
+    "type": "religious",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Pir-e Herisht Prayer Ceremony",
+      "fa": "آئین نیایش پیرهریشت"
+    },
+    "description": {
+      "fa": "آئین نیایش پیرهریشت از ۷ تا ۱۱ فروردین برگزار می‌شود. این آیین زرتشتی به مناسبت نیایش و بزرگداشت پیرهریشت است که یکی از شخصیت‌های مقدس در دین زرتشتی محسوب می‌شود.",
+      "en": "Pir-e Herisht Prayer Ceremony is observed from the 7th to the 11th of Farvardin. This Zoroastrian ceremony commemorates the prayer and veneration of Pir-e Herisht, who is considered one of the sacred figures in Zoroastrianism."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "religious",
+        "zoroastrian",
+        "iranian",
+        "ceremony"
+      ],
+      "fa": [
+        "مذهبی",
+        "زرتشتی",
+        "ایرانی",
+        "آیین"
+      ]
+    },
+    "location": {
+      "en": "Iran and Zoroastrian communities worldwide",
+      "fa": "ایران و جوامع زرتشتی در جهان"
+    },
+    "date": {
+      "solar": "1404-01-07",
+      "gregorian": "2025-03-27"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "290",
+    "source": "system",
+    "type": "celebration",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Farvardingan Day",
+      "fa": "روز فرودینگان"
+    },
+    "description": {
+      "fa": "روز فرودینگان در نوزدهم فروردین برگزار می‌شود. این روز به مناسبت بزرگداشت فروردین، نخستین ماه سال در تقویم شمسی و نماد بهار و تجدید حیات است.",
+      "en": "Farvardingan Day is observed on the 19th of Farvardin. This day commemorates Farvardin, the first month of the year in the Solar calendar, symbolizing spring and renewal."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "iranian",
+        "cultural",
+        "spring"
+      ],
+      "fa": [
+        "جشن",
+        "ایرانی",
+        "فرهنگی",
+        "بهار"
+      ]
+    },
+    "location": {
+      "en": "Iran",
+      "fa": "ایران"
+    },
+    "date": {
+      "solar": "1404-01-19",
+      "gregorian": "2025-04-08"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "291",
+    "source": "system",
+    "type": "memorial",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Saadi Day",
+      "fa": "روز بزرگداشت سعدی"
+    },
+    "description": {
+      "fa": "روز بزرگداشت سعدی در اول اردیبهشت برگزار می‌شود و به یاد ابومحمد مصلح‌الدین بن عبدالله شیرازی، معروف به سعدی، شاعر و نویسنده بزرگ ایرانی است. سعدی با آثار خود همچون گلستان و بوستان به شهرت جهانی رسید و تأثیر عمیقی بر ادبیات فارسی و جهان گذاشت.",
+      "en": "Saadi Day is observed on the 1st of Ordibehesht, commemorating Abū-Muḥammad Muṣliḥ al-Dīn bin Abdallāh Shīrāzī, known as Saadi, the great Iranian poet and writer. Saadi gained worldwide fame with his works such as Golestan and Bustan, and had a profound impact on Persian and world literature."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "remembrance",
+        "literature",
+        "iranian",
+        "cultural"
+      ],
+      "fa": [
+        "یادبود",
+        "ادبیات",
+        "ایرانی",
+        "فرهنگی"
+      ]
+    },
+    "location": {
+      "en": "Iran and Persian-speaking communities worldwide",
+      "fa": "ایران و جوامع فارسی‌زبان در جهان"
+    },
+    "date": {
+      "solar": "1404-02-01",
+      "gregorian": "2025-04-21"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "292",
+    "source": "system",
+    "type": "celebration",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Panjah Bedar Festival",
+      "fa": "جشن پنجاه بدر"
+    },
+    "description": {
+      "fa": "جشن پنجاه بدر در نوزدهم اردیبهشت برگزار می‌شود. این جشن به مناسبت پنجاهمین روز از نوروز است و مردم به طبیعت می‌روند و روز را در دامان طبیعت سپری می‌کنند. این جشن نماد پیوند انسان با طبیعت و شکرگزاری از نعمت‌های طبیعی است.",
+      "en": "Panjah Bedar Festival is observed on the 19th of Ordibehesht. This festival commemorates the 50th day after Nowruz, and people go to nature to spend the day outdoors. This festival symbolizes the connection between humans and nature and gratitude for natural blessings."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "iranian",
+        "cultural",
+        "nature"
+      ],
+      "fa": [
+        "جشن",
+        "ایرانی",
+        "فرهنگی",
+        "طبیعت"
+      ]
+    },
+    "location": {
+      "en": "Iran",
+      "fa": "ایران"
+    },
+    "date": {
+      "solar": "1404-02-19",
+      "gregorian": "2025-05-09"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "293",
+    "source": "system",
+    "type": "celebration",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Beginning of Tir Month Festival / Water Sprinkler",
+      "fa": "جشن ابتدای تیرماه، آب پاشونک"
+    },
+    "description": {
+      "fa": "جشن ابتدای تیرماه در بیست و نهم خرداد برگزار می‌شود و به مناسبت آغاز ماه تیر است. این جشن با آیین آب‌پاشی و آب‌پاشونک همراه است و نماد شکرگزاری برای باران و آب و تبرک گرفتن از آب است.",
+      "en": "Beginning of Tir Month Festival is observed on the 29th of Khordad, commemorating the beginning of the month of Tir. This festival is accompanied by water splashing rituals and water sprinkling, symbolizing thanksgiving for rain and water and seeking blessings from water."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "cultural",
+        "iranian",
+        "water festival"
+      ],
+      "fa": [
+        "جشن",
+        "فرهنگی",
+        "ایرانی",
+        "جشن آب"
+      ]
+    },
+    "location": {
+      "en": "Iran",
+      "fa": "ایران"
+    },
+    "date": {
+      "solar": "1404-03-29",
+      "gregorian": "2025-06-19"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "294",
+    "source": "system",
+    "type": "religious",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Pir-e Tarastane Prayer Ceremony",
+      "fa": "آئین نیایش پیر تارستانه"
+    },
+    "description": {
+      "fa": "آئین نیایش پیر تارستانه در دوم تیر برگزار می‌شود. این آیین زرتشتی به مناسبت نیایش و بزرگداشت پیر تارستانه است که یکی از شخصیت‌های مقدس در دین زرتشتی محسوب می‌شود.",
+      "en": "Pir-e Tarastane Prayer Ceremony is observed on the 2nd of Tir. This Zoroastrian ceremony commemorates the prayer and veneration of Pir-e Tarastane, who is considered one of the sacred figures in Zoroastrianism."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "religious",
+        "zoroastrian",
+        "iranian",
+        "ceremony"
+      ],
+      "fa": [
+        "مذهبی",
+        "زرتشتی",
+        "ایرانی",
+        "آیین"
+      ]
+    },
+    "location": {
+      "en": "Iran and Zoroastrian communities worldwide",
+      "fa": "ایران و جوامع زرتشتی در جهان"
+    },
+    "date": {
+      "solar": "1404-04-02",
+      "gregorian": "2025-06-23"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "295",
+    "source": "system",
+    "type": "religious",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Pars Banu Prayer Ceremony",
+      "fa": "آئین نیایش پارس بانو"
+    },
+    "description": {
+      "fa": "آئین نیایش پارس بانو از سیزدهم تا هفدهم تیر برگزار می‌شود. این آیین زرتشتی به مناسبت نیایش و بزرگداشت پارس بانو است که یکی از شخصیت‌های مقدس در دین زرتشتی محسوب می‌شود.",
+      "en": "Pars Banu Prayer Ceremony is observed from the 13th to the 17th of Tir. This Zoroastrian ceremony commemorates the prayer and veneration of Pars Banu, who is considered one of the sacred figures in Zoroastrianism."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "religious",
+        "zoroastrian",
+        "iranian",
+        "ceremony"
+      ],
+      "fa": [
+        "مذهبی",
+        "زرتشتی",
+        "ایرانی",
+        "آیین"
+      ]
+    },
+    "location": {
+      "en": "Iran and Zoroastrian communities worldwide",
+      "fa": "ایران و جوامع زرتشتی در جهان"
+    },
+    "date": {
+      "solar": "1404-04-13",
+      "gregorian": "2025-07-04"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "296",
+    "source": "system",
+    "type": "celebration",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Summer Solstice Festival",
+      "fa": "جشن چله تابستان"
+    },
+    "description": {
+      "fa": "جشن چله تابستان در ششم مرداد برگزار می‌شود و به مناسبت چله تابستان است. این جشن نماد اوج تابستان و گرمای سال است و مردم در این روز به جشن و شادی می‌پردازند.",
+      "en": "Summer Solstice Festival is observed on the 6th of Mordad, commemorating the summer solstice. This festival symbolizes the peak of summer and the heat of the year, and people celebrate and rejoice on this day."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "cultural",
+        "iranian",
+        "seasonal"
+      ],
+      "fa": [
+        "جشن",
+        "فرهنگی",
+        "ایرانی",
+        "فصلی"
+      ]
+    },
+    "location": {
+      "en": "Iran",
+      "fa": "ایران"
+    },
+    "date": {
+      "solar": "1404-05-06",
+      "gregorian": "2025-07-28"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "297",
+    "source": "system",
+    "type": "celebration",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Shahrivargān Festival",
+      "fa": "جشن شهریورگان"
+    },
+    "description": {
+      "fa": "جشن شهریورگان در سی ام مرداد برگزار می‌شود و به مناسبت نام ماه شهریور است. این جشن یکی از جشن‌های ماهانه ایرانی است که به امشاسپند شهریور، نگهبان فلزات اختصاص دارد. در این روز مردم به جشن و شادی می‌پردازند.",
+      "en": "Shahrivargān Festival is observed on the 30th of Mordad, commemorating the name of the month Shahrivar. This festival is one of the monthly Iranian celebrations dedicated to the Amesha Spenta Shahrivar, the guardian of metals. On this day, people celebrate and rejoice."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "cultural",
+        "iranian",
+        "monthly festival"
+      ],
+      "fa": [
+        "جشن",
+        "فرهنگی",
+        "ایرانی",
+        "جشن ماهانه"
+      ]
+    },
+    "location": {
+      "en": "Iran and Iranian communities worldwide",
+      "fa": "ایران و جوامع ایرانی در جهان"
+    },
+    "date": {
+      "solar": "1404-05-30",
+      "gregorian": "2025-08-21"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "298",
+    "source": "system",
+    "type": "celebration",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Autumn Festival",
+      "fa": "جشن خزان"
+    },
+    "description": {
+      "fa": "جشن خزان در سوم مهر برگزار می‌شود و به مناسبت آغاز فصل پاییز است. این جشن نماد تغییر فصل و ورود به فصل خزان است و مردم در این روز به جشن و شادی می‌پردازند.",
+      "en": "Autumn Festival is observed on the 3rd of Mehr, commemorating the beginning of autumn. This festival symbolizes the change of season and the arrival of autumn, and people celebrate and rejoice on this day."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "cultural",
+        "iranian",
+        "seasonal"
+      ],
+      "fa": [
+        "جشن",
+        "فرهنگی",
+        "ایرانی",
+        "فصلی"
+      ]
+    },
+    "location": {
+      "en": "Iran",
+      "fa": "ایران"
+    },
+    "date": {
+      "solar": "1404-07-03",
+      "gregorian": "2025-09-25"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "299",
+    "source": "system",
+    "type": "memorial",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Hafez Day",
+      "fa": "روز بزرگداشت حافظ"
+    },
+    "description": {
+      "fa": "روز بزرگداشت حافظ در بیستم مهر برگزار می‌شود و به یاد شمس‌الدین محمد حافظ شیرازی، شاعر بزرگ ایرانی و خالق دیوان حافظ است. حافظ با غزلیات خود به شهرت جهانی رسید و تأثیر عمیقی بر ادبیات فارسی و جهان گذاشت. این روز به منظور گرامی‌داشت خدمات او به ادبیات و شعر فارسی است.",
+      "en": "Hafez Day is observed on the 20th of Mehr, commemorating Shams al-Din Muhammad Hafez Shirazi, the great Iranian poet and creator of the Divan of Hafez. Hafez gained worldwide fame with his ghazals and had a profound impact on Persian and world literature. This day honors his contributions to Persian literature and poetry."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "remembrance",
+        "literature",
+        "iranian",
+        "cultural"
+      ],
+      "fa": [
+        "یادبود",
+        "ادبیات",
+        "ایرانی",
+        "فرهنگی"
+      ]
+    },
+    "location": {
+      "en": "Iran and Persian-speaking communities worldwide",
+      "fa": "ایران و جوامع فارسی‌زبان در جهان"
+    },
+    "date": {
+      "solar": "1404-07-20",
+      "gregorian": "2025-10-12"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "300",
+    "source": "system",
+    "type": "celebration",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Autumn Festival",
+      "fa": "جشن پائیزانه"
+    },
+    "description": {
+      "fa": "جشن پائیزانه در نهم آبان برگزار می‌شود و به مناسبت فصل پاییز است. این جشن نماد تغییر فصل و ورود به فصل پاییز است و مردم در این روز به جشن و شادی می‌پردازند.",
+      "en": "Autumn Festival is observed on the 9th of Aban, commemorating the autumn season. This festival symbolizes the change of season and the arrival of autumn, and people celebrate and rejoice on this day."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "cultural",
+        "iranian",
+        "seasonal"
+      ],
+      "fa": [
+        "جشن",
+        "فرهنگی",
+        "ایرانی",
+        "فصلی"
+      ]
+    },
+    "location": {
+      "en": "Iran",
+      "fa": "ایران"
+    },
+    "date": {
+      "solar": "1404-08-09",
+      "gregorian": "2025-10-31"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "301",
+    "source": "system",
+    "type": "celebration",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Galeshi Festival",
+      "fa": "جشن گالشی"
+    },
+    "description": {
+      "fa": "جشن گالشی در نهم آبان برگزار می‌شود. این جشن یکی از جشن‌های محلی و فرهنگی ایرانی است که در برخی مناطق برگزار می‌شود.",
+      "en": "Galeshi Festival is observed on the 9th of Aban. This festival is one of the local and cultural Iranian celebrations observed in some regions."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "cultural",
+        "iranian",
+        "local"
+      ],
+      "fa": [
+        "جشن",
+        "فرهنگی",
+        "ایرانی",
+        "محلی"
+      ]
+    },
+    "location": {
+      "en": "Iran",
+      "fa": "ایران"
+    },
+    "date": {
+      "solar": "1404-08-09",
+      "gregorian": "2025-10-31"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "302",
+    "source": "system",
+    "type": "celebration",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Azargān Festival",
+      "fa": "جشن آذرگان"
+    },
+    "description": {
+      "fa": "جشن آذرگان در سوم آذر برگزار می‌شود و به مناسبت نام ماه آذر است. این جشن یکی از جشن‌های ماهانه ایرانی است که به ایزد آذر، نماد آتش و نور اختصاص دارد. در این روز مردم به جشن و شادی می‌پردازند.",
+      "en": "Azargān Festival is observed on the 3rd of Azar, commemorating the name of the month Azar. This festival is one of the monthly Iranian celebrations dedicated to the deity Azar, symbolizing fire and light. On this day, people celebrate and rejoice."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "cultural",
+        "iranian",
+        "monthly festival"
+      ],
+      "fa": [
+        "جشن",
+        "فرهنگی",
+        "ایرانی",
+        "جشن ماهانه"
+      ]
+    },
+    "location": {
+      "en": "Iran and Iranian communities worldwide",
+      "fa": "ایران و جوامع ایرانی در جهان"
+    },
+    "date": {
+      "solar": "1404-09-03",
+      "gregorian": "2025-11-24"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "303",
+    "source": "system",
+    "type": "celebration",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "First Deygān Festival",
+      "fa": "اولین جشن دیگان"
+    },
+    "description": {
+      "fa": "اولین جشن دیگان در بیست و پنجم آذر برگزار می‌شود و به مناسبت نام ماه دی است. این جشن یکی از جشن‌های ماهانه ایرانی است که به ایزد دی، نماد آفرینش و خلقت اختصاص دارد. در این روز مردم به جشن و شادی می‌پردازند.",
+      "en": "First Deygān Festival is observed on the 25th of Azar, commemorating the name of the month Dey. This festival is one of the monthly Iranian celebrations dedicated to the deity Dey, symbolizing creation and genesis. On this day, people celebrate and rejoice."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "cultural",
+        "iranian",
+        "monthly festival"
+      ],
+      "fa": [
+        "جشن",
+        "فرهنگی",
+        "ایرانی",
+        "جشن ماهانه"
+      ]
+    },
+    "location": {
+      "en": "Iran and Iranian communities worldwide",
+      "fa": "ایران و جوامع ایرانی در جهان"
+    },
+    "date": {
+      "solar": "1404-09-25",
+      "gregorian": "2025-12-16"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "304",
+    "source": "system",
+    "type": "celebration",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Second Deygān Festival",
+      "fa": "دومین جشن دیگان"
+    },
+    "description": {
+      "fa": "دومین جشن دیگان در دوم دی برگزار می‌شود و به مناسبت نام ماه دی است. این جشن یکی از جشن‌های ماهانه ایرانی است که به ایزد دی، نماد آفرینش و خلقت اختصاص دارد. در این روز مردم به جشن و شادی می‌پردازند.",
+      "en": "Second Deygān Festival is observed on the 2nd of Dey, commemorating the name of the month Dey. This festival is one of the monthly Iranian celebrations dedicated to the deity Dey, symbolizing creation and genesis. On this day, people celebrate and rejoice."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "cultural",
+        "iranian",
+        "monthly festival"
+      ],
+      "fa": [
+        "جشن",
+        "فرهنگی",
+        "ایرانی",
+        "جشن ماهانه"
+      ]
+    },
+    "location": {
+      "en": "Iran and Iranian communities worldwide",
+      "fa": "ایران و جوامع ایرانی در جهان"
+    },
+    "date": {
+      "solar": "1404-10-02",
+      "gregorian": "2025-12-23"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "305",
+    "source": "system",
+    "type": "celebration",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Third Deygān Festival",
+      "fa": "سومین جشن دیگان"
+    },
+    "description": {
+      "fa": "سومین جشن دیگان در نهم دی برگزار می‌شود و به مناسبت نام ماه دی است. این جشن یکی از جشن‌های ماهانه ایرانی است که به ایزد دی، نماد آفرینش و خلقت اختصاص دارد. در این روز مردم به جشن و شادی می‌پردازند.",
+      "en": "Third Deygān Festival is observed on the 9th of Dey, commemorating the name of the month Dey. This festival is one of the monthly Iranian celebrations dedicated to the deity Dey, symbolizing creation and genesis. On this day, people celebrate and rejoice."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "cultural",
+        "iranian",
+        "monthly festival"
+      ],
+      "fa": [
+        "جشن",
+        "فرهنگی",
+        "ایرانی",
+        "جشن ماهانه"
+      ]
+    },
+    "location": {
+      "en": "Iran and Iranian communities worldwide",
+      "fa": "ایران و جوامع ایرانی در جهان"
+    },
+    "date": {
+      "solar": "1404-10-09",
+      "gregorian": "2025-12-30"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "306",
+    "source": "system",
+    "type": "celebration",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Bahmangān Festival",
+      "fa": "جشن بهمنگان"
+    },
+    "description": {
+      "fa": "جشن بهمنگان در بیست و ششم دی برگزار می‌شود و به مناسبت نام ماه بهمن و امشاسپند بهمن (منش نیک) است. این جشن یکی از جشن‌های ماهانه ایرانی است که به منش نیک و اندیشه نیک اختصاص دارد. در این روز مردم به جشن و شادی می‌پردازند.",
+      "en": "Bahmangān Festival is observed on the 26th of Dey, commemorating the name of the month Bahman and the Amesha Spenta Bahman (Good Mind). This festival is one of the monthly Iranian celebrations dedicated to good mind and good thought. On this day, people celebrate and rejoice."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "cultural",
+        "iranian",
+        "monthly festival"
+      ],
+      "fa": [
+        "جشن",
+        "فرهنگی",
+        "ایرانی",
+        "جشن ماهانه"
+      ]
+    },
+    "location": {
+      "en": "Iran and Iranian communities worldwide",
+      "fa": "ایران و جوامع ایرانی در جهان"
+    },
+    "date": {
+      "solar": "1404-10-26",
+      "gregorian": "2026-01-16"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "307",
+    "source": "system",
+    "type": "celebration",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Nowsadeh Festival",
+      "fa": "جشن نوسده"
+    },
+    "description": {
+      "fa": "جشن نوسده در بیست و نهم دی برگزار می‌شود. این جشن یکی از جشن‌های ایرانی است که به مناسبت پایان ماه دی و آماده شدن برای ورود به ماه بهمن برگزار می‌شود.",
+      "en": "Nowsadeh Festival is observed on the 29th of Dey. This festival is one of the Iranian celebrations commemorating the end of the month of Dey and preparing for the arrival of the month of Bahman."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "cultural",
+        "iranian"
+      ],
+      "fa": [
+        "جشن",
+        "فرهنگی",
+        "ایرانی"
+      ]
+    },
+    "location": {
+      "en": "Iran",
+      "fa": "ایران"
+    },
+    "date": {
+      "solar": "1404-10-29",
+      "gregorian": "2026-01-19"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "308",
+    "source": "system",
+    "type": "celebration",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Mid-Winter Festival",
+      "fa": "جشن میانه زمستان"
+    },
+    "description": {
+      "fa": "جشن میانه زمستان در نهم بهمن برگزار می‌شود و به مناسبت میانه فصل زمستان است. این جشن نماد اوج زمستان و آماده شدن برای ورود به بهار است و مردم در این روز به جشن و شادی می‌پردازند.",
+      "en": "Mid-Winter Festival is observed on the 9th of Bahman, commemorating the middle of the winter season. This festival symbolizes the peak of winter and preparing for the arrival of spring, and people celebrate and rejoice on this day."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "cultural",
+        "iranian",
+        "seasonal"
+      ],
+      "fa": [
+        "جشن",
+        "فرهنگی",
+        "ایرانی",
+        "فصلی"
+      ]
+    },
+    "location": {
+      "en": "Iran",
+      "fa": "ایران"
+    },
+    "date": {
+      "solar": "1404-11-09",
+      "gregorian": "2026-01-29"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "309",
+    "source": "system",
+    "type": "celebration",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Esfandegān Festival",
+      "fa": "جشن اسفندگان"
+    },
+    "description": {
+      "fa": "جشن اسفندگان در بیست و نهم بهمن برگزار می‌شود و به مناسبت نام ماه اسفند و امشاسپند اسفند (سپندارمذ) است. این جشن یکی از جشن‌های ماهانه ایرانی است که به زمین و باروری اختصاص دارد. در این روز مردم به جشن و شادی می‌پردازند.",
+      "en": "Esfandegān Festival is observed on the 29th of Bahman, commemorating the name of the month Esfand and the Amesha Spenta Esfand (Spenta Armaiti). This festival is one of the monthly Iranian celebrations dedicated to earth and fertility. On this day, people celebrate and rejoice."
+    },
+    "significance": {
+      "fa": null,
+      "en": null
+    },
+    "tags": {
+      "en": [
+        "celebration",
+        "cultural",
+        "iranian",
+        "monthly festival"
+      ],
+      "fa": [
+        "جشن",
+        "فرهنگی",
+        "ایرانی",
+        "جشن ماهانه"
+      ]
+    },
+    "location": {
+      "en": "Iran and Iranian communities worldwide",
+      "fa": "ایران و جوامع ایرانی در جهان"
+    },
+    "date": {
+      "solar": "1404-11-29",
+      "gregorian": "2026-02-18"
     },
     "time": {
       "isActive": false,
