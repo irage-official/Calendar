@@ -5,6 +5,43 @@ import '../models/calendar_data.dart';
 
 class CalendarUtils {
   static final DateConverterService _dateConverter = DateConverterService();
+  static const List<String> _weekdayKeys = [
+    'monday',
+    'tuesday',
+    'wednesday',
+    'thursday',
+    'friday',
+    'saturday',
+    'sunday',
+  ];
+  static const Map<String, String> _englishWeekdayNames = {
+    'monday': 'Mon',
+    'tuesday': 'Tue',
+    'wednesday': 'Wed',
+    'thursday': 'Thu',
+    'friday': 'Fri',
+    'saturday': 'Sat',
+    'sunday': 'Sun',
+  };
+  static const Map<String, String> _persianWeekdayNames = {
+    'saturday': 'شنبه',
+    'sunday': '۱شنبه',
+    'monday': '۲شنبه',
+    'tuesday': '۳شنبه',
+    'wednesday': '۴شنبه',
+    'thursday': '۵شنبه',
+    'friday': 'جمعه',
+  };
+  
+  static const Map<String, String> _persianWeekdayNamesShort = {
+    'saturday': 'ش',
+    'sunday': 'ی',
+    'monday': 'د',
+    'tuesday': 'س',
+    'wednesday': 'چ',
+    'thursday': 'پ',
+    'friday': 'ج',
+  };
 
   /// Convert Gregorian to Jalali
   static Jalali gregorianToJalali(DateTime gregorian) {
@@ -72,65 +109,64 @@ class CalendarUtils {
   /// - English + Solar Hijri/Shahanshahi: Saturday start (Sat, Sun, Mon, Tue, Wed, Thu, Fri)
   /// - Persian + Solar Hijri/Shahanshahi: Saturday start (شنبه، یکشنبه، دوشنبه، سه‌شنبه، چهارشنبه، پنج‌شنبه، جمعه)
   /// - Persian + Gregorian: Saturday start (شنبه، یکشنبه، دوشنبه، سه‌شنبه، چهارشنبه، پنج‌شنبه، جمعه)
-  static List<String> getWeekDayNames(BuildContext context, {bool isPersian = false, String calendarSystem = 'gregorian'}) {
-    final bool isSolarHijri = calendarSystem == 'solar' || calendarSystem == 'shahanshahi';
-    
-    if (isPersian) {
-      // Persian language: Always Saturday start
-      return ['شنبه', 'یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنج‌شنبه', 'جمعه'];
-    } else {
-      // English language
-      if (isSolarHijri) {
-        // English + Solar Hijri: Saturday start
-        return ['Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
-      } else {
-        // English + Gregorian: Monday start
-        return ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-      }
-    }
+  static List<String> getWeekDayNames(
+    BuildContext context, {
+    bool isPersian = false,
+    String calendarSystem = 'gregorian',
+    String? startWeekOn,
+    bool short = false,
+  }) {
+    final effectiveStart = _effectiveStartWeekOn(startWeekOn, calendarSystem);
+    final baseMap = isPersian 
+        ? (short ? _persianWeekdayNamesShort : _persianWeekdayNames)
+        : _englishWeekdayNames;
+    final reorderedKeys = _reorderWeekdayKeys(effectiveStart);
+    return reorderedKeys.map((key) => baseMap[key] ?? key).toList();
   }
 
   /// Get week day names based on device locale
-  static List<String> getWeekDayNamesFromLocale(BuildContext context) {
+  static List<String> getWeekDayNamesFromLocale(
+    BuildContext context, {
+    String calendarSystem = 'gregorian',
+    String? startWeekOn,
+  }) {
     final locale = Localizations.localeOf(context);
     final isPersian = locale.languageCode == 'fa';
-    return getWeekDayNames(context, isPersian: isPersian);
+    return getWeekDayNames(
+      context,
+      isPersian: isPersian,
+      calendarSystem: calendarSystem,
+      startWeekOn: startWeekOn,
+    );
   }
 
-  /// Get week start date based on calendar system
-  /// 
-  /// Rules:
-  /// - Gregorian calendar: Monday start (weekday: 1 = Monday)
-  /// - Solar Hijri/Shahanshahi calendar: Saturday start
-  static DateTime getWeekStart(DateTime date, {String calendarSystem = 'gregorian'}) {
-    if (calendarSystem == 'solar' || calendarSystem == 'shahanshahi') {
-      // Solar Hijri: week starts on Saturday
-      // DateTime.weekday: 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat, 7=Sun
-      // To get the Saturday of the week containing 'date':
-      int dayOfWeek = date.weekday;
-      // Calculate days to subtract to get to the Saturday of the current week:
-      // Mon(1) → 2 days back, Tue(2) → 3, Wed(3) → 4, Thu(4) → 5, Fri(5) → 6, Sat(6) → 0, Sun(7) → 1
-      int daysToSubtract;
-      if (dayOfWeek == 6) {
-        daysToSubtract = 0; // Saturday - no subtraction
-      } else if (dayOfWeek == 7) {
-        daysToSubtract = 1; // Sunday - subtract 1 to get Saturday
-      } else {
-        daysToSubtract = dayOfWeek + 1; // Monday-Friday: need to go back (dayOfWeek + 1) days
-      }
-      return date.subtract(Duration(days: daysToSubtract));
-    } else {
-      // Gregorian: week starts on Monday (standard behavior)
-      return _dateConverter.getGregorianWeekStart(date);
-    }
+  /// Get week start date based on calendar system and user preference
+  static DateTime getWeekStart(
+    DateTime date, {
+    String calendarSystem = 'gregorian',
+    String? startWeekOn,
+  }) {
+    final effectiveStart = _effectiveStartWeekOn(startWeekOn, calendarSystem);
+    final targetWeekday = _weekdayToInt(effectiveStart);
+    final dayOfWeek = date.weekday;
+    final daysToSubtract = (dayOfWeek - targetWeekday + 7) % 7;
+    final normalizedDate = DateTime(date.year, date.month, date.day);
+    return normalizedDate.subtract(Duration(days: daysToSubtract));
   }
 
   /// Get month dates for calendar grid based on calendar system
   /// For solar/shahanshahi calendar, uses calculations (same as Gregorian)
-  static Future<List<DateTime>> getMonthDates(DateTime monthStart, {String calendarSystem = 'gregorian'}) async {
+  static Future<List<DateTime>> getMonthDates(
+    DateTime monthStart, {
+    String calendarSystem = 'gregorian',
+    String? startWeekOn,
+  }) async {
     if (calendarSystem == 'solar' || calendarSystem == 'shahanshahi') {
       // Use calculations for solar/shahanshahi calendar (same approach as Gregorian)
-      return _fallbackGetSolarMonthDates(monthStart);
+      return _fallbackGetSolarMonthDates(
+        monthStart,
+        startWeekOn: startWeekOn,
+      );
     }
     
     // For Gregorian, use the existing logic
@@ -140,7 +176,11 @@ class CalendarUtils {
     final firstDayOfMonth = DateTime(monthStart.year, monthStart.month, 1);
     
     // Get the first day of the week containing the first day of month
-    final firstWeekStart = getWeekStart(firstDayOfMonth, calendarSystem: calendarSystem);
+    final firstWeekStart = getWeekStart(
+      firstDayOfMonth,
+      calendarSystem: calendarSystem,
+      startWeekOn: startWeekOn,
+    );
     
     // Add days from previous month to fill first week
     if (firstWeekStart.isBefore(firstDayOfMonth)) {
@@ -156,36 +196,15 @@ class CalendarUtils {
     }
     
     // Add days from next month to fill last week, but only if it doesn't create a full extra week entirely from next month
-    final lastDayInCalendar = dates.last;
-    final daysToAdd = 7 - ((dates.length) % 7);
-    
-    // Always complete the last week if it's incomplete (daysToAdd > 0 and < 7)
-    if (daysToAdd < 7 && daysToAdd > 0) {
-      for (int i = 1; i <= daysToAdd; i++) {
-        dates.add(lastDayInCalendar.add(Duration(days: i)));
-      }
-      
-      // Check for extra weeks (6th, 7th, etc.) that are entirely from next month
-      // Start checking from week 6 (index 35) onwards
-      int weekIndex = 5; // Start from 6th week (0-indexed: 5)
-      while (dates.length >= (weekIndex + 1) * 7) {
-        final weekStartIndex = weekIndex * 7;
-        final weekEndIndex = (weekIndex + 1) * 7;
-        if (weekEndIndex > dates.length) break;
-        
-        final week = dates.sublist(weekStartIndex, weekEndIndex);
-        final allDaysFromNextMonth = week.every((date) {
-          return date.year != monthStart.year || date.month != monthStart.month;
-        });
-        
-        if (allDaysFromNextMonth) {
-          // Remove this week and all subsequent weeks - they're all from next month
-          dates.removeRange(weekStartIndex, dates.length);
-          break;
-        }
-        
-        weekIndex++;
-      }
+    // Add days from next month to fill last week
+    final lastWeekStart = getWeekStart(
+      DateTime(monthStart.year, monthStart.month, lastDayOfMonth.day),
+      calendarSystem: calendarSystem,
+      startWeekOn: startWeekOn,
+    );
+    final lastWeekEnd = lastWeekStart.add(const Duration(days: 6));
+    for (int i = 1; i <= lastWeekEnd.difference(lastDayOfMonth).inDays; i++) {
+      dates.add(lastDayOfMonth.add(Duration(days: i)));
     }
     
     return dates;
@@ -316,8 +335,52 @@ class CalendarUtils {
     );
   }
 
+  static String _effectiveStartWeekOn(String? startWeekOn, String calendarSystem) {
+    if (startWeekOn != null && startWeekOn.isNotEmpty && startWeekOn != 'region') {
+      return startWeekOn;
+    }
+    return calendarSystem == 'gregorian' ? 'monday' : 'saturday';
+  }
+
+  static int _weekdayToInt(String day) {
+    switch (day) {
+      case 'monday':
+        return DateTime.monday;
+      case 'tuesday':
+        return DateTime.tuesday;
+      case 'wednesday':
+        return DateTime.wednesday;
+      case 'thursday':
+        return DateTime.thursday;
+      case 'friday':
+        return DateTime.friday;
+      case 'saturday':
+        return DateTime.saturday;
+      case 'sunday':
+      default:
+        return DateTime.sunday;
+    }
+  }
+
+  static List<String> _reorderWeekdayKeys(String startWeekOn) {
+    final startIndex = _weekdayKeys.indexOf(startWeekOn);
+    if (startIndex == -1) return _weekdayKeys;
+    return [
+      ..._weekdayKeys.sublist(startIndex),
+      ..._weekdayKeys.sublist(0, startIndex),
+    ];
+  }
+  
+  /// Get ordered weekday keys based on startWeekOn
+  static List<String> getOrderedWeekdayKeys(String startWeekOn) {
+    return _reorderWeekdayKeys(startWeekOn);
+  }
+
   /// Fallback method when solar calendar data is not available
-  static List<DateTime> _fallbackGetSolarMonthDates(DateTime monthStart) {
+  static List<DateTime> _fallbackGetSolarMonthDates(
+    DateTime monthStart, {
+    String? startWeekOn,
+  }) {
     // Convert to Jalali to get solar month info
     final jalali = _dateConverter.gregorianToJalali(monthStart);
     final solarYear = jalali.year;
@@ -333,7 +396,11 @@ class CalendarUtils {
     final lastDayGregorian = _dateConverter.jalaliToGregorian(solarYear, solarMonth, daysInSolarMonth);
     
     // Get week start (Saturday for solar)
-    final firstWeekStart = getWeekStart(firstDayGregorian, calendarSystem: 'solar');
+    final firstWeekStart = getWeekStart(
+      firstDayGregorian,
+      calendarSystem: 'solar',
+      startWeekOn: startWeekOn,
+    );
     
     final dates = <DateTime>[];
     
@@ -350,12 +417,15 @@ class CalendarUtils {
     }
     
     // Add days from next month to fill last week, but only if it doesn't create a full extra week entirely from next month
-    final daysToAdd = 7 - (dates.length % 7);
-    if (daysToAdd < 7 && dates.isNotEmpty) {
-      final lastDate = dates.last;
-      for (int i = 1; i <= daysToAdd; i++) {
-        dates.add(lastDate.add(Duration(days: i)));
-      }
+    final lastWeekStart = getWeekStart(
+      lastDayGregorian,
+      calendarSystem: 'solar',
+      startWeekOn: startWeekOn,
+    );
+    final lastWeekEnd = lastWeekStart.add(const Duration(days: 6));
+    for (int i = 1; i <= lastWeekEnd.difference(lastDayGregorian).inDays; i++) {
+      dates.add(lastDayGregorian.add(Duration(days: i)));
+    }
       
       // Check for extra weeks (6th, 7th, etc.) that are entirely from next month
       // Start checking from week 6 (index 35) onwards
@@ -379,7 +449,6 @@ class CalendarUtils {
         
         weekIndex++;
       }
-    }
     
     return dates;
   }

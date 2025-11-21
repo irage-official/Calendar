@@ -6,6 +6,7 @@ import '../config/theme_roles.dart';
 import '../providers/app_provider.dart';
 import '../utils/calendar_utils.dart';
 import '../utils/extensions.dart';
+import '../utils/font_helper.dart';
 import 'package:vector_math/vector_math_64.dart' show Matrix4;
 
 class CalendarHeaderWidget extends StatelessWidget {
@@ -28,17 +29,13 @@ class CalendarHeaderWidget extends StatelessWidget {
     this.isPersian = false,
   });
 
-  /// Determine the font family for month/year display based on app language and calendar type
-  String _getMonthYearFontFamily(String language, bool isPersian) {
-    // When app is in English and calendar is Gregorian: Use Inter
-    // When app is in Persian and calendar is Jalali: Use Vazir
-    if (language == 'en' && !isPersian) {
-      return 'Inter';
-    } else if (language == 'fa' && isPersian) {
-      return 'Vazir';
-    }
-    // Default fallback
-    return 'Inter';
+  /// Determine if should use Persian font based on app language and calendar type
+  /// For Gregorian calendar: Use Persian font if app language is Persian (month name will be in Persian)
+  /// For Solar/Shahanshahi calendar: Use Persian font if app language is Persian
+  bool _shouldUsePersianFont(String language, bool isPersian) {
+    // When app is in Persian: Use YekanBakh (for both Persian and Gregorian calendars when month name is in Persian)
+    // Otherwise use Inter (from Google Fonts)
+    return language == 'fa';
   }
 
   @override
@@ -162,13 +159,55 @@ class CalendarHeaderWidget extends StatelessWidget {
   Widget _buildMonthYearDisplay() {
     return Consumer<AppProvider>(
       builder: (context, appProvider, child) {
-        final fontFamily = _getMonthYearFontFamily(appProvider.language, isPersian);
+        final usePersianFont = _shouldUsePersianFont(appProvider.language, isPersian);
         final isPersianLang = appProvider.language == 'fa';
         
         // Convert year to proper numerals based on language
         final yearString = isPersianLang 
             ? CalendarUtils.englishToPersianDigits(year.toString())
             : year.toString();
+        
+        // Helper to get TextStyle for month
+        TextStyle getMonthStyle() {
+          if (usePersianFont) {
+            return FontHelper.getYekanBakh(
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+              color: TCnt.neutralMain(context),
+              height: 1.4,
+              letterSpacing: -0.02,
+            );
+          } else {
+            return FontHelper.getInter(
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+              color: TCnt.neutralMain(context),
+              height: 1.4,
+              letterSpacing: -0.02,
+            );
+          }
+        }
+        
+        // Helper to get TextStyle for year
+        TextStyle getYearStyle() {
+          if (usePersianFont) {
+            return FontHelper.getYekanBakh(
+              fontSize: 20,
+              fontWeight: FontWeight.w400,
+              color: TCnt.neutralTertiary(context),
+              height: 1.4,
+              letterSpacing: -0.02,
+            );
+          } else {
+            return FontHelper.getInter(
+              fontSize: 20,
+              fontWeight: FontWeight.w400,
+              color: TCnt.neutralTertiary(context),
+              height: 1.4,
+              letterSpacing: -0.02,
+            );
+          }
+        }
         
         return RichText(
           textAlign: TextAlign.center,
@@ -177,28 +216,14 @@ class CalendarHeaderWidget extends StatelessWidget {
               // Month name - bold, gray900
               TextSpan(
                 text: monthName,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                  color: TCnt.neutralMain(context),
-                  fontFamily: fontFamily,
-                  height: 1.4, // 140% line height
-                  letterSpacing: -0.02, // -2%
-                ),
+                style: getMonthStyle(),
               ),
               // Space between month and year
               const TextSpan(text: ' '),
               // Year - regular, gray700
               TextSpan(
                 text: yearString,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400,
-                  color: TCnt.neutralTertiary(context),
-                  fontFamily: fontFamily,
-                  height: 1.4, // 140% line height
-                  letterSpacing: -0.02, // -2%
-                ),
+                style: getYearStyle(),
               ),
             ],
           ),

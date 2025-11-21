@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shamsi_date/shamsi_date.dart';
 import '../services/date_converter_service.dart';
+import '../utils/calendar_utils.dart';
 
 class CalendarProvider extends ChangeNotifier {
   final DateConverterService _dateConverter = DateConverterService();
@@ -25,6 +26,11 @@ class CalendarProvider extends ChangeNotifier {
   
   // Week/Month view toggle state
   bool _isWeekView = true;
+
+  // Calendar preferences synced from AppProvider
+  String _calendarSystem = 'gregorian';
+  String _startWeekOn = 'monday';
+  List<String> _daysOff = ['saturday', 'sunday'];
   
   // Year picker state
   bool _isYearPickerOpen = false;
@@ -40,6 +46,45 @@ class CalendarProvider extends ChangeNotifier {
   bool get isCalendarMinimized => _isCalendarMinimized;
   bool get isYearPickerOpen => _isYearPickerOpen;
   bool get isWeekView => _isWeekView;
+  String get calendarSystem => _calendarSystem;
+  String get startWeekOn => _startWeekOn;
+  List<String> get daysOff => List.unmodifiable(_daysOff);
+
+  void syncFromAppSettings({
+    required String calendarSystem,
+    required String startWeekOn,
+    required List<String> daysOff,
+  }) {
+    bool shouldNotify = false;
+    if (_calendarSystem != calendarSystem) {
+      _calendarSystem = calendarSystem;
+      shouldNotify = true;
+    }
+    if (_startWeekOn != startWeekOn && startWeekOn.isNotEmpty) {
+      _startWeekOn = startWeekOn;
+      shouldNotify = true;
+    }
+    if (!_listsEqual(_daysOff, daysOff)) {
+      _daysOff = List<String>.from(daysOff);
+      shouldNotify = true;
+    }
+    if (shouldNotify) {
+      _currentWeekStart = CalendarUtils.getWeekStart(
+        _selectedDate,
+        calendarSystem: _calendarSystem,
+        startWeekOn: _startWeekOn,
+      );
+      notifyListeners();
+    }
+  }
+
+  bool _listsEqual(List<String> a, List<String> b) {
+    if (a.length != b.length) return false;
+    for (int i = 0; i < a.length; i++) {
+      if (a[i] != b[i]) return false;
+    }
+    return true;
+  }
   
   // Jalali getters
   Jalali get selectedJalaliDate => _dateConverter.gregorianToJalali(_selectedDate);
@@ -75,7 +120,11 @@ class CalendarProvider extends ChangeNotifier {
     _displayedMonth = _dateConverter.getGregorianMonthStart(_selectedDate);
     
     // Update current week/month to show the selected date (legacy support)
-    _currentWeekStart = _dateConverter.getGregorianWeekStart(_selectedDate);
+    _currentWeekStart = CalendarUtils.getWeekStart(
+      _selectedDate,
+      calendarSystem: _calendarSystem,
+      startWeekOn: _startWeekOn,
+    );
     _currentMonthStart = _dateConverter.getGregorianMonthStart(_selectedDate);
     
     notifyListeners();
@@ -99,7 +148,11 @@ class CalendarProvider extends ChangeNotifier {
     _currentMonthStart = firstDayGregorian;
     
     // Update week start
-    _currentWeekStart = _dateConverter.getGregorianWeekStart(_selectedDate);
+    _currentWeekStart = CalendarUtils.getWeekStart(
+      _selectedDate,
+      calendarSystem: _calendarSystem,
+      startWeekOn: _startWeekOn,
+    );
     
     notifyListeners();
   }
@@ -120,7 +173,11 @@ class CalendarProvider extends ChangeNotifier {
     _today = DateTime.now();
     _selectedDate = _today;
     _displayedMonth = _dateConverter.getGregorianMonthStart(_today);
-    _currentWeekStart = _dateConverter.getGregorianWeekStart(_today);
+    _currentWeekStart = CalendarUtils.getWeekStart(
+      _today,
+      calendarSystem: _calendarSystem,
+      startWeekOn: _startWeekOn,
+    );
     _currentMonthStart = _dateConverter.getGregorianMonthStart(_today);
     notifyListeners();
   }
@@ -159,7 +216,11 @@ class CalendarProvider extends ChangeNotifier {
 
   // Navigate to specific week
   void goToWeek(DateTime weekStart) {
-    _currentWeekStart = _dateConverter.getGregorianWeekStart(weekStart);
+    _currentWeekStart = CalendarUtils.getWeekStart(
+      weekStart,
+      calendarSystem: _calendarSystem,
+      startWeekOn: _startWeekOn,
+    );
     notifyListeners();
   }
 
@@ -191,6 +252,41 @@ class CalendarProvider extends ChangeNotifier {
   // Set week view state
   void setWeekView(bool isWeek) {
     _isWeekView = isWeek;
+    notifyListeners();
+  }
+
+  void applyDefaultCalendarView(String view, {required String calendarSystem}) {
+    _calendarSystem = calendarSystem;
+    final isWeek = view == 'week';
+    _isWeekView = isWeek;
+    if (isWeek) {
+      final weekStart = CalendarUtils.getWeekStart(
+        _selectedDate,
+        calendarSystem: calendarSystem,
+        startWeekOn: _startWeekOn,
+      );
+      _currentWeekStart = weekStart;
+    } else {
+      if (calendarSystem == 'solar' || calendarSystem == 'shahanshahi') {
+        final selectedJalali = _dateConverter.gregorianToJalali(_selectedDate);
+        final firstDayJalali = Jalali(selectedJalali.year, selectedJalali.month, 1);
+        final firstDayGregorian = _dateConverter.jalaliToGregorian(
+          firstDayJalali.year,
+          firstDayJalali.month,
+          firstDayJalali.day,
+        );
+        _displayedMonth = firstDayGregorian;
+        _currentMonthStart = firstDayGregorian;
+      } else {
+        _displayedMonth = _dateConverter.getGregorianMonthStart(_selectedDate);
+        _currentMonthStart = _displayedMonth;
+      }
+      _currentWeekStart = CalendarUtils.getWeekStart(
+        _selectedDate,
+        calendarSystem: calendarSystem,
+        startWeekOn: _startWeekOn,
+      );
+    }
     notifyListeners();
   }
 
@@ -238,7 +334,11 @@ class CalendarProvider extends ChangeNotifier {
     final monthEnd = DateTime(monthStart.year, monthStart.month + 1, 0);
     
     // Add days from previous month to fill first week
-    final firstWeekStart = _dateConverter.getGregorianWeekStart(monthStart);
+    final firstWeekStart = CalendarUtils.getWeekStart(
+      monthStart,
+      calendarSystem: _calendarSystem,
+      startWeekOn: _startWeekOn,
+    );
     if (firstWeekStart.isBefore(monthStart)) {
       for (int i = 0; i < monthStart.difference(firstWeekStart).inDays; i++) {
         dates.add(firstWeekStart.add(Duration(days: i)));
@@ -251,7 +351,12 @@ class CalendarProvider extends ChangeNotifier {
     }
     
     // Add days from next month to fill last week
-    final lastWeekEnd = monthEnd.add(Duration(days: 6 - monthEnd.weekday));
+    final lastWeekStart = CalendarUtils.getWeekStart(
+      monthEnd,
+      calendarSystem: _calendarSystem,
+      startWeekOn: _startWeekOn,
+    );
+    final lastWeekEnd = lastWeekStart.add(const Duration(days: 6));
     for (int i = 1; i <= lastWeekEnd.difference(monthEnd).inDays; i++) {
       dates.add(monthEnd.add(Duration(days: i)));
     }
@@ -305,7 +410,11 @@ class CalendarProvider extends ChangeNotifier {
     _selectedDate = now;
     _today = now;
     _displayedMonth = _dateConverter.getGregorianMonthStart(now);
-    _currentWeekStart = _dateConverter.getGregorianWeekStart(now);
+    _currentWeekStart = CalendarUtils.getWeekStart(
+      now,
+      calendarSystem: _calendarSystem,
+      startWeekOn: _startWeekOn,
+    );
     _currentMonthStart = _dateConverter.getGregorianMonthStart(now);
     notifyListeners();
   }
@@ -334,7 +443,11 @@ class CalendarProvider extends ChangeNotifier {
     final newMonthStart = DateTime(year, month, 1);
     _displayedMonth = newMonthStart;
     _currentMonthStart = newMonthStart;
-    _currentWeekStart = _dateConverter.getGregorianWeekStart(newMonthStart);
+    _currentWeekStart = CalendarUtils.getWeekStart(
+      newMonthStart,
+      calendarSystem: _calendarSystem,
+      startWeekOn: _startWeekOn,
+    );
     
     // Debug: verify the conversion for solar calendar
     if (_displayedMonth.year >= 2020 && _displayedMonth.year <= 2030) {
@@ -348,7 +461,8 @@ class CalendarProvider extends ChangeNotifier {
   // Get the week index (0-5) of the selected date in the displayed month
   // For solar/shahanshahi calendar, needs to work with solar dates properly
   int getWeekIndexOfSelectedDate({String? calendarSystem}) {
-    if (calendarSystem == 'solar' || calendarSystem == 'shahanshahi') {
+    final system = calendarSystem ?? _calendarSystem;
+    if (system == 'solar' || system == 'shahanshahi') {
       // For solar calendar, calculate based on Jalali dates
       final selectedJalali = gregorianToJalali(_selectedDate);
       final displayedJalali = gregorianToJalali(_displayedMonth);
@@ -364,10 +478,18 @@ class CalendarProvider extends ChangeNotifier {
           firstDayJalali.year, firstDayJalali.month, firstDayJalali.day);
         
         // Get week start for solar (Saturday) - this is the start of the first week containing the month
-        final firstWeekStart = _getSolarWeekStart(firstDayGregorian);
+        final firstWeekStart = CalendarUtils.getWeekStart(
+          firstDayGregorian,
+          calendarSystem: system,
+          startWeekOn: _startWeekOn,
+        );
         
         // Find the week start containing the selected date
-        final selectedWeekStart = _getSolarWeekStart(_selectedDate);
+        final selectedWeekStart = CalendarUtils.getWeekStart(
+          _selectedDate,
+          calendarSystem: system,
+          startWeekOn: _startWeekOn,
+        );
         
         // Calculate which week index by counting weeks from first week start
         final daysFromFirstWeek = selectedWeekStart.difference(firstWeekStart).inDays;
@@ -407,21 +529,6 @@ class CalendarProvider extends ChangeNotifier {
   }
   
   // Helper to get Saturday (week start for solar calendar)
-  DateTime _getSolarWeekStart(DateTime date) {
-    // Solar calendar week starts on Saturday
-    // DateTime.weekday: 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat, 7=Sun
-    final dayOfWeek = date.weekday;
-    int daysToSubtract;
-    if (dayOfWeek == 6) {
-      daysToSubtract = 0; // Saturday
-    } else if (dayOfWeek == 7) {
-      daysToSubtract = 1; // Sunday
-    } else {
-      daysToSubtract = dayOfWeek + 1; // Monday-Friday
-    }
-    return date.subtract(Duration(days: daysToSubtract));
-  }
-  
   // Helper to convert Gregorian to Jalali (delegate to dateConverter)
   Jalali gregorianToJalali(DateTime date) {
     return _dateConverter.gregorianToJalali(date);
@@ -435,7 +542,11 @@ class CalendarProvider extends ChangeNotifier {
     final firstDayOfMonth = DateTime(_displayedMonth.year, _displayedMonth.month, 1);
     
     // Get the first day of the week containing the first day of month
-    final firstWeekStart = _dateConverter.getGregorianWeekStart(firstDayOfMonth);
+    final firstWeekStart = CalendarUtils.getWeekStart(
+      firstDayOfMonth,
+      calendarSystem: _calendarSystem,
+      startWeekOn: _startWeekOn,
+    );
     
     // Add days from previous month to fill first week
     if (firstWeekStart.isBefore(firstDayOfMonth)) {
@@ -451,7 +562,12 @@ class CalendarProvider extends ChangeNotifier {
     }
     
     // Add days from next month to fill last week
-    final lastWeekEnd = lastDayOfMonth.add(Duration(days: 6 - lastDayOfMonth.weekday));
+    final lastWeekStart = CalendarUtils.getWeekStart(
+      lastDayOfMonth,
+      calendarSystem: _calendarSystem,
+      startWeekOn: _startWeekOn,
+    );
+    final lastWeekEnd = lastWeekStart.add(const Duration(days: 6));
     for (int i = 1; i <= lastWeekEnd.difference(lastDayOfMonth).inDays; i++) {
       dates.add(lastDayOfMonth.add(Duration(days: i)));
     }

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../config/theme_colors.dart';
 import '../config/theme_roles.dart';
 import '../config/app_icons.dart';
 import '../utils/svg_helper.dart';
+import '../utils/font_helper.dart';
+import '../providers/app_provider.dart';
 
 class ContentBottomSheet extends StatefulWidget {
   final String title;
@@ -83,7 +86,7 @@ class _ContentBottomSheetState extends State<ContentBottomSheet> {
                     SingleChildScrollView(
                       controller: _scrollController,
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
+                        padding: const EdgeInsets.fromLTRB(24, 16, 24, 20),
                         child: widget.content,
                       ),
                     ),
@@ -197,6 +200,7 @@ class _ContentBottomSheetState extends State<ContentBottomSheet> {
   }
 
   Widget _buildCollapsedHeader() {
+    final bool isPersian = Provider.of<AppProvider>(context, listen: false).language == 'fa';
     return Row(
       key: const ValueKey('collapsed'),
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -217,13 +221,21 @@ class _ContentBottomSheetState extends State<ContentBottomSheet> {
                   widget.title,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: 20,
-                    height: 1.0,
-                    letterSpacing: -0.44,
-                    color: TCnt.neutralMain(context),
-                    fontWeight: FontWeight.w800,
-                  ),
+                  style: isPersian
+                      ? FontHelper.getYekanBakh(
+                          fontSize: 20,
+                          height: 1.0,
+                          letterSpacing: -0.44,
+                          color: TCnt.neutralMain(context),
+                          fontWeight: FontWeight.w800,
+                        )
+                      : FontHelper.getInter(
+                          fontSize: 20,
+                          height: 1.0,
+                          letterSpacing: -0.44,
+                          color: TCnt.neutralMain(context),
+                          fontWeight: FontWeight.w800,
+                        ),
                 ),
               ),
             ],
@@ -250,6 +262,7 @@ class _ContentBottomSheetState extends State<ContentBottomSheet> {
   }
 
   Widget _buildExpandedHeader() {
+    final bool isPersian = Provider.of<AppProvider>(context, listen: false).language == 'fa';
     return Column(
       key: const ValueKey('expanded'),
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -269,13 +282,21 @@ class _ContentBottomSheetState extends State<ContentBottomSheet> {
                     widget.title,
                     softWrap: true,
                     maxLines: 2,
-                    style: TextStyle(
-                      fontSize: 20,
-                      height: 1.6,
-                      letterSpacing: -0.44,
-                      color: TCnt.neutralMain(context),
-                      fontWeight: FontWeight.w800,
-                    ),
+                    style: isPersian
+                        ? FontHelper.getYekanBakh(
+                            fontSize: 20,
+                            height: 1.6,
+                            letterSpacing: -0.44,
+                            color: TCnt.neutralMain(context),
+                            fontWeight: FontWeight.w800,
+                          )
+                        : FontHelper.getInter(
+                            fontSize: 20,
+                            height: 1.6,
+                            letterSpacing: -0.44,
+                            color: TCnt.neutralMain(context),
+                            fontWeight: FontWeight.w800,
+                          ),
                   ),
                 ],
               ),
@@ -302,12 +323,19 @@ class _ContentBottomSheetState extends State<ContentBottomSheet> {
           const SizedBox(height: 6),
           Text(
             widget.description!,
-            style: TextStyle(
-              fontSize: 14,
-              height: 1.6,
-              letterSpacing: -0.098,
-              color: TCnt.neutralTertiary(context),
-            ),
+            style: isPersian
+                ? FontHelper.getYekanBakh(
+                    fontSize: 14,
+                    height: 1.6,
+                    letterSpacing: -0.098,
+                    color: TCnt.neutralTertiary(context),
+                  )
+                : FontHelper.getInter(
+                    fontSize: 14,
+                    height: 1.6,
+                    letterSpacing: -0.098,
+                    color: TCnt.neutralTertiary(context),
+                  ),
           ),
         ],
       ],

@@ -18,6 +18,7 @@ class AppIcons {
   static const String calendarLeft = 'assets/images/icons/calen-left.svg';
   static const String calendarFill = 'assets/images/icons/calen-fill.svg';
   static const String calendar = 'assets/images/icons/calendar.svg';
+  static const String calendarDays = 'assets/images/icons/calendar-days.svg';
   static const String calendarPlus = 'assets/images/icons/calendar-plus.svg';
   static const String clockCircle = 'assets/images/icons/clock-circle.svg';
 
@@ -29,6 +30,7 @@ class AppIcons {
   static const String document = 'assets/images/icons/document.svg';
   static const String info = 'assets/images/icons/info-circle.svg';
   static const String multitasking = 'assets/images/icons/multitasking.svg';
+  static const String update = 'assets/images/icons/update.svg';
 
   // Info Icons
   static const String book = 'assets/images/icons/book.svg';

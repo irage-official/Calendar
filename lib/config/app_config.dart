@@ -1,8 +1,17 @@
 class AppConfig {
   static const String appName = 'Irage';
-  static const String appVersion = '1.0.0';
+  static const String appVersion = '0.9.0'; // Current app version (until final release)
   
-  // API Configuration
+  // GitHub Raw URLs for updates (replace with your actual repository)
+  // Format: https://raw.githubusercontent.com/username/repo/branch/path
+  static const String githubRawBase = 'https://raw.githubusercontent.com/irage-official/iranian-heritage/main/data';
+  
+  // Update endpoints
+  static const String eventsUrl = '$githubRawBase/events.json';
+  static const String eventsMetadataUrl = '$githubRawBase/events-metadata.json';
+  static const String versionUrl = '$githubRawBase/version.json';
+  
+  // API Configuration (for future use)
   static const String baseUrl = 'https://api.example.com';
   static const Duration apiTimeout = Duration(seconds: 30);
   

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../config/theme_colors.dart';
 import '../config/theme_roles.dart';
+import '../utils/font_helper.dart';
+import '../providers/app_provider.dart';
 
 class SettingsBottomSheet extends StatelessWidget {
   final String title;
@@ -84,38 +87,57 @@ class SettingsBottomSheet extends StatelessWidget {
   }
 
   Widget _buildHeader(BuildContext context) {
+    final isPersian = Provider.of<AppProvider>(context, listen: false).language == 'fa';
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32), // فقط پدینگ اضافی ۳۲ پیکسل چپ و راست
-      child: Column(
-        children: [
-          // Centered title only
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-              height: 1.4,
-              letterSpacing: -0.32, // -2% of 16
-              color: TCnt.neutralMain(context),
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          
-          // Description
-          if (description != null) ...[
-            const SizedBox(height: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 16), // فقط پدینگ اضافی ۱۶ پیکسل چپ و راست
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 320),
+        child: Column(
+          children: [
+            // Centered title only
             Text(
-              description!,
+              title,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 14,
-                height: 1.6,
-                letterSpacing: -0.098, // -0.7% of 14
-                color: TCnt.neutralTertiary(context),
-              ),
+              style: isPersian
+                  ? FontHelper.getYekanBakh(
+                      fontSize: 16,
+                      height: 1.4,
+                      letterSpacing: -0.32, // -2% of 16
+                      color: TCnt.neutralMain(context),
+                      fontWeight: FontWeight.bold,
+                    )
+                  : FontHelper.getInter(
+                      fontSize: 16,
+                      height: 1.4,
+                      letterSpacing: -0.32, // -2% of 16
+                      color: TCnt.neutralMain(context),
+                      fontWeight: FontWeight.bold,
+                    ),
             ),
+            
+            // Description
+            if (description != null) ...[
+              const SizedBox(height: 6),
+              Text(
+                description!,
+                textAlign: TextAlign.center,
+                style: isPersian
+                    ? FontHelper.getYekanBakh(
+                        fontSize: 14,
+                        height: 1.6,
+                        letterSpacing: -0.098, // -0.7% of 14
+                        color: TCnt.neutralTertiary(context),
+                      )
+                    : FontHelper.getInter(
+                        fontSize: 14,
+                        height: 1.6,
+                        letterSpacing: -0.098, // -0.7% of 14
+                        color: TCnt.neutralTertiary(context),
+                      ),
+              ),
+            ],
           ],
-        ],
+        ),
       ),
     );
   }

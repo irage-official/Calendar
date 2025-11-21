@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../config/app_icons.dart';
 import '../config/theme_colors.dart';
 import '../widgets/loading_lines_animation.dart';
@@ -10,7 +11,11 @@ import '../providers/event_provider.dart';
 import '../providers/calendar_provider.dart';
 import '../utils/logger.dart';
 import '../services/year_cache_service.dart';
+import '../services/update_service.dart';
+import '../services/event_service.dart';
+import '../models/app_version.dart';
 import '../utils/calendar_utils.dart';
+import '../utils/font_helper.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -35,7 +40,6 @@ class _SplashScreenState extends State<SplashScreen> {
     try {
       // Initialize providers
       await context.read<AppProvider>().initialize();
-      await context.read<EventProvider>().initialize();
       
       // Get current language from AppProvider
       final appProvider = context.read<AppProvider>();
@@ -43,39 +47,70 @@ class _SplashScreenState extends State<SplashScreen> {
       // Normalize language: 'fa' -> 'fa', everything else -> 'en'
       final normalizedLanguage = currentLanguage == 'fa' ? 'fa' : 'en';
       
-      // Preload year cache for both calendar systems in background
+      // Check for events update
+      final updateService = UpdateService.instance;
+      bool needsEventsUpdate = false;
+      
+      try {
+        needsEventsUpdate = await updateService.checkEventsUpdate();
+        
+        if (needsEventsUpdate) {
+          AppLogger.info('Splash screen: Events update available, downloading...');
+          // Download and update events
+          final newEvents = await updateService.downloadEvents();
+          if (newEvents.isNotEmpty) {
+            final eventService = EventService.instance;
+            await eventService.saveEvents(newEvents);
+            // Reload events in provider
+            await context.read<EventProvider>().reload();
+            AppLogger.info('Splash screen: Events updated successfully (${newEvents.length} events)');
+          } else {
+            AppLogger.warning('Splash screen: Failed to download events, using cached version');
+            await context.read<EventProvider>().initialize();
+          }
+        } else {
+          // Load existing events
+          await context.read<EventProvider>().initialize();
+        }
+      } catch (e) {
+        AppLogger.error('Splash screen: Error checking/updating events', error: e);
+        // Continue with existing events
+        await context.read<EventProvider>().initialize();
+      }
+      
+      // Check for app version update (in background, don't block startup)
+      unawaited(_checkAppVersionUpdate(appProvider));
+      
+      // Preload year cache for current calendar system only (optimize for Android)
+      // Don't preload other calendar systems to avoid blocking startup
       final calendarProvider = context.read<CalendarProvider>();
       final calendarSystem = appProvider.calendarSystem;
       
       // Get current year based on calendar system
       int currentYear;
+      String calendarSystemForPreload = calendarSystem;
       if (calendarSystem == 'solar' || calendarSystem == 'shahanshahi') {
         final jalali = CalendarUtils.gregorianToJalali(calendarProvider.displayedMonth);
         currentYear = jalali.year;
+        calendarSystemForPreload = 'solar'; // Both use same structure
       } else {
         currentYear = calendarProvider.displayedMonth.year;
       }
       
-      // Preload 10 years before and after for current calendar system
+      // Preload only current calendar system in background (non-blocking)
+      // Other calendar systems will be preloaded on-demand when user switches
       final yearCacheService = YearCacheService();
-      unawaited(yearCacheService.preloadYears(currentYear, calendarSystem: calendarSystem));
-      
-      // Also preload for the other calendar system in background
-      // Preload the other calendar systems for quick switching
-      if (calendarSystem == 'solar' || calendarSystem == 'shahanshahi') {
-        // If using solar/shahanshahi, also preload gregorian
-        final otherCurrentYear = DateTime.now().year;
-        unawaited(yearCacheService.preloadYears(otherCurrentYear, calendarSystem: 'gregorian'));
-      } else {
-        // If using gregorian, also preload solar
-        final jalali = CalendarUtils.gregorianToJalali(DateTime.now());
-        unawaited(yearCacheService.preloadYears(jalali.year, calendarSystem: 'solar'));
-      }
+      unawaited(yearCacheService.preloadYears(currentYear, calendarSystem: calendarSystemForPreload));
 
       AppLogger.info('Splash screen: App initialized successfully');
     } catch (e) {
       AppLogger.error('Splash screen: Error initializing app', error: e);
       // Continue to app even if update fails
+      try {
+        await context.read<EventProvider>().initialize();
+      } catch (e2) {
+        AppLogger.error('Splash screen: Error initializing events provider', error: e2);
+      }
     } finally {
       // Ensure minimum display time
       final elapsed = DateTime.now().difference(startTime);
@@ -91,6 +126,97 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.of(context).pushReplacementNamed('/home');
       }
     }
+  }
+
+  /// Check for app version update and show dialog if needed
+  Future<void> _checkAppVersionUpdate(AppProvider appProvider) async {
+    try {
+      final updateService = UpdateService.instance;
+      final appVersion = await updateService.checkAppVersion();
+      
+      if (appVersion != null && mounted) {
+        // Wait a bit before showing dialog to ensure navigation is complete
+        await Future.delayed(const Duration(milliseconds: 500));
+        
+        if (mounted) {
+          _showUpdateDialog(context, appVersion, appProvider);
+        }
+      }
+    } catch (e) {
+      AppLogger.error('Splash screen: Error checking app version', error: e);
+    }
+  }
+
+  /// Show update dialog based on update type
+  void _showUpdateDialog(BuildContext context, AppVersion version, AppProvider appProvider) {
+    final isPersian = appProvider.language == 'fa';
+    final releaseNotes = version.getReleaseNotes(appProvider.language) ?? 
+        (isPersian ? 'آپدیت جدید در دسترس است' : 'New update is available');
+
+    showDialog(
+      context: context,
+      barrierDismissible: !version.isCritical,
+      builder: (context) => AlertDialog(
+        title: Text(
+          isPersian ? 'آپدیت جدید' : 'New Update',
+          style: isPersian
+              ? FontHelper.getYekanBakh(
+                  fontWeight: FontWeight.bold,
+                )
+              : FontHelper.getInter(
+                  fontWeight: FontWeight.bold,
+                ),
+        ),
+        content: SingleChildScrollView(
+          child: Text(
+            releaseNotes,
+            style: isPersian
+                ? FontHelper.getYekanBakh()
+                : FontHelper.getInter(),
+          ),
+        ),
+        actions: [
+          if (!version.isCritical)
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text(
+                isPersian ? 'بعداً' : 'Later',
+                style: isPersian
+                    ? FontHelper.getYekanBakh()
+                    : FontHelper.getInter(),
+              ),
+            ),
+          TextButton(
+            onPressed: () async {
+              if (version.downloadUrl != null) {
+                final uri = Uri.parse(version.downloadUrl!);
+                if (await canLaunchUrl(uri)) {
+                  await launchUrl(uri, mode: LaunchMode.externalApplication);
+                } else {
+                  AppLogger.error('Splash screen: Cannot launch URL: ${version.downloadUrl}');
+                }
+              }
+              if (version.isCritical) {
+                // For critical updates, keep dialog open until user updates
+                return;
+              } else {
+                Navigator.of(context).pop();
+              }
+            },
+            child: Text(
+              isPersian ? 'آپدیت' : 'Update',
+              style: isPersian
+                  ? FontHelper.getYekanBakh(
+                      fontWeight: FontWeight.bold,
+                    )
+                  : FontHelper.getInter(
+                      fontWeight: FontWeight.bold,
+                    ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -159,13 +285,19 @@ class _SplashScreenState extends State<SplashScreen> {
                               // Welcome Message
                               Text(
                                 isPersian ? 'اپلیکیشن' : 'Welcome to',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  height: 1.4,
-                                  letterSpacing: -0.7 / 100 * 12,
-                                  color: TCnt.neutralTertiary(context),
-                                  fontFamily: isPersian ? 'Vazir' : 'Inter',
-                                ),
+                                style: isPersian
+                                    ? FontHelper.getYekanBakh(
+                                        fontSize: 12,
+                                        height: 1.4,
+                                        letterSpacing: -0.7 / 100 * 12,
+                                        color: TCnt.neutralTertiary(context),
+                                      )
+                                    : FontHelper.getInter(
+                                        fontSize: 12,
+                                        height: 1.4,
+                                        letterSpacing: -0.7 / 100 * 12,
+                                        color: TCnt.neutralTertiary(context),
+                                      ),
                               ),
 
                               const SizedBox(height: 4),
@@ -173,14 +305,21 @@ class _SplashScreenState extends State<SplashScreen> {
                               // App Name
                               Text(
                                 isPersian ? 'میراث ایران' : 'Iranian Heritage',
-                                style: TextStyle(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.w800,
-                                  height: 1.2,
-                                  letterSpacing: -2.0 / 100 * 30,
-                                  color: TCnt.neutralMain(context),
-                                  fontFamily: isPersian ? 'Vazir' : 'Inter',
-                                ),
+                                style: isPersian
+                                    ? FontHelper.getYekanBakh(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.w800,
+                                        height: 1.2,
+                                        letterSpacing: -2.0 / 100 * 30,
+                                        color: TCnt.neutralMain(context),
+                                      )
+                                    : FontHelper.getInter(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.w800,
+                                        height: 1.2,
+                                        letterSpacing: -2.0 / 100 * 30,
+                                        color: TCnt.neutralMain(context),
+                                      ),
                               ),
 
                               const SizedBox(height: 4),
@@ -191,13 +330,19 @@ class _SplashScreenState extends State<SplashScreen> {
                                   ? 'اولین تقویم ملی و سنت‌های فرهنگی ایران، به همراه بزرگداشت کسانی که برای آزادی ما جنگیدند.'
                                   : 'The first national calendar and cultural traditions of Iran, along with honoring those who fought for our freedom.',
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  height: 1.6,
-                                  letterSpacing: -0.7 / 100 * 14,
-                                  color: TCnt.neutralSecond(context),
-                                  fontFamily: isPersian ? 'Vazir' : 'Inter',
-                                ),
+                                style: isPersian
+                                    ? FontHelper.getYekanBakh(
+                                        fontSize: 14,
+                                        height: 1.6,
+                                        letterSpacing: -0.7 / 100 * 14,
+                                        color: TCnt.neutralSecond(context),
+                                      )
+                                    : FontHelper.getInter(
+                                        fontSize: 14,
+                                        height: 1.6,
+                                        letterSpacing: -0.7 / 100 * 14,
+                                        color: TCnt.neutralSecond(context),
+                                      ),
                               ),
                             ],
                           ),
@@ -229,12 +374,12 @@ class _SplashScreenState extends State<SplashScreen> {
                     },
                   ),
 
-                  // Gradient Overlay
+                  // Gradient Overlay - نرم و تدریجی
                   Positioned(
                     top: 0,
                     left: 0,
                     right: 0,
-                    height: 150,
+                    height: 350,
                     child: IgnorePointer(
                       child: Container(
                         decoration: BoxDecoration(
@@ -243,13 +388,28 @@ class _SplashScreenState extends State<SplashScreen> {
                             end: Alignment.bottomCenter,
                             colors: [
                               TBg.main(context),
-                              TBg.main(context),
-                              TBg.main(context).withOpacity(0.9),
-                              TBg.main(context).withOpacity(0.7),
-                              TBg.main(context).withOpacity(0.4),
+                              TBg.main(context).withOpacity(0.98),
+                              TBg.main(context).withOpacity(0.95),
+                              TBg.main(context).withOpacity(0.88),
+                              TBg.main(context).withOpacity(0.75),
+                              TBg.main(context).withOpacity(0.55),
+                              TBg.main(context).withOpacity(0.35),
+                              TBg.main(context).withOpacity(0.18),
+                              TBg.main(context).withOpacity(0.08),
                               TBg.main(context).withOpacity(0),
                             ],
-                            stops: const [0.0, 0.15, 0.3, 0.5, 0.7, 1.0],
+                            stops: const [
+                              0.0,
+                              0.12,
+                              0.22,
+                              0.35,
+                              0.48,
+                              0.62,
+                              0.75,
+                              0.87,
+                              0.95,
+                              1.0,
+                            ],
                           ),
                         ),
                       ),

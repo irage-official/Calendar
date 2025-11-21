@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'theme_colors.dart';
 import 'theme_roles.dart';
+import '../utils/font_helper.dart';
 
 class AppColors {
   // Use the new theme colors
@@ -99,95 +100,85 @@ class AppDimensions {
 }
 
 class AppTextStyles {
-  static const TextStyle heading1 = TextStyle(
+  // English text styles using local Inter font
+  // Note: Cannot be const because FontHelper.getInter() uses fontVariations
+  static TextStyle get heading1 => FontHelper.getInter(
     fontSize: 32,
     fontWeight: FontWeight.bold,
     color: LightCnt.neutralMain,
-    fontFamily: 'Inter',
   );
   
-  static const TextStyle heading2 = TextStyle(
+  static TextStyle get heading2 => FontHelper.getInter(
     fontSize: 24,
     fontWeight: FontWeight.bold,
     color: LightCnt.neutralMain,
-    fontFamily: 'Inter',
   );
   
-  static const TextStyle heading3 = TextStyle(
+  static TextStyle get heading3 => FontHelper.getInter(
     fontSize: 20,
     fontWeight: FontWeight.w600,
     color: LightCnt.neutralMain,
-    fontFamily: 'Inter',
   );
   
-  static const TextStyle bodyLarge = TextStyle(
+  static TextStyle get bodyLarge => FontHelper.getInter(
     fontSize: 16,
     fontWeight: FontWeight.normal,
     color: LightCnt.neutralMain,
-    fontFamily: 'Inter',
   );
   
-  static const TextStyle bodyMedium = TextStyle(
+  static TextStyle get bodyMedium => FontHelper.getInter(
     fontSize: 14,
     fontWeight: FontWeight.normal,
     color: LightCnt.neutralMain,
-    fontFamily: 'Inter',
   );
   
-  static const TextStyle bodySmall = TextStyle(
+  static TextStyle get bodySmall => FontHelper.getInter(
     fontSize: 12,
     fontWeight: FontWeight.normal,
     color: LightCnt.neutralWeak,
-    fontFamily: 'Inter',
   );
   
-  static const TextStyle caption = TextStyle(
+  static TextStyle get caption => FontHelper.getInter(
     fontSize: 10,
     fontWeight: FontWeight.normal,
     color: LightCnt.neutralWeak,
-    fontFamily: 'Inter',
   );
   
   // Persian Text Styles
-  static const TextStyle persianHeading1 = TextStyle(
+  // Note: Cannot be const because FontHelper.getYekanBakh() uses fontVariations
+  static TextStyle get persianHeading1 => FontHelper.getYekanBakh(
     fontSize: 32,
     fontWeight: FontWeight.bold,
     color: LightCnt.neutralMain,
-    fontFamily: 'Vazir',
   );
   
-  static const TextStyle persianHeading2 = TextStyle(
+  static TextStyle get persianHeading2 => FontHelper.getYekanBakh(
     fontSize: 24,
     fontWeight: FontWeight.bold,
     color: LightCnt.neutralMain,
-    fontFamily: 'Vazir',
   );
   
-  static const TextStyle persianBodyLarge = TextStyle(
+  static TextStyle get persianBodyLarge => FontHelper.getYekanBakh(
     fontSize: 16,
     fontWeight: FontWeight.normal,
     color: LightCnt.neutralMain,
-    fontFamily: 'Vazir',
   );
   
-  static const TextStyle persianBodyMedium = TextStyle(
+  static TextStyle get persianBodyMedium => FontHelper.getYekanBakh(
     fontSize: 14,
     fontWeight: FontWeight.normal,
     color: LightCnt.neutralMain,
-    fontFamily: 'Vazir',
   );
   
-  static const TextStyle persianHeading3 = TextStyle(
+  static TextStyle get persianHeading3 => FontHelper.getYekanBakh(
     fontSize: 20,
     fontWeight: FontWeight.w600,
     color: LightCnt.neutralMain,
-    fontFamily: 'Vazir',
   );
   
-  static const TextStyle persianBodySmall = TextStyle(
+  static TextStyle get persianBodySmall => FontHelper.getYekanBakh(
     fontSize: 12,
     fontWeight: FontWeight.normal,
     color: LightCnt.neutralWeak,
-    fontFamily: 'Vazir',
   );
 }

@@ -21,7 +21,22 @@ class CalendarBottomSheetWidget extends StatefulWidget {
 class _CalendarBottomSheetWidgetState extends State<CalendarBottomSheetWidget> {
   int? _cachedWeekCount;
   DateTime? _cachedWeekCountMonth;
+  String? _cachedCalendarSystem;
+  String? _cachedStartWeekOn;
   String? _lastCalendarSystem;
+  String? _lastStartWeekOn;
+  List<String>? _lastDaysOff;
+  String? _lastDefaultCalendarView;
+
+  /// Helper function to compare two lists
+  bool _listsEqual(List<String>? list1, List<String>? list2) {
+    if (list1 == null && list2 == null) return true;
+    if (list1 == null || list2 == null) return false;
+    if (list1.length != list2.length) return false;
+    final sorted1 = List<String>.from(list1)..sort();
+    final sorted2 = List<String>.from(list2)..sort();
+    return sorted1.toString() == sorted2.toString();
+  }
 
   /// Calculate the appropriate height for the bottom sheet based on calendar content
   double _calculateBottomSheetHeight(BuildContext context, CalendarProvider calendarProvider, AppProvider appProvider) {
@@ -55,9 +70,14 @@ class _CalendarBottomSheetWidgetState extends State<CalendarBottomSheetWidget> {
     const double weekdaysGap = 16.0;
     
     // Calculate actual number of weeks needed for the current month
-    // Use cached value if available, otherwise estimate
+    // Use cached value if available and calendar system/startWeekOn haven't changed
+    final currentCalendarSystem = appProvider.calendarSystem;
+    final currentStartWeekOn = appProvider.effectiveStartWeekOn;
     int actualWeeks;
-    if (_cachedWeekCount != null && _cachedWeekCountMonth == calendarProvider.displayedMonth) {
+    if (_cachedWeekCount != null && 
+        _cachedWeekCountMonth == calendarProvider.displayedMonth &&
+        _cachedCalendarSystem == currentCalendarSystem &&
+        _cachedStartWeekOn == currentStartWeekOn) {
       actualWeeks = _cachedWeekCount!;
     } else {
       // Estimate: most months have 5 weeks, some have 6
@@ -68,12 +88,14 @@ class _CalendarBottomSheetWidgetState extends State<CalendarBottomSheetWidget> {
     
     // Month days height calculation:
     // - Each week: 36px (cell) + 4px (event indicators) + 8px (spacing) = 48px
+    // - Gap between weeks: 12px (n-1 gaps for n weeks)
     // - Use actual number of weeks, but if week view, only show 1 week
     final int weeksToShow = calendarProvider.isWeekView ? 1 : actualWeeks;
-    final double monthDaysHeight = weeksToShow * 48.0;
+    const double gapBetweenWeeks = 12.0;
+    final double monthDaysHeight = (weeksToShow * 44.0) + ((weeksToShow - 1) * gapBetweenWeeks);
     
-    // Bottom padding - less for week view to remove extra space
-    final double bottomPadding = calendarProvider.isWeekView ? 8.0 : 16.0;
+    // Bottom padding - always 16px for consistency (added in Column, not here)
+    const double bottomPadding = 16.0;
     
     // Total calculated height based on actual content
     final double calculatedHeight = topPadding + headerHeight + headerGap + dividerHeight + 
@@ -84,14 +106,9 @@ class _CalendarBottomSheetWidgetState extends State<CalendarBottomSheetWidget> {
     final double screenHeight = MediaQuery.of(context).size.height;
     final double maxHeight = screenHeight * 0.7; // Maximum 70% of screen height
     
-    // For week view, don't enforce minimum height to avoid extra space
-    // For month view, enforce minimum height
-    if (calendarProvider.isWeekView) {
-      return calculatedHeight.clamp(0, maxHeight);
-    } else {
-      final double minHeight = screenHeight * 0.3; // Minimum 30% of screen height
-      return calculatedHeight.clamp(minHeight, maxHeight);
-    }
+    // Return calculated height, clamped to max height only
+    // No minimum height to avoid extra space
+    return calculatedHeight.clamp(0, maxHeight);
   }
 
   /// Calculate and cache the actual number of weeks needed for the current displayed month
@@ -102,6 +119,7 @@ class _CalendarBottomSheetWidgetState extends State<CalendarBottomSheetWidget> {
       final monthDates = await CalendarUtils.getMonthDates(
         displayedMonth,
         calendarSystem: calendarSystem,
+        startWeekOn: appProvider.effectiveStartWeekOn,
       );
       
       // Group dates by weeks (same logic as in MonthDays._buildCalendarGrid)
@@ -130,6 +148,8 @@ class _CalendarBottomSheetWidgetState extends State<CalendarBottomSheetWidget> {
         setState(() {
           _cachedWeekCount = filteredWeeks.length;
           _cachedWeekCountMonth = displayedMonth;
+          _cachedCalendarSystem = calendarSystem;
+          _cachedStartWeekOn = appProvider.effectiveStartWeekOn;
         });
       }
     } catch (e) {
@@ -144,30 +164,89 @@ class _CalendarBottomSheetWidgetState extends State<CalendarBottomSheetWidget> {
       final calendarProvider = context.read<CalendarProvider>();
       final appProvider = context.read<AppProvider>();
       _lastCalendarSystem = appProvider.calendarSystem;
+      _lastStartWeekOn = appProvider.effectiveStartWeekOn;
+      _lastDaysOff = List<String>.from(appProvider.effectiveDaysOff);
+      _lastDefaultCalendarView = appProvider.defaultCalendarView;
+      
+      calendarProvider.syncFromAppSettings(
+        calendarSystem: appProvider.calendarSystem,
+        startWeekOn: appProvider.effectiveStartWeekOn,
+        daysOff: appProvider.effectiveDaysOff,
+      );
+      // Initialize week view based on defaultCalendarView
+      final defaultView = appProvider.defaultCalendarView;
+      calendarProvider.applyDefaultCalendarView(
+        defaultView,
+        calendarSystem: appProvider.calendarSystem,
+      );
+      
       _updateWeekCount(calendarProvider, appProvider);
       
       // Listen to displayedMonth changes
       calendarProvider.addListener(() {
-        if (calendarProvider.displayedMonth != _cachedWeekCountMonth) {
+        final currentStartWeekOn = appProvider.effectiveStartWeekOn;
+        if (calendarProvider.displayedMonth != _cachedWeekCountMonth ||
+            _cachedStartWeekOn != currentStartWeekOn) {
           _updateWeekCount(calendarProvider, appProvider);
         }
       });
       
-      // Listen to calendar system changes and sync selected/displayed month
+      // Listen to calendar system, startWeekOn, daysOff, and defaultCalendarView changes
+      // Note: Language changes should NOT trigger calendar settings changes
       appProvider.addListener(() {
         final currentSystem = appProvider.calendarSystem;
-        if (_lastCalendarSystem != currentSystem) {
+        final currentStartWeekOn = appProvider.effectiveStartWeekOn;
+        final currentDaysOff = appProvider.effectiveDaysOff;
+        final currentDefaultView = appProvider.defaultCalendarView;
+        
+        // Only sync settings if calendar system, startWeekOn, or daysOff actually changed
+        final hasCalendarSettingsChanged = 
+            _lastCalendarSystem != currentSystem ||
+            _lastStartWeekOn != currentStartWeekOn ||
+            !_listsEqual(_lastDaysOff, currentDaysOff);
+        
+        if (hasCalendarSettingsChanged) {
+          calendarProvider.syncFromAppSettings(
+            calendarSystem: currentSystem,
+            startWeekOn: currentStartWeekOn,
+            daysOff: currentDaysOff,
+          );
+          
+          // Update cached values
           _lastCalendarSystem = currentSystem;
+          _lastStartWeekOn = currentStartWeekOn;
+          _lastDaysOff = List<String>.from(currentDaysOff);
+        }
+        
+        // Update week view if defaultCalendarView changed
+        if (_lastDefaultCalendarView != currentDefaultView) {
+          _lastDefaultCalendarView = currentDefaultView;
+          calendarProvider.applyDefaultCalendarView(
+            currentDefaultView,
+            calendarSystem: appProvider.calendarSystem,
+          );
+        }
+        
+        if (_lastCalendarSystem != currentSystem) {
+          // Reset cache when calendar system changes
+          _cachedWeekCount = null;
+          _cachedWeekCountMonth = null;
+          _cachedCalendarSystem = null;
+          _cachedStartWeekOn = null;
+          // When calendar system changes, preserve the defaultCalendarView setting
+          calendarProvider.applyDefaultCalendarView(
+            currentDefaultView,
+            calendarSystem: appProvider.calendarSystem,
+          );
           if (currentSystem == 'solar' || currentSystem == 'shahanshahi') {
             // Align displayed month to solar/shahanshahi month containing the current selected date
             calendarProvider.setSelectedDateForSolar(calendarProvider.selectedDate);
-            // Ensure month view so a day is visible as selected
-            calendarProvider.setWeekView(false);
           } else {
             // Back to Gregorian: ensure displayed month aligns to Gregorian month
             calendarProvider.selectDate(calendarProvider.selectedDate);
-            calendarProvider.setWeekView(false);
           }
+          // Recalculate week count for new calendar system
+          _updateWeekCount(calendarProvider, appProvider);
         }
       });
     });
@@ -387,6 +466,7 @@ class _CalendarBottomSheetWidgetState extends State<CalendarBottomSheetWidget> {
                   ],
                 ),
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     // Top padding for header
                     const SizedBox(height: 24),
@@ -416,18 +496,14 @@ class _CalendarBottomSheetWidgetState extends State<CalendarBottomSheetWidget> {
                       // Gap between divider and calendar
                       const SizedBox(height: 16),
                       
-                      // Calendar content with proper padding - use Flexible to prevent overflow
-                      Flexible(
-                        child: SingleChildScrollView(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: _buildCalendarContent(calendarProvider, appProvider),
-                          ),
-                        ),
+                      // Calendar content with proper padding - no scroll needed as height is fixed
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        child: _buildCalendarContent(calendarProvider, appProvider),
                       ),
                       
-                      // Bottom padding - only for month view, not week view
-                      if (!calendarProvider.isWeekView) const SizedBox(height: 16),
+                      // Bottom padding - always 16px for consistency
+                      const SizedBox(height: 16),
                     ] else
                       // Bottom padding when minimized
                       const SizedBox(height: 16),
@@ -528,8 +604,10 @@ class _CalendarBottomSheetWidgetState extends State<CalendarBottomSheetWidget> {
       isPersian: isSolarHijri,
       isWeekView: calendarProvider.isWeekView, // Pass week view state
       visibleWeekIndex: calendarProvider.getWeekIndexOfSelectedDate(calendarSystem: calendarSystem), // Pass visible week index
-      onDateSelected: (date) async {
+      shortWeekdays: false, // Use full weekday names (شنبه، ۱شنبه، ۲شنبه، ...) in bottom sheet
+      onDateSelected: (date) {
         // For solar/shahanshahi calendar, use special method to ensure displayedMonth matches solar month
+        // Make this synchronous to avoid blocking UI in Android
         if (calendarSystem == 'solar' || calendarSystem == 'shahanshahi') {
           calendarProvider.setSelectedDateForSolar(date);
         } else {

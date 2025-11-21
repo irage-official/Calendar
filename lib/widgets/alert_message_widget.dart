@@ -3,6 +3,7 @@ import '../config/theme_colors.dart';
 import '../config/theme_roles.dart';
 import '../config/app_icons.dart';
 import '../utils/svg_helper.dart';
+import '../utils/font_helper.dart';
 
 enum AlertType { warning, danger, success, informal }
 
@@ -28,73 +29,95 @@ class AlertMessageWidget extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: _getBackgroundColor(context).withOpacity(
-          Theme.of(context).brightness == Brightness.dark ? 0.5 : 1.0,
+          Theme.of(context).brightness == Brightness.dark ? 0.6 : 1.0,
         ),
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(20),
         border: Border.all(
           color: _getBorderColor(context).withOpacity(0.1),
           width: 1,
         ),
       ),
-      child: Row(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          // Icon
-          Container(
-            width: 24,
-            height: 24,
-            decoration: BoxDecoration(
-              color: _getIconBackgroundColor(context).withOpacity(
-                Theme.of(context).brightness == Brightness.dark ? 0.0 : 1.0,
-              ),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Center(
-              child: SvgIconWidget(
-                assetPath: _getIconPath(),
-                size: 24,
-                color: _getIconColor(context),
-              ),
-            ),
-          ),
-          const SizedBox(width: 8),
-          // Content
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 1.5),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (title != null) ...[
-                    Text(
-                      title!,
-                      style: TextStyle(
-                        fontSize: 15,
-                        height: 1.4, // 140%
-                        letterSpacing: -0.28, // -2% of 14
-                        color: TCnt.neutralMain(context),
-                        fontWeight: FontWeight.bold,
-                      ),
+          // Icon and Title in a Row with 4px gap
+          if (title != null)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  width: 24,
+                  height: 24,
+                  decoration: BoxDecoration(
+                    color: _getIconBackgroundColor(context).withOpacity(
+                      Theme.of(context).brightness == Brightness.dark ? 0.0 : 1.0,
                     ),
-                    const SizedBox(height: 2),
-                  ],
-                  if (child != null)
-                    child!
-                  else if (description != null)
-                    Text(
-                      description!,
-                      style: TextStyle(
-                        fontSize: 14,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Center(
+                    child: SvgIconWidget(
+                      assetPath: _getIconPath(),
+                      size: 24,
+                      color: _getIconColor(context),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 4),
+                Expanded(
+                  child: Text(
+                    title!,
+                    style: isPersian
+                        ? FontHelper.getYekanBakh(
+                            fontSize: 15,
+                            height: 1.4, // 140%
+                            letterSpacing: -0.098, // -0.7% of 14
+                            color: TCnt.neutralMain(context),
+                            fontWeight: FontWeight.w700,
+                          )
+                        : FontHelper.getInter(
+                            fontSize: 15,
+                            height: 1.4, // 140%
+                            letterSpacing: -0.098, // -0.7% of 14
+                            color: TCnt.neutralMain(context),
+                            fontWeight: FontWeight.w700,
+                          ),
+                  ),
+                ),
+              ],
+            ),
+          // Description with 4px gap from title/icon and 2px horizontal padding
+          if (child != null) ...[
+            SizedBox(height: title != null ? 4 : 0),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 2),
+              child: child!,
+            ),
+          ] else if (description != null) ...[
+            SizedBox(height: title != null ? 4 : 0),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 2),
+              child: Text(
+                description!,
+                style: isPersian
+                    ? FontHelper.getYekanBakh(
+                        fontSize: 12,
                         height: 1.6, // 160%
-                        letterSpacing: -0.098, // -0.7% of 14
+                        letterSpacing: -0.072, // -0.7% of 12
+                        color: TCnt.neutralSecond(context),
+                        fontWeight: FontWeight.w400,
+                      )
+                    : FontHelper.getInter(
+                        fontSize: 12,
+                        height: 1.6, // 160%
+                        letterSpacing: -0.072, // -0.7% of 12
                         color: TCnt.neutralSecond(context),
                         fontWeight: FontWeight.w400,
                       ),
-                    ),
-                ],
               ),
             ),
-          ),
+          ],
         ],
       ),
     );

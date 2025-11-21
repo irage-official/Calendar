@@ -5,6 +5,7 @@ import '../config/theme_colors.dart';
 import '../config/theme_roles.dart';
 import '../config/app_icons.dart';
 import '../providers/app_provider.dart';
+import '../utils/font_helper.dart';
 
 class CustomRadioButton extends StatelessWidget {
   final bool? isSelected;
@@ -28,30 +29,48 @@ class CustomRadioButton extends StatelessWidget {
     final RegExp parenthesesRegex = RegExp(r'\(([^)]+)\)');
     final String text = label;
     
+    // Determine text direction and font family based on app language
+    // But for labels that are primarily English (like "English (EN)"), always use LTR
+    final bool isPersian = Provider.of<AppProvider>(context, listen: false).language == 'fa';
+    // Check if label is primarily English (starts with English letters)
+    final bool isPrimarilyEnglish = RegExp(r'^[A-Za-z]').hasMatch(text);
+    final TextDirection textDirection = (isPersian && !isPrimarilyEnglish) ? TextDirection.rtl : TextDirection.ltr;
+    
+    // Helper function to get TextStyle
+    TextStyle getTextStyle({Color? color}) {
+      if (isPersian) {
+        return FontHelper.getYekanBakh(
+          fontSize: 14,
+          height: 1.4,
+          letterSpacing: -0.007,
+          fontWeight: isSelected ? FontWeight.w500 : FontWeight.w400,
+          color: color ?? TCnt.neutralMain(context),
+        );
+      } else {
+        return FontHelper.getInter(
+          fontSize: 14,
+          height: 1.4,
+          letterSpacing: -0.007,
+          fontWeight: isSelected ? FontWeight.w500 : FontWeight.w400,
+          color: color ?? TCnt.neutralMain(context),
+        );
+      }
+    }
+    
     int lastIndex = 0;
     for (final Match match in parenthesesRegex.allMatches(text)) {
       // Add text before the parentheses
       if (match.start > lastIndex) {
         spans.add(TextSpan(
           text: text.substring(lastIndex, match.start),
-          style: TextStyle(
-            fontSize: 14,
-            height: 1.4,
-            letterSpacing: -0.007,
-            fontWeight: isSelected ? FontWeight.w500 : FontWeight.w400,
-            color: TCnt.neutralMain(context),
-          ),
+          style: getTextStyle(),
         ));
       }
       
       // Add text inside parentheses with different color
       spans.add(TextSpan(
         text: match.group(0), // This includes the parentheses
-        style: TextStyle(
-          fontSize: 14,
-          height: 1.4,
-          letterSpacing: -0.007,
-          fontWeight: isSelected ? FontWeight.w500 : FontWeight.w400,
+        style: getTextStyle(
           color: isSelected ? TCnt.neutralTertiary(context) : TCnt.neutralFourth(context),
         ),
       ));
@@ -63,13 +82,7 @@ class CustomRadioButton extends StatelessWidget {
     if (lastIndex < text.length) {
       spans.add(TextSpan(
         text: text.substring(lastIndex),
-        style: TextStyle(
-          fontSize: 14,
-          height: 1.4,
-          letterSpacing: -0.007,
-          fontWeight: isSelected ? FontWeight.w500 : FontWeight.w400,
-          color: TCnt.neutralMain(context),
-        ),
+        style: getTextStyle(),
       ));
     }
     
@@ -77,22 +90,9 @@ class CustomRadioButton extends StatelessWidget {
     if (spans.isEmpty) {
       spans.add(TextSpan(
         text: text,
-        style: TextStyle(
-          fontSize: 14,
-          height: 1.4,
-          letterSpacing: -0.007,
-          fontWeight: isSelected ? FontWeight.w500 : FontWeight.w400,
-          color: TCnt.neutralMain(context),
-        ),
+        style: getTextStyle(),
       ));
     }
-    
-    // Determine text direction based on app language
-    // But for labels that are primarily English (like "English (EN)"), always use LTR
-    final bool isPersian = Provider.of<AppProvider>(context, listen: false).language == 'fa';
-    // Check if label is primarily English (starts with English letters)
-    final bool isPrimarilyEnglish = RegExp(r'^[A-Za-z]').hasMatch(text);
-    final TextDirection textDirection = (isPersian && !isPrimarilyEnglish) ? TextDirection.rtl : TextDirection.ltr;
     
     return Directionality(
       textDirection: textDirection,
@@ -114,13 +114,21 @@ class CustomRadioButton extends StatelessWidget {
           alignment: isPersian ? Alignment.centerRight : Alignment.centerLeft,
           child: Text(
             label,
-            style: TextStyle(
-              fontSize: 14,
-              height: 1.4, // 140% line height
-              letterSpacing: -0.007, // -0.7% letter spacing
-              fontWeight: FontWeight.w400, // Regular
-              color: TCnt.neutralTertiary(context),
-            ),
+            style: isPersian
+                ? FontHelper.getYekanBakh(
+                    fontSize: 14,
+                    height: 1.4, // 140% line height
+                    letterSpacing: -0.007, // -0.7% letter spacing
+                    fontWeight: FontWeight.w400, // Regular
+                    color: TCnt.neutralTertiary(context),
+                  )
+                : FontHelper.getInter(
+                    fontSize: 14,
+                    height: 1.4, // 140% line height
+                    letterSpacing: -0.007, // -0.7% letter spacing
+                    fontWeight: FontWeight.w400, // Regular
+                    color: TCnt.neutralTertiary(context),
+                  ),
           ),
         ),
       );

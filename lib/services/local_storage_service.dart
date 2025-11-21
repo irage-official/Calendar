@@ -47,16 +47,16 @@ class LocalStorageService {
     if (userPreferences == null) {
       final now = DateTime.now();
       final defaultPrefs = UserPreferences(
-        language: 'en',
+        language: 'system',
         isDarkMode: false,
         showGregorianDates: true,
-        calendarSystem: 'gregorian',
+        calendarSystem: 'shahanshahi',
         showNotifications: true,
         showWeekends: true,
-        defaultCalendarView: 'week',
+        defaultCalendarView: 'month',
         autoSync: true,
         notificationTime: '09:00',
-        enabledEventTypes: const ['festival', 'remembrance', 'gregorian'],
+        enabledEventTypes: const ['celebration', 'historical', 'anniversary', 'memorial', 'awareness'],
         lastSyncDate: now,
         createdAt: now,
         updatedAt: now,

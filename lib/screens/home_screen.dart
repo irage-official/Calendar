@@ -8,6 +8,7 @@ import '../widgets/header_widget.dart';
 import '../widgets/calendar_bottom_sheet_widget.dart';
 import '../widgets/event_list_widget.dart';
 import '../utils/logger.dart';
+import '../widgets/about_bottom_sheet.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -19,17 +20,47 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final ScrollController _scrollController = ScrollController();
   bool _isLoading = false;
+  VoidCallback? _appProviderListener;
+  AppProvider? _appProvider;
 
   @override
   void initState() {
     super.initState();
     _initializeProviders();
     _setupScrollListener();
+    _setupAppProviderListener();
+  }
+
+  void _setupAppProviderListener() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _appProvider = context.read<AppProvider>();
+      final calendarProvider = context.read<CalendarProvider>();
+      
+      // Sync CalendarProvider with AppProvider's defaultCalendarView
+      _appProviderListener = () {
+        if (mounted && _appProvider != null) {
+          calendarProvider.syncFromAppSettings(
+            calendarSystem: _appProvider!.calendarSystem,
+            startWeekOn: _appProvider!.effectiveStartWeekOn,
+            daysOff: _appProvider!.effectiveDaysOff,
+          );
+          final defaultView = _appProvider!.defaultCalendarView;
+          calendarProvider.applyDefaultCalendarView(
+            defaultView,
+            calendarSystem: _appProvider!.calendarSystem,
+          );
+        }
+      };
+      _appProvider!.addListener(_appProviderListener!);
+    });
   }
 
   @override
   void dispose() {
     _scrollController.dispose();
+    if (_appProviderListener != null && _appProvider != null) {
+      _appProvider!.removeListener(_appProviderListener!);
+    }
     super.dispose();
   }
 
@@ -42,6 +73,19 @@ class _HomeScreenState extends State<HomeScreen> {
       if (!appProvider.isInitialized) {
         await appProvider.initialize();
       }
+      
+      // Ensure CalendarProvider is synced with AppProvider's preferences
+      final calendarProvider = context.read<CalendarProvider>();
+      calendarProvider.syncFromAppSettings(
+        calendarSystem: appProvider.calendarSystem,
+        startWeekOn: appProvider.effectiveStartWeekOn,
+        daysOff: appProvider.effectiveDaysOff,
+      );
+      final defaultView = appProvider.defaultCalendarView;
+      calendarProvider.applyDefaultCalendarView(
+        defaultView,
+        calendarSystem: appProvider.calendarSystem,
+      );
       
       AppLogger.info('HomeScreen initialized successfully');
     } catch (e) {
@@ -83,6 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: TBg.home(context),
       body: Consumer2<CalendarProvider, AppProvider>(
         builder: (context, calendarProvider, appProvider, child) {
+          final isPersian = appProvider.language == 'fa';
           // Calculate header height
           final headerHeight = 74.0 + MediaQuery.of(context).padding.top;
           
@@ -113,6 +158,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         // For Gregorian calendar, use standard jumpToToday
                         calendarProvider.jumpToToday();
                       }
+                    },
+                    onLogoPressed: () {
+                      showAboutBottomSheet(
+                        context,
+                        isPersian: isPersian,
+                      );
                     },
                   ),
                 ),
@@ -188,9 +239,11 @@ class _HomeScreenState extends State<HomeScreen> {
     
     // Month days height calculation:
     // - Each week: 36px (cell) + 4px (event indicators) + 8px (spacing) = 48px
+    // - Gap between weeks: 12px (n-1 gaps for n weeks)
     // - Use actual number of weeks, but if week view, only show 1 week
     final int weeksToShow = calendarProvider.isWeekView ? 1 : actualWeeks;
-    final double monthDaysHeight = weeksToShow * 48.0;
+    const double gapBetweenWeeks = 12.0;
+    final double monthDaysHeight = (weeksToShow * 48.0) + ((weeksToShow - 1) * gapBetweenWeeks);
     
     // Bottom padding - less for week view to remove extra space
     final double bottomPadding = calendarProvider.isWeekView ? 8.0 : 16.0;
