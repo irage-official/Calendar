@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/event.dart';
@@ -21,12 +22,28 @@ class UpdateService {
   static const String _lastEventsCheckKey = 'last_events_check';
   static const String _lastEventsVersionKey = 'last_events_version';
 
+  Future<bool> _hasNetworkConnection() async {
+    try {
+      final connectivityResult = await Connectivity().checkConnectivity();
+      if (connectivityResult == ConnectivityResult.none) {
+        AppLogger.info('UpdateService: No network connection, skipping remote calls');
+        return false;
+      }
+      return true;
+    } catch (e) {
+      AppLogger.error('UpdateService: Error checking connectivity', error: e);
+      return false;
+    }
+  }
+
   /// Check if events need update by comparing metadata version
   /// Returns true if events need to be updated
   Future<bool> checkEventsUpdate() async {
+    if (!await _hasNetworkConnection()) {
+      return false;
+    }
     try {
       final prefs = await SharedPreferences.getInstance();
-      final lastCheck = prefs.getString(_lastEventsCheckKey);
       final lastVersion = prefs.getString(_lastEventsVersionKey);
 
       // Fetch events metadata from server
@@ -64,6 +81,9 @@ class UpdateService {
   /// Download updated events from remote
   /// Returns list of events or empty list if download fails
   Future<List<Event>> downloadEvents() async {
+    if (!await _hasNetworkConnection()) {
+      return [];
+    }
     try {
       AppLogger.info('UpdateService: Downloading events from ${AppConfig.eventsUrl}');
       
@@ -93,6 +113,9 @@ class UpdateService {
   /// Check app version update
   /// Returns AppVersion if update is available, null otherwise
   Future<AppVersion?> checkAppVersion() async {
+    if (!await _hasNetworkConnection()) {
+      return null;
+    }
     try {
       final packageInfo = await PackageInfo.fromPlatform();
       final currentVersion = packageInfo.version;

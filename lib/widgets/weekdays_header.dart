@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../config/theme_colors.dart';
 import '../config/theme_roles.dart';
 import '../utils/calendar_utils.dart';
@@ -65,7 +64,7 @@ class WeekdaysHeader extends StatelessWidget {
                       color: TCnt.neutralFourth(context),
                       height: 1.2,
                     )
-                  : GoogleFonts.inter(
+                  : FontHelper.getInter(
                       fontSize: 12.0,
                       fontWeight: FontWeight.w400,
                       color: TCnt.neutralFourth(context),

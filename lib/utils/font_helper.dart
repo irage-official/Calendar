@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 /// Helper class for font management
-/// Uses Google Fonts for Inter (English) and local YekanBakh for Persian
+/// Uses local Inter font (English) and local YekanBakh for Persian
 class FontHelper {
   /// YekanBakh font weight mappings
   /// Thin: 1, Light: 150, Regular: 325, Medium: 390, SemiBold: 450, Bold: 600, ExtraBold: 725, Black: 875, ExtraBlack: 1000
@@ -35,7 +34,7 @@ class FontHelper {
     }
   }
   
-  /// Get Inter font from Google Fonts for English text
+  /// Get Inter font from local assets for English text
   static TextStyle getInter({
     double? fontSize,
     FontWeight? fontWeight,
@@ -43,7 +42,8 @@ class FontHelper {
     double? height,
     double? letterSpacing,
   }) {
-    return GoogleFonts.inter(
+    return TextStyle(
+      fontFamily: 'Inter',
       fontSize: fontSize,
       fontWeight: fontWeight,
       color: color,
@@ -126,10 +126,9 @@ class FontHelper {
   }
   
   /// Get font family string (for cases where you need the string, not TextStyle)
-  /// Note: For Inter, this returns null because GoogleFonts handles it differently
-  /// For YekanBakh, returns 'YekanBakh'
+  /// Returns 'Inter' for English and 'YekanBakh' for Persian
   static String? getFontFamilyString(bool isPersian) {
-    return isPersian ? 'YekanBakh' : null;
+    return isPersian ? 'YekanBakh' : 'Inter';
   }
   
   /// Apply YekanBakh font variations to an existing TextStyle

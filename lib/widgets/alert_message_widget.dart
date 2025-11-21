@@ -4,7 +4,6 @@ import '../config/theme_roles.dart';
 import '../config/app_icons.dart';
 import '../utils/svg_helper.dart';
 import '../utils/font_helper.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 enum AlertType { warning, danger, success, informal }
 
@@ -77,7 +76,7 @@ class AlertMessageWidget extends StatelessWidget {
                             color: TCnt.neutralMain(context),
                             fontWeight: FontWeight.w700,
                           )
-                        : GoogleFonts.inter(
+                        : FontHelper.getInter(
                             fontSize: 15,
                             height: 1.4, // 140%
                             letterSpacing: -0.098, // -0.7% of 14
@@ -109,7 +108,7 @@ class AlertMessageWidget extends StatelessWidget {
                         color: TCnt.neutralSecond(context),
                         fontWeight: FontWeight.w400,
                       )
-                    : GoogleFonts.inter(
+                    : FontHelper.getInter(
                         fontSize: 12,
                         height: 1.6, // 160%
                         letterSpacing: -0.072, // -0.7% of 12

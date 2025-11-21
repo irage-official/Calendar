@@ -605,8 +605,9 @@ class _CalendarBottomSheetWidgetState extends State<CalendarBottomSheetWidget> {
       isWeekView: calendarProvider.isWeekView, // Pass week view state
       visibleWeekIndex: calendarProvider.getWeekIndexOfSelectedDate(calendarSystem: calendarSystem), // Pass visible week index
       shortWeekdays: false, // Use full weekday names (شنبه، ۱شنبه، ۲شنبه، ...) in bottom sheet
-      onDateSelected: (date) async {
+      onDateSelected: (date) {
         // For solar/shahanshahi calendar, use special method to ensure displayedMonth matches solar month
+        // Make this synchronous to avoid blocking UI in Android
         if (calendarSystem == 'solar' || calendarSystem == 'shahanshahi') {
           calendarProvider.setSelectedDateForSolar(date);
         } else {

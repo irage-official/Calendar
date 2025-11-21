@@ -4,7 +4,6 @@ import '../config/theme_colors.dart';
 import '../config/theme_roles.dart';
 import '../utils/font_helper.dart';
 import '../providers/app_provider.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SettingsBottomSheet extends StatelessWidget {
   final String title;
@@ -107,7 +106,7 @@ class SettingsBottomSheet extends StatelessWidget {
                       color: TCnt.neutralMain(context),
                       fontWeight: FontWeight.bold,
                     )
-                  : GoogleFonts.inter(
+                  : FontHelper.getInter(
                       fontSize: 16,
                       height: 1.4,
                       letterSpacing: -0.32, // -2% of 16
@@ -129,7 +128,7 @@ class SettingsBottomSheet extends StatelessWidget {
                         letterSpacing: -0.098, // -0.7% of 14
                         color: TCnt.neutralTertiary(context),
                       )
-                    : GoogleFonts.inter(
+                    : FontHelper.getInter(
                         fontSize: 14,
                         height: 1.6,
                         letterSpacing: -0.098, // -0.7% of 14

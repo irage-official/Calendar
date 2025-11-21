@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import '../config/theme_colors.dart';
 import '../utils/font_helper.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AppToast {
   static OverlayEntry? _currentEntry;
@@ -80,7 +79,7 @@ class _ToastBubble extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                   letterSpacing: -0.084,
                 )
-              : GoogleFonts.inter(
+              : FontHelper.getInter(
                   color: ThemeColors.white,
                   fontSize: 12,
                   height: 1.4,

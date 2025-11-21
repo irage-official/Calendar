@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'theme_colors.dart';
 import 'theme_roles.dart';
 import '../utils/font_helper.dart';
@@ -101,45 +100,51 @@ class AppDimensions {
 }
 
 class AppTextStyles {
-  // English text styles using Google Fonts Inter
-  // Note: These cannot be const because GoogleFonts.inter() is not const
-  static TextStyle get heading1 => GoogleFonts.inter(
+  // English text styles using local Inter font
+  static TextStyle get heading1 => const TextStyle(
+    fontFamily: 'Inter',
     fontSize: 32,
     fontWeight: FontWeight.bold,
     color: LightCnt.neutralMain,
   );
   
-  static TextStyle get heading2 => GoogleFonts.inter(
+  static TextStyle get heading2 => const TextStyle(
+    fontFamily: 'Inter',
     fontSize: 24,
     fontWeight: FontWeight.bold,
     color: LightCnt.neutralMain,
   );
   
-  static TextStyle get heading3 => GoogleFonts.inter(
+  static TextStyle get heading3 => const TextStyle(
+    fontFamily: 'Inter',
     fontSize: 20,
     fontWeight: FontWeight.w600,
     color: LightCnt.neutralMain,
   );
   
-  static TextStyle get bodyLarge => GoogleFonts.inter(
+  static TextStyle get bodyLarge => const TextStyle(
+    fontFamily: 'Inter',
     fontSize: 16,
     fontWeight: FontWeight.normal,
     color: LightCnt.neutralMain,
   );
   
-  static TextStyle get bodyMedium => GoogleFonts.inter(
+  static TextStyle get bodyMedium => const TextStyle(
+    fontFamily: 'Inter',
     fontSize: 14,
     fontWeight: FontWeight.normal,
     color: LightCnt.neutralMain,
   );
   
-  static TextStyle get bodySmall => GoogleFonts.inter(
+  static TextStyle get bodySmall => const TextStyle(
+    fontFamily: 'Inter',
     fontSize: 12,
     fontWeight: FontWeight.normal,
     color: LightCnt.neutralWeak,
   );
   
-  static TextStyle get caption => GoogleFonts.inter(
+  static TextStyle get caption => const TextStyle(
+    fontFamily: 'Inter',
     fontSize: 10,
     fontWeight: FontWeight.normal,
     color: LightCnt.neutralWeak,

@@ -16,7 +16,6 @@ import '../utils/extensions.dart';
 import '../utils/calendar_utils.dart';
 import '../utils/font_helper.dart';
 import '../services/year_cache_service.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CalendarEventsSettingsScreen extends StatefulWidget {
   const CalendarEventsSettingsScreen({super.key});
@@ -225,6 +224,10 @@ class _CalendarEventsSettingsScreenState
           GestureDetector(
             onTap: _hasChanges
                 ? () async {
+                    if (!mounted) return;
+                    
+                    // Capture context and providers before async operations
+                    final navigator = Navigator.of(context);
                     final appProvider =
                         Provider.of<AppProvider>(context, listen: false);
                     final calendarProvider =
@@ -236,6 +239,7 @@ class _CalendarEventsSettingsScreenState
               final finalCalendarSystem = _calendarSystem ?? appProvider.calendarSystem;
               if (calendarSystemWillChange) {
                 await appProvider.setCalendarSystem(_calendarSystem!);
+                if (!mounted) return;
                 // Update initial value after saving
                 _initialCalendarSystem = _calendarSystem;
               }
@@ -243,6 +247,7 @@ class _CalendarEventsSettingsScreenState
               // Save start week on - use default if not set
               final finalStartWeekOn = _startWeekOn ?? _getDefaultStartWeekOn(finalCalendarSystem);
               await appProvider.setStartWeekOn(finalStartWeekOn);
+              if (!mounted) return;
               // Update local state and initial value after saving
               _startWeekOn = finalStartWeekOn;
               _initialStartWeekOn = finalStartWeekOn;
@@ -260,6 +265,7 @@ class _CalendarEventsSettingsScreenState
                 finalDaysOff = _getDefaultDaysOff(finalCalendarSystem);
               }
               await appProvider.setDaysOff(finalDaysOff);
+              if (!mounted) return;
               // Update local state and initial value after saving
               _daysOff = finalDaysOff;
               _initialDaysOff = List<String>.from(finalDaysOff);
@@ -270,6 +276,7 @@ class _CalendarEventsSettingsScreenState
                         appProvider.defaultCalendarView) {
                       await appProvider
                           .setDefaultCalendarView(selectedDefaultView);
+                      if (!mounted) return;
                 calendarProvider.applyDefaultCalendarView(
                   selectedDefaultView,
                   calendarSystem: finalCalendarSystem,
@@ -289,6 +296,7 @@ class _CalendarEventsSettingsScreenState
                     _enabledOrigins!.length == allOrigins.length
                         ? null
                         : _enabledOrigins);
+                if (!mounted) return;
                 _initialEnabledOrigins = List<String>.from(_enabledOrigins!);
               }
               
@@ -300,15 +308,19 @@ class _CalendarEventsSettingsScreenState
                         ? allTypes
                         : _enabledEventTypes!;
                 await appProvider.setEnabledEventTypes(finalTypes);
+                if (!mounted) return;
                 _initialEnabledEventTypes = List<String>.from(finalTypes);
               }
               
               // Reset hasChanges flag after saving
-              setState(() {
-                _hasChanges = false;
-              });
+              if (mounted) {
+                setState(() {
+                  _hasChanges = false;
+                });
+              }
               
-              // Preload years for the new calendar system to improve performance
+              // Preload years for the new calendar system in background (non-blocking)
+              // This should not block navigation
               final yearCacheService = YearCacheService();
               final now = DateTime.now();
               
@@ -327,11 +339,12 @@ class _CalendarEventsSettingsScreenState
                 currentYear = now.year;
               }
               
-              // Preload 10 years before and after current year (same as splash screen)
+              // Preload in background - don't await, just start it
               unawaited(yearCacheService.preloadYears(currentYear, calendarSystem: calendarSystemForPreload));
               
+              // Navigate immediately after saving (don't wait for preload)
               if (mounted) {
-                Navigator.of(context).pop();
+                navigator.pop();
               }
                   }
                 : null,
@@ -353,7 +366,7 @@ class _CalendarEventsSettingsScreenState
                             ? TCnt.brandMain(context)
                             : TCnt.neutralWeak(context),
                       )
-                    : GoogleFonts.inter(
+                    : FontHelper.getInter(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                         color: _hasChanges 
@@ -391,7 +404,7 @@ class _CalendarEventsSettingsScreenState
                     letterSpacing: -0.4, // -2% of 20 = -0.4
                     color: TCnt.neutralMain(context),
                   )
-                : GoogleFonts.inter(
+                : FontHelper.getInter(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     height: 1.6,
@@ -414,7 +427,7 @@ class _CalendarEventsSettingsScreenState
                         ? TCnt.neutralSecond(context).withOpacity(0.8)
                         : TCnt.neutralSecond(context),
                   )
-                : GoogleFonts.inter(
+                : FontHelper.getInter(
                     fontSize: 14,
                     fontWeight: FontWeight.normal,
                     height: 1.6,
@@ -603,7 +616,7 @@ class _CalendarEventsSettingsScreenState
                                   height: 1.4,
                                   letterSpacing: -0.007,
                                 )
-                              : GoogleFonts.inter(
+                              : FontHelper.getInter(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
                                   color: TCnt.neutralMain(context),
@@ -622,7 +635,7 @@ class _CalendarEventsSettingsScreenState
                                   height: 1.4,
                                   letterSpacing: -0.007,
                                 )
-                              : GoogleFonts.inter(
+                              : FontHelper.getInter(
                                   fontSize: 12,
                                   color: TCnt.neutralFourth(context),
                                   height: 1.4,
@@ -752,7 +765,7 @@ class _CalendarEventsSettingsScreenState
                     letterSpacing: -0.24, // -2% of 12 = -0.24
                     color: TCnt.neutralFourth(context),
                   )
-                : GoogleFonts.inter(
+                : FontHelper.getInter(
                     fontSize: 12,
                     fontWeight: FontWeight.normal,
                     height: 1.6,
@@ -798,7 +811,7 @@ class _CalendarEventsSettingsScreenState
                             height: 1.4,
                             letterSpacing: -0.007,
                           )
-                        : GoogleFonts.inter(
+                        : FontHelper.getInter(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
                             color: TCnt.neutralMain(context),
@@ -1356,7 +1369,7 @@ class _CalendarEventsSettingsScreenState
                                 ? TCnt.unsurface(context)
                                 : TCnt.neutralTertiary(context),
                           )
-                        : GoogleFonts.inter(
+                        : FontHelper.getInter(
                             fontSize: 14,
                             height: 1.4, // 140%
                             letterSpacing: -0.098, // -0.7% of 14 = -0.098
@@ -1490,7 +1503,7 @@ class _CalendarEventsSettingsScreenState
                     fontWeight: FontWeight.w400,
                     color: TCnt.neutralMain(context),
                   )
-                : GoogleFonts.inter(
+                : FontHelper.getInter(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                     color: TCnt.neutralMain(context),
@@ -1508,7 +1521,7 @@ class _CalendarEventsSettingsScreenState
                 fontWeight: FontWeight.w600, // semi bold
                 color: TCnt.neutralMain(context),
               )
-            : GoogleFonts.inter(
+            : FontHelper.getInter(
                 fontSize: 14,
                 fontWeight: FontWeight.w600, // semi bold
                 color: TCnt.neutralMain(context),
@@ -1530,7 +1543,7 @@ class _CalendarEventsSettingsScreenState
                   fontWeight: FontWeight.w400,
                   color: TCnt.neutralMain(context),
                 )
-              : GoogleFonts.inter(
+              : FontHelper.getInter(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
                   color: TCnt.neutralMain(context),
@@ -1549,7 +1562,7 @@ class _CalendarEventsSettingsScreenState
                 fontWeight: FontWeight.w400,
                 color: TCnt.neutralMain(context),
               )
-            : GoogleFonts.inter(
+            : FontHelper.getInter(
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
                 color: TCnt.neutralMain(context),

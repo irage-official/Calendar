@@ -13,7 +13,6 @@ import '../utils/svg_helper.dart';
 import '../utils/font_helper.dart';
 import '../services/date_converter_service.dart';
 import '../services/year_cache_service.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 // Custom scroll physics for 50% faster scrolling
 class FastScrollPhysics extends ClampingScrollPhysics {
@@ -614,7 +613,7 @@ class _YearPickerBottomSheetState extends State<YearPickerBottomSheet> {
                                                 fontWeight: FontWeight.w600, // Semibold
                                                 color: TCnt.neutralSecond(context),
                                               )
-                                            : GoogleFonts.inter(
+                                            : FontHelper.getInter(
                                                 fontSize: 14,
                                                 height: 1.4,
                                                 fontWeight: FontWeight.w600, // Semibold
@@ -780,7 +779,7 @@ class _YearBlock extends StatelessWidget {
                 fontWeight: FontWeight.w700,
                 color: highlight ? TCnt.brandMain(context) : TCnt.neutralMain(context),
               )
-            : GoogleFonts.inter(
+            : FontHelper.getInter(
                 fontSize: 24,
                 height: 1.4,
                 letterSpacing: -0.48, // -2%
@@ -946,7 +945,7 @@ class _MiniMonth extends StatelessWidget {
             color: isActiveMonth ? TCnt.brandMain(context) : TCnt.neutralSecond(context),
             fontWeight: FontWeight.w600,
           )
-        : GoogleFonts.inter(
+        : FontHelper.getInter(
             fontSize: 14,
             height: 1.4,
             letterSpacing: -0.28, // -2%
@@ -1099,7 +1098,7 @@ class _MiniMonth extends StatelessWidget {
                                   color: textColor,
                                   fontWeight: textWeight,
                                 )
-                              : GoogleFonts.inter(
+                              : FontHelper.getInter(
                                   fontSize: 9,
                                   height: 1.3,
                                   color: textColor,

@@ -7,7 +7,6 @@ import '../utils/font_helper.dart';
 import '../providers/app_provider.dart';
 import '../providers/calendar_provider.dart';
 import '../models/calendar_data.dart'; // For MonthData
-import 'package:google_fonts/google_fonts.dart';
 
 /// Year view widget showing all 12 months
 class YearViewWidget extends StatelessWidget {
@@ -46,7 +45,7 @@ class YearViewWidget extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                       color: _getYearHeaderColor(context, year, calendarType),
                     )
-                  : GoogleFonts.inter(
+                  : FontHelper.getInter(
                       fontSize: 32,
                       fontWeight: FontWeight.w700,
                       color: _getYearHeaderColor(context, year, calendarType),
@@ -140,7 +139,7 @@ class YearViewWidget extends StatelessWidget {
                               fontWeight: FontWeight.w600,
                               color: isActiveMonth ? TCnt.brandMain(context) : TCnt.neutralSecond(context),
                             )
-                          : GoogleFonts.inter(
+                          : FontHelper.getInter(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
                               color: isActiveMonth ? TCnt.brandMain(context) : TCnt.neutralSecond(context),

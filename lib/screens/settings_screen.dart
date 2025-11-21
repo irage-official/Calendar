@@ -20,7 +20,6 @@ import '../widgets/alert_message_widget.dart';
 import '../widgets/custom_radio_button.dart';
 import '../utils/font_helper.dart';
 import '../utils/svg_helper.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../utils/about_content_helpers.dart';
 import '../widgets/about_bottom_sheet.dart';
 import '../utils/extensions.dart';
@@ -615,18 +614,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                         children: [
                           const TextSpan(text: 'برای محافظت از حریم خصوصی شما، کمک‌های مالی را به کیف پول تتر ('),
-                          TextSpan(text: 'USDT', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
+                          TextSpan(text: 'USDT', style: FontHelper.getInter(fontWeight: FontWeight.bold)),
                           const TextSpan(text: ') ما در شبکه '),
-                          TextSpan(text: 'TRON', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
+                          TextSpan(text: 'TRON', style: FontHelper.getInter(fontWeight: FontWeight.bold)),
                           const TextSpan(text: ' ('),
-                          TextSpan(text: 'TRC20', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
+                          TextSpan(text: 'TRC20', style: FontHelper.getInter(fontWeight: FontWeight.bold)),
                           const TextSpan(text: ') ارسال کنید. هیچ داده شخصی جمع‌آوری نخواهد شد.'),
                         ],
                       ),
                     )
                   : Text.rich(
                       TextSpan(
-                        style: GoogleFonts.inter(
+                        style: FontHelper.getInter(
                           fontSize: 14,
                           height: 1.6,
                           letterSpacing: -0.098,
@@ -635,11 +634,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                         children: [
                           const TextSpan(text: 'To protect your privacy, send contributions to our Tether ('),
-                          TextSpan(text: 'USDT', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
+                          TextSpan(text: 'USDT', style: FontHelper.getInter(fontWeight: FontWeight.bold)),
                           const TextSpan(text: ') wallet on '),
-                          TextSpan(text: 'TRON', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
+                          TextSpan(text: 'TRON', style: FontHelper.getInter(fontWeight: FontWeight.bold)),
                           const TextSpan(text: ' ('),
-                          TextSpan(text: 'TRC20', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
+                          TextSpan(text: 'TRC20', style: FontHelper.getInter(fontWeight: FontWeight.bold)),
                           const TextSpan(text: '). No personal data will be collected.'),
                         ],
                       ),
@@ -1350,14 +1349,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
           isPersian ? 'آپدیت جدید' : 'New Update',
           style: isPersian
               ? FontHelper.getYekanBakh(fontWeight: FontWeight.bold)
-              : GoogleFonts.inter(fontWeight: FontWeight.bold),
+              : FontHelper.getInter(fontWeight: FontWeight.bold),
         ),
         content: SingleChildScrollView(
           child: Text(
             releaseNotes,
             style: isPersian
                 ? FontHelper.getYekanBakh()
-                : GoogleFonts.inter(),
+                : FontHelper.getInter(),
           ),
         ),
         actions: [
@@ -1368,7 +1367,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 isPersian ? 'بعداً' : 'Later',
                 style: isPersian
                     ? FontHelper.getYekanBakh()
-                    : GoogleFonts.inter(),
+                    : FontHelper.getInter(),
               ),
             ),
           TextButton(
@@ -1387,7 +1386,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               isPersian ? 'آپدیت' : 'Update',
               style: isPersian
                   ? FontHelper.getYekanBakh(fontWeight: FontWeight.bold)
-                  : GoogleFonts.inter(fontWeight: FontWeight.bold),
+                  : FontHelper.getInter(fontWeight: FontWeight.bold),
             ),
           ),
         ],

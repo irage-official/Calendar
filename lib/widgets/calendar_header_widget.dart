@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../config/app_icons.dart';
 import '../config/theme_roles.dart';
 import '../providers/app_provider.dart';
@@ -179,7 +178,7 @@ class CalendarHeaderWidget extends StatelessWidget {
               letterSpacing: -0.02,
             );
           } else {
-            return GoogleFonts.inter(
+            return FontHelper.getInter(
               fontSize: 20,
               fontWeight: FontWeight.w700,
               color: TCnt.neutralMain(context),
@@ -200,7 +199,7 @@ class CalendarHeaderWidget extends StatelessWidget {
               letterSpacing: -0.02,
             );
           } else {
-            return GoogleFonts.inter(
+            return FontHelper.getInter(
               fontSize: 20,
               fontWeight: FontWeight.w400,
               color: TCnt.neutralTertiary(context),

@@ -1,7 +1,7 @@
 name: iranian_heritage_calendar
 description: A professional Irage (Iranian Heritage) Calendar app with cross-platform support
 publish_to: 'none'
-version: 1.0.0+1
+version: 0.9.0+1
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -23,9 +23,11 @@ dependencies:
   # UI Components
   flutter_svg: ^2.0.10+1
   cached_network_image: ^3.3.1
+  flutter_cache_manager: ^3.3.1
+  image: ^4.1.7
   
   # Fonts
-  google_fonts: ^6.1.0
+  connectivity_plus: ^6.0.3
   
   # Data Storage
   hive: ^2.2.3
@@ -68,6 +70,9 @@ flutter:
           # Variable Font - weights are controlled via fontVariations in code
           # YekanBakh weights: Thin: 1, Light: 150, Regular: 325, Medium: 390, 
           # SemiBold: 450, Bold: 600, ExtraBold: 725, Black: 875, ExtraBlack: 1000
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter.ttf
 
 flutter_launcher_icons:
   android: true

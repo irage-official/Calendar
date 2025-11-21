@@ -8,7 +8,6 @@ import '../models/event.dart';
 import '../utils/calendar_utils.dart';
 import '../utils/font_helper.dart';
 import '../providers/app_provider.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 /// Display + behavior settings required to render a single day cell.
 class DayWidgetConfig {
@@ -304,7 +303,7 @@ class DayWidget extends StatelessWidget {
                   )
                 : null,
           ),
-          child: Stack(
+      child: Stack(
             alignment: Alignment.center,
             children: [
               Text(
@@ -315,7 +314,7 @@ class DayWidget extends StatelessWidget {
                         fontSize: 15,
                         fontWeight: model.isSelected ? FontWeight.w700 : FontWeight.w500,
                         color: _mainTextColor(context),
-                        height: 1.0,
+                    height: 2.0,
                       )
                     : TextStyle(
                         fontSize: 15,
@@ -327,8 +326,8 @@ class DayWidget extends StatelessWidget {
               ),
               if (model.equivalentLabel != null)
                 Positioned(
-                  top: 2,
-                  right: model.isSelected ? 4 : 2,
+                  top: 3,
+                  right: model.isSelected ? 4 : 3,
                   child: Text(
                     model.equivalentLabel!,
                     style: isPersian
@@ -338,7 +337,7 @@ class DayWidget extends StatelessWidget {
                             color: _equivalentTextColor(context),
                             height: 1.0,
                           )
-                        : GoogleFonts.inter(
+                        : FontHelper.getInter(
                             fontSize: 8,
                             fontWeight: FontWeight.w500,
                             color: _equivalentTextColor(context),

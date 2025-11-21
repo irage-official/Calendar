@@ -8,7 +8,6 @@ import '../providers/app_provider.dart';
 import '../services/date_converter_service.dart';
 import '../utils/calendar_utils.dart';
 import '../utils/font_helper.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HeaderWidget extends StatelessWidget {
   final VoidCallback onTodayPressed;
@@ -78,7 +77,7 @@ class HeaderWidget extends StatelessWidget {
                                 height: 1.4, /* 42px */
                                 letterSpacing: -0.6,
                               )
-                            : GoogleFonts.inter(
+                            : FontHelper.getInter(
                                 fontSize: 30,
                                 fontWeight: FontWeight.w800,
                                 color: TCnt.neutralMain(context),
@@ -104,7 +103,7 @@ class HeaderWidget extends StatelessWidget {
                                       color: TCnt.neutralSecond(context),
                                       height: 1.4,
                                     )
-                                  : GoogleFonts.inter(
+                                  : FontHelper.getInter(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w400,
                                       color: TCnt.neutralSecond(context),
@@ -125,7 +124,7 @@ class HeaderWidget extends StatelessWidget {
                                           color: TCnt.neutralTertiary(context),
                                           height: 1.4,
                                         )
-                                      : GoogleFonts.inter(
+                                      : FontHelper.getInter(
                                           fontSize: 14,
                                           fontWeight: FontWeight.w400,
                                           color: TCnt.neutralTertiary(context),

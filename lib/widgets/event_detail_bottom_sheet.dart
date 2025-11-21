@@ -8,12 +8,12 @@ import '../config/theme_colors.dart';
 import '../config/theme_roles.dart';
 import '../config/app_icons.dart';
 import '../services/date_converter_service.dart';
+import '../services/image_cache_service.dart';
 import '../utils/calendar_utils.dart';
 import '../utils/svg_helper.dart';
 import '../utils/font_helper.dart';
 import '../providers/app_provider.dart';
 import '../widgets/alert_message_widget.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class EventDetailBottomSheet extends StatefulWidget {
   final Event event;
@@ -109,7 +109,7 @@ class _EventDetailBottomSheetState extends State<EventDetailBottomSheet> {
                       height: 1.4,
                       letterSpacing: -0.28, // -2% of 14px
                     )
-                  : GoogleFonts.inter(
+                  : FontHelper.getInter(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                       color: TCnt.neutralSecond(context),
@@ -135,7 +135,7 @@ class _EventDetailBottomSheetState extends State<EventDetailBottomSheet> {
                       height: 1.4,
                       letterSpacing: -0.084, // -0.7% of 12px
                     )
-                  : GoogleFonts.inter(
+                  : FontHelper.getInter(
                       fontSize: 12,
                       fontWeight: FontWeight.normal,
                       color: TCnt.neutralTertiary(context),
@@ -181,7 +181,7 @@ class _EventDetailBottomSheetState extends State<EventDetailBottomSheet> {
                               height: 1.4,
                               letterSpacing: -0.28, // -2% of 14px
                             )
-                          : GoogleFonts.inter(
+                          : FontHelper.getInter(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: ThemeColors.primary500,
@@ -199,19 +199,23 @@ class _EventDetailBottomSheetState extends State<EventDetailBottomSheet> {
   }
 
   /// Build network image widget with proper error handling
+  /// Uses compressed cache manager to reduce storage size
   Widget _buildNetworkImage(String imageUrl, BuildContext context) {
     return CachedNetworkImage(
       key: ValueKey('image_${_imageRetryKey}_$imageUrl'),
       imageUrl: imageUrl,
       fit: BoxFit.cover,
+      cacheManager: CompressedImageCacheManager.getInstance(),
       httpHeaders: const {
         'Accept': 'image/*',
         'User-Agent': 'Mozilla/5.0',
       },
-      memCacheWidth: 1200,
-      memCacheHeight: 800,
-      maxWidthDiskCache: 1200,
-      maxHeightDiskCache: 800,
+      // Reduced memory cache size for better performance
+      memCacheWidth: 800,
+      memCacheHeight: 600,
+      // Reduced disk cache size to save storage (images will be compressed)
+      maxWidthDiskCache: 800,
+      maxHeightDiskCache: 600,
       fadeInDuration: const Duration(milliseconds: 300),
       fadeOutDuration: const Duration(milliseconds: 100),
       placeholder: (context, url) => Container(
@@ -264,34 +268,34 @@ class _EventDetailBottomSheetState extends State<EventDetailBottomSheet> {
       
       // Special combinations for natural Persian
       final specialCombinations = {
-        'iranian_historical': 'تاریخی ایران',
-        'iranian_anniversary': 'سالگرد ایران',
+        'iranian_historical': 'تاریخ ایران',
+        'iranian_anniversary': 'سالگرد ایرانی',
         'iranian_celebration': 'جشن ایرانی',
-        'iranian_awareness': 'همبستگی ایرانی',
+        'iranian_awareness': 'آکاهی و همبستگی ایرانی',
         'iranian_memorial': 'یادبود ایرانی',
-        'iranian_holiday': 'تعطیل ایرانی',
+        'iranian_holiday': 'تعطیلات ایرانی',
         'iranian_observance': 'مراسم ایرانی',
         'international_celebration': 'جشن بین المللی',
-        'international_awareness': 'همبستگی بین المللی',
+        'international_awareness': 'آگاهی و همبستگی بین المللی',
         'international_memorial': 'یادبود بین المللی',
-        'international_holiday': 'تعطیل بین المللی',
+        'international_holiday': 'تعطیلات بین المللی',
         'international_observance': 'مراسم بین المللی',
         'international_anniversary': 'سالگرد بین المللی',
-        'international_historical': 'تاریخی بین المللی',
+        'international_historical': 'تاریخ بین المللی',
         'mixed_anniversary': 'سالگرد مشترک',
         'mixed_celebration': 'جشن مشترک',
-        'mixed_awareness': 'همبستگی مشترک',
+        'mixed_awareness': 'آکاهی و همبستگی مشترک',
         'mixed_memorial': 'یادبود مشترک',
         'mixed_holiday': 'تعطیل مشترک',
         'mixed_observance': 'مراسم مشترک',
-        'mixed_historical': 'تاریخی مشترک',
+        'mixed_historical': 'تاریخ مشترک',
         'local_anniversary': 'سالگرد محلی',
         'local_celebration': 'جشن محلی',
-        'local_awareness': 'همبستگی محلی',
+        'local_awareness': 'آکاهی و همبستگی محلی',
         'local_memorial': 'یادبود محلی',
         'local_holiday': 'تعطیل محلی',
         'local_observance': 'مراسم محلی',
-        'local_historical': 'تاریخی محلی',
+        'local_historical': 'تاریخ محلی',
       };
       
       final key = '${originKey}_${typeKey}';
@@ -482,7 +486,7 @@ class _EventDetailBottomSheetState extends State<EventDetailBottomSheet> {
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(16),
                                     child: AspectRatio(
-                                      aspectRatio: 3 / 2,
+                                      aspectRatio: 3 / 2.2,
                                       child: Container(
                                         width: double.infinity,
                                         decoration: BoxDecoration(
@@ -634,7 +638,7 @@ class _EventDetailBottomSheetState extends State<EventDetailBottomSheet> {
                           color: originColor,
                           fontWeight: FontWeight.w500,
                         )
-                      : GoogleFonts.inter(
+                      : FontHelper.getInter(
                           fontSize: 12,
                           height: 1.4,
                           letterSpacing: -0.084, // -0.7% of 12
@@ -687,7 +691,7 @@ class _EventDetailBottomSheetState extends State<EventDetailBottomSheet> {
                   color: TCnt.neutralMain(context),
                   fontWeight: FontWeight.w700,
                 )
-              : GoogleFonts.inter(
+              : FontHelper.getInter(
                   fontSize: 20,
                   height: 1.4, // 140%
                   letterSpacing: -0.4, // -2% of 20
@@ -707,7 +711,7 @@ class _EventDetailBottomSheetState extends State<EventDetailBottomSheet> {
                   letterSpacing: -0.084, // -0.7% of 12
                   color: TCnt.neutralFourth(context),
                 )
-              : GoogleFonts.inter(
+              : FontHelper.getInter(
                   fontSize: 12,
                   height: 1.4, // 140%
                   letterSpacing: -0.084, // -0.7% of 12
@@ -735,7 +739,7 @@ class _EventDetailBottomSheetState extends State<EventDetailBottomSheet> {
               letterSpacing: -0.098, // -0.7% of 14
               color: TCnt.neutralSecond(context),
             )
-          : GoogleFonts.inter(
+          : FontHelper.getInter(
               fontSize: 14,
               height: 1.6, // 160%
               letterSpacing: -0.098, // -0.7% of 14
@@ -815,7 +819,7 @@ class _EventDetailBottomSheetState extends State<EventDetailBottomSheet> {
                     letterSpacing: -0.084, // -0.7% of 12
                     color: TCnt.neutralFourth(context),
                   )
-                : GoogleFonts.inter(
+                : FontHelper.getInter(
                     fontSize: 12,
                     height: 1.4, // 140%
                     letterSpacing: -0.084, // -0.7% of 12
@@ -838,7 +842,7 @@ class _EventDetailBottomSheetState extends State<EventDetailBottomSheet> {
                           color: TCnt.neutralMain(context),
                           fontWeight: FontWeight.w700,
                         )
-                      : GoogleFonts.inter(
+                      : FontHelper.getInter(
                           fontSize: 14,
                           height: 1.4, // 140%
                           letterSpacing: -0.28, // -2% of 14
@@ -856,7 +860,7 @@ class _EventDetailBottomSheetState extends State<EventDetailBottomSheet> {
                             letterSpacing: -0.084, // -0.7% of 12
                             color: TCnt.neutralFourth(context),
                           )
-                        : GoogleFonts.inter(
+                        : FontHelper.getInter(
                             fontSize: 12,
                             height: 1.4, // 140%
                             letterSpacing: -0.084, // -0.7% of 12

@@ -3,7 +3,6 @@ import '../config/constants.dart';
 import '../config/theme_roles.dart';
 import '../utils/svg_helper.dart';
 import '../utils/font_helper.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class EmptyStateWidget extends StatelessWidget {
   final bool isPersian;
@@ -58,7 +57,7 @@ class EmptyStateWidget extends StatelessWidget {
                       height: 1.4,
                       letterSpacing: -0.28, // -2% of 14px
                     )
-                  : GoogleFonts.inter(
+                  : FontHelper.getInter(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                       color: TCnt.neutralMain(context),
@@ -82,7 +81,7 @@ class EmptyStateWidget extends StatelessWidget {
                       height: 1.4,
                       letterSpacing: -0.084, // -0.7% of 12px
                     )
-                  : GoogleFonts.inter(
+                  : FontHelper.getInter(
                       fontSize: 12,
                       fontWeight: FontWeight.normal,
                       color: TCnt.neutralTertiary(context),

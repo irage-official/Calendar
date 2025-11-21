@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../config/theme_colors.dart';
 import '../config/theme_roles.dart';
 import '../config/app_icons.dart';
@@ -230,7 +229,7 @@ class _ContentBottomSheetState extends State<ContentBottomSheet> {
                           color: TCnt.neutralMain(context),
                           fontWeight: FontWeight.w800,
                         )
-                      : GoogleFonts.inter(
+                      : FontHelper.getInter(
                           fontSize: 20,
                           height: 1.0,
                           letterSpacing: -0.44,
@@ -291,7 +290,7 @@ class _ContentBottomSheetState extends State<ContentBottomSheet> {
                             color: TCnt.neutralMain(context),
                             fontWeight: FontWeight.w800,
                           )
-                        : GoogleFonts.inter(
+                        : FontHelper.getInter(
                             fontSize: 20,
                             height: 1.6,
                             letterSpacing: -0.44,
@@ -331,7 +330,7 @@ class _ContentBottomSheetState extends State<ContentBottomSheet> {
                     letterSpacing: -0.098,
                     color: TCnt.neutralTertiary(context),
                   )
-                : GoogleFonts.inter(
+                : FontHelper.getInter(
                     fontSize: 14,
                     height: 1.6,
                     letterSpacing: -0.098,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../config/theme_colors.dart';
 import '../config/theme_roles.dart';
 import '../config/app_icons.dart';
@@ -48,7 +47,7 @@ class CustomRadioButton extends StatelessWidget {
           color: color ?? TCnt.neutralMain(context),
         );
       } else {
-        return GoogleFonts.inter(
+        return FontHelper.getInter(
           fontSize: 14,
           height: 1.4,
           letterSpacing: -0.007,
@@ -123,7 +122,7 @@ class CustomRadioButton extends StatelessWidget {
                     fontWeight: FontWeight.w400, // Regular
                     color: TCnt.neutralTertiary(context),
                   )
-                : GoogleFonts.inter(
+                : FontHelper.getInter(
                     fontSize: 14,
                     height: 1.4, // 140% line height
                     letterSpacing: -0.007, // -0.7% letter spacing

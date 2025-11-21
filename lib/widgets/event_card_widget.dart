@@ -10,7 +10,6 @@ import '../providers/calendar_provider.dart';
 import '../providers/app_provider.dart';
 import '../utils/calendar_utils.dart';
 import '../utils/font_helper.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 /// Event card widget for displaying event information
 class EventCard extends StatelessWidget {
@@ -59,34 +58,34 @@ class EventCard extends StatelessWidget {
       
       // Special combinations for natural Persian
       final specialCombinations = {
-        'iranian_historical': 'تاریخی ایران',
-        'iranian_anniversary': 'سالگرد ایران',
+        'iranian_historical': 'تاریخ ایران',
+        'iranian_anniversary': 'سالگرد ایرانی',
         'iranian_celebration': 'جشن ایرانی',
-        'iranian_awareness': 'همبستگی ایرانی',
+        'iranian_awareness': 'آکاهی و همبستگی ایرانی',
         'iranian_memorial': 'یادبود ایرانی',
-        'iranian_holiday': 'تعطیل ایرانی',
+        'iranian_holiday': 'تعطیلات ایرانی',
         'iranian_observance': 'مراسم ایرانی',
         'international_celebration': 'جشن بین المللی',
-        'international_awareness': 'همبستگی بین المللی',
+        'international_awareness': 'آگاهی و همبستگی بین المللی',
         'international_memorial': 'یادبود بین المللی',
-        'international_holiday': 'تعطیل بین المللی',
+        'international_holiday': 'تعطیلات بین المللی',
         'international_observance': 'مراسم بین المللی',
         'international_anniversary': 'سالگرد بین المللی',
-        'international_historical': 'تاریخی بین المللی',
+        'international_historical': 'تاریخ بین المللی',
         'mixed_anniversary': 'سالگرد مشترک',
         'mixed_celebration': 'جشن مشترک',
-        'mixed_awareness': 'همبستگی مشترک',
+        'mixed_awareness': 'آکاهی و همبستگی مشترک',
         'mixed_memorial': 'یادبود مشترک',
         'mixed_holiday': 'تعطیل مشترک',
         'mixed_observance': 'مراسم مشترک',
-        'mixed_historical': 'تاریخی مشترک',
+        'mixed_historical': 'تاریخ مشترک',
         'local_anniversary': 'سالگرد محلی',
         'local_celebration': 'جشن محلی',
-        'local_awareness': 'همبستگی محلی',
+        'local_awareness': 'آکاهی و همبستگی محلی',
         'local_memorial': 'یادبود محلی',
         'local_holiday': 'تعطیل محلی',
         'local_observance': 'مراسم محلی',
-        'local_historical': 'تاریخی محلی',
+        'local_historical': 'تاریخ محلی',
       };
       
       final key = '${originKey}_${typeKey}';
@@ -139,6 +138,7 @@ class EventCard extends StatelessWidget {
         final calendarProvider = Provider.of<CalendarProvider>(context, listen: false);
         calendarProvider.minimizeCalendar();
         
+        // Use unawaited to avoid blocking UI thread in Android
         showModalBottomSheet(
           context: context,
           backgroundColor: Colors.transparent,
@@ -231,7 +231,7 @@ class EventCard extends StatelessWidget {
                                       height: 1.4,
                                       letterSpacing: -0.084, // -0.7% of 12
                                     )
-                                  : GoogleFonts.inter(
+                                  : FontHelper.getInter(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w400,
                                       color: TCnt.neutralTertiary(context),
@@ -269,14 +269,14 @@ class EventCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: isPersian
                           ? FontHelper.getYekanBakh(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.w700,
                               color: TCnt.neutralMain(context),
                               height: 1.2,
                               letterSpacing: -0.32, // -2% of 16
                             )
-                          : GoogleFonts.inter(
-                              fontSize: 16,
+                          : FontHelper.getInter(
+                              fontSize: 14,
                               fontWeight: FontWeight.w700,
                               color: TCnt.neutralMain(context),
                               height: 1.2,
@@ -307,7 +307,7 @@ class EventCard extends StatelessWidget {
                                   height: 1.6,
                                   letterSpacing: -0.084, // -0.7% of 12
                                 )
-                              : GoogleFonts.inter(
+                              : FontHelper.getInter(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
                                   color: TCnt.neutralSecond(context).withOpacity(isDark ? 0.75 : 1.0),
