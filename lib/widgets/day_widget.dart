@@ -77,6 +77,7 @@ class DayWidgetModel {
     required this.isCurrentMonth,
     required this.isOffDay,
     required this.eventIndicatorColors,
+    required this.usePersianFontForEquivalent,
   });
 
   final String mainLabel;
@@ -86,6 +87,7 @@ class DayWidgetModel {
   final bool isCurrentMonth;
   final bool isOffDay;
   final List<Color> eventIndicatorColors;
+  final bool usePersianFontForEquivalent;
 }
 
 /// Builder that merges Gregorian/Solar logic into one place.
@@ -120,6 +122,7 @@ class DayWidgetBuilder {
       isCurrentMonth: isCurrentMonth,
       isOffDay: isOffDay,
       eventIndicatorColors: eventColors,
+      usePersianFontForEquivalent: labels.usePersianFontForEquivalent,
     );
   }
 
@@ -168,14 +171,23 @@ class DayWidgetBuilder {
         ? CalendarUtils.englishToPersianDigits(mainDigits)
         : mainDigits;
 
-    // Keep Gregorian equivalent digits in English when viewing Solar/Shahanshahi,
-    // but convert to Persian when the base calendar is Gregorian and the UI is Persian.
-    final bool convertEquivalentToPersian = isLanguagePersian && !isSolar;
+    // Convert equivalent label to Persian digits:
+    // 1. When viewing Gregorian calendar and UI is Persian
+    // 2. When viewing Gregorian calendar and UI is English (equivalent should be Persian)
+    final bool convertEquivalentToPersian = !isSolar;
     final String equivalentLabel = convertEquivalentToPersian
         ? CalendarUtils.englishToPersianDigits(equivalentDigits)
         : equivalentDigits;
+    
+    // Use Persian font for equivalent label when:
+    // - Viewing Gregorian calendar (regardless of UI language)
+    final bool usePersianFontForEquivalent = !isSolar;
 
-    return _DayLabels(main: mainLabel, equivalent: equivalentLabel);
+    return _DayLabels(
+      main: mainLabel, 
+      equivalent: equivalentLabel,
+      usePersianFontForEquivalent: usePersianFontForEquivalent,
+    );
   }
 
   static List<Color> _buildEventColors(DayWidgetConfig config) {
@@ -265,10 +277,15 @@ class DayWidgetBuilder {
 }
 
 class _DayLabels {
-  const _DayLabels({required this.main, required this.equivalent});
+  const _DayLabels({
+    required this.main, 
+    required this.equivalent,
+    required this.usePersianFontForEquivalent,
+  });
 
   final String main;
   final String equivalent;
+  final bool usePersianFontForEquivalent;
 }
 
 /// Unified widget for rendering a single day item.
@@ -330,7 +347,7 @@ class DayWidget extends StatelessWidget {
                   right: model.isSelected ? 4 : 3,
                   child: Text(
                     model.equivalentLabel!,
-                    style: isPersian
+                    style: model.usePersianFontForEquivalent
                         ? FontHelper.getYekanBakh(
                             fontSize: 8,
                             fontWeight: FontWeight.w500,
