@@ -201,11 +201,6 @@ class EventService {
     return originColors.toList();
   }
 
-  /// Clear cache (useful for testing or when data needs to be reloaded)
-  void clearCache() {
-    _cachedEvents = null;
-  }
-
   /// Clear all cache including SharedPreferences (for updates)
   Future<void> clearAllCache() async {
     try {
