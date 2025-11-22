@@ -62,7 +62,7 @@ class EventProvider extends ChangeNotifier {
 
   /// Reload events (clear cache and reload)
   Future<void> reload() async {
-    _eventService.clearCache();
+    await _eventService.clearAllCache();
     _isInitialized = false;
     await initialize();
   }

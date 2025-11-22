@@ -205,5 +205,17 @@ class EventService {
   void clearCache() {
     _cachedEvents = null;
   }
+
+  /// Clear all cache including SharedPreferences (for updates)
+  Future<void> clearAllCache() async {
+    try {
+      _cachedEvents = null;
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.remove('cached_events');
+      AppLogger.info('EventService: Cleared all cache (in-memory and SharedPreferences)');
+    } catch (e) {
+      AppLogger.error('EventService: Error clearing all cache', error: e);
+    }
+  }
 }
 

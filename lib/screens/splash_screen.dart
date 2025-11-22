@@ -60,6 +60,8 @@ class _SplashScreenState extends State<SplashScreen> {
           final newEvents = await updateService.downloadEvents();
           if (newEvents.isNotEmpty) {
             final eventService = EventService.instance;
+            // Clear all cache before saving new events
+            await eventService.clearAllCache();
             await eventService.saveEvents(newEvents);
             // Reload events in provider
             await context.read<EventProvider>().reload();
