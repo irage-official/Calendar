@@ -162,7 +162,7 @@ class EventCard extends StatelessWidget {
             color: TBr.neutralTertiary(context).withOpacity(0.6),
             width: 1,
           ),
-          borderRadius: BorderRadius.circular(18),
+          borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.03),

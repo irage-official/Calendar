@@ -486,7 +486,7 @@ class _EventDetailBottomSheetState extends State<EventDetailBottomSheet> {
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(16),
                                     child: AspectRatio(
-                                      aspectRatio: 3 / 2.2,
+                                      aspectRatio: 3 / 2.37,
                                       child: Container(
                                         width: double.infinity,
                                         decoration: BoxDecoration(

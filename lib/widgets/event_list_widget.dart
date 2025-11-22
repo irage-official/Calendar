@@ -21,6 +21,7 @@ class EventListWidget extends StatefulWidget {
 class _EventListWidgetState extends State<EventListWidget> {
   final ScrollController _scrollController = ScrollController();
   bool _isScrolled = false;
+  bool _canScroll = false;
 
   @override
   void initState() {
@@ -36,10 +37,22 @@ class _EventListWidgetState extends State<EventListWidget> {
   }
 
   void _onScroll() {
-    final isScrolled = _scrollController.hasClients && _scrollController.offset > 0;
-    if (isScrolled != _isScrolled) {
+    _checkScrollState();
+  }
+
+  void _checkScrollState() {
+    if (!_scrollController.hasClients) return;
+    
+    // Check if content can actually scroll (has overflow)
+    final canScroll = _scrollController.position.maxScrollExtent > 0;
+    
+    // Only show gradient if content can scroll AND user has scrolled
+    final isScrolled = canScroll && _scrollController.offset > 0;
+    
+    if (isScrolled != _isScrolled || canScroll != _canScroll) {
       setState(() {
         _isScrolled = isScrolled;
+        _canScroll = canScroll;
       });
     }
   }
@@ -48,6 +61,11 @@ class _EventListWidgetState extends State<EventListWidget> {
   Widget build(BuildContext context) {
     return Consumer3<EventProvider, CalendarProvider, AppProvider>(
       builder: (context, eventProvider, calendarProvider, appProvider, child) {
+        // Check scroll state after layout changes (e.g., when calendar bottom sheet state changes)
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _checkScrollState();
+        });
+        
         final selectedDate = calendarProvider.selectedDate;
         final language = appProvider.language;
         final isPersian = language == 'fa';
