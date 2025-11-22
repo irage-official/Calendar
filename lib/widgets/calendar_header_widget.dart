@@ -172,7 +172,7 @@ class CalendarHeaderWidget extends StatelessWidget {
           if (usePersianFont) {
             return FontHelper.getYekanBakh(
               fontSize: 20,
-              fontWeight: FontWeight.w700,
+              fontWeight: FontWeight.w700, 
               color: TCnt.neutralMain(context),
               height: 1.4,
               letterSpacing: -0.02,
@@ -193,7 +193,7 @@ class CalendarHeaderWidget extends StatelessWidget {
           if (usePersianFont) {
             return FontHelper.getYekanBakh(
               fontSize: 20,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w600, 
               color: TCnt.neutralTertiary(context),
               height: 1.4,
               letterSpacing: -0.02,
@@ -201,7 +201,7 @@ class CalendarHeaderWidget extends StatelessWidget {
           } else {
             return FontHelper.getInter(
               fontSize: 20,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w600,
               color: TCnt.neutralTertiary(context),
               height: 1.4,
               letterSpacing: -0.02,

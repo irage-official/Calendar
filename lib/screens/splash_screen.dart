@@ -25,8 +25,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  bool _isLoading = true;
-
   @override
   void initState() {
     super.initState();
@@ -43,9 +41,6 @@ class _SplashScreenState extends State<SplashScreen> {
       
       // Get current language from AppProvider
       final appProvider = context.read<AppProvider>();
-      final currentLanguage = appProvider.language;
-      // Normalize language: 'fa' -> 'fa', everything else -> 'en'
-      final normalizedLanguage = currentLanguage == 'fa' ? 'fa' : 'en';
       
       // Check for events update
       final updateService = UpdateService.instance;
@@ -123,7 +118,6 @@ class _SplashScreenState extends State<SplashScreen> {
       }
       
       if (mounted) {
-        setState(() => _isLoading = false);
         // Navigate to home screen
         Navigator.of(context).pushReplacementNamed('/home');
       }

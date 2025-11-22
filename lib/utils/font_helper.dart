@@ -16,14 +16,12 @@ class FontHelper {
       case FontWeight.w300:
         return 150; // Light
       case FontWeight.w400:
-      case FontWeight.normal:
         return 325; // Regular
       case FontWeight.w500:
         return 390; // Medium
       case FontWeight.w600:
         return 450; // SemiBold
       case FontWeight.w700:
-      case FontWeight.bold:
         return 600; // Bold
       case FontWeight.w800:
         return 725; // ExtraBold
@@ -48,14 +46,12 @@ class FontHelper {
       case FontWeight.w300:
         return 300.0;
       case FontWeight.w400:
-      case FontWeight.normal:
         return 400.0;
       case FontWeight.w500:
         return 500.0;
       case FontWeight.w600:
         return 600.0;
       case FontWeight.w700:
-      case FontWeight.bold:
         return 700.0;
       case FontWeight.w800:
         return 800.0;
