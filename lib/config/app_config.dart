@@ -4,7 +4,7 @@ class AppConfig {
   
   // GitHub Raw URLs for updates (replace with your actual repository)
   // Format: https://raw.githubusercontent.com/username/repo/branch/path
-  static const String githubRawBase = 'https://raw.githubusercontent.com/irage-official/iranian-heritage/main/data';
+  static const String githubRawBase = 'https://raw.githubusercontent.com/irage-official/Calendar/main/data';
   
   // Update endpoints
   static const String eventsUrl = '$githubRawBase/events.json';

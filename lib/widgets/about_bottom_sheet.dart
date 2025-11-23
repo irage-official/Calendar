@@ -492,7 +492,7 @@ void showAboutBottomSheet(BuildContext context, {required bool isPersian}) {
                           context: context,
                           iconPath: AppIcons.github,
                           onTap: () async {
-                            final Uri uri = Uri.parse('https://github.com/irage-official/iranian-heritage');
+                            final Uri uri = Uri.parse('https://github.com/irage-official/Calendar');
                             if (await canLaunchUrl(uri)) {
                               await launchUrl(uri, mode: LaunchMode.externalApplication);
                             }
