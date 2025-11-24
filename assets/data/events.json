@@ -1634,7 +1634,7 @@
   {
     "id": "128",
     "source": "system",
-    "type": "observance",
+    "type": "celebration",
     "origin": "international",
     "image": null,
     "title": {
@@ -1694,7 +1694,7 @@
   {
     "id": "129",
     "source": "system",
-    "type": "holiday",
+    "type": "celebration",
     "origin": "international",
     "image": null,
     "title": {
@@ -2294,7 +2294,7 @@
   {
     "id": "139",
     "source": "system",
-    "type": "observance",
+    "type": "celebration",
     "origin": "international",
     "image": null,
     "title": {
@@ -2956,7 +2956,7 @@
   {
     "id": "150",
     "source": "system",
-    "type": "observance",
+    "type": "celebration",
     "origin": "international",
     "image": null,
     "title": {
@@ -3196,7 +3196,7 @@
   {
     "id": "154",
     "source": "system",
-    "type": "holiday",
+    "type": "celebration",
     "origin": "international",
     "image": null,
     "title": {
@@ -4096,7 +4096,7 @@
   {
     "id": "169",
     "source": "system",
-    "type": "observance",
+    "type": "celebration",
     "origin": "international",
     "image": null,
     "title": {
@@ -4276,7 +4276,7 @@
   {
     "id": "172",
     "source": "system",
-    "type": "holiday",
+    "type": "celebration",
     "origin": "international",
     "image": null,
     "title": {
@@ -4396,7 +4396,7 @@
   {
     "id": "174",
     "source": "system",
-    "type": "holiday",
+    "type": "celebration",
     "origin": "international",
     "image": null,
     "title": {
@@ -4936,7 +4936,7 @@
   {
     "id": "183",
     "source": "system",
-    "type": "observance",
+    "type": "celebration",
     "origin": "international",
     "image": null,
     "title": {
@@ -5116,7 +5116,7 @@
   {
     "id": "186",
     "source": "system",
-    "type": "observance",
+    "type": "celebration",
     "origin": "international",
     "image": null,
     "title": {
@@ -5656,7 +5656,7 @@
   {
     "id": "195",
     "source": "system",
-    "type": "holiday",
+    "type": "celebration",
     "origin": "international",
     "image": null,
     "title": {
@@ -5896,7 +5896,7 @@
   {
     "id": "199",
     "source": "system",
-    "type": "observance",
+    "type": "celebration",
     "origin": "international",
     "image": null,
     "title": {
@@ -5956,7 +5956,7 @@
   {
     "id": "200",
     "source": "system",
-    "type": "observance",
+    "type": "celebration",
     "origin": "international",
     "image": null,
     "title": {
@@ -6016,7 +6016,7 @@
   {
     "id": "201",
     "source": "system",
-    "type": "holiday",
+    "type": "celebration",
     "origin": "international",
     "image": null,
     "title": {
@@ -6076,7 +6076,7 @@
   {
     "id": "202",
     "source": "system",
-    "type": "holiday",
+    "type": "celebration",
     "origin": "international",
     "image": null,
     "title": {
@@ -6196,7 +6196,7 @@
   {
     "id": "204",
     "source": "system",
-    "type": "observance",
+    "type": "celebration",
     "origin": "iranian",
     "image": null,
     "title": {
@@ -6496,7 +6496,7 @@
   {
     "id": "209",
     "source": "system",
-    "type": "observance",
+    "type": "celebration",
     "origin": "iranian",
     "image": null,
     "title": {
@@ -6916,7 +6916,7 @@
   {
     "id": "216",
     "source": "system",
-    "type": "observance",
+    "type": "celebration",
     "origin": "iranian",
     "image": null,
     "title": {
@@ -7516,7 +7516,7 @@
   {
     "id": "226",
     "source": "system",
-    "type": "observance",
+    "type": "celebration",
     "origin": "iranian",
     "image": null,
     "title": {
@@ -8056,7 +8056,7 @@
   {
     "id": "235",
     "source": "system",
-    "type": "observance",
+    "type": "celebration",
     "origin": "iranian",
     "image": null,
     "title": {
@@ -8476,7 +8476,7 @@
   {
     "id": "242",
     "source": "system",
-    "type": "observance",
+    "type": "celebration",
     "origin": "iranian",
     "image": null,
     "title": {
@@ -11296,7 +11296,7 @@
   {
     "id": "289",
     "source": "system",
-    "type": "religious",
+    "type": "celebration",
     "origin": "iranian",
     "image": null,
     "title": {
@@ -11596,7 +11596,7 @@
   {
     "id": "294",
     "source": "system",
-    "type": "religious",
+    "type": "celebration",
     "origin": "iranian",
     "image": null,
     "title": {
@@ -11656,7 +11656,7 @@
   {
     "id": "295",
     "source": "system",
-    "type": "religious",
+    "type": "celebration",
     "origin": "iranian",
     "image": null,
     "title": {
@@ -12562,8 +12562,8 @@
       "fa": "آغاز اعتراضات جنبش سبز"
     },
     "description": {
-      "fa": "۲۳ خرداد ۱۳۸۸ روزی بود که میلیون‌ها نفر به تقلب انتخاباتی اعتراض کردند و خیابان‌های تهران و شهرهای بزرگ با شعار «رأی من کو» پر شد.",
-      "en": "On 13 June 2009, millions of Iranians poured into Tehran and other cities to reject the disputed presidential election, launching what became known as the Green Movement."
+      "fa": "۲۳ خرداد ۱۳۸۸ هم‌زمان با اعلام نتایج بحث‌برانگیز انتخابات ریاست‌جمهوری، خیابان‌های تهران، اصفهان، شیراز و تبریز مملو از مردمی شد که با دستبند سبز و پلاکارد «رأی من کو؟» به تقلب انتخاباتی اعتراض داشتند. دانشجویان، هنرمندان و خانواده‌های عادی شانه‌به‌شانه حرکت کردند و سکوت خبری را با تصاویر تلفن همراه شکستند.\n\nاین اعتراضات که با راهپیمایی میلیونی آغاز شد، در روزهای بعد به تحصن‌های شبانه، شعارنویسی و تشکیل زنجیره‌های انسانی کشیده شد و برای نخستین بار پس از سال‌ها، ایده مقاومت مدنی سراسری را زنده کرد؛ میراثی که بعدتر در اعتراضات آبان ۹۸ و «زن، زندگی، آزادی» تکرار شد.",
+      "en": "On 13 June 2009, immediately after the disputed presidential results were announced, the streets of Tehran, Isfahan, Shiraz, and Tabriz were filled with people wearing green wristbands and holding “Where is my vote?” placards. Students, artists, and ordinary families marched shoulder to shoulder, breaking the information blockade with cellphone footage.\n\nThe demonstrations quickly evolved into nightly sit-ins, human chains, and walls of slogans, reviving the idea of nationwide civil resistance for the first time in years—a legacy that later echoed in the Aban 2019 protests and the Woman, Life, Freedom uprising."
     },
     "significance": {
       "fa": "اعتراضات جنبش سبز سرکوب ساختاری جمهوری اسلامی را آشکار کرد و الهام‌بخش جنبش‌های بعدی از جمله «زن، زندگی، آزادی» شد.",
@@ -12614,7 +12614,7 @@
   {
     "id": "311",
     "source": "system",
-    "type": "remembrance",
+    "type": "memorial",
     "origin": "iranian",
     "image": null,
     "title": {
@@ -12622,8 +12622,8 @@
       "fa": "جان‌باختن ندا آقا سلطان"
     },
     "description": {
-      "fa": "۳۰ خرداد ۱۳۸۸ ندا آقا سلطان در تظاهرات خیابانی تهران با شلیک مأموران امنیتی کشته شد و تصویر جان‌باختن او به نماد اعتراض بدل شد.",
-      "en": "On 20 June 2009, Neda Agha-Soltan was shot dead by security forces during a Tehran protest, and footage of her final moments shocked the world."
+      "fa": "۳۰ خرداد ۱۳۸۸ ندا آقا سلطان در حوالی خیابان کارگر شمالی تهران و در میان ازدحام معترضان با گلوله‌ای که از سمت نیروهای سرکوب شلیک شد نقش زمین شد. دوستانش تلاش کردند با فریاد و فشار بر زخم جانش را نجات دهند اما تصاویر لحظه جان‌دادن او ظرف چند دقیقه به نماد سرکوب جنبش سبز بدل شد.\n\nاین ویدیو در حالی جهان را تکان داد که خانواده ندا اجازه برگزاری مراسم آزادانه نیافتند و قبر او زیر فشار امنیتی مراقبت می‌شد. یاد او هر سال با روایت مادران داغدار و درخواست دادخواهی زنده می‌ماند و روایتگر بهایی است که شهروندان برای مطالبه رأی خود پرداختند.",
+      "en": "On 20 June 2009, Neda Agha-Soltan collapsed near Tehran’s Kargar Street after a bullet fired from the direction of security forces pierced her chest. Friends desperately tried to stop the bleeding, but the video of her final breaths traveled the world within minutes and became the defining symbol of the Green Movement’s repression.\n\nWhile global outrage spread, her family was denied a public funeral and security forces guarded her grave. Each year her name is invoked by grieving mothers and justice-seekers, reminding the world of the price citizens paid for defending their votes."
     },
     "significance": {
       "fa": "کشته شدن ندا نشانه خشونت حکومتی در جنبش سبز بود و هنوز به عنوان نمادی از مبارزه مدنی علیه جمهوری اسلامی یاد می‌شود.",
@@ -12682,8 +12682,8 @@
       "fa": "اعتراضات دانشجویی ۱۸ تیر"
     },
     "description": {
-      "fa": "در ۱۸ تیر ۱۳۷۸ یورش نیروهای امنیتی به کوی دانشگاه تهران موجی از اعتراضات دانشجویی و مدنی را در سراسر کشور برانگیخت.",
-      "en": "On 9 July 1999, security forces raided the Tehran University dormitories, sparking nationwide student demonstrations for freedom of expression."
+      "fa": "۴ بامداد ۱۸ تیر ۱۳۷۸ نیروهای ویژه با لباس‌های سیاه به کوی دانشگاه تهران یورش بردند، درها را شکستند، دانشجویان را از تخت بیرون کشیدند و کتاب‌ها و عکس‌های شخصی را آتش زدند. خبر ضرب‌وشتم و پرتاب دانشجویان از پنجره‌ها برق‌آسا منتشر شد و دانشگاه‌های تبریز، مشهد و شیراز نیز به خیابان آمدند.\n\nموج اعتراضات شش روز ادامه یافت؛ دانشجویان با شعار «دانشجو می‌میرد، ذلت نمی‌پذیرد» خیابان امیرآباد را بستند و با مردم محله‌های اطراف پیوند خوردند. سرکوب خونین آن روز، نخستین هشدار جدی درباره سازمان‌یافتگی خشونت حکومتی بود و مسیر مبارزه مدنی بعدی را ترسیم کرد.",
+      "en": "At 4 a.m. on 9 July 1999, special forces in black uniforms stormed the Tehran University dorms, smashing doors, dragging students out of bed, and burning books and personal photos. Reports of beatings and students thrown from windows spread like wildfire, inspiring universities in Tabriz, Mashhad, and Shiraz to rise as well.\n\nFor six days, students blocked Tehran’s Amirabad Street with the chant “Students die but never surrender,” forging a bond with surrounding neighborhoods. The brutal crackdown served as the first major warning about organized state violence and mapped the road for later waves of civil resistance."
     },
     "significance": {
       "fa": "۱۸ تیر نخستین هشدار جدی نسبت به سرکوب سازمان‌یافته جمهوری اسلامی بود و نسل‌های بعدی معترض را به مقاومت مدنی تشویق کرد.",
@@ -12734,7 +12734,7 @@
   {
     "id": "313",
     "source": "system",
-    "type": "remembrance",
+    "type": "memorial",
     "origin": "iranian",
     "image": null,
     "title": {
@@ -12742,8 +12742,8 @@
       "fa": "فوت زهرا کاظمی در بازداشت"
     },
     "description": {
-      "fa": "۲۰ تیر ۱۳۸۲ خبرنگار-عکاس ایرانی‌کانادایی، زهرا کاظمی، پس از بازداشت در تهران زیر شکنجه جان باخت و پرونده او ابعاد تازه‌ای از خشونت حکومتی را آشکار کرد.",
-      "en": "On 11 July 2003, Iranian-Canadian photojournalist Zahra Kazemi died under torture after being detained in Tehran, revealing another layer of state violence."
+      "fa": "۲۰ تیر ۱۳۸۲ زهرا کاظمی، خبرنگار و عکاس ایرانی‌کانادایی، هنگام ثبت تصاویر مادرانی که مقابل زندان اوین برای دیدار فرزندانشان صف کشیده بودند بازداشت شد. او در بازجویی‌های ادامه‌دار مورد ضرب‌وشتم قرار گرفت و با جمجمه شکسته و خونریزی داخلی به بیمارستان بقیةالله منتقل شد.\n\nیک هفته بعد مسئولان تنها خبر فوت او را به خانواده اعلام کردند و اجازه کالبدشکافی مستقل ندادند. پرونده‌ای که ابتدا با انکار آغاز شد، پرده از شبکه شکنجه و اعتراف‌گیری اجباری برداشت و به نمادی برای سرکوب رسانه‌ها و تهدید خبرنگاران مستقل بدل شد.",
+      "en": "On 11 July 2003, Zahra Kazemi—an Iranian-Canadian photojournalist—was detained while photographing families waiting outside Evin Prison. Continuous interrogations turned violent; she suffered a fractured skull, internal bleeding, and was rushed to Baghiatollah Hospital.\n\nA week later officials merely informed her family of her death and blocked any independent autopsy. The case, initially denied, exposed the machinery of torture and forced confessions and became a symbol of media repression and the perils facing independent journalists."
     },
     "significance": {
       "fa": "مرگ زهرا کاظمی نشان داد سرکوب رسانه‌ای و اعتراف‌گیری اجباری ستون سیاست امنیتی جمهوری اسلامی است.",
@@ -12802,8 +12802,8 @@
       "fa": "اعتراضات آب خوزستان"
     },
     "description": {
-      "fa": "۳۰ تیر ۱۴۰۰ مردم خوزستان در اعتراض به کمبود آب و مدیریت فاجعه‌بار منابع، شب‌های متوالی خیابان‌ها را در شهرهایی چون اهواز و حمیدیه در دست گرفتند.",
-      "en": "On 21 July 2021, Khuzestan residents filled the streets of Ahvaz, Hamidiyeh, and other towns to decry catastrophic water shortages and mismanagement."
+      "fa": "۳۰ تیر ۱۴۰۰ مردم اهواز، سوسنگرد، شادگان و شهرهای کوچک خوزستان در گرمای طاقت‌فرسا با بطری‌های خالی و شعار «آب یعنی زندگی» به خیابان آمدند. گلوله‌های جنگی و گاز اشک‌آور پاسخ خواسته ساده آنها—دسترسی به آب آشامیدنی—بود و تصاویر گل‌آلود کارون خشک در شبکه‌های اجتماعی دست‌به‌دست شد.\n\nاعتراضات بیش از یک هفته ادامه یافت و در کنار مطالبه آب، از حق تعیین سرنوشت و پایان تبعیض قومی نیز می‌گفت. این خیزش زیست‌محیطی نشان داد بی‌عدالتی منابع طبیعی مستقیماً به اعتراضات سیاسی پیوند می‌خورد و شعله خشم بعدها در «زن، زندگی، آزادی» مشتعل‌تر شد.",
+      "en": "On 21 July 2021, residents of Ahvaz, Susangerd, Shadegan, and smaller Khuzestan towns marched in unbearable heat with empty bottles chanting “Water is life.” Live ammunition and tear gas answered their basic demand—drinkable water—while images of the mud-clogged Karun River flooded social media.\n\nFor more than a week the protests expanded beyond water, voicing demands for self-determination and an end to ethnic discrimination. This environmental uprising proved that resource injustice is inseparable from political dissent and foreshadowed the fury that later ignited the Woman, Life, Freedom movement."
     },
     "significance": {
       "fa": "اعتراضات آب ادامه همان خشم ساختاری علیه جمهوری اسلامی بود که بعدتر در جنبش «زن، زندگی، آزادی» نیز تکرار شد.",
@@ -12854,7 +12854,7 @@
   {
     "id": "315",
     "source": "system",
-    "type": "remembrance",
+    "type": "memorial",
     "origin": "iranian",
     "image": null,
     "title": {
@@ -12862,8 +12862,8 @@
       "fa": "ترور شاپور بختیار"
     },
     "description": {
-      "fa": "۱۵ مرداد ۱۳۷۰ آخرین نخست‌وزیر رژیم پهلوی و چهره شاخص اپوزیسیون، شاپور بختیار، در پاریس به دست عوامل جمهوری اسلامی ترور شد.",
-      "en": "On 6 August 1991, Shapour Bakhtiar—the last prime minister before the revolution and a leading opposition figure—was assassinated in Paris by agents linked to the Islamic Republic."
+      "fa": "۱۵ مرداد ۱۳۷۰ مأموران نفوذی جمهوری اسلامی با هویت جعلی وارد منزل شاپور بختیار در حومه پاریس شدند، محافظ او را خلع‌سلاح کردند و او را با ضربات چاقو به قتل رساندند. بختیار که آخرین نخست‌وزیر رژیم پهلوی و منتقد سرسخت جمهوری اسلامی بود سال‌ها تحت مراقبت پلیس فرانسه زندگی می‌کرد.\n\nقتل او موجی از سوگ و خشم را در میان مخالفان برانگیخت و نشان داد شبکه ترور برون‌مرزی تا قلب اروپا پیش می‌رود. این جنایت، زمینه افشای «قتل‌های زنجیره‌ای» و مطالبه امنیت برای فعالان تبعیدی را فراهم کرد.",
+      "en": "On 6 August 1991, agents linked to the Islamic Republic infiltrated Shapour Bakhtiar’s suburban Paris home, disarmed his bodyguard, and stabbed him to death. Bakhtiar, the last prime minister under the Shah and a fierce critic of the new regime, had lived under French police protection for years.\n\nHis assassination triggered grief and outrage among dissidents and proved that the regime’s extraterritorial terror network could reach the heart of Europe. The killing foreshadowed the “chain murders” scandal and fueled demands for protection of exiled activists."
     },
     "significance": {
       "fa": "ترور بختیار ادامه سیاست حذف فیزیکی مخالفان بود که بعدها در قتل‌های زنجیره‌ای و سرکوب معترضان از جمله «زن، زندگی، آزادی» تکرار شد.",
@@ -12914,7 +12914,7 @@
   {
     "id": "316",
     "source": "system",
-    "type": "remembrance",
+    "type": "memorial",
     "origin": "iranian",
     "image": null,
     "title": {
@@ -12922,8 +12922,8 @@
       "fa": "اعدام نوید افکاری"
     },
     "description": {
-      "fa": "۲۲ شهریور ۱۳۹۹ کشتی‌گیر معترض شیرازی، نوید افکاری، با اعترافات گرفته‌شده زیر شکنجه اعدام شد و خانواده او حق وداع نیافتند.",
-      "en": "On 12 September 2020, Shiraz wrestler and protester Navid Afkari was executed after coerced confessions, denied final visitation with his family."
+      "fa": "۲۲ شهریور ۱۳۹۹ نوید افکاری، کشتی‌گیر ۲۷ ساله شیرازی، پس از بازداشت در اعتراضات مرداد ۱۳۹۷ و تحمل شکنجه‌های طولانی به اعدام محکوم شد. او در مکاتباتش نوشت برای گرفتن اعتراف ساختگی بارها در سلول انفرادی و زیر ضربات کابل قرار گرفته است.\n\nصبح اعدام، خانواده را از ملاقات آخر محروم کردند و تنها تماس کوتاهی به او دادند تا برای همیشه خداحافظی کند. مرگش موج جهانی محکومیت را برانگیخت و ورزشکاران و نهادهای حقوق بشری جمهوری اسلامی را به قتل فراقضایی متهم کردند—روایتی که همچنان در قلب جنبش‌های اعتراضی زنده است.",
+      "en": "On 12 September 2020, 27-year-old wrestler Navid Afkari was executed after being arrested during the August 2018 protests and enduring months of torture. In letters smuggled from prison, he described long stretches in solitary confinement and cable beatings used to coerce a fabricated confession.\n\nOn execution day his family was denied a final visit; he was granted only a brief call to say goodbye. The hanging sparked a global outcry as athletes and human-rights groups accused the Islamic Republic of extrajudicial killing—a narrative that still beats at the heart of Iran’s protest movements."
     },
     "significance": {
       "fa": "اعدام نوید به جرم حضور در اعتراضات نشان داد که جمهوری اسلامی برای ترساندن نسل معترض حتی قهرمانان ورزشی را قربانی می‌کند و این روایت مستقیماً به شعار «زن، زندگی، آزادی» پیوند خورد.",
@@ -12974,16 +12974,16 @@
   {
     "id": "317",
     "source": "system",
-    "type": "remembrance",
+    "type": "memorial",
     "origin": "iranian",
     "image": null,
     "title": {
       "en": "Killing of Mahsa (Jina) Amini",
-      "fa": "قتل مهسا (ژینا) امینی"
+      "fa": "جان‌باختن و قتل حکومتی مهسا (ژینا) امینی"
     },
     "description": {
-      "fa": "۲۵ شهریور ۱۴۰۱ مهسا (ژینا) امینی پس از بازداشت توسط گشت ارشاد به دلیل پوشش، در بازداشتگاه پلیس امنیت اخلاقی جان باخت و موجی جهانی از خشم ایجاد شد.",
-      "en": "On 16 September 2022, Mahsa (Jina) Amini died in morality police custody after being arrested for her clothing, igniting global outrage."
+      "fa": "۲۵ شهریور ۱۴۰۱ مهسا (ژینا) امینی، دختر ۲۲ ساله کردستانی، سه روز پس از بازداشت توسط گشت ارشاد در تهران با جمجمه متورم و بدن کبود به بیمارستان کسری منتقل شد و جان داد. روایت‌های شاهدان از ضربات باتوم در ون و بی‌خبری خانواده، خشم عمومی را شعله‌ور کرد.\n\nتصاویر تشییع پیکر او در سقز و شعار «زن، زندگی، آزادی» در مراسم خاکسپاری، به سرعت به زبان مشترک اعتراضات بدل شد. نام مهسا اکنون به معنای مقاومت علیه خشونت ساختارمند علیه زنان و مطالبه عدالت برای همه قربانیان سرکوب است.",
+      "en": "On 16 September 2022, 22-year-old Kurdish woman Mahsa (Jina) Amini died at Tehran’s Kasra Hospital three days after morality police beat her in a van, leaving her with a swollen skull and bruised body. Eyewitness accounts of batons and the family’s frantic search fueled public outrage.\n\nFootage from her funeral in Saqqez, where mourners chanted “Woman, Life, Freedom,” quickly became the common language of nationwide protests. Mahsa’s name now signifies resistance to systemic violence against women and a demand for justice for all victims of state repression."
     },
     "significance": {
       "fa": "جان‌باختن مهسا جرقه اعتراضات «زن، زندگی، آزادی» شد و نشان داد سرکوب جمهوری اسلامی علیه زنان چگونه به مقاومت جمعی تبدیل می‌شود.",
@@ -13042,8 +13042,8 @@
       "fa": "آغاز اعتراضات زن، زندگی، آزادی"
     },
     "description": {
-      "fa": "۲۶ شهریور ۱۴۰۱ شهرهای ایران از سقز تا تهران و سنندج با شعار «زن، زندگی، آزادی» به خیابان آمدند و اعتراضات فراگیر علیه قتل مهسا امینی شکل گرفت.",
-      "en": "On 17 September 2022, from Saqqez to Tehran and Sanandaj, people chanted \"Woman, Life, Freedom\" and launched nationwide protests against Mahsa Amini's killing."
+      "fa": "۲۶ شهریور ۱۴۰۱ تنها یک روز پس از خاکسپاری مهسا امینی، شهر سقز شاهد راهپیمایی‌ای شد که زنان با کشف حجاب و مردان با سپر انسانی از آنها محافظت کردند. شعله اعتراض در تهران، سنندج، مشهد و حتی شهرهای کوچک شعله‌ور شد و شعار «زن، زندگی، آزادی» در هر کوچه تکرار گردید.\n\nاین خیزش به سرعت شبکه‌ای از اعتصاب‌های دانشجویی، تحصن هنرمندان و حمایت ایرانیان مهاجر را شکل داد. حضور نسل Z، جوانان حاشیه‌نشین و مادران دادخواه نشان داد که مبارزه تنها سیاسی نیست؛ روایت زندگی روزمره در برابر ماشین سرکوب است.",
+      "en": "On 17 September 2022, a day after Mahsa Amini’s burial, women in Saqqez marched unveiled while men formed human shields around them. Flames of protest spread to Tehran, Sanandaj, Mashhad, and even remote towns as “Woman, Life, Freedom” echoed down every alley.\n\nThe uprising quickly forged networks of student strikes, artist sit-ins, and diaspora solidarity. Generation Z, marginalized youth, and grieving mothers joined forces, proving the struggle is more than politics—it is a battle to reclaim everyday life from the machinery of oppression."
     },
     "significance": {
       "fa": "این خیزش فصلی تازه از مبارزه با جمهوری اسلامی بود که مطالبات زنان، اقوام و نسل Z را در یک جنبش مشترک گرد آورد.",
@@ -13094,16 +13094,16 @@
   {
     "id": "319",
     "source": "system",
-    "type": "remembrance",
+    "type": "memorial",
     "origin": "iranian",
-    "image": null,
+    "image": "https://www.arabnews.com/sites/default/files/styles/n_670_395/public/2022/10/07/3481086-1136604859.jpg?itok=5tFQV1tv",
     "title": {
       "en": "Killing of Nika Shakarami",
-      "fa": "جان‌باختن نیکا شاکرمی"
+      "fa": "جان‌باختن و قتل حکومتی نیکا شاکرمی"
     },
     "description": {
-      "fa": "۱ مهر ۱۴۰۱ نیکا شاکرمی، نوجوان هنرمند تهرانی، پس از حضور در اعتراضات زن، زندگی، آزادی ربوده شد و پیکر او با آثار ضرب‌وشتم پیدا شد.",
-      "en": "On 23 September 2022, teenage artist Nika Shakarami disappeared after joining Woman, Life, Freedom protests in Tehran; her body later showed signs of severe beating."
+      "fa": "۱ مهر ۱۴۰۱ نیکا شاکرمی پس از حضور در تجمع خیابان انقلاب تهران ناپدید شد و نه روز بعد خانواده‌اش پیکر کبود و شکسته او را تحویل گرفتند. نیکا که عاشق طراحی و موسیقی بود، آخرین بار در تماس کوتاه به خاله‌اش گفت «دارم می‌دوم» و تماس قطع شد.\n\nخانواده تحت فشار مجبور شدند پیکر را در خرم‌آباد و مخفیانه به خاک بسپارند و حتی مراسم ترحیمشان به خشونت کشیده شد. داستان نیکا یادآور سرنوشت دختران معترضی است که برای رؤیای آزادی، بهایی تلخ پرداختند.",
+      "en": "On 23 September 2022, Nika Shakarami vanished after joining demonstrations on Tehran’s Enghelab Street; nine days later her family was handed her bruised, broken body. A budding artist who loved drawing and music, she told her aunt in a brief final call, “I’m running,” before the line went dead.\n\nSecurity forces forced the family to bury her quietly in Khorramabad and even disrupted the mourning ceremony. Nika’s story epitomizes the fate of defiant young women who paid the ultimate price for the dream of freedom."
     },
     "significance": {
       "fa": "قتل نیکا نمادی از خشونت جمهوری اسلامی علیه دختران معترض بود و یاد او در روایت اصلی جنبش زن، زندگی، آزادی زنده مانده است.",
@@ -13154,16 +13154,16 @@
   {
     "id": "320",
     "source": "system",
-    "type": "remembrance",
+    "type": "memorial",
     "origin": "iranian",
     "image": null,
     "title": {
       "en": "Killing of Sarina Esmailzadeh",
-      "fa": "جان‌باختن سارینا اسماعیل‌زاده"
+      "fa": "جان‌باختن و قتل حکومتی سارینا اسماعیل‌زاده"
     },
     "description": {
-      "fa": "۲ مهر ۱۴۰۱ سارینا اسماعیل‌زاده، نوجوان کرجی، در جریان اعتراضات زن، زندگی، آزادی با ضربات متعدد باتوم نیروهای سرکوب کشته شد.",
-      "en": "On 24 September 2022, teenager Sarina Esmailzadeh from Karaj died after security forces brutally beat her during Woman, Life, Freedom protests."
+      "fa": "۲ مهر ۱۴۰۱ سارینا اسماعیل‌زاده، نوجوان ۱۶ ساله کرجی، پس از ضبط ویدیوهای شوخ‌طبعانه در شبکه‌های اجتماعی به تظاهرات خیابان گوهر دشت پیوست. شاهدان می‌گویند نیروهای یگان ویژه او را با باتوم از پشت‌بام تعقیب کرده و با ضربات پی‌درپی کشتند؛ در حالی که روایت رسمی سقوط از ارتفاع بود.\n\nخانواده را وادار کردند تحت مراقبت امنیتی در گورستان بهشت سکینه دفنش کنند و رسانه‌ها اجازه انتشار عکس‌های واقعی زخم‌هایش را نیافتند. نام سارینا اکنون نماد صدای پرشور نسل Z است که حتی طنز و ویدیوهای روزمره‌شان به جرم معترض بودن سرکوب شد.",
+      "en": "On 24 September 2022, 16-year-old Sarina Esmailzadeh left her playful social-media videos behind and joined protests in Karaj’s Gohardasht district. Witnesses reported riot police chasing her across rooftops and beating her to death with batons, while officials falsely claimed she fell.\n\nHer family was forced to bury her under surveillance at Behesht-e Sakineh cemetery, and journalists were blocked from showing the real injuries. Sarina’s name now stands for the spirited voices of Generation Z, whose humor and daily videos were crushed simply because they protested."
     },
     "significance": {
       "fa": "مرگ سارینا نشان داد نسل Z نیز در مبارزه علیه جمهوری اسلامی هزینه می‌دهد و صدای او در کنار مهسا و نیکا شنیده می‌شود.",
@@ -13214,7 +13214,7 @@
   {
     "id": "321",
     "source": "system",
-    "type": "remembrance",
+    "type": "memorial",
     "origin": "iranian",
     "image": null,
     "title": {
@@ -13222,8 +13222,8 @@
       "fa": "سالگرد جان‌باختن کیانوش سنجری"
     },
     "description": {
-      "fa": "۷ مهر یادآور درگذشت کیانوش سنجری، خبرنگار و فعال جنبش سبز است که پس از سال‌ها تبعید و فشار امنیتی در غربت جان باخت.",
-      "en": "7 Mehr marks the passing of Kianoosh Sanjari, a Green Movement journalist and activist who died in exile after years of state harassment."
+      "fa": "۷ مهر یادآور درگذشت کیانوش سنجری، خبرنگار و وبلاگ‌نویس جنبش سبز است که سال‌ها میان زندان و تبعید سرگردان بود و در نهایت در ایالات متحده بر اثر عوارض روحی و جسمی ناشی از شکنجه جان داد. او گزارش‌های دست اولی از اعتراضات ۸۸ و خشونت بازداشتگاه کهریزک منتشر می‌کرد و چندین بار به سلول انفرادی افتاد.\n\nمرگ او در غربت نشان داد هزینه پیگیری حقیقت تنها به زندان محدود نیست؛ فرسایش روانی و دوری از وطن نیز بخشی از بهای مقاومت است. یاد سنجری پلی است میان جنبش سبز و «زن، زندگی، آزادی» و یادآور این حقیقت است که روایت‌گران نیز قربانیان خاموش سرکوب‌اند.",
+      "en": "7 Mehr commemorates the passing of Kianoosh Sanjari, a Green Movement journalist and blogger who spent years bouncing between prison and exile before dying in the United States from trauma inflicted by torture. He provided firsthand reports on the 2009 protests and the abuses inside Kahrizak detention center, enduring multiple spells in solitary.\n\nHis death in exile shows that the cost of pursuing truth is not limited to jail-time; psychological erosion and forced separation from home are part of the toll. Sanjari’s memory bridges the Green Movement and Woman, Life, Freedom, reminding us that storytellers themselves become silent victims of repression."
     },
     "significance": {
       "fa": "زندگی و مرگ سنجری ادامه‌دار بودن هزینه مبارزه با جمهوری اسلامی را یادآور می‌شود و پیوندی با اعتراضات «زن، زندگی، آزادی» برقرار می‌کند.",
@@ -13274,7 +13274,7 @@
   {
     "id": "322",
     "source": "system",
-    "type": "remembrance",
+    "type": "memorial",
     "origin": "iranian",
     "image": null,
     "title": {
@@ -13282,8 +13282,8 @@
       "fa": "مرگ ستار بهشتی در بازداشت"
     },
     "description": {
-      "fa": "۱۳ آبان ۱۳۹۱ کارگر وبلاگ‌نویس، ستار بهشتی، تنها چند روز پس از بازداشت توسط پلیس فتا بر اثر شکنجه جان باخت.",
-      "en": "On 3 November 2012, worker-blogger Sattar Beheshti died under torture just days after being detained by Iran's cyber police."
+      "fa": "۱۳ آبان ۱۳۹۱ ستار بهشتی، کارگر ساده و وبلاگ‌نویس، توسط پلیس فتا دستگیر شد چون در نوشته‌هایش از فساد و فشار اقتصادی حرف زده بود. تنها چهار روز بعد پیکر کبود و متورم او را با آثار کابل و دست‌بند به خانواده تحویل دادند و مسئولان علت مرگ را «شوک» اعلام کردند.\n\nهم‌بندی‌هایش شهادت دادند که در اتاق بازجویی با دست‌بند قپانی و ضربات مشت و لگد شکنجه شده است. پرونده ستار به نماد شکنجه سیستماتیک در بازداشتگاه‌های امنیتی بدل شد و مادرش هنوز با عبارت «پسرم را پس بدهید» عدالت می‌طلبد.",
+      "en": "On 3 November 2012, Sattar Beheshti—a working-class blogger—was arrested by Iran’s cyber police for posts about corruption and economic hardship. Four days later his family received his swollen, bruised body, bearing cable marks and handcuff cuts, while officials blamed “shock.”\n\nCellmates testified that interrogators tortured him with “ghapani” shackling and relentless punches and kicks. Sattar’s case became the emblem of systematic torture inside security detention centers, and his mother still pleads for justice with the words “Give me back my son.”"
     },
     "significance": {
       "fa": "ستار به جرم نوشتن از عدالت اجتماعی کشته شد و پرونده‌اش در حافظه اعتراضات، از جنبش سبز تا زن، زندگی، آزادی زنده است.",
@@ -13342,8 +13342,8 @@
       "fa": "آغاز اعتراضات سراسری آبان ۹۸"
     },
     "description": {
-      "fa": "۲۴ آبان ۱۳۹۸ مردم ایران پس از افزایش ناگهانی قیمت بنزین به خیابان‌ها آمدند و اعتراضات گسترده با سرکوب خونین روبه‌رو شد.",
-      "en": "On 15 November 2019, Iranians flooded the streets to oppose sudden fuel price hikes, triggering nationwide protests that were met with mass killings."
+      "fa": "۲۴ آبان ۱۳۹۸ پس از اعلام ناگهانی سه‌برابر شدن قیمت بنزین، اعتراض‌ها در اهواز و سیرجان شروع شد و ظرف چند ساعت به صدها شهر گسترش یافت. اینترنت سراسری برای سه روز قطع شد تا ابعاد سرکوب پنهان بماند، اما گزارش‌ها از صدها کشته و هزاران بازداشتی حکایت داشت.\n\nمعترضان علاوه بر گرانی، علیه فساد ساختاری شعار دادند و در برخی شهرها مراکز حکومتی هدف خشم قرار گرفت. آبان ۹۸ به عنوان یکی از خونین‌ترین اعتراضات تاریخ معاصر ایران ثبت شد و خانواده‌های قربانیان—از پویا بختیاری تا بنیتا—به ستون‌های جنبش دادخواهی بدل شدند.",
+      "en": "On 15 November 2019, after gasoline prices tripled overnight, protests began in Ahvaz and Sirjan and spread to hundreds of towns within hours. Authorities shut down the national internet for three days to conceal the crackdown, yet reports revealed hundreds killed and thousands arrested.\n\nDemonstrators denounced systemic corruption alongside price hikes, and in several cities government buildings became targets of rage. Aban 2019 stands as one of the bloodiest uprisings in modern Iran; families of the slain—such as Pouya Bakhtiari—have since become pillars of the justice-seeking movement."
     },
     "significance": {
       "fa": "آبان ۹۸ با صدها جان‌باخته، الگوی اعتراضات معیشتی-سیاسی را شکل داد و زمینه ذهنی جنبش زن، زندگی، آزادی را فراهم کرد.",
@@ -13394,16 +13394,16 @@
   {
     "id": "324",
     "source": "system",
-    "type": "remembrance",
+    "type": "memorial",
     "origin": "iranian",
     "image": null,
     "title": {
       "en": "Killing of Mahshad Shahidi",
-      "fa": "قتل مهشاد شهیدی"
+      "fa": "قتل حکومتی مهشاد شهیدی"
     },
     "description": {
-      "fa": "۵ آبان ۱۴۰۱ مهشاد شهیدی، سرآشپز جوان اراکی، هنگام پیوستن به اعتراضات زن، زندگی، آزادی بازداشت و با ضرب‌وشتم کشته شد.",
-      "en": "On 27 October 2022, chef Mahshad Shahidi from Arak was detained while joining Woman, Life, Freedom rallies and died from severe beatings."
+      "fa": "۵ آبان ۱۴۰۱ مهشاد شهیدی، سرآشپز و داوطلب خیریه در اراک، هنگام پیوستن به تجمعات «زن، زندگی، آزادی» بازداشت شد. همان شب خبر رسید که در بازداشتگاه نیروی انتظامی بر اثر ضربات متعدد به سر و صورت جان باخته و خانواده را مجبور کردند جنازه را شبانه دفن کنند.\n\nدوستانش روایت کردند که او برای تهیه غذا به کودکان کار کمک می‌کرد و روزهای منتهی به مرگش در پخش خوراک برای معترضان مشارکت داشت. قتل مهشاد نشان داد خشونت سرکوب تنها متوجه فعالان شناخته شده نیست و هر صدای همدل می‌تواند هدف شود.",
+      "en": "On 27 October 2022, Mahshad Shahidi—a chef and charity volunteer in Arak—was arrested while joining the Woman, Life, Freedom rallies. That same night she died in police custody from heavy blows to her head and face, and her family was forced to bury her quietly.\n\nFriends recalled her as someone who cooked for child laborers and supplied meals to protesters in the days before her death. Mahshad’s killing proved that state violence targets not only prominent activists but every compassionate voice standing with the movement."
     },
     "significance": {
       "fa": "مرگ مهشاد نشان داد اعتراضات زن، زندگی، آزادی محدود به پایتخت نبود و هر شهروندی به دلیل مخالفت با جمهوری اسلامی در خطر است.",
@@ -13454,16 +13454,16 @@
   {
     "id": "325",
     "source": "system",
-    "type": "remembrance",
+    "type": "memorial",
     "origin": "iranian",
     "image": null,
     "title": {
       "en": "Killing of Kian Pirfalak",
-      "fa": "قتل کیان پیرفلک"
+      "fa": "جان‌باختن و قتل حکومتی کیان پیرفلک"
     },
     "description": {
-      "fa": "۲۵ آبان ۱۴۰۱ کیان پیرفلک، کودک ۹ ساله ایذه‌ای، هنگام بازگشت به خانه در تیراندازی نیروهای سرکوب زن، زندگی، آزادی جان باخت.",
-      "en": "On 16 November 2022, nine-year-old Kian Pirfalak was shot dead in Izeh while returning home as security forces attacked Woman, Life, Freedom protesters."
+      "fa": "۲۵ آبان ۱۴۰۱ کیان پیرفلک همراه خانواده‌اش از مسیر منتهی به میدان ایذه می‌گذشت که نیروهای سرکوب به سمت خودروها تیراندازی کردند. گلوله‌ها شیشه ماشین را شکست و کودک ۹ ساله در آغوش مادرش جان داد؛ پدر و برادرش نیز زخمی شدند.\n\nمراسم خاکسپاری کیان با شعر مشهور او «قایق من چوبی است» به سرود جمعی تبدیل شد و مادرش با صدای لرزان گفت «به ما گفتند تیر نخورد، اما خودم دیدم». مرگ او نماد بی‌پروایی سرکوب در برابر کودکان شد و موج تازه‌ای از همبستگی ملی برانگیخت.",
+      "en": "On 16 November 2022, Kian Pirfalak was in a car with his family heading toward Izeh’s central square when security forces opened fire on passing vehicles. Bullets shattered the windshield and killed the nine-year-old in his mother’s arms, injuring his father and brother.\n\nAt the funeral, mourners recited Kian’s beloved poem about his wooden boat while his mother declared, “They said he wasn’t shot, but I saw it with my own eyes.” His death became the stark symbol of a crackdown that shows no mercy even to children, sparking a new wave of nationwide solidarity."
     },
     "significance": {
       "fa": "قتل کیان به دست نیروهای جمهوری اسلامی نشان داد جنبش زن، زندگی، آزادی حتی کودکان را هدف قرار می‌دهد و همین عامل، همبستگی ملی را گسترش داد.",
@@ -13514,7 +13514,7 @@
   {
     "id": "326",
     "source": "system",
-    "type": "remembrance",
+    "type": "memorial",
     "origin": "iranian",
     "image": null,
     "title": {
@@ -13522,8 +13522,8 @@
       "fa": "کشته‌شدن پویا بختیاری"
     },
     "description": {
-      "fa": "۱ آذر ۱۳۹۸ پویا بختیاری، جوان کرجی، در اعتراضات آبان ۹۸ با تیر مستقیم نیروهای امنیتی کشته شد و خانواده‌اش به نماد دادخواهی تبدیل شدند.",
-      "en": "On 22 November 2019, Pouya Bakhtiari was shot dead in Karaj during the Aban 2019 protests, and his family became symbols of justice-seeking."
+      "fa": "۱ آذر ۱۳۹۸ پویا بختیاری، جوان ۲۷ ساله کرجی، هنگام ضبط اعتراضات در مهرشهر با گلوله مستقیم نیروهای امنیتی از ناحیه سر هدف قرار گرفت. او همراه مادر و خواهرش به خیابان آمده بود تا به گرانی بنزین اعتراض کند و گوشی‌اش لحظات آخر را ثبت کرد.\n\nخانواده‌اش اعلام کردند برای چهلم او مراسم عمومی می‌گیرند اما بازداشت و تحت فشار قرار گرفتند. پدرش منوچهر بختیاری بعدها به نماد دادخواهی بدل شد و بارها بازداشت شد تا صدای «خون‌خواه آبان» خاموش شود.",
+      "en": "On 22 November 2019, 27-year-old Pouya Bakhtiari was filming protests in Karaj’s Mehrshahr when security forces shot him in the head. He had joined the demonstrations with his mother and sister to denounce the fuel price hikes, and his phone captured the final moments.\n\nWhen the family announced a public memorial for his fortieth day, they were arrested and threatened. His father, Manouchehr Bakhtiari, later became a prominent justice-seeking voice and has been detained repeatedly in attempts to silence the “blood avengers of Aban.”"
     },
     "significance": {
       "fa": "پویا از قربانیان اصلی آبان ۹۸ است و یاد او پلی میان دادخواهی آن سال و اعتراضات زن، زندگی، آزادی برقرار می‌کند.",
@@ -13574,7 +13574,7 @@
   {
     "id": "327",
     "source": "system",
-    "type": "remembrance",
+    "type": "memorial",
     "origin": "iranian",
     "image": null,
     "title": {
@@ -13582,8 +13582,8 @@
       "fa": "اعدام مجیدرضا رهنورد"
     },
     "description": {
-      "fa": "۲۱ آذر ۱۴۰۱ مجیدرضا رهنورد تنها سه هفته پس از بازداشت به اتهام شرکت در اعتراضات زن، زندگی، آزادی در ملاعام مشهد اعدام شد.",
-      "en": "On 12 December 2022, Majidreza Rahnavard was publicly executed in Mashhad just weeks after being arrested for the Woman, Life, Freedom protests."
+      "fa": "۲۱ آذر ۱۴۰۱ مجیدرضا رهنورد پس از محاکمه‌ای کمتر از ۲۶ روز، سحرگاه در بلوار معلم مشهد به صورت علنی از جرثقیل آویخته شد. او متهم بود در جریان اعتراضات دو عضو بسیج را با چاقو کشته اما دسترسی به وکیل انتخابی و حق دفاع از او سلب شده بود.\n\nتصاویر حلقه طناب بر گردن نوجوان ۲۳ ساله‌ای که هنوز آثار شکنجه بر دست‌هایش بود، جامعه را شوکه کرد. این اعدام شتابزده ترس را به خشم عمومی بدل ساخت و نشان داد حکومت از نمایش مرگ برای سرکوب جنبش «زن، زندگی، آزادی» استفاده می‌کند.",
+      "en": "On 12 December 2022, Majidreza Rahnavard was publicly hanged from a crane on Mashhad’s Ma’alem Boulevard after a trial that lasted less than 26 days. Accused of fatally stabbing two Basij members, he was denied a lawyer of his choosing and meaningful defense.\n\nImages of the noose around the 23-year-old’s neck—his wrists still bearing torture marks—shocked society. The rushed execution turned fear into collective anger and exposed the regime’s reliance on staged killings to crush the Woman, Life, Freedom movement."
     },
     "significance": {
       "fa": "اعدام شتاب‌زده مجیدرضا تلاشی برای ارعاب معترضان زن، زندگی، آزادی بود و نشان داد جمهوری اسلامی از اعدام‌های نمایشی برای سرکوب استفاده می‌کند.",
@@ -13634,7 +13634,7 @@
   {
     "id": "328",
     "source": "system",
-    "type": "remembrance",
+    "type": "memorial",
     "origin": "iranian",
     "image": null,
     "title": {
@@ -13642,8 +13642,8 @@
       "fa": "قتل داریوش و پروانه فروهر"
     },
     "description": {
-      "fa": "۱ آذر ۱۳۷۷ داریوش و پروانه فروهر، رهبران ملی-مذهبی، در خانه‌شان در تهران در چارچوب قتل‌های زنجیره‌ای به دست مأموران وزارت اطلاعات به قتل رسیدند.",
-      "en": "On 22 November 1998, opposition leaders Dariush and Parvaneh Forouhar were stabbed to death at home in Tehran during the chain murders carried out by intelligence operatives."
+      "fa": "۱ آذر ۱۳۷۷ داریوش و پروانه فروهر، رهبران جبهه ملی-مذهبی و منتقدان سرسخت، در منزلشان در خیابان هدایت تهران با ده‌ها ضربه چاقو کشته شدند. مأمورانی که با پوشش مأموران خدماتی وارد خانه شده بودند، پس از جنایت سعی کردند صحنه را ساختگی جلوه دهند.\n\nافشای قتل فروهرها جرقه لو رفتن پروژه «قتل‌های زنجیره‌ای» وزارت اطلاعات بود و نشان داد حذف فیزیکی مخالفان برنامه‌ای سازمان‌یافته است. خانواده فروهر هر سال با وجود فشار امنیتی مراسم یادبود می‌گیرند تا پرونده این جنایت فراموش نشود.",
+      "en": "On 22 November 1998, nationalist-religious leaders Dariush and Parvaneh Forouhar were stabbed dozens of times in their home on Tehran’s Hedayat Street. Agents posing as service workers gained entry and attempted to stage the crime scene after the killings.\n\nThe murders ignited the exposure of the Intelligence Ministry’s “chain murders” project, revealing a systematic plan to eliminate dissidents. Despite constant pressure, the Forouhar family holds annual memorials to keep the case alive and demand accountability."
     },
     "significance": {
       "fa": "قتل فروهرها نشان داد حذف مخالفان سیاست دائمی جمهوری اسلامی است و یادشان الهام‌بخش جنبش‌های بعدی از جمله زن، زندگی، آزادی باقی مانده است.",
@@ -13702,8 +13702,8 @@
       "fa": "آغاز اعتراضات دی ۹۶"
     },
     "description": {
-      "fa": "۷ دی ۱۳۹۶ شهرهای مشهد، کرمانشاه و اصفهان شاهد اعتراضات معیشتی-سیاسی بودند که شعارهایی علیه کلیت جمهوری اسلامی سر دادند.",
-      "en": "On 28 December 2017, Mashhad, Kermanshah, Isfahan and other cities erupted in socio-economic protests that quickly moved to anti-regime slogans."
+      "fa": "۷ دی ۱۳۹۶ تجمعی کوچک در مشهد علیه گرانی تخم‌مرغ شروع شد اما ظرف چند ساعت شعارها به «مرگ بر دیکتاتور» رسید و شهرهای کرمانشاه، قهدریجان، ایذه و تویسرکان هم‌زمان شعله‌ور شدند. شبکه‌های اجتماعی در دست جوانان بی‌نام، اخبار بازداشت‌ها و تیراندازی‌ها را منتشر می‌کرد و حکومت برای نخستین بار با موجی غیرمتمرکز روبه‌رو شد.\n\nدر کمتر از دو هفته، بیش از ۷۰ شهر شاهد اعتراض بود، بانک‌ها و فرمانداری‌ها هدف خشم معترضان قرار گرفتند و هزاران نفر بازداشت شدند. دی ۹۶ ثابت کرد نارضایتی سراسری تنها به پایتخت محدود نیست و زمینه ذهنی اعتراضات آبان ۹۸ و «زن، زندگی، آزادی» را فراهم ساخت.",
+      "en": "On 28 December 2017, a small rally over egg prices in Mashhad escalated within hours as chants turned to “Death to the dictator,” and cities like Kermanshah, Qahderijan, Izeh, and Tuyserkan ignited simultaneously. Social media wielded by unknown youth broadcast arrests and shootings, confronting the regime with a decentralized wave for the first time.\n\nIn under two weeks more than 70 cities witnessed unrest, banks and governor offices were attacked, and thousands were detained. Dey 2017 proved nationwide anger was not confined to the capital and laid the psychological groundwork for Aban 2019 and the Woman, Life, Freedom uprising."
     },
     "significance": {
       "fa": "دی ۹۶ حلقه ارتباطی میان اعتراضات آبان ۹۸ و زن، زندگی، آزادی است و نشان داد مطالبات مردم فراتر از اصلاحات جزئی است.",
@@ -13754,7 +13754,7 @@
   {
     "id": "330",
     "source": "system",
-    "type": "remembrance",
+    "type": "memorial",
     "origin": "iranian",
     "image": null,
     "title": {
@@ -13762,8 +13762,8 @@
       "fa": "سرنگونی پرواز اوکراینی PS752"
     },
     "description": {
-      "fa": "۱۸ دی ۱۳۹۸ هواپیمای مسافربری اوکراینی تنها چند دقیقه پس از برخاستن از فرودگاه تهران با شلیک موشک‌های پدافند سپاه سرنگون شد و ۱۷۶ نفر جان باختند.",
-      "en": "On 8 January 2020, Ukrainian Airlines Flight PS752 was shot down minutes after takeoff from Tehran by IRGC missiles, killing all 176 people on board."
+      "fa": "۱۸ دی ۱۳۹۸ پرواز ۷۵۲ اوکراین اینترنشنال تنها سه دقیقه پس از برخاستن از مهرآباد هدف دو موشک پدافند سپاه قرار گرفت و با ۱۷۶ سرنشین سقوط کرد. مقامات سه روز انکار کردند و علت را نقص فنی دانستند تا اینکه فشار خانواده‌ها و تصاویر ماهواره‌ای حقیقت را آشکار کرد.\n\nخانواده‌های قربانیان با وجود تهدید امنیتی مراسم یادبود برگزار کردند و شورای خانواده‌های PS752 تشکیل شد. این واقعه بی‌اعتمادی عمومی به روایت‌های رسمی را به اوج رساند و در اعتراضات بعدی به عنوان سند دروغ‌گویی و بی‌کفایتی حکومت یاد شد.",
+      "en": "On 8 January 2020, Ukrainian Airlines Flight PS752 was struck by two IRGC surface-to-air missiles barely three minutes after takeoff from Tehran, killing all 176 on board. Officials denied responsibility for three days, blaming mechanical failure, until satellite evidence and families’ pressure forced them to admit the truth.\n\nDespite intimidation, relatives held public vigils and formed the Association of PS752 Victims’ Families. The tragedy turbocharged public distrust of state narratives and became a key exhibit of deceit and negligence cited in every subsequent protest."
     },
     "significance": {
       "fa": "پنهان‌کاری جمهوری اسلامی پس از سرنگونی، بی‌اعتمادی عمومی را تشدید کرد و در اعتراضات بعدی از جمله زن، زندگی، آزادی به عنوان سند جنایت حکومتی مطرح شد.",
