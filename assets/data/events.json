@@ -12550,5 +12550,1265 @@
     },
     "created_at": "2024-01-01T00:00:00.000Z",
     "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "310",
+    "source": "system",
+    "type": "historical",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Green Movement Protests Begin",
+      "fa": "آغاز اعتراضات جنبش سبز"
+    },
+    "description": {
+      "fa": "۲۳ خرداد ۱۳۸۸ روزی بود که میلیون‌ها نفر به تقلب انتخاباتی اعتراض کردند و خیابان‌های تهران و شهرهای بزرگ با شعار «رأی من کو» پر شد.",
+      "en": "On 13 June 2009, millions of Iranians poured into Tehran and other cities to reject the disputed presidential election, launching what became known as the Green Movement."
+    },
+    "significance": {
+      "fa": "اعتراضات جنبش سبز سرکوب ساختاری جمهوری اسلامی را آشکار کرد و الهام‌بخش جنبش‌های بعدی از جمله «زن، زندگی، آزادی» شد.",
+      "en": "The Green Movement exposed the Islamic Republic's systemic repression and inspired later uprisings, including the Woman, Life, Freedom movement."
+    },
+    "tags": {
+      "en": [
+        "protest",
+        "green-movement",
+        "human-rights",
+        "iran"
+      ],
+      "fa": [
+        "اعتراضات",
+        "جنبش-سبز",
+        "حقوق-بشر",
+        "ایران"
+      ]
+    },
+    "location": {
+      "en": "Tehran and major Iranian cities",
+      "fa": "تهران و شهرهای بزرگ ایران"
+    },
+    "date": {
+      "solar": "1388-03-23",
+      "gregorian": "2009-06-13"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "311",
+    "source": "system",
+    "type": "remembrance",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Neda Agha-Soltan Is Killed",
+      "fa": "جان‌باختن ندا آقا سلطان"
+    },
+    "description": {
+      "fa": "۳۰ خرداد ۱۳۸۸ ندا آقا سلطان در تظاهرات خیابانی تهران با شلیک مأموران امنیتی کشته شد و تصویر جان‌باختن او به نماد اعتراض بدل شد.",
+      "en": "On 20 June 2009, Neda Agha-Soltan was shot dead by security forces during a Tehran protest, and footage of her final moments shocked the world."
+    },
+    "significance": {
+      "fa": "کشته شدن ندا نشانه خشونت حکومتی در جنبش سبز بود و هنوز به عنوان نمادی از مبارزه مدنی علیه جمهوری اسلامی یاد می‌شود.",
+      "en": "Neda's killing symbolized the regime's brutality during the Green Movement and remains a rallying cry for civil resistance against the Islamic Republic."
+    },
+    "tags": {
+      "en": [
+        "neda-agha-soltan",
+        "green-movement",
+        "human-rights",
+        "protest"
+      ],
+      "fa": [
+        "ندا-آقا-سلطان",
+        "جنبش-سبز",
+        "حقوق-بشر",
+        "اعتراضات"
+      ]
+    },
+    "location": {
+      "en": "Tehran, Iran",
+      "fa": "تهران، ایران"
+    },
+    "date": {
+      "solar": "1388-03-30",
+      "gregorian": "2009-06-20"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "312",
+    "source": "system",
+    "type": "historical",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "18 Tir Student Protests",
+      "fa": "اعتراضات دانشجویی ۱۸ تیر"
+    },
+    "description": {
+      "fa": "در ۱۸ تیر ۱۳۷۸ یورش نیروهای امنیتی به کوی دانشگاه تهران موجی از اعتراضات دانشجویی و مدنی را در سراسر کشور برانگیخت.",
+      "en": "On 9 July 1999, security forces raided the Tehran University dormitories, sparking nationwide student demonstrations for freedom of expression."
+    },
+    "significance": {
+      "fa": "۱۸ تیر نخستین هشدار جدی نسبت به سرکوب سازمان‌یافته جمهوری اسلامی بود و نسل‌های بعدی معترض را به مقاومت مدنی تشویق کرد.",
+      "en": "18 Tir became an early warning about organized repression by the Islamic Republic and encouraged future generations to keep resisting."
+    },
+    "tags": {
+      "en": [
+        "18-tir",
+        "student-movement",
+        "human-rights",
+        "iran"
+      ],
+      "fa": [
+        "۱۸-تیر",
+        "جنبش-دانشجویی",
+        "حقوق-بشر",
+        "ایران"
+      ]
+    },
+    "location": {
+      "en": "Tehran University, Iran",
+      "fa": "کوی دانشگاه تهران، ایران"
+    },
+    "date": {
+      "solar": "1378-04-18",
+      "gregorian": "1999-07-09"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "313",
+    "source": "system",
+    "type": "remembrance",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Death of Zahra Kazemi",
+      "fa": "فوت زهرا کاظمی در بازداشت"
+    },
+    "description": {
+      "fa": "۲۰ تیر ۱۳۸۲ خبرنگار-عکاس ایرانی‌کانادایی، زهرا کاظمی، پس از بازداشت در تهران زیر شکنجه جان باخت و پرونده او ابعاد تازه‌ای از خشونت حکومتی را آشکار کرد.",
+      "en": "On 11 July 2003, Iranian-Canadian photojournalist Zahra Kazemi died under torture after being detained in Tehran, revealing another layer of state violence."
+    },
+    "significance": {
+      "fa": "مرگ زهرا کاظمی نشان داد سرکوب رسانه‌ای و اعتراف‌گیری اجباری ستون سیاست امنیتی جمهوری اسلامی است.",
+      "en": "Kazemi's death demonstrated how media suppression and forced confessions are pillars of the Islamic Republic's security doctrine."
+    },
+    "tags": {
+      "en": [
+        "zahra-kazemi",
+        "press-freedom",
+        "human-rights",
+        "iran"
+      ],
+      "fa": [
+        "زهرا-کاظمی",
+        "آزادی-رسانه",
+        "حقوق-بشر",
+        "ایران"
+      ]
+    },
+    "location": {
+      "en": "Tehran, Iran",
+      "fa": "تهران، ایران"
+    },
+    "date": {
+      "solar": "1382-04-20",
+      "gregorian": "2003-07-11"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "314",
+    "source": "system",
+    "type": "historical",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Khuzestan Water Protests",
+      "fa": "اعتراضات آب خوزستان"
+    },
+    "description": {
+      "fa": "۳۰ تیر ۱۴۰۰ مردم خوزستان در اعتراض به کمبود آب و مدیریت فاجعه‌بار منابع، شب‌های متوالی خیابان‌ها را در شهرهایی چون اهواز و حمیدیه در دست گرفتند.",
+      "en": "On 21 July 2021, Khuzestan residents filled the streets of Ahvaz, Hamidiyeh, and other towns to decry catastrophic water shortages and mismanagement."
+    },
+    "significance": {
+      "fa": "اعتراضات آب ادامه همان خشم ساختاری علیه جمهوری اسلامی بود که بعدتر در جنبش «زن، زندگی، آزادی» نیز تکرار شد.",
+      "en": "The water protests reflected the same structural anger toward the Islamic Republic that later energized the Woman, Life, Freedom uprising."
+    },
+    "tags": {
+      "en": [
+        "khuzestan",
+        "water-crisis",
+        "protest",
+        "environmental-justice"
+      ],
+      "fa": [
+        "خوزستان",
+        "بحران-آب",
+        "اعتراضات",
+        "عدالت-محیط-زیستی"
+      ]
+    },
+    "location": {
+      "en": "Khuzestan Province, Iran",
+      "fa": "استان خوزستان، ایران"
+    },
+    "date": {
+      "solar": "1400-04-30",
+      "gregorian": "2021-07-21"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "315",
+    "source": "system",
+    "type": "remembrance",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Assassination of Shapour Bakhtiar",
+      "fa": "ترور شاپور بختیار"
+    },
+    "description": {
+      "fa": "۱۵ مرداد ۱۳۷۰ آخرین نخست‌وزیر رژیم پهلوی و چهره شاخص اپوزیسیون، شاپور بختیار، در پاریس به دست عوامل جمهوری اسلامی ترور شد.",
+      "en": "On 6 August 1991, Shapour Bakhtiar—the last prime minister before the revolution and a leading opposition figure—was assassinated in Paris by agents linked to the Islamic Republic."
+    },
+    "significance": {
+      "fa": "ترور بختیار ادامه سیاست حذف فیزیکی مخالفان بود که بعدها در قتل‌های زنجیره‌ای و سرکوب معترضان از جمله «زن، زندگی، آزادی» تکرار شد.",
+      "en": "Bakhtiar's assassination typified the regime's policy of eliminating dissidents, a pattern repeated in the chain murders and in crackdowns on movements like Woman, Life, Freedom."
+    },
+    "tags": {
+      "en": [
+        "shapour-bakhtiar",
+        "political-assassination",
+        "iran",
+        "human-rights"
+      ],
+      "fa": [
+        "شاپور-بختیار",
+        "ترور-سیاسی",
+        "ایران",
+        "حقوق-بشر"
+      ]
+    },
+    "location": {
+      "en": "Paris, France",
+      "fa": "پاریس، فرانسه"
+    },
+    "date": {
+      "solar": "1370-05-15",
+      "gregorian": "1991-08-06"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "316",
+    "source": "system",
+    "type": "remembrance",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Execution of Navid Afkari",
+      "fa": "اعدام نوید افکاری"
+    },
+    "description": {
+      "fa": "۲۲ شهریور ۱۳۹۹ کشتی‌گیر معترض شیرازی، نوید افکاری، با اعترافات گرفته‌شده زیر شکنجه اعدام شد و خانواده او حق وداع نیافتند.",
+      "en": "On 12 September 2020, Shiraz wrestler and protester Navid Afkari was executed after coerced confessions, denied final visitation with his family."
+    },
+    "significance": {
+      "fa": "اعدام نوید به جرم حضور در اعتراضات نشان داد که جمهوری اسلامی برای ترساندن نسل معترض حتی قهرمانان ورزشی را قربانی می‌کند و این روایت مستقیماً به شعار «زن، زندگی، آزادی» پیوند خورد.",
+      "en": "Navid's execution for joining protests proved the regime would sacrifice even national athletes to instill fear, feeding directly into the Woman, Life, Freedom narrative."
+    },
+    "tags": {
+      "en": [
+        "navid-afkari",
+        "execution",
+        "protest",
+        "human-rights"
+      ],
+      "fa": [
+        "نوید-افکاری",
+        "اعدام",
+        "اعتراضات",
+        "حقوق-بشر"
+      ]
+    },
+    "location": {
+      "en": "Shiraz, Iran",
+      "fa": "شیراز، ایران"
+    },
+    "date": {
+      "solar": "1399-06-22",
+      "gregorian": "2020-09-12"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "317",
+    "source": "system",
+    "type": "remembrance",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Killing of Mahsa (Jina) Amini",
+      "fa": "قتل مهسا (ژینا) امینی"
+    },
+    "description": {
+      "fa": "۲۵ شهریور ۱۴۰۱ مهسا (ژینا) امینی پس از بازداشت توسط گشت ارشاد به دلیل پوشش، در بازداشتگاه پلیس امنیت اخلاقی جان باخت و موجی جهانی از خشم ایجاد شد.",
+      "en": "On 16 September 2022, Mahsa (Jina) Amini died in morality police custody after being arrested for her clothing, igniting global outrage."
+    },
+    "significance": {
+      "fa": "جان‌باختن مهسا جرقه اعتراضات «زن، زندگی، آزادی» شد و نشان داد سرکوب جمهوری اسلامی علیه زنان چگونه به مقاومت جمعی تبدیل می‌شود.",
+      "en": "Mahsa's death sparked the Woman, Life, Freedom uprising and showed how the regime's violence against women fuels collective resistance."
+    },
+    "tags": {
+      "en": [
+        "mahsa-amini",
+        "woman-life-freedom",
+        "protest",
+        "human-rights"
+      ],
+      "fa": [
+        "مهسا-امینی",
+        "زن-زندگی-آزادی",
+        "اعتراضات",
+        "حقوق-بشر"
+      ]
+    },
+    "location": {
+      "en": "Tehran, Iran",
+      "fa": "تهران، ایران"
+    },
+    "date": {
+      "solar": "1401-06-25",
+      "gregorian": "2022-09-16"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "318",
+    "source": "system",
+    "type": "historical",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Woman, Life, Freedom Uprising Starts",
+      "fa": "آغاز اعتراضات زن، زندگی، آزادی"
+    },
+    "description": {
+      "fa": "۲۶ شهریور ۱۴۰۱ شهرهای ایران از سقز تا تهران و سنندج با شعار «زن، زندگی، آزادی» به خیابان آمدند و اعتراضات فراگیر علیه قتل مهسا امینی شکل گرفت.",
+      "en": "On 17 September 2022, from Saqqez to Tehran and Sanandaj, people chanted \"Woman, Life, Freedom\" and launched nationwide protests against Mahsa Amini's killing."
+    },
+    "significance": {
+      "fa": "این خیزش فصلی تازه از مبارزه با جمهوری اسلامی بود که مطالبات زنان، اقوام و نسل Z را در یک جنبش مشترک گرد آورد.",
+      "en": "The uprising marked a new phase of resistance to the Islamic Republic, uniting women, ethnic minorities, and Gen Z under a shared cause."
+    },
+    "tags": {
+      "en": [
+        "woman-life-freedom",
+        "mahsa-amini",
+        "nationwide-protests",
+        "iran"
+      ],
+      "fa": [
+        "زن-زندگی-آزادی",
+        "مهسا-امینی",
+        "اعتراضات-سراسری",
+        "ایران"
+      ]
+    },
+    "location": {
+      "en": "Nationwide, Iran",
+      "fa": "سراسر ایران"
+    },
+    "date": {
+      "solar": "1401-06-26",
+      "gregorian": "2022-09-17"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "319",
+    "source": "system",
+    "type": "remembrance",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Killing of Nika Shakarami",
+      "fa": "جان‌باختن نیکا شاکرمی"
+    },
+    "description": {
+      "fa": "۱ مهر ۱۴۰۱ نیکا شاکرمی، نوجوان هنرمند تهرانی، پس از حضور در اعتراضات زن، زندگی، آزادی ربوده شد و پیکر او با آثار ضرب‌وشتم پیدا شد.",
+      "en": "On 23 September 2022, teenage artist Nika Shakarami disappeared after joining Woman, Life, Freedom protests in Tehran; her body later showed signs of severe beating."
+    },
+    "significance": {
+      "fa": "قتل نیکا نمادی از خشونت جمهوری اسلامی علیه دختران معترض بود و یاد او در روایت اصلی جنبش زن، زندگی، آزادی زنده مانده است.",
+      "en": "Nika's killing became emblematic of the regime's violence toward young women protesters and remains central to the Woman, Life, Freedom story."
+    },
+    "tags": {
+      "en": [
+        "nika-shakarami",
+        "woman-life-freedom",
+        "protest",
+        "human-rights"
+      ],
+      "fa": [
+        "نیکا-شاکرمی",
+        "زن-زندگی-آزادی",
+        "اعتراضات",
+        "حقوق-بشر"
+      ]
+    },
+    "location": {
+      "en": "Tehran, Iran",
+      "fa": "تهران، ایران"
+    },
+    "date": {
+      "solar": "1401-07-01",
+      "gregorian": "2022-09-23"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "320",
+    "source": "system",
+    "type": "remembrance",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Killing of Sarina Esmailzadeh",
+      "fa": "جان‌باختن سارینا اسماعیل‌زاده"
+    },
+    "description": {
+      "fa": "۲ مهر ۱۴۰۱ سارینا اسماعیل‌زاده، نوجوان کرجی، در جریان اعتراضات زن، زندگی، آزادی با ضربات متعدد باتوم نیروهای سرکوب کشته شد.",
+      "en": "On 24 September 2022, teenager Sarina Esmailzadeh from Karaj died after security forces brutally beat her during Woman, Life, Freedom protests."
+    },
+    "significance": {
+      "fa": "مرگ سارینا نشان داد نسل Z نیز در مبارزه علیه جمهوری اسلامی هزینه می‌دهد و صدای او در کنار مهسا و نیکا شنیده می‌شود.",
+      "en": "Sarina's death showed that Gen Z is paying the price in the fight against the Islamic Republic, placing her voice alongside Mahsa and Nika."
+    },
+    "tags": {
+      "en": [
+        "sarina-esmailzadeh",
+        "woman-life-freedom",
+        "protest",
+        "human-rights"
+      ],
+      "fa": [
+        "سارینا-اسماعیل-زاده",
+        "زن-زندگی-آزادی",
+        "اعتراضات",
+        "حقوق-بشر"
+      ]
+    },
+    "location": {
+      "en": "Karaj, Iran",
+      "fa": "کرج، ایران"
+    },
+    "date": {
+      "solar": "1401-07-02",
+      "gregorian": "2022-09-24"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "321",
+    "source": "system",
+    "type": "remembrance",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Memorial for Kianoosh Sanjari",
+      "fa": "سالگرد جان‌باختن کیانوش سنجری"
+    },
+    "description": {
+      "fa": "۷ مهر یادآور درگذشت کیانوش سنجری، خبرنگار و فعال جنبش سبز است که پس از سال‌ها تبعید و فشار امنیتی در غربت جان باخت.",
+      "en": "7 Mehr marks the passing of Kianoosh Sanjari, a Green Movement journalist and activist who died in exile after years of state harassment."
+    },
+    "significance": {
+      "fa": "زندگی و مرگ سنجری ادامه‌دار بودن هزینه مبارزه با جمهوری اسلامی را یادآور می‌شود و پیوندی با اعتراضات «زن، زندگی، آزادی» برقرار می‌کند.",
+      "en": "Sanjari's life and death highlight the enduring cost of opposing the Islamic Republic and connect earlier struggles to Woman, Life, Freedom."
+    },
+    "tags": {
+      "en": [
+        "kianoosh-sanjari",
+        "green-movement",
+        "woman-life-freedom",
+        "human-rights"
+      ],
+      "fa": [
+        "کیانوش-سنجری",
+        "جنبش-سبز",
+        "زن-زندگی-آزادی",
+        "حقوق-بشر"
+      ]
+    },
+    "location": {
+      "en": "Exile community",
+      "fa": "جامعه تبعیدیان"
+    },
+    "date": {
+      "solar": "1401-07-07",
+      "gregorian": "2022-09-29"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "322",
+    "source": "system",
+    "type": "remembrance",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Death of Sattar Beheshti",
+      "fa": "مرگ ستار بهشتی در بازداشت"
+    },
+    "description": {
+      "fa": "۱۳ آبان ۱۳۹۱ کارگر وبلاگ‌نویس، ستار بهشتی، تنها چند روز پس از بازداشت توسط پلیس فتا بر اثر شکنجه جان باخت.",
+      "en": "On 3 November 2012, worker-blogger Sattar Beheshti died under torture just days after being detained by Iran's cyber police."
+    },
+    "significance": {
+      "fa": "ستار به جرم نوشتن از عدالت اجتماعی کشته شد و پرونده‌اش در حافظه اعتراضات، از جنبش سبز تا زن، زندگی، آزادی زنده است.",
+      "en": "Sattar was killed simply for writing about justice, and his case remains etched into the protest memory from the Green Movement to Woman, Life, Freedom."
+    },
+    "tags": {
+      "en": [
+        "sattar-beheshti",
+        "human-rights",
+        "prisoner-abuse",
+        "iran"
+      ],
+      "fa": [
+        "ستار-بهشتی",
+        "حقوق-بشر",
+        "شکنجه",
+        "ایران"
+      ]
+    },
+    "location": {
+      "en": "Tehran, Iran",
+      "fa": "تهران، ایران"
+    },
+    "date": {
+      "solar": "1391-08-13",
+      "gregorian": "2012-11-03"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "323",
+    "source": "system",
+    "type": "historical",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Aban 2019 Nationwide Protests",
+      "fa": "آغاز اعتراضات سراسری آبان ۹۸"
+    },
+    "description": {
+      "fa": "۲۴ آبان ۱۳۹۸ مردم ایران پس از افزایش ناگهانی قیمت بنزین به خیابان‌ها آمدند و اعتراضات گسترده با سرکوب خونین روبه‌رو شد.",
+      "en": "On 15 November 2019, Iranians flooded the streets to oppose sudden fuel price hikes, triggering nationwide protests that were met with mass killings."
+    },
+    "significance": {
+      "fa": "آبان ۹۸ با صدها جان‌باخته، الگوی اعتراضات معیشتی-سیاسی را شکل داد و زمینه ذهنی جنبش زن، زندگی، آزادی را فراهم کرد.",
+      "en": "With hundreds killed, Aban 2019 shaped the template for socio-economic uprisings and set the stage for Woman, Life, Freedom."
+    },
+    "tags": {
+      "en": [
+        "aban-98",
+        "nationwide-protests",
+        "human-rights",
+        "iran"
+      ],
+      "fa": [
+        "آبان-۹۸",
+        "اعتراضات-سراسری",
+        "حقوق-بشر",
+        "ایران"
+      ]
+    },
+    "location": {
+      "en": "Nationwide, Iran",
+      "fa": "سراسر ایران"
+    },
+    "date": {
+      "solar": "1398-08-24",
+      "gregorian": "2019-11-15"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "324",
+    "source": "system",
+    "type": "remembrance",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Killing of Mahshad Shahidi",
+      "fa": "قتل مهشاد شهیدی"
+    },
+    "description": {
+      "fa": "۵ آبان ۱۴۰۱ مهشاد شهیدی، سرآشپز جوان اراکی، هنگام پیوستن به اعتراضات زن، زندگی، آزادی بازداشت و با ضرب‌وشتم کشته شد.",
+      "en": "On 27 October 2022, chef Mahshad Shahidi from Arak was detained while joining Woman, Life, Freedom rallies and died from severe beatings."
+    },
+    "significance": {
+      "fa": "مرگ مهشاد نشان داد اعتراضات زن، زندگی، آزادی محدود به پایتخت نبود و هر شهروندی به دلیل مخالفت با جمهوری اسلامی در خطر است.",
+      "en": "Mahshad's killing proved Woman, Life, Freedom was not Tehran-centric and that any citizen opposing the Islamic Republic faces lethal risk."
+    },
+    "tags": {
+      "en": [
+        "mahshad-shahidi",
+        "woman-life-freedom",
+        "protest",
+        "human-rights"
+      ],
+      "fa": [
+        "مهشاد-شهیدی",
+        "زن-زندگی-آزادی",
+        "اعتراضات",
+        "حقوق-بشر"
+      ]
+    },
+    "location": {
+      "en": "Arak, Iran",
+      "fa": "اراک، ایران"
+    },
+    "date": {
+      "solar": "1401-08-05",
+      "gregorian": "2022-10-27"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "325",
+    "source": "system",
+    "type": "remembrance",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Killing of Kian Pirfalak",
+      "fa": "قتل کیان پیرفلک"
+    },
+    "description": {
+      "fa": "۲۵ آبان ۱۴۰۱ کیان پیرفلک، کودک ۹ ساله ایذه‌ای، هنگام بازگشت به خانه در تیراندازی نیروهای سرکوب زن، زندگی، آزادی جان باخت.",
+      "en": "On 16 November 2022, nine-year-old Kian Pirfalak was shot dead in Izeh while returning home as security forces attacked Woman, Life, Freedom protesters."
+    },
+    "significance": {
+      "fa": "قتل کیان به دست نیروهای جمهوری اسلامی نشان داد جنبش زن، زندگی، آزادی حتی کودکان را هدف قرار می‌دهد و همین عامل، همبستگی ملی را گسترش داد.",
+      "en": "Kian's killing by regime forces revealed that the Woman, Life, Freedom crackdown even targets children, widening national solidarity."
+    },
+    "tags": {
+      "en": [
+        "kian-pirfalak",
+        "woman-life-freedom",
+        "protest",
+        "human-rights"
+      ],
+      "fa": [
+        "کیان-پیرفلک",
+        "زن-زندگی-آزادی",
+        "اعتراضات",
+        "حقوق-بشر"
+      ]
+    },
+    "location": {
+      "en": "Izeh, Iran",
+      "fa": "ایذه، ایران"
+    },
+    "date": {
+      "solar": "1401-08-25",
+      "gregorian": "2022-11-16"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "326",
+    "source": "system",
+    "type": "remembrance",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Killing of Pouya Bakhtiari",
+      "fa": "کشته‌شدن پویا بختیاری"
+    },
+    "description": {
+      "fa": "۱ آذر ۱۳۹۸ پویا بختیاری، جوان کرجی، در اعتراضات آبان ۹۸ با تیر مستقیم نیروهای امنیتی کشته شد و خانواده‌اش به نماد دادخواهی تبدیل شدند.",
+      "en": "On 22 November 2019, Pouya Bakhtiari was shot dead in Karaj during the Aban 2019 protests, and his family became symbols of justice-seeking."
+    },
+    "significance": {
+      "fa": "پویا از قربانیان اصلی آبان ۹۸ است و یاد او پلی میان دادخواهی آن سال و اعتراضات زن، زندگی، آزادی برقرار می‌کند.",
+      "en": "Pouya's memory links Aban 2019 justice efforts with the demands of Woman, Life, Freedom."
+    },
+    "tags": {
+      "en": [
+        "pouya-bakhtiari",
+        "aban-98",
+        "protest",
+        "human-rights"
+      ],
+      "fa": [
+        "پویا-بختیاری",
+        "آبان-۹۸",
+        "اعتراضات",
+        "حقوق-بشر"
+      ]
+    },
+    "location": {
+      "en": "Karaj, Iran",
+      "fa": "کرج، ایران"
+    },
+    "date": {
+      "solar": "1398-09-01",
+      "gregorian": "2019-11-22"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "327",
+    "source": "system",
+    "type": "remembrance",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Execution of Majidreza Rahnavard",
+      "fa": "اعدام مجیدرضا رهنورد"
+    },
+    "description": {
+      "fa": "۲۱ آذر ۱۴۰۱ مجیدرضا رهنورد تنها سه هفته پس از بازداشت به اتهام شرکت در اعتراضات زن، زندگی، آزادی در ملاعام مشهد اعدام شد.",
+      "en": "On 12 December 2022, Majidreza Rahnavard was publicly executed in Mashhad just weeks after being arrested for the Woman, Life, Freedom protests."
+    },
+    "significance": {
+      "fa": "اعدام شتاب‌زده مجیدرضا تلاشی برای ارعاب معترضان زن، زندگی، آزادی بود و نشان داد جمهوری اسلامی از اعدام‌های نمایشی برای سرکوب استفاده می‌کند.",
+      "en": "His rushed execution aimed to terrorize Woman, Life, Freedom protesters and showed the regime's reliance on public hangings."
+    },
+    "tags": {
+      "en": [
+        "majidreza-rahnavard",
+        "woman-life-freedom",
+        "execution",
+        "human-rights"
+      ],
+      "fa": [
+        "مجیدرضا-رهنورد",
+        "زن-زندگی-آزادی",
+        "اعدام",
+        "حقوق-بشر"
+      ]
+    },
+    "location": {
+      "en": "Mashhad, Iran",
+      "fa": "مشهد، ایران"
+    },
+    "date": {
+      "solar": "1401-09-21",
+      "gregorian": "2022-12-12"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "328",
+    "source": "system",
+    "type": "remembrance",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Murder of Dariush and Parvaneh Forouhar",
+      "fa": "قتل داریوش و پروانه فروهر"
+    },
+    "description": {
+      "fa": "۱ آذر ۱۳۷۷ داریوش و پروانه فروهر، رهبران ملی-مذهبی، در خانه‌شان در تهران در چارچوب قتل‌های زنجیره‌ای به دست مأموران وزارت اطلاعات به قتل رسیدند.",
+      "en": "On 22 November 1998, opposition leaders Dariush and Parvaneh Forouhar were stabbed to death at home in Tehran during the chain murders carried out by intelligence operatives."
+    },
+    "significance": {
+      "fa": "قتل فروهرها نشان داد حذف مخالفان سیاست دائمی جمهوری اسلامی است و یادشان الهام‌بخش جنبش‌های بعدی از جمله زن، زندگی، آزادی باقی مانده است.",
+      "en": "Their murders proved that eliminating dissidents is a permanent regime policy, and their legacy inspires later movements such as Woman, Life, Freedom."
+    },
+    "tags": {
+      "en": [
+        "chain-murders",
+        "forouhar",
+        "human-rights",
+        "iran"
+      ],
+      "fa": [
+        "قتل‌های-زنجیره‌ای",
+        "فروهر",
+        "حقوق-بشر",
+        "ایران"
+      ]
+    },
+    "location": {
+      "en": "Tehran, Iran",
+      "fa": "تهران، ایران"
+    },
+    "date": {
+      "solar": "1377-09-01",
+      "gregorian": "1998-11-22"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "329",
+    "source": "system",
+    "type": "historical",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Dey 2017 Protests Begin",
+      "fa": "آغاز اعتراضات دی ۹۶"
+    },
+    "description": {
+      "fa": "۷ دی ۱۳۹۶ شهرهای مشهد، کرمانشاه و اصفهان شاهد اعتراضات معیشتی-سیاسی بودند که شعارهایی علیه کلیت جمهوری اسلامی سر دادند.",
+      "en": "On 28 December 2017, Mashhad, Kermanshah, Isfahan and other cities erupted in socio-economic protests that quickly moved to anti-regime slogans."
+    },
+    "significance": {
+      "fa": "دی ۹۶ حلقه ارتباطی میان اعتراضات آبان ۹۸ و زن، زندگی، آزادی است و نشان داد مطالبات مردم فراتر از اصلاحات جزئی است.",
+      "en": "Dey 2017 linked later uprisings like Aban 2019 and Woman, Life, Freedom, proving that public demands go beyond incremental reforms."
+    },
+    "tags": {
+      "en": [
+        "dey-96",
+        "nationwide-protests",
+        "human-rights",
+        "iran"
+      ],
+      "fa": [
+        "دی-۹۶",
+        "اعتراضات-سراسری",
+        "حقوق-بشر",
+        "ایران"
+      ]
+    },
+    "location": {
+      "en": "Nationwide, Iran",
+      "fa": "سراسر ایران"
+    },
+    "date": {
+      "solar": "1396-10-07",
+      "gregorian": "2017-12-28"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "330",
+    "source": "system",
+    "type": "remembrance",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "Downing of Flight PS752",
+      "fa": "سرنگونی پرواز اوکراینی PS752"
+    },
+    "description": {
+      "fa": "۱۸ دی ۱۳۹۸ هواپیمای مسافربری اوکراینی تنها چند دقیقه پس از برخاستن از فرودگاه تهران با شلیک موشک‌های پدافند سپاه سرنگون شد و ۱۷۶ نفر جان باختند.",
+      "en": "On 8 January 2020, Ukrainian Airlines Flight PS752 was shot down minutes after takeoff from Tehran by IRGC missiles, killing all 176 people on board."
+    },
+    "significance": {
+      "fa": "پنهان‌کاری جمهوری اسلامی پس از سرنگونی، بی‌اعتمادی عمومی را تشدید کرد و در اعتراضات بعدی از جمله زن، زندگی، آزادی به عنوان سند جنایت حکومتی مطرح شد.",
+      "en": "The regime's cover-up after the shootdown deepened public distrust and became evidence of state criminality cited in later protests, including Woman, Life, Freedom."
+    },
+    "tags": {
+      "en": [
+        "ps752",
+        "human-rights",
+        "accountability",
+        "iran"
+      ],
+      "fa": [
+        "پرواز-ps752",
+        "حقوق-بشر",
+        "دادخواهی",
+        "ایران"
+      ]
+    },
+    "location": {
+      "en": "Tehran, Iran",
+      "fa": "تهران، ایران"
+    },
+    "date": {
+      "solar": "1398-10-18",
+      "gregorian": "2020-01-08"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
   }
 ]
