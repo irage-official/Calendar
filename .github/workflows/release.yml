@@ -77,17 +77,39 @@ jobs:
       - name: Build Universal APK
         run: |
           echo "=== Building Universal APK ==="
-          flutter build apk --release
-          echo "✓ Build completed"
+          echo "Flutter version:"
+          flutter --version
+          echo ""
+          echo "Starting build..."
+          
+          # Build with verbose output to see errors
+          flutter build apk --release --verbose 2>&1 | tee build.log || {
+            echo "✗ Build failed! Showing last 50 lines of build log:"
+            tail -50 build.log || cat build.log
+            echo ""
+            echo "Full error details above. Exiting..."
+            exit 1
+          }
+          
+          echo "✓ Build command completed"
           
           # Verify APK was created
+          echo ""
+          echo "=== Verifying APK file ==="
           if [ -f build/app/outputs/flutter-apk/app-release.apk ]; then
             echo "✓ APK file found: build/app/outputs/flutter-apk/app-release.apk"
             ls -lh build/app/outputs/flutter-apk/app-release.apk
+            file build/app/outputs/flutter-apk/app-release.apk
           else
             echo "✗ ERROR: APK file not found!"
+            echo "Contents of build/app/outputs/:"
+            find build/app/outputs -type f -name "*.apk" || echo "No APK files found"
+            echo ""
             echo "Contents of build/app/outputs/flutter-apk/:"
             ls -la build/app/outputs/flutter-apk/ || echo "Directory does not exist"
+            echo ""
+            echo "Build log (last 100 lines):"
+            tail -100 build.log || echo "No build log found"
             exit 1
           fi
       
