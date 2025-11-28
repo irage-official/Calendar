@@ -70,20 +70,30 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
       
+      - name: Build APK - Universal (includes all architectures)
+        run: flutter build apk --release
+      
       - name: Build APK - arm64-v8a
         run: flutter build apk --release --target-platform android-arm64
+        continue-on-error: true
       
       - name: Build APK - armeabi-v7a
         run: flutter build apk --release --target-platform android-arm
+        continue-on-error: true
       
       - name: Build APK - x86
         run: flutter build apk --release --target-platform android-x86
+        continue-on-error: true
       
       - name: Build APK - x86_64
         run: flutter build apk --release --target-platform android-x64
+        continue-on-error: true
       
-      - name: Build APK - Universal
-        run: flutter build apk --release
+      - name: List build outputs
+        run: |
+          echo "Checking build outputs..."
+          find build/app/outputs -name "*.apk" -type f || true
+          ls -la build/app/outputs/flutter-apk/ || true
       
       - name: Rename APK files
         run: |
@@ -93,24 +103,49 @@ jobs:
           
           mkdir -p release-apks
           
+          # Copy APK files if they exist
           if [ -f build/app/outputs/flutter-apk/app-arm64-v8a-release.apk ]; then
-            mv build/app/outputs/flutter-apk/app-arm64-v8a-release.apk release-apks/Irage_${TAG}_arm64-v8a.apk
+            cp build/app/outputs/flutter-apk/app-arm64-v8a-release.apk release-apks/Irage_${TAG}_arm64-v8a.apk
+            echo "✓ arm64-v8a APK copied"
+          else
+            echo "⚠ arm64-v8a APK not found"
           fi
           
           if [ -f build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk ]; then
-            mv build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk release-apks/Irage_${TAG}_armeabi-v7a.apk
+            cp build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk release-apks/Irage_${TAG}_armeabi-v7a.apk
+            echo "✓ armeabi-v7a APK copied"
+          else
+            echo "⚠ armeabi-v7a APK not found"
           fi
           
           if [ -f build/app/outputs/flutter-apk/app-x86-release.apk ]; then
-            mv build/app/outputs/flutter-apk/app-x86-release.apk release-apks/Irage_${TAG}_x86.apk
+            cp build/app/outputs/flutter-apk/app-x86-release.apk release-apks/Irage_${TAG}_x86.apk
+            echo "✓ x86 APK copied"
+          else
+            echo "⚠ x86 APK not found"
           fi
           
           if [ -f build/app/outputs/flutter-apk/app-x86_64-release.apk ]; then
-            mv build/app/outputs/flutter-apk/app-x86_64-release.apk release-apks/Irage_${TAG}_x86_64.apk
+            cp build/app/outputs/flutter-apk/app-x86_64-release.apk release-apks/Irage_${TAG}_x86_64.apk
+            echo "✓ x86_64 APK copied"
+          else
+            echo "⚠ x86_64 APK not found"
           fi
           
           if [ -f build/app/outputs/flutter-apk/app-release.apk ]; then
-            mv build/app/outputs/flutter-apk/app-release.apk release-apks/Irage_${TAG}_universal.apk
+            cp build/app/outputs/flutter-apk/app-release.apk release-apks/Irage_${TAG}_universal.apk
+            echo "✓ universal APK copied"
+          else
+            echo "⚠ universal APK not found"
+          fi
+          
+          echo "APK files in release-apks:"
+          ls -lh release-apks/ || echo "No APK files found"
+          
+          # Check if at least one APK exists
+          if [ -z "$(ls -A release-apks)" ]; then
+            echo "ERROR: No APK files found to release!"
+            exit 1
           fi
       
       - name: Create Release
