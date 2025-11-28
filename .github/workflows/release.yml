@@ -69,84 +69,70 @@ jobs:
           java-version: '11'
       
       - name: Install dependencies
-        run: flutter pub get
-      
-      - name: Build Universal APK (includes all architectures)
         run: |
-          echo "Building universal APK (includes all architectures)..."
+          echo "Installing Flutter dependencies..."
+          flutter pub get
+          echo "✓ Dependencies installed"
+      
+      - name: Build Universal APK
+        run: |
+          echo "=== Building Universal APK ==="
           flutter build apk --release
-          echo "✓ Universal APK built successfully"
+          echo "✓ Build completed"
+          
+          # Verify APK was created
+          if [ -f build/app/outputs/flutter-apk/app-release.apk ]; then
+            echo "✓ APK file found: build/app/outputs/flutter-apk/app-release.apk"
+            ls -lh build/app/outputs/flutter-apk/app-release.apk
+          else
+            echo "✗ ERROR: APK file not found!"
+            echo "Contents of build/app/outputs/flutter-apk/:"
+            ls -la build/app/outputs/flutter-apk/ || echo "Directory does not exist"
+            exit 1
+          fi
       
-      - name: Build separate APKs (optional - may fail)
-        continue-on-error: true
+      - name: Prepare APK for release
         run: |
-          echo "Attempting to build separate APKs for each architecture..."
-          echo "Note: These may fail, but universal APK will be available"
-          flutter build apk --release --target-platform android-arm64 && echo "✓ arm64-v8a built" || echo "✗ arm64-v8a failed"
-          flutter build apk --release --target-platform android-arm && echo "✓ armeabi-v7a built" || echo "✗ armeabi-v7a failed"
-          flutter build apk --release --target-platform android-x86 && echo "✓ x86 built" || echo "✗ x86 failed"
-          flutter build apk --release --target-platform android-x64 && echo "✓ x86_64 built" || echo "✗ x86_64 failed"
-      
-      - name: List build outputs
-        run: |
-          echo "=== Checking build outputs ==="
-          find build/app/outputs -name "*.apk" -type f -exec ls -lh {} \; || echo "No APK files found"
-          echo ""
-          echo "=== Contents of flutter-apk directory ==="
-          ls -lah build/app/outputs/flutter-apk/ || echo "Directory not found"
-      
-      - name: Rename APK files
-        run: |
+          echo "=== Preparing APK for release ==="
           VERSION="${{ needs.check-version-change.outputs.app-version }}"
           BUILD="${{ needs.check-version-change.outputs.build-number }}"
           TAG="v${VERSION}+${BUILD}"
           
+          echo "Version: $VERSION"
+          echo "Build: $BUILD"
+          echo "Tag: $TAG"
+          
           mkdir -p release-apks
           
-          # Copy APK files if they exist
-          if [ -f build/app/outputs/flutter-apk/app-arm64-v8a-release.apk ]; then
-            cp build/app/outputs/flutter-apk/app-arm64-v8a-release.apk release-apks/Irage_${TAG}_arm64-v8a.apk
-            echo "✓ arm64-v8a APK copied"
-          else
-            echo "⚠ arm64-v8a APK not found"
-          fi
-          
-          if [ -f build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk ]; then
-            cp build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk release-apks/Irage_${TAG}_armeabi-v7a.apk
-            echo "✓ armeabi-v7a APK copied"
-          else
-            echo "⚠ armeabi-v7a APK not found"
-          fi
-          
-          if [ -f build/app/outputs/flutter-apk/app-x86-release.apk ]; then
-            cp build/app/outputs/flutter-apk/app-x86-release.apk release-apks/Irage_${TAG}_x86.apk
-            echo "✓ x86 APK copied"
-          else
-            echo "⚠ x86 APK not found"
-          fi
-          
-          if [ -f build/app/outputs/flutter-apk/app-x86_64-release.apk ]; then
-            cp build/app/outputs/flutter-apk/app-x86_64-release.apk release-apks/Irage_${TAG}_x86_64.apk
-            echo "✓ x86_64 APK copied"
-          else
-            echo "⚠ x86_64 APK not found"
-          fi
-          
+          # Copy universal APK
           if [ -f build/app/outputs/flutter-apk/app-release.apk ]; then
             cp build/app/outputs/flutter-apk/app-release.apk release-apks/Irage_${TAG}_universal.apk
-            echo "✓ universal APK copied"
+            echo "✓ Universal APK copied: Irage_${TAG}_universal.apk"
+            ls -lh release-apks/Irage_${TAG}_universal.apk
           else
-            echo "⚠ universal APK not found"
-          fi
-          
-          echo "APK files in release-apks:"
-          ls -lh release-apks/ || echo "No APK files found"
-          
-          # Check if at least one APK exists
-          if [ -z "$(ls -A release-apks)" ]; then
-            echo "ERROR: No APK files found to release!"
+            echo "✗ ERROR: Universal APK not found!"
             exit 1
           fi
+          
+          # Try to copy separate APKs if they exist (optional)
+          for arch in arm64-v8a armeabi-v7a x86 x86_64; do
+            if [ -f "build/app/outputs/flutter-apk/app-${arch}-release.apk" ]; then
+              cp "build/app/outputs/flutter-apk/app-${arch}-release.apk" "release-apks/Irage_${TAG}_${arch}.apk"
+              echo "✓ ${arch} APK copied"
+            fi
+          done
+          
+          echo ""
+          echo "=== Final APK files ==="
+          ls -lh release-apks/
+          
+          # Verify at least one APK exists
+          APK_COUNT=$(ls -1 release-apks/*.apk 2>/dev/null | wc -l)
+          if [ "$APK_COUNT" -eq 0 ]; then
+            echo "✗ ERROR: No APK files found in release-apks directory!"
+            exit 1
+          fi
+          echo "✓ Found $APK_COUNT APK file(s) ready for release"
       
       - name: Create Release
         uses: softprops/action-gh-release@v1
