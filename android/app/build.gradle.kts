@@ -30,10 +30,12 @@ android {
         versionCode = flutter.versionCode
         versionName = flutter.versionName
         
-        // Limit to specific ABIs to reduce app size
-        ndk {
-            abiFilters += listOf("armeabi-v7a", "arm64-v8a")
-        }
+        // Support all ABIs for separate APK builds
+        // Note: abiFilters is commented out to allow building separate APKs for each architecture
+        // When building universal APK, all ABIs will be included
+        // ndk {
+        //     abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
+        // }
     }
 
     buildTypes {

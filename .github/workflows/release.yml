@@ -1,0 +1,139 @@
+name: Build and Release APK
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'pubspec.yaml'  # فقط وقتی pubspec.yaml تغییر کند
+
+jobs:
+  check-version-change:
+    runs-on: ubuntu-latest
+    outputs:
+      version-changed: ${{ steps.check.outputs.changed }}
+      app-version: ${{ steps.extract-version.outputs.version }}
+      build-number: ${{ steps.extract-version.outputs.build }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  # برای مقایسه با commit قبلی
+      
+      - name: Check if version changed
+        id: check
+        run: |
+          # Check if there's a previous commit
+          if git rev-parse --verify HEAD~1 > /dev/null 2>&1; then
+            # Compare with previous commit
+            if git diff HEAD~1 HEAD -- pubspec.yaml | grep -q "^[+-].*version:"; then
+              echo "changed=true" >> $GITHUB_OUTPUT
+            else
+              echo "changed=false" >> $GITHUB_OUTPUT
+            fi
+          else
+            # First commit, consider it as version change
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Extract version from pubspec.yaml
+        id: extract-version
+        run: |
+          VERSION=$(grep "^version:" pubspec.yaml | sed 's/version: //' | sed 's/+.*//')
+          BUILD=$(grep "^version:" pubspec.yaml | sed 's/.*+//')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "build=$BUILD" >> $GITHUB_OUTPUT
+          echo "Version: $VERSION+$BUILD"
+
+  build:
+    needs: check-version-change
+    if: needs.check-version-change.outputs.version-changed == 'true'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.38.3'
+          channel: 'stable'
+      
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+      
+      - name: Install dependencies
+        run: flutter pub get
+      
+      - name: Build APK - arm64-v8a
+        run: flutter build apk --release --target-platform android-arm64
+      
+      - name: Build APK - armeabi-v7a
+        run: flutter build apk --release --target-platform android-arm
+      
+      - name: Build APK - x86
+        run: flutter build apk --release --target-platform android-x86
+      
+      - name: Build APK - x86_64
+        run: flutter build apk --release --target-platform android-x64
+      
+      - name: Build APK - Universal
+        run: flutter build apk --release
+      
+      - name: Rename APK files
+        run: |
+          VERSION="${{ needs.check-version-change.outputs.app-version }}"
+          BUILD="${{ needs.check-version-change.outputs.build-number }}"
+          TAG="v${VERSION}+${BUILD}"
+          
+          mkdir -p release-apks
+          
+          if [ -f build/app/outputs/flutter-apk/app-arm64-v8a-release.apk ]; then
+            mv build/app/outputs/flutter-apk/app-arm64-v8a-release.apk release-apks/Irage_${TAG}_arm64-v8a.apk
+          fi
+          
+          if [ -f build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk ]; then
+            mv build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk release-apks/Irage_${TAG}_armeabi-v7a.apk
+          fi
+          
+          if [ -f build/app/outputs/flutter-apk/app-x86-release.apk ]; then
+            mv build/app/outputs/flutter-apk/app-x86-release.apk release-apks/Irage_${TAG}_x86.apk
+          fi
+          
+          if [ -f build/app/outputs/flutter-apk/app-x86_64-release.apk ]; then
+            mv build/app/outputs/flutter-apk/app-x86_64-release.apk release-apks/Irage_${TAG}_x86_64.apk
+          fi
+          
+          if [ -f build/app/outputs/flutter-apk/app-release.apk ]; then
+            mv build/app/outputs/flutter-apk/app-release.apk release-apks/Irage_${TAG}_universal.apk
+          fi
+      
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ needs.check-version-change.outputs.app-version }}+${{ needs.check-version-change.outputs.build-number }}
+          name: Release v${{ needs.check-version-change.outputs.app-version }}+${{ needs.check-version-change.outputs.build-number }}
+          body: |
+            ## تغییرات نسخه ${{ needs.check-version-change.outputs.app-version }}+${{ needs.check-version-change.outputs.build-number }}
+            
+            ### دانلود APK
+            
+            - **arm64-v8a**: برای گوشی‌های 64-bit جدید
+            - **armeabi-v7a**: برای گوشی‌های 32-bit قدیمی‌تر
+            - **x86**: برای emulatorها و تبلت‌های x86
+            - **x86_64**: برای emulatorها و تبلت‌های x86_64
+            - **universal**: شامل همه معماری‌ها (فایل بزرگ‌تر)
+            
+            ### نحوه نصب
+            
+            1. فایل APK مناسب با معماری دستگاه خود را دانلود کنید
+            2. فایل را باز کنید و نصب را انجام دهید
+            3. در صورت نیاز، نصب از منابع ناشناخته را در تنظیمات فعال کنید
+          files: |
+            release-apks/*.apk
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
