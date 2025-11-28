@@ -88,23 +88,32 @@ jobs:
           echo "Flutter version:"
           flutter --version
           echo ""
+          echo "Flutter doctor:"
+          flutter doctor
+          echo ""
           echo "Starting build..."
           
-          # Build with verbose output to see errors
-          flutter build apk --release --verbose 2>&1 | tee build.log || {
+          # Build and capture output
+          set +e  # Don't exit on error immediately
+          flutter build apk --release 2>&1 | tee build.log
+          BUILD_EXIT_CODE=${PIPESTATUS[0]}
+          
+          if [ $BUILD_EXIT_CODE -ne 0 ]; then
             echo ""
-            echo "✗✗✗ BUILD FAILED ✗✗✗"
-            echo "Showing last 100 lines of build log:"
-            tail -100 build.log
+            echo "✗✗✗ BUILD FAILED (Exit code: $BUILD_EXIT_CODE) ✗✗✗"
             echo ""
-            echo "=== Checking for common issues ==="
-            echo "Gradle version:"
-            cd android && ./gradlew --version || echo "Gradle check failed"
+            echo "=== Last 150 lines of build log ==="
+            tail -150 build.log
             echo ""
-            echo "Flutter doctor:"
-            flutter doctor -v
-            exit 1
-          }
+            echo "=== Searching for ERROR keywords ==="
+            grep -i "error" build.log | tail -20 || echo "No 'error' found in log"
+            echo ""
+            echo "=== Searching for FAILED keywords ==="
+            grep -i "failed" build.log | tail -20 || echo "No 'failed' found in log"
+            echo ""
+            echo "=== Full build log saved above ==="
+            exit $BUILD_EXIT_CODE
+          fi
           
           echo "✓ Build command completed"
           
