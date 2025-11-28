@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'pubspec.yaml'  # فقط وقتی pubspec.yaml تغییر کند
+  workflow_dispatch:  # امکان اجرای دستی workflow
 
 jobs:
   check-version-change:
@@ -17,13 +18,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2  # برای مقایسه با commit قبلی
+          fetch-depth: ${{ github.event_name == 'workflow_dispatch' && '1' || '2' }}  # برای workflow_dispatch فقط 1 commit لازم است
       
       - name: Check if version changed
         id: check
         run: |
+          # If workflow is triggered manually (workflow_dispatch), always build
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
           # Check if there's a previous commit
-          if git rev-parse --verify HEAD~1 > /dev/null 2>&1; then
+          elif git rev-parse --verify HEAD~1 > /dev/null 2>&1; then
             # Compare with previous commit
             if git diff HEAD~1 HEAD -- pubspec.yaml | grep -q "^[+-].*version:"; then
               echo "changed=true" >> $GITHUB_OUTPUT
