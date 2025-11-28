@@ -52,6 +52,7 @@ jobs:
     needs: check-version-change
     if: needs.check-version-change.outputs.version-changed == 'true'
     runs-on: ubuntu-latest
+    timeout-minutes: 30  # Timeout after 30 minutes
     
     steps:
       - uses: actions/checkout@v4
@@ -70,30 +71,29 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
       
-      - name: Build APK - Universal (includes all architectures)
-        run: flutter build apk --release
+      - name: Build Universal APK (includes all architectures)
+        run: |
+          echo "Building universal APK (includes all architectures)..."
+          flutter build apk --release
+          echo "✓ Universal APK built successfully"
       
-      - name: Build APK - arm64-v8a
-        run: flutter build apk --release --target-platform android-arm64
+      - name: Build separate APKs (optional - may fail)
         continue-on-error: true
-      
-      - name: Build APK - armeabi-v7a
-        run: flutter build apk --release --target-platform android-arm
-        continue-on-error: true
-      
-      - name: Build APK - x86
-        run: flutter build apk --release --target-platform android-x86
-        continue-on-error: true
-      
-      - name: Build APK - x86_64
-        run: flutter build apk --release --target-platform android-x64
-        continue-on-error: true
+        run: |
+          echo "Attempting to build separate APKs for each architecture..."
+          echo "Note: These may fail, but universal APK will be available"
+          flutter build apk --release --target-platform android-arm64 && echo "✓ arm64-v8a built" || echo "✗ arm64-v8a failed"
+          flutter build apk --release --target-platform android-arm && echo "✓ armeabi-v7a built" || echo "✗ armeabi-v7a failed"
+          flutter build apk --release --target-platform android-x86 && echo "✓ x86 built" || echo "✗ x86 failed"
+          flutter build apk --release --target-platform android-x64 && echo "✓ x86_64 built" || echo "✗ x86_64 failed"
       
       - name: List build outputs
         run: |
-          echo "Checking build outputs..."
-          find build/app/outputs -name "*.apk" -type f || true
-          ls -la build/app/outputs/flutter-apk/ || true
+          echo "=== Checking build outputs ==="
+          find build/app/outputs -name "*.apk" -type f -exec ls -lh {} \; || echo "No APK files found"
+          echo ""
+          echo "=== Contents of flutter-apk directory ==="
+          ls -lah build/app/outputs/flutter-apk/ || echo "Directory not found"
       
       - name: Rename APK files
         run: |
