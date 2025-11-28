@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../config/theme_roles.dart';
 import '../providers/app_provider.dart';
+import 'font_helper.dart';
 
 Color aboutDescriptionColor(BuildContext context) {
   return Theme.of(context).brightness == Brightness.dark
@@ -20,12 +21,19 @@ Widget buildRichTextWithIrage(BuildContext context, String text) {
   if (match == null) {
     return Text(
       text,
-      style: TextStyle(
-        fontSize: 14,
-        height: 1.6,
-        letterSpacing: -0.098,
-        color: TCnt.neutralSecond(context),
-      ),
+      style: isPersian
+          ? FontHelper.getYekanBakh(
+              fontSize: 14,
+              height: 1.6,
+              letterSpacing: -0.098,
+              color: TCnt.neutralSecond(context),
+            )
+          : TextStyle(
+              fontSize: 14,
+              height: 1.6,
+              letterSpacing: -0.098,
+              color: TCnt.neutralSecond(context),
+            ),
     );
   }
 
@@ -36,22 +44,39 @@ Widget buildRichTextWithIrage(BuildContext context, String text) {
 
   return Text.rich(
     TextSpan(
-      style: TextStyle(
-        fontSize: 14,
-        height: 1.6,
-        letterSpacing: -0.098,
-        color: TCnt.neutralSecond(context),
-      ),
+      style: isPersian
+          ? FontHelper.getYekanBakh(
+              fontSize: 14,
+              height: 1.6,
+              letterSpacing: -0.098,
+              color: TCnt.neutralSecond(context),
+            )
+          : TextStyle(
+              fontSize: 14,
+              height: 1.6,
+              letterSpacing: -0.098,
+              color: TCnt.neutralSecond(context),
+            ),
       children: [
         if (beforeText.isNotEmpty) TextSpan(text: beforeText),
         TextSpan(
           text: irageText,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Theme.of(context).brightness == Brightness.dark
-                ? TCnt.neutralMain(context)
-                : null,
-          ),
+          style: isPersian
+              ? FontHelper.getYekanBakh(
+                  fontSize: 14,
+                  height: 1.6,
+                  letterSpacing: -0.098,
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? TCnt.neutralMain(context)
+                      : null,
+                  fontWeight: FontWeight.bold,
+                )
+              : TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? TCnt.neutralMain(context)
+                      : null,
+                ),
         ),
         TextSpan(
           text: heritageText,
@@ -77,12 +102,19 @@ Widget buildRichTextWithIrageQuoted(BuildContext context, String text) {
   if (match == null) {
     return Text(
       text,
-      style: TextStyle(
-        fontSize: 14,
-        height: 1.6,
-        letterSpacing: -0.098,
-        color: TCnt.neutralSecond(context),
-      ),
+      style: isPersian
+          ? FontHelper.getYekanBakh(
+              fontSize: 14,
+              height: 1.6,
+              letterSpacing: -0.098,
+              color: TCnt.neutralSecond(context),
+            )
+          : TextStyle(
+              fontSize: 14,
+              height: 1.6,
+              letterSpacing: -0.098,
+              color: TCnt.neutralSecond(context),
+            ),
     );
   }
 
@@ -100,23 +132,40 @@ Widget buildRichTextWithIrageQuoted(BuildContext context, String text) {
     children: [
       Text.rich(
         TextSpan(
-          style: TextStyle(
-            fontSize: 14,
-            height: 1.6,
-            letterSpacing: -0.098,
-            color: TCnt.neutralSecond(context),
-          ),
+          style: isPersian
+              ? FontHelper.getYekanBakh(
+                  fontSize: 14,
+                  height: 1.6,
+                  letterSpacing: -0.098,
+                  color: TCnt.neutralSecond(context),
+                )
+              : TextStyle(
+                  fontSize: 14,
+                  height: 1.6,
+                  letterSpacing: -0.098,
+                  color: TCnt.neutralSecond(context),
+                ),
           children: [
             if (beforeText.isNotEmpty) TextSpan(text: beforeText),
             TextSpan(text: quoteStart),
             TextSpan(
               text: irageText,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Theme.of(context).brightness == Brightness.dark
-                    ? TCnt.neutralMain(context)
-                    : null,
-              ),
+              style: isPersian
+                  ? FontHelper.getYekanBakh(
+                      fontSize: 14,
+                      height: 1.6,
+                      letterSpacing: -0.098,
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? TCnt.neutralMain(context)
+                          : null,
+                      fontWeight: FontWeight.bold,
+                    )
+                  : TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? TCnt.neutralMain(context)
+                          : null,
+                    ),
             ),
             TextSpan(text: quoteEnd),
             TextSpan(
@@ -138,12 +187,19 @@ Widget buildRichTextWithIrageQuoted(BuildContext context, String text) {
             const SizedBox(height: 12),
             Text(
               part,
-              style: TextStyle(
-                fontSize: 14,
-                height: 1.6,
-                letterSpacing: -0.098,
-                color: TCnt.neutralSecond(context),
-              ),
+              style: isPersian
+                  ? FontHelper.getYekanBakh(
+                      fontSize: 14,
+                      height: 1.6,
+                      letterSpacing: -0.098,
+                      color: TCnt.neutralSecond(context),
+                    )
+                  : TextStyle(
+                      fontSize: 14,
+                      height: 1.6,
+                      letterSpacing: -0.098,
+                      color: TCnt.neutralSecond(context),
+                    ),
             ),
           ],
         ),
@@ -157,53 +213,83 @@ Widget buildTermsSectionWithIrage(
   required String title,
   required String content,
 }) {
+  final appProvider = Provider.of<AppProvider>(context, listen: false);
+  final isPersian = appProvider.language == 'fa';
+  
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       number.isNotEmpty
           ? Row(
+              textDirection: isPersian ? TextDirection.rtl : TextDirection.ltr,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
                   width: 24,
                   child: Text(
                     '$number.',
-                    style: TextStyle(
-                      fontSize: 16,
-                      height: 1.4,
-                      letterSpacing: -0.32,
-                      color: TCnt.neutralMain(context),
-                      fontWeight: FontWeight.w800,
-                    ),
+                    style: isPersian
+                        ? FontHelper.getYekanBakh(
+                            fontSize: 16,
+                            height: 1.4,
+                            letterSpacing: -0.32,
+                            color: TCnt.neutralMain(context),
+                            fontWeight: FontWeight.w800,
+                          )
+                        : FontHelper.getInter(
+                            fontSize: 16,
+                            height: 1.4,
+                            letterSpacing: -0.32,
+                            color: TCnt.neutralMain(context),
+                            fontWeight: FontWeight.w800,
+                          ),
                   ),
                 ),
                 Expanded(
                   child: Text(
                     title,
-                    style: TextStyle(
-                      fontSize: 16,
-                      height: 1.4,
-                      letterSpacing: -0.32,
-                      color: TCnt.neutralMain(context),
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: isPersian
+                        ? FontHelper.getYekanBakh(
+                            fontSize: 16,
+                            height: 1.4,
+                            letterSpacing: -0.32,
+                            color: TCnt.neutralMain(context),
+                            fontWeight: FontWeight.w600,
+                          )
+                        : FontHelper.getInter(
+                            fontSize: 16,
+                            height: 1.4,
+                            letterSpacing: -0.32,
+                            color: TCnt.neutralMain(context),
+                            fontWeight: FontWeight.w600,
+                          ),
                   ),
                 ),
               ],
             )
           : Text(
               title,
-              style: TextStyle(
-                fontSize: 16,
-                height: 1.4,
-                letterSpacing: -0.32,
-                color: TCnt.neutralMain(context),
-                fontWeight: FontWeight.w600,
-              ),
+              style: isPersian
+                  ? FontHelper.getYekanBakh(
+                      fontSize: 16,
+                      height: 1.4,
+                      letterSpacing: -0.32,
+                      color: TCnt.neutralMain(context),
+                      fontWeight: FontWeight.w600,
+                    )
+                  : FontHelper.getInter(
+                      fontSize: 16,
+                      height: 1.4,
+                      letterSpacing: -0.32,
+                      color: TCnt.neutralMain(context),
+                      fontWeight: FontWeight.w600,
+                    ),
             ),
       const SizedBox(height: 6),
       Padding(
-        padding: number.isEmpty ? EdgeInsets.zero : const EdgeInsets.only(left: 24),
+        padding: number.isEmpty 
+            ? EdgeInsets.zero 
+            : EdgeInsets.only(left: isPersian ? 0 : 24, right: isPersian ? 24 : 0),
         child: buildRichTextWithIrage(context, content),
       ),
       const SizedBox(height: 16),
@@ -217,53 +303,83 @@ Widget buildTermsSectionWithIrageQuoted(
   required String title,
   required String content,
 }) {
+  final appProvider = Provider.of<AppProvider>(context, listen: false);
+  final isPersian = appProvider.language == 'fa';
+  
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       number.isNotEmpty
           ? Row(
+              textDirection: isPersian ? TextDirection.rtl : TextDirection.ltr,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
                   width: 24,
                   child: Text(
                     '$number.',
-                    style: TextStyle(
-                      fontSize: 16,
-                      height: 1.4,
-                      letterSpacing: -0.32,
-                      color: TCnt.neutralMain(context),
-                      fontWeight: FontWeight.w800,
-                    ),
+                    style: isPersian
+                        ? FontHelper.getYekanBakh(
+                            fontSize: 16,
+                            height: 1.4,
+                            letterSpacing: -0.32,
+                            color: TCnt.neutralMain(context),
+                            fontWeight: FontWeight.w800,
+                          )
+                        : FontHelper.getInter(
+                            fontSize: 16,
+                            height: 1.4,
+                            letterSpacing: -0.32,
+                            color: TCnt.neutralMain(context),
+                            fontWeight: FontWeight.w800,
+                          ),
                   ),
                 ),
                 Expanded(
                   child: Text(
                     title,
-                    style: TextStyle(
-                      fontSize: 16,
-                      height: 1.4,
-                      letterSpacing: -0.32,
-                      color: TCnt.neutralMain(context),
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: isPersian
+                        ? FontHelper.getYekanBakh(
+                            fontSize: 16,
+                            height: 1.4,
+                            letterSpacing: -0.32,
+                            color: TCnt.neutralMain(context),
+                            fontWeight: FontWeight.w600,
+                          )
+                        : FontHelper.getInter(
+                            fontSize: 16,
+                            height: 1.4,
+                            letterSpacing: -0.32,
+                            color: TCnt.neutralMain(context),
+                            fontWeight: FontWeight.w600,
+                          ),
                   ),
                 ),
               ],
             )
           : Text(
               title,
-              style: TextStyle(
-                fontSize: 16,
-                height: 1.4,
-                letterSpacing: -0.32,
-                color: TCnt.neutralMain(context),
-                fontWeight: FontWeight.w600,
-              ),
+              style: isPersian
+                  ? FontHelper.getYekanBakh(
+                      fontSize: 16,
+                      height: 1.4,
+                      letterSpacing: -0.32,
+                      color: TCnt.neutralMain(context),
+                      fontWeight: FontWeight.w600,
+                    )
+                  : FontHelper.getInter(
+                      fontSize: 16,
+                      height: 1.4,
+                      letterSpacing: -0.32,
+                      color: TCnt.neutralMain(context),
+                      fontWeight: FontWeight.w600,
+                    ),
             ),
       const SizedBox(height: 6),
       Padding(
-        padding: number.isEmpty ? EdgeInsets.zero : const EdgeInsets.only(left: 24),
+        padding: number.isEmpty 
+            ? EdgeInsets.zero 
+            : EdgeInsets.only(left: isPersian ? 0 : 24, right: isPersian ? 24 : 0),
         child: buildRichTextWithIrageQuoted(context, content),
       ),
       const SizedBox(height: 16),

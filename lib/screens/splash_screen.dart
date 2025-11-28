@@ -280,7 +280,7 @@ class _SplashScreenState extends State<SplashScreen> {
                             children: [
                               // Welcome Message
                               Text(
-                                isPersian ? 'اپلیکیشن' : 'Welcome to',
+                                isPersian ? 'اپلیکیشن ایراژ' : 'Welcome to Irage',
                                 style: isPersian
                                     ? FontHelper.getYekanBakh(
                                         fontSize: 12,

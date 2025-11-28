@@ -1042,38 +1042,55 @@ class _SettingsScreenState extends State<SettingsScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
+                  textDirection: isPersian ? TextDirection.rtl : TextDirection.ltr,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
                       width: 24,
                       child: Text(
                         '3.',
-                        style: FontHelper.getInter(
-                          fontSize: 16,
-                          height: 1.4,
-                          letterSpacing: -0.32,
-                          color: TCnt.neutralMain(context),
-                          fontWeight: FontWeight.w800,
-                        ),
+                        style: isPersian
+                            ? FontHelper.getYekanBakh(
+                                fontSize: 16,
+                                height: 1.4,
+                                letterSpacing: -0.32,
+                                color: TCnt.neutralMain(context),
+                                fontWeight: FontWeight.w800,
+                              )
+                            : FontHelper.getInter(
+                                fontSize: 16,
+                                height: 1.4,
+                                letterSpacing: -0.32,
+                                color: TCnt.neutralMain(context),
+                                fontWeight: FontWeight.w800,
+                              ),
                       ),
                     ),
                     Expanded(
                       child: Text(
                         isPersian ? 'ذخیره‌سازی و حفاظت از داده‌ها' : 'Data Storage and Protection',
-                        style: FontHelper.getInter(
-                          fontSize: 16,
-                          height: 1.4,
-                          letterSpacing: -0.32,
-                          color: TCnt.neutralMain(context),
-                          fontWeight: FontWeight.w800,
-                        ),
+                        style: isPersian
+                            ? FontHelper.getYekanBakh(
+                                fontSize: 16,
+                                height: 1.4,
+                                letterSpacing: -0.32,
+                                color: TCnt.neutralMain(context),
+                                fontWeight: FontWeight.w800,
+                              )
+                            : FontHelper.getInter(
+                                fontSize: 16,
+                                height: 1.4,
+                                letterSpacing: -0.32,
+                                color: TCnt.neutralMain(context),
+                                fontWeight: FontWeight.w800,
+                              ),
                       ),
                     ),
                   ],
                 ),
                 const SizedBox(height: 6),
                 Padding(
-                  padding: const EdgeInsets.only(left: 24),
+                  padding: EdgeInsets.only(left: isPersian ? 0 : 24, right: isPersian ? 24 : 0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -1081,12 +1098,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         isPersian 
                             ? 'تمام رکوردهای جمع‌آوری‌شده به طور ایمن در سرورهای رمزگذاری‌شده ذخیره می‌شوند و دسترسی به آنها محدود به تیم تأیید است.'
                             : 'All collected records are securely stored on encrypted servers, and access is limited to the verification team.',
-                        style: FontHelper.getInter(
-                          fontSize: 14,
-                          height: 1.6,
-                          letterSpacing: -0.098,
-                          color: aboutDescriptionColor(context),
-                        ),
+                        style: isPersian
+                            ? FontHelper.getYekanBakh(
+                                fontSize: 14,
+                                height: 1.6,
+                                letterSpacing: -0.098,
+                                color: aboutDescriptionColor(context),
+                              )
+                            : FontHelper.getInter(
+                                fontSize: 14,
+                                height: 1.6,
+                                letterSpacing: -0.098,
+                                color: aboutDescriptionColor(context),
+                              ),
                       ),
                       const SizedBox(height: 6),
                       _buildNoteCallout(
@@ -1117,8 +1141,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
               number: '5',
               title: isPersian ? 'لینک‌های خارجی' : 'External Links',
               content: isPersian 
-                  ? 'برخی از صفحات ممکن است حاوی پیوندهایی به بایگانی‌های یادبود تأیید شده یا پروژه‌های مستندسازی (مثلاً مرکز اسناد حقوق بشر) باشند.\n\nاین سایت‌های خارجی تحت سیاست‌های حفظ حریم خصوصی خود اداره می‌شوند.\n\nما شما را تشویق می‌کنیم که هنگام بازدید از پیوندهای خارجی، آنها را مرور کنید.'
-                  : 'Some pages may contain links to verified memorial archives or documentation projects (e.g., the Human Rights Documentation Center).\n\nThese external sites are governed by their own privacy policies.\n\nWe encourage you to review them when visiting external links.',
+                  ? 'برخی از صفحات ممکن است حاوی پیوندهایی به بایگانی‌های یادبود تأیید شده یا پروژه‌های مستندسازی (مثلاً مرکز اسناد حقوق بشر) باشند.\nاین سایت‌های خارجی تحت سیاست‌های حفظ حریم خصوصی خود اداره می‌شوند.\n شما را تشویق می‌کنیم که هنگام بازدید از پیوندهای خارجی، آنها را مرور کنید.'
+                  : 'Some pages may contain links to verified memorial archives or documentation projects (e.g., the Human Rights Documentation Center).\nThese external sites are governed by their own privacy policies.\nWe encourage you to review them when visiting external links.',
             ),
             
             // 6. Changes to Policy
@@ -1543,6 +1567,7 @@ https://ir-heritage.com/download
       children: [
         number.isNotEmpty
             ? Row(
+                textDirection: isPersian ? TextDirection.rtl : TextDirection.ltr,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
@@ -1590,17 +1615,27 @@ https://ir-heritage.com/download
               )
             : Text(
                 title,
-                style: FontHelper.getInter(
-                  fontSize: 16,
-                  height: 1.4,
-                  letterSpacing: -0.32,
-                  color: TCnt.neutralMain(context),
-                  fontWeight: FontWeight.w600,
-                ),
+                style: isPersian
+                    ? FontHelper.getYekanBakh(
+                        fontSize: 16,
+                        height: 1.4,
+                        letterSpacing: -0.32,
+                        color: TCnt.neutralMain(context),
+                        fontWeight: FontWeight.w600,
+                      )
+                    : FontHelper.getInter(
+                        fontSize: 16,
+                        height: 1.4,
+                        letterSpacing: -0.32,
+                        color: TCnt.neutralMain(context),
+                        fontWeight: FontWeight.w600,
+                      ),
               ),
         const SizedBox(height: 6),
         Padding(
-          padding: number.isEmpty ? EdgeInsets.zero : const EdgeInsets.only(left: 24),
+          padding: number.isEmpty 
+              ? EdgeInsets.zero 
+              : EdgeInsets.only(left: isPersian ? 0 : 24, right: isPersian ? 24 : 0),
           child: emailText != null 
               ? _buildRichTextWithEmail(context, content, emailText)
               : _buildRichTextWithBoldAndLink(context, content, boldText, null),
@@ -1627,6 +1662,7 @@ https://ir-heritage.com/download
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
+          textDirection: isPersian ? TextDirection.rtl : TextDirection.ltr,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
@@ -1661,7 +1697,7 @@ https://ir-heritage.com/download
                         color: TCnt.neutralMain(context),
                         fontWeight: FontWeight.w600,
                       )
-                    : TextStyle(
+                    : FontHelper.getInter(
                         fontSize: 16,
                         height: 1.4,
                         letterSpacing: -0.32,
@@ -1674,7 +1710,7 @@ https://ir-heritage.com/download
         ),
         const SizedBox(height: 6),
         Padding(
-          padding: const EdgeInsets.only(left: 24),
+          padding: EdgeInsets.only(left: isPersian ? 0 : 24, right: isPersian ? 24 : 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -1833,6 +1869,8 @@ https://ir-heritage.com/download
   }
 
   Widget _buildRichTextWithEmail(BuildContext context, String text, String emailText) {
+    final appProvider = Provider.of<AppProvider>(context, listen: false);
+    final isPersian = appProvider.language == 'fa';
     final parts = text.split('**');
     final spans = <TextSpan>[];
     
@@ -1845,10 +1883,15 @@ https://ir-heritage.com/download
         if (part == emailText) {
           spans.add(TextSpan(
             text: part,
-            style: FontHelper.getInter(
-              fontWeight: FontWeight.w500,
-              color: ThemeColors.primary500,
-            ),
+            style: isPersian
+                ? FontHelper.getYekanBakh(
+                    fontWeight: FontWeight.w500,
+                    color: ThemeColors.primary500,
+                  )
+                : FontHelper.getInter(
+                    fontWeight: FontWeight.w500,
+                    color: ThemeColors.primary500,
+                  ),
             recognizer: TapGestureRecognizer()
               ..onTap = () async {
                 final Uri emailUri = Uri.parse('mailto:$emailText');
@@ -1860,7 +1903,9 @@ https://ir-heritage.com/download
         } else {
           spans.add(TextSpan(
             text: part,
-            style: FontHelper.getInter(fontWeight: FontWeight.bold),
+            style: isPersian
+                ? FontHelper.getYekanBakh(fontWeight: FontWeight.bold)
+                : FontHelper.getInter(fontWeight: FontWeight.bold),
           ));
         }
       } else {
@@ -1872,10 +1917,15 @@ https://ir-heritage.com/download
           }
           spans.add(TextSpan(
             text: emailText,
-            style: FontHelper.getInter(
-              color: ThemeColors.primary500,
-              fontWeight: FontWeight.w500,
-            ),
+            style: isPersian
+                ? FontHelper.getYekanBakh(
+                    color: ThemeColors.primary500,
+                    fontWeight: FontWeight.w500,
+                  )
+                : FontHelper.getInter(
+                    color: ThemeColors.primary500,
+                    fontWeight: FontWeight.w500,
+                  ),
             recognizer: TapGestureRecognizer()
               ..onTap = () async {
                 final Uri emailUri = Uri.parse('mailto:$emailText');
@@ -1895,33 +1945,47 @@ https://ir-heritage.com/download
     
     return Text.rich(
       TextSpan(
-        style: FontHelper.getInter(
-          fontSize: 14,
-          height: 1.6,
-          letterSpacing: -0.098,
-          color: TCnt.neutralSecond(context),
-        ),
+        style: isPersian
+            ? FontHelper.getYekanBakh(
+                fontSize: 14,
+                height: 1.6,
+                letterSpacing: -0.098,
+                color: TCnt.neutralSecond(context),
+              )
+            : FontHelper.getInter(
+                fontSize: 14,
+                height: 1.6,
+                letterSpacing: -0.098,
+                color: TCnt.neutralSecond(context),
+              ),
         children: spans,
       ),
     );
   }
 
   Widget _buildRichTextWithLink(BuildContext context, String text, String? linkText) {
+    final appProvider = Provider.of<AppProvider>(context, listen: false);
+    final isPersian = appProvider.language == 'fa';
+    
     if (linkText == null) {
       return Text(
         text,
-        style: FontHelper.getInter(
-          fontSize: 14,
-          height: 1.6,
-          letterSpacing: -0.098,
-          color: TCnt.neutralSecond(context),
-        ),
+        style: isPersian
+            ? FontHelper.getYekanBakh(
+                fontSize: 14,
+                height: 1.6,
+                letterSpacing: -0.098,
+                color: TCnt.neutralSecond(context),
+              )
+            : FontHelper.getInter(
+                fontSize: 14,
+                height: 1.6,
+                letterSpacing: -0.098,
+                color: TCnt.neutralSecond(context),
+              ),
       );
     }
     
-    // Get isPersian from AppProvider
-    final appProvider = Provider.of<AppProvider>(context, listen: false);
-    final isPersian = appProvider.language == 'fa';
     
     // Check if this is the "Submit a Report" or "Add or Edit Record" link - should open feedback email
     final isSubmitReportLink = linkText == 'ارسال گزارش' || linkText == 'Submit a Report';
@@ -1936,22 +2000,34 @@ https://ir-heritage.com/download
       final parts = text.split(linkInBold);
       return Text.rich(
         TextSpan(
-          style: TextStyle(
-            fontSize: 14,
-            height: 1.6,
-            letterSpacing: -0.098,
-            color: TCnt.neutralSecond(context),
-          ),
+          style: isPersian
+              ? FontHelper.getYekanBakh(
+                  fontSize: 14,
+                  height: 1.6,
+                  letterSpacing: -0.098,
+                  color: TCnt.neutralSecond(context),
+                )
+              : TextStyle(
+                  fontSize: 14,
+                  height: 1.6,
+                  letterSpacing: -0.098,
+                  color: TCnt.neutralSecond(context),
+                ),
           children: [
             for (int i = 0; i < parts.length; i++) ...[
               if (parts[i].isNotEmpty) TextSpan(text: parts[i]),
               if (i < parts.length - 1)
                 TextSpan(
                   text: linkText,
-                  style: FontHelper.getInter(
-                    fontWeight: FontWeight.w500,
-                    color: TCnt.brandMain(context),
-                  ),
+                  style: isPersian
+                      ? FontHelper.getYekanBakh(
+                          fontWeight: FontWeight.w500,
+                          color: TCnt.brandMain(context),
+                        )
+                      : FontHelper.getInter(
+                          fontWeight: FontWeight.w500,
+                          color: TCnt.brandMain(context),
+                        ),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () async {
                       if (shouldOpenFeedbackEmail) {
@@ -1979,20 +2055,32 @@ https://ir-heritage.com/download
     if (index != -1) {
       return Text.rich(
         TextSpan(
-          style: TextStyle(
-            fontSize: 14,
-            height: 1.6,
-            letterSpacing: -0.098,
-            color: TCnt.neutralSecond(context),
-          ),
+          style: isPersian
+              ? FontHelper.getYekanBakh(
+                  fontSize: 14,
+                  height: 1.6,
+                  letterSpacing: -0.098,
+                  color: TCnt.neutralSecond(context),
+                )
+              : TextStyle(
+                  fontSize: 14,
+                  height: 1.6,
+                  letterSpacing: -0.098,
+                  color: TCnt.neutralSecond(context),
+                ),
           children: [
             TextSpan(text: text.substring(0, index)),
             TextSpan(
               text: linkText,
-              style: FontHelper.getInter(
-                fontWeight: FontWeight.bold,
-                color: TCnt.brandMain(context),
-              ),
+              style: isPersian
+                  ? FontHelper.getYekanBakh(
+                      fontWeight: FontWeight.bold,
+                      color: TCnt.brandMain(context),
+                    )
+                  : FontHelper.getInter(
+                      fontWeight: FontWeight.bold,
+                      color: TCnt.brandMain(context),
+                    ),
               recognizer: TapGestureRecognizer()
                 ..onTap = () async {
                   if (isSubmitReportLink) {
@@ -2020,23 +2108,37 @@ https://ir-heritage.com/download
     if (simpleIndex == -1) {
       return Text(
         text,
-        style: FontHelper.getInter(
-          fontSize: 14,
-          height: 1.6,
-          letterSpacing: -0.098,
-          color: TCnt.neutralSecond(context),
-        ),
+        style: isPersian
+            ? FontHelper.getYekanBakh(
+                fontSize: 14,
+                height: 1.6,
+                letterSpacing: -0.098,
+                color: TCnt.neutralSecond(context),
+              )
+            : FontHelper.getInter(
+                fontSize: 14,
+                height: 1.6,
+                letterSpacing: -0.098,
+                color: TCnt.neutralSecond(context),
+              ),
       );
     }
     
     return Text.rich(
       TextSpan(
-        style: FontHelper.getInter(
-          fontSize: 14,
-          height: 1.6,
-          letterSpacing: -0.098,
-          color: TCnt.neutralSecond(context),
-        ),
+        style: isPersian
+            ? FontHelper.getYekanBakh(
+                fontSize: 14,
+                height: 1.6,
+                letterSpacing: -0.098,
+                color: TCnt.neutralSecond(context),
+              )
+            : FontHelper.getInter(
+                fontSize: 14,
+                height: 1.6,
+                letterSpacing: -0.098,
+                color: TCnt.neutralSecond(context),
+              ),
         children: [
           TextSpan(text: text.substring(0, simpleIndex)),
           TextSpan(
@@ -2069,15 +2171,22 @@ https://ir-heritage.com/download
   }
 
   Widget _buildNoteCallout(BuildContext context, String noteContent, String? linkText) {
+    final appProvider = Provider.of<AppProvider>(context, listen: false);
+    final isPersian = appProvider.language == 'fa';
+    
     return IntrinsicHeight(
       child: Row(
+        textDirection: isPersian ? TextDirection.rtl : TextDirection.ltr,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // Left border with height matching content
+          // Border with height matching content
           Container(
             width: 2,
             color: ThemeColors.indigo500,
-            margin: const EdgeInsets.only(right: 8),
+            margin: EdgeInsets.only(
+              left: isPersian ? 8 : 0,
+              right: isPersian ? 0 : 8,
+            ),
           ),
           // Content without top/bottom padding
           Expanded(

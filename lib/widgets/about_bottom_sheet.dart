@@ -70,29 +70,47 @@ void showAboutBottomSheet(BuildContext context, {required bool isPersian}) {
               children: [
                 Text(
                   isPersian ? '• بدون حمایت مالی' : '• No sponsorship',
-                  style: TextStyle(
-                    fontSize: 14,
-                    height: 1.6,
-                    color: aboutDescriptionColor(context),
-                  ),
+                  style: isPersian
+                      ? FontHelper.getYekanBakh(
+                          fontSize: 14,
+                          height: 1.6,
+                          color: aboutDescriptionColor(context),
+                        )
+                      : TextStyle(
+                          fontSize: 14,
+                          height: 1.6,
+                          color: aboutDescriptionColor(context),
+                        ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   isPersian ? '• بدون روابط سیاسی' : '• No political ties',
-                  style: TextStyle(
-                    fontSize: 14,
-                    height: 1.6,
-                    color: aboutDescriptionColor(context),
-                  ),
+                  style: isPersian
+                      ? FontHelper.getYekanBakh(
+                          fontSize: 14,
+                          height: 1.6,
+                          color: aboutDescriptionColor(context),
+                        )
+                      : TextStyle(
+                          fontSize: 14,
+                          height: 1.6,
+                          color: aboutDescriptionColor(context),
+                        ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   isPersian ? '• بدون تبلیغات' : '• No propaganda',
-                  style: TextStyle(
-                    fontSize: 14,
-                    height: 1.6,
-                    color: aboutDescriptionColor(context),
-                  ),
+                  style: isPersian
+                      ? FontHelper.getYekanBakh(
+                          fontSize: 14,
+                          height: 1.6,
+                          color: aboutDescriptionColor(context),
+                        )
+                      : TextStyle(
+                          fontSize: 14,
+                          height: 1.6,
+                          color: aboutDescriptionColor(context),
+                        ),
                 ),
               ],
             ),
@@ -151,15 +169,25 @@ void showAboutBottomSheet(BuildContext context, {required bool isPersian}) {
                   ),
           ),
           const SizedBox(height: 6),
-          Text(
-            isPersian
-                ? 'جشن‌ها، سنت‌ها، اسطوره‌ها، قهرمانان و فرهنگ باستانی که مدت‌ها قبل از وجود رژیم، هویت واقعی ما را به عنوان یک ملت شکل داده‌اند.'
-                : 'The festivals, traditions, myths, heroes, and ancient culture that shaped who we truly are as a nation long before the regime existed.',
-            style: TextStyle(
-              fontSize: 14,
-              height: 1.6,
-              letterSpacing: -0.098,
-              color: aboutDescriptionColor(context),
+          Padding(
+            padding: EdgeInsets.only(left: isPersian ? 0 : 24, right: isPersian ? 24 : 0),
+            child: Text(
+              isPersian
+                  ? 'جشن‌ها، سنت‌ها، اسطوره‌ها، قهرمانان و فرهنگ باستانی که مدت‌ها قبل از وجود رژیم، هویت واقعی ما را به عنوان یک ملت شکل داده‌اند.'
+                  : 'The festivals, traditions, myths, heroes, and ancient culture that shaped who we truly are as a nation long before the regime existed.',
+              style: isPersian
+                  ? FontHelper.getYekanBakh(
+                      fontSize: 14,
+                      height: 1.6,
+                      letterSpacing: -0.098,
+                      color: aboutDescriptionColor(context),
+                    )
+                  : TextStyle(
+                      fontSize: 14,
+                      height: 1.6,
+                      letterSpacing: -0.098,
+                      color: aboutDescriptionColor(context),
+                    ),
             ),
           ),
           const SizedBox(height: 16),
@@ -182,15 +210,25 @@ void showAboutBottomSheet(BuildContext context, {required bool isPersian}) {
                   ),
           ),
           const SizedBox(height: 6),
-          Text(
-            isPersian
-                ? 'یک سابقه روشن و بدون سانسور از جنایاتی که رژیم جمهوری اسلامی علیه مردم ایران مرتکب شده است - بنابراین هیچ زندگی، هیچ نامی و هیچ بی‌عدالتی هرگز فراموش نمی‌شود.'
-                : 'A clear, uncensored record of the crimes committed by the Islamic Republic regime against the people of Iran — so no life, no name, and no injustice is ever forgotten.',
-            style: TextStyle(
-              fontSize: 14,
-              height: 1.6,
-              letterSpacing: -0.098,
-              color: aboutDescriptionColor(context),
+          Padding(
+            padding: EdgeInsets.only(left: isPersian ? 0 : 24, right: isPersian ? 24 : 0),
+            child: Text(
+              isPersian
+                  ? 'یک سابقه روشن و بدون سانسور از جنایاتی که رژیم جمهوری اسلامی علیه مردم ایران مرتکب شده است - بنابراین هیچ زندگی، هیچ نامی و هیچ بی‌عدالتی هرگز فراموش نمی‌شود.'
+                  : 'A clear, uncensored record of the crimes committed by the Islamic Republic regime against the people of Iran — so no life, no name, and no injustice is ever forgotten.',
+              style: isPersian
+                  ? FontHelper.getYekanBakh(
+                      fontSize: 14,
+                      height: 1.6,
+                      letterSpacing: -0.098,
+                      color: aboutDescriptionColor(context),
+                    )
+                  : TextStyle(
+                      fontSize: 14,
+                      height: 1.6,
+                      letterSpacing: -0.098,
+                      color: aboutDescriptionColor(context),
+                    ),
             ),
           ),
           const SizedBox(height: 16),
@@ -245,6 +283,14 @@ void showAboutBottomSheet(BuildContext context, {required bool isPersian}) {
                   ),
           ),
           const SizedBox(height: 24),
+          _buildNoteCallout(
+            context: context,
+            isPersian: isPersian,
+            content: isPersian
+                ? 'اگر اینجا هستید، شما هم بخشی از این مأموریت هستید.'
+                : 'If you\'re here, you\'re part of that mission too.',
+          ),
+          const SizedBox(height: 24),
           Text(
             isPersian ? 'دلیل ساخت برنامه' : 'Why this exists',
             style: isPersian
@@ -287,48 +333,78 @@ void showAboutBottomSheet(BuildContext context, {required bool isPersian}) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  isPersian ? '• این فقط یک تقویم نیست.' : '• This isn’t just a calendar.',
-                  style: TextStyle(
-                    fontSize: 14,
-                    height: 1.6,
-                    color: aboutDescriptionColor(context),
-                  ),
+                  isPersian ? '• این فقط یک تقویم نیست.' : '• This isn\'t just a calendar.',
+                  style: isPersian
+                      ? FontHelper.getYekanBakh(
+                          fontSize: 14,
+                          height: 1.6,
+                          color: aboutDescriptionColor(context),
+                        )
+                      : TextStyle(
+                          fontSize: 14,
+                          height: 1.6,
+                          color: aboutDescriptionColor(context),
+                        ),
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  isPersian ? '• این یک عمل آرام مقاومت است.' : '• It’s a quiet act of resistance.',
-                  style: TextStyle(
-                    fontSize: 14,
-                    height: 1.6,
-                    color: aboutDescriptionColor(context),
-                  ),
+                  isPersian ? '• این یک عمل آرام مقاومت است.' : '• It\'s a quiet act of resistance.',
+                  style: isPersian
+                      ? FontHelper.getYekanBakh(
+                          fontSize: 14,
+                          height: 1.6,
+                          color: aboutDescriptionColor(context),
+                        )
+                      : TextStyle(
+                          fontSize: 14,
+                          height: 1.6,
+                          color: aboutDescriptionColor(context),
+                        ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   isPersian ? '• ادای احترام به میراث ما.' : '• A tribute to our heritage.',
-                  style: TextStyle(
-                    fontSize: 14,
-                    height: 1.6,
-                    color: aboutDescriptionColor(context),
-                  ),
+                  style: isPersian
+                      ? FontHelper.getYekanBakh(
+                          fontSize: 14,
+                          height: 1.6,
+                          color: aboutDescriptionColor(context),
+                        )
+                      : TextStyle(
+                          fontSize: 14,
+                          height: 1.6,
+                          color: aboutDescriptionColor(context),
+                        ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   isPersian ? '• یادآوری قدرت جمعی ما.' : '• A reminder of our collective strength.',
-                  style: TextStyle(
-                    fontSize: 14,
-                    height: 1.6,
-                    color: aboutDescriptionColor(context),
-                  ),
+                  style: isPersian
+                      ? FontHelper.getYekanBakh(
+                          fontSize: 14,
+                          height: 1.6,
+                          color: aboutDescriptionColor(context),
+                        )
+                      : TextStyle(
+                          fontSize: 14,
+                          height: 1.6,
+                          color: aboutDescriptionColor(context),
+                        ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   isPersian ? '• و گامی کوچک به سوی ایرانی که شایسته آن هستیم.' : '• And a small step toward the Iran we deserve.',
-                  style: TextStyle(
-                    fontSize: 14,
-                    height: 1.6,
-                    color: aboutDescriptionColor(context),
-                  ),
+                  style: isPersian
+                      ? FontHelper.getYekanBakh(
+                          fontSize: 14,
+                          height: 1.6,
+                          color: aboutDescriptionColor(context),
+                        )
+                      : TextStyle(
+                          fontSize: 14,
+                          height: 1.6,
+                          color: aboutDescriptionColor(context),
+                        ),
                 ),
               ],
             ),
@@ -523,6 +599,49 @@ void showAboutBottomSheet(BuildContext context, {required bool isPersian}) {
         ],
       ),
       onClose: () => Navigator.of(context).pop(),
+    ),
+  );
+}
+
+Widget _buildNoteCallout({
+  required BuildContext context,
+  required bool isPersian,
+  required String content,
+}) {
+  return IntrinsicHeight(
+    child: Row(
+      textDirection: isPersian ? TextDirection.rtl : TextDirection.ltr,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        // Border with height matching content
+        Container(
+          width: 2,
+          color: ThemeColors.indigo500,
+          margin: EdgeInsets.only(
+            left: isPersian ? 8 : 0,
+            right: isPersian ? 0 : 8,
+          ),
+        ),
+        // Content without top/bottom padding
+        Expanded(
+          child: Text(
+            content,
+            style: isPersian
+                ? FontHelper.getYekanBakh(
+                    fontSize: 14,
+                    height: 1.6,
+                    letterSpacing: -0.098,
+                    color: aboutDescriptionColor(context),
+                  )
+                : TextStyle(
+                    fontSize: 14,
+                    height: 1.6,
+                    letterSpacing: -0.098,
+                    color: aboutDescriptionColor(context),
+                  ),
+          ),
+        ),
+      ],
     ),
   );
 }
