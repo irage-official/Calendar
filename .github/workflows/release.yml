@@ -74,6 +74,14 @@ jobs:
           flutter pub get
           echo "✓ Dependencies installed"
       
+      - name: Disable minification for CI build
+        run: |
+          echo "=== Disabling minification for CI ==="
+          # Create a temporary gradle.properties to disable minification
+          echo "android.enableR8.fullMode=false" >> android/gradle.properties
+          echo "android.enableR8=false" >> android/gradle.properties
+          cat android/gradle.properties
+      
       - name: Build Universal APK
         run: |
           echo "=== Building Universal APK ==="
@@ -84,10 +92,17 @@ jobs:
           
           # Build with verbose output to see errors
           flutter build apk --release --verbose 2>&1 | tee build.log || {
-            echo "✗ Build failed! Showing last 50 lines of build log:"
-            tail -50 build.log || cat build.log
             echo ""
-            echo "Full error details above. Exiting..."
+            echo "✗✗✗ BUILD FAILED ✗✗✗"
+            echo "Showing last 100 lines of build log:"
+            tail -100 build.log
+            echo ""
+            echo "=== Checking for common issues ==="
+            echo "Gradle version:"
+            cd android && ./gradlew --version || echo "Gradle check failed"
+            echo ""
+            echo "Flutter doctor:"
+            flutter doctor -v
             exit 1
           }
           
@@ -102,14 +117,14 @@ jobs:
             file build/app/outputs/flutter-apk/app-release.apk
           else
             echo "✗ ERROR: APK file not found!"
+            echo "Searching for any APK files:"
+            find build -name "*.apk" -type f 2>/dev/null || echo "No APK files found anywhere"
+            echo ""
             echo "Contents of build/app/outputs/:"
-            find build/app/outputs -type f -name "*.apk" || echo "No APK files found"
+            find build/app/outputs -type f 2>/dev/null | head -20
             echo ""
-            echo "Contents of build/app/outputs/flutter-apk/:"
-            ls -la build/app/outputs/flutter-apk/ || echo "Directory does not exist"
-            echo ""
-            echo "Build log (last 100 lines):"
-            tail -100 build.log || echo "No build log found"
+            echo "Build log (last 200 lines):"
+            tail -200 build.log || echo "No build log found"
             exit 1
           fi
       
