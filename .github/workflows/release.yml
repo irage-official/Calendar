@@ -132,6 +132,30 @@ jobs:
             exit 1
           fi
       
+      - name: Build separate APKs for each architecture
+        run: |
+          echo "=== Building separate APKs for each architecture ==="
+          
+          # Build arm64-v8a
+          echo "Building arm64-v8a..."
+          flutter build apk --release --target-platform android-arm64 || echo "⚠ arm64-v8a build failed"
+          
+          # Build armeabi-v7a
+          echo "Building armeabi-v7a..."
+          flutter build apk --release --target-platform android-arm || echo "⚠ armeabi-v7a build failed"
+          
+          # Build x86
+          echo "Building x86..."
+          flutter build apk --release --target-platform android-x86 || echo "⚠ x86 build failed"
+          
+          # Build x86_64
+          echo "Building x86_64..."
+          flutter build apk --release --target-platform android-x64 || echo "⚠ x86_64 build failed"
+          
+          echo ""
+          echo "=== Checking built APKs ==="
+          find build/app/outputs/flutter-apk -name "*.apk" -type f -exec ls -lh {} \;
+      
       - name: Prepare APK for release
         run: |
           echo "=== Preparing APK for release ==="
@@ -181,21 +205,47 @@ jobs:
           tag_name: v${{ needs.check-version-change.outputs.app-version }}+${{ needs.check-version-change.outputs.build-number }}
           name: Release v${{ needs.check-version-change.outputs.app-version }}+${{ needs.check-version-change.outputs.build-number }}
           body: |
-            ## تغییرات نسخه ${{ needs.check-version-change.outputs.app-version }}+${{ needs.check-version-change.outputs.build-number }}
+            ## Irage Calendar v${{ needs.check-version-change.outputs.app-version }}+${{ needs.check-version-change.outputs.build-number }}
             
-            ### دانلود APK
+            A professional Iranian Heritage Calendar app with cross-platform support.
             
-            - **arm64-v8a**: برای گوشی‌های 64-bit جدید
-            - **armeabi-v7a**: برای گوشی‌های 32-bit قدیمی‌تر
-            - **x86**: برای emulatorها و تبلت‌های x86
-            - **x86_64**: برای emulatorها و تبلت‌های x86_64
-            - **universal**: شامل همه معماری‌ها (فایل بزرگ‌تر)
+            ### 📥 Download APK
             
-            ### نحوه نصب
+            Choose the APK file that matches your device's architecture:
             
-            1. فایل APK مناسب با معماری دستگاه خود را دانلود کنید
-            2. فایل را باز کنید و نصب را انجام دهید
-            3. در صورت نیاز، نصب از منابع ناشناخته را در تنظیمات فعال کنید
+            - **arm64-v8a**: For modern 64-bit Android devices (recommended for most users)
+            - **armeabi-v7a**: For older 32-bit Android devices
+            - **x86**: For x86 emulators and tablets
+            - **x86_64**: For x86_64 emulators and tablets
+            - **universal**: Includes all architectures (larger file size, compatible with all devices)
+            
+            > 💡 **Tip**: If you're unsure about your device's architecture, download the **universal** APK - it works on all devices.
+            
+            ### 📱 Installation Instructions
+            
+            1. Download the appropriate APK file for your device architecture
+            2. Open the downloaded file and follow the installation prompts
+            3. If prompted, enable "Install from unknown sources" in your device settings
+            
+            ### ✨ Features
+            
+            - Beautiful and modern UI with Persian language support
+            - Complete Iranian calendar (Jalali/Shamsi) integration
+            - Event management and reminders
+            - Customizable themes and settings
+            - Offline functionality
+            - Lightweight and optimized performance
+            
+            ### 🔄 What's New
+            
+            - Initial release with core calendar functionality
+            - Support for multiple device architectures
+            - Persian and English language support
+            - Modern Material Design UI
+            
+            ---
+            
+            **Note**: This is the initial release. More features and improvements are coming soon!
           files: |
             release-apks/*.apk
           draft: false
