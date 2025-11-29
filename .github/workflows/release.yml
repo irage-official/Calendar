@@ -133,28 +133,54 @@ jobs:
           fi
       
       - name: Build separate APKs for each architecture
+        continue-on-error: true
         run: |
           echo "=== Building separate APKs for each architecture ==="
           
           # Build arm64-v8a
-          echo "Building arm64-v8a..."
-          flutter build apk --release --target-platform android-arm64 || echo "⚠ arm64-v8a build failed"
+          echo ""
+          echo "--- Building arm64-v8a ---"
+          if flutter build apk --release --target-platform android-arm64; then
+            echo "✓ arm64-v8a build successful"
+          else
+            echo "✗ arm64-v8a build failed"
+          fi
           
           # Build armeabi-v7a
-          echo "Building armeabi-v7a..."
-          flutter build apk --release --target-platform android-arm || echo "⚠ armeabi-v7a build failed"
+          echo ""
+          echo "--- Building armeabi-v7a ---"
+          if flutter build apk --release --target-platform android-arm; then
+            echo "✓ armeabi-v7a build successful"
+          else
+            echo "✗ armeabi-v7a build failed"
+          fi
           
           # Build x86
-          echo "Building x86..."
-          flutter build apk --release --target-platform android-x86 || echo "⚠ x86 build failed"
+          echo ""
+          echo "--- Building x86 ---"
+          if flutter build apk --release --target-platform android-x86; then
+            echo "✓ x86 build successful"
+          else
+            echo "✗ x86 build failed"
+          fi
           
           # Build x86_64
-          echo "Building x86_64..."
-          flutter build apk --release --target-platform android-x64 || echo "⚠ x86_64 build failed"
+          echo ""
+          echo "--- Building x86_64 ---"
+          if flutter build apk --release --target-platform android-x64; then
+            echo "✓ x86_64 build successful"
+          else
+            echo "✗ x86_64 build failed"
+          fi
           
           echo ""
-          echo "=== Checking built APKs ==="
-          find build/app/outputs/flutter-apk -name "*.apk" -type f -exec ls -lh {} \;
+          echo "=== Checking all built APKs ==="
+          echo "All APK files in build/app/outputs/flutter-apk/:"
+          find build/app/outputs/flutter-apk -name "*.apk" -type f -exec ls -lh {} \; || echo "No APK files found"
+          
+          echo ""
+          echo "=== APK file names ==="
+          ls -1 build/app/outputs/flutter-apk/*.apk 2>/dev/null || echo "No APK files found"
       
       - name: Prepare APK for release
         run: |
@@ -179,13 +205,41 @@ jobs:
             exit 1
           fi
           
-          # Try to copy separate APKs if they exist (optional)
-          for arch in arm64-v8a armeabi-v7a x86 x86_64; do
-            if [ -f "build/app/outputs/flutter-apk/app-${arch}-release.apk" ]; then
-              cp "build/app/outputs/flutter-apk/app-${arch}-release.apk" "release-apks/Irage_${TAG}_${arch}.apk"
-              echo "✓ ${arch} APK copied"
-            fi
-          done
+          # Copy separate APKs if they exist
+          echo ""
+          echo "=== Copying separate APKs ==="
+          
+          # Check and copy arm64-v8a
+          if [ -f "build/app/outputs/flutter-apk/app-arm64-v8a-release.apk" ]; then
+            cp "build/app/outputs/flutter-apk/app-arm64-v8a-release.apk" "release-apks/Irage_${TAG}_arm64-v8a.apk"
+            echo "✓ arm64-v8a APK copied"
+          else
+            echo "⚠ arm64-v8a APK not found"
+          fi
+          
+          # Check and copy armeabi-v7a
+          if [ -f "build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk" ]; then
+            cp "build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk" "release-apks/Irage_${TAG}_armeabi-v7a.apk"
+            echo "✓ armeabi-v7a APK copied"
+          else
+            echo "⚠ armeabi-v7a APK not found"
+          fi
+          
+          # Check and copy x86
+          if [ -f "build/app/outputs/flutter-apk/app-x86-release.apk" ]; then
+            cp "build/app/outputs/flutter-apk/app-x86-release.apk" "release-apks/Irage_${TAG}_x86.apk"
+            echo "✓ x86 APK copied"
+          else
+            echo "⚠ x86 APK not found"
+          fi
+          
+          # Check and copy x86_64
+          if [ -f "build/app/outputs/flutter-apk/app-x86_64-release.apk" ]; then
+            cp "build/app/outputs/flutter-apk/app-x86_64-release.apk" "release-apks/Irage_${TAG}_x86_64.apk"
+            echo "✓ x86_64 APK copied"
+          else
+            echo "⚠ x86_64 APK not found"
+          fi
           
           echo ""
           echo "=== Final APK files ==="
