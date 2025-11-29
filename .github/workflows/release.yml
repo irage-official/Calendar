@@ -53,6 +53,9 @@ jobs:
     if: needs.check-version-change.outputs.version-changed == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 30  # Timeout after 30 minutes
+    permissions:
+      contents: write  # Required to create releases
+      packages: write  # Required if publishing packages
     
     steps:
       - uses: actions/checkout@v4
