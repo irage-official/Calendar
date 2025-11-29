@@ -74,14 +74,6 @@ jobs:
           flutter pub get
           echo "✓ Dependencies installed"
       
-      - name: Disable minification for CI build
-        run: |
-          echo "=== Disabling minification for CI ==="
-          # Create a temporary gradle.properties to disable minification
-          echo "android.enableR8.fullMode=false" >> android/gradle.properties
-          echo "android.enableR8=false" >> android/gradle.properties
-          cat android/gradle.properties
-      
       - name: Build Universal APK
         run: |
           echo "=== Building Universal APK ==="
