@@ -163,7 +163,7 @@ class UpdateService {
               AppLogger.info('UpdateService: Updated stored version to ${metadata.version}');
             }
           } catch (e) {
-            AppLogger.warning('UpdateService: Could not update version after download', error: e);
+            AppLogger.error('UpdateService: Could not update version after download', error: e);
           }
         }
         
