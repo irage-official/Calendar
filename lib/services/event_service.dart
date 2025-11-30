@@ -27,12 +27,8 @@ class EventService {
   /// Load all events from local storage (cached remote) or assets
   /// If forceRemote is true, it will try to load from remote first
   Future<List<Event>> loadEvents({bool forceRemote = false}) async {
-    // Return cached events if available and not forcing remote
-    if (!forceRemote && _cachedEvents != null) {
-      return _cachedEvents!;
-    }
-
-    // Try to load from local storage (saved remote events)
+    // Try to load from local storage (saved remote events) first
+    // Always check SharedPreferences to get the latest saved events
     if (!forceRemote) {
       try {
         final prefs = await SharedPreferences.getInstance();
@@ -46,13 +42,19 @@ class EventService {
               .where((event) => event.isActive)
               .toList();
 
-          AppLogger.info('EventService: Loaded ${_cachedEvents!.length} events from local cache');
+          AppLogger.info('EventService: Loaded ${_cachedEvents!.length} events from local cache (SharedPreferences)');
           return _cachedEvents!;
         }
       } catch (e) {
         AppLogger.error('EventService: Error loading cached events', error: e);
         // Continue to fallback
       }
+    }
+
+    // Return in-memory cache only if SharedPreferences is empty and not forcing remote
+    if (!forceRemote && _cachedEvents != null) {
+      AppLogger.info('EventService: Using in-memory cache (${_cachedEvents!.length} events)');
+      return _cachedEvents!;
     }
 
     // Fallback to assets
@@ -80,8 +82,9 @@ class EventService {
       final prefs = await SharedPreferences.getInstance();
       final jsonList = events.map((e) => _eventToJson(e)).toList();
       await prefs.setString('cached_events', json.encode(jsonList));
-      _cachedEvents = events;
-      AppLogger.info('EventService: Saved ${events.length} events to local storage');
+      // Clear in-memory cache to force reload from SharedPreferences next time
+      _cachedEvents = null;
+      AppLogger.info('EventService: Saved ${events.length} events to local storage (cleared in-memory cache)');
     } catch (e) {
       AppLogger.error('EventService: Error saving events', error: e);
     }
