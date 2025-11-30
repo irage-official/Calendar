@@ -141,7 +141,11 @@ jobs:
           echo ""
           echo "--- Building arm64-v8a ---"
           if flutter build apk --release --target-platform android-arm64; then
-            echo "✓ arm64-v8a build successful"
+            # Rename the APK to include architecture name
+            if [ -f build/app/outputs/flutter-apk/app-release.apk ]; then
+              mv build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
+              echo "✓ arm64-v8a build successful and renamed"
+            fi
           else
             echo "✗ arm64-v8a build failed"
           fi
@@ -150,25 +154,24 @@ jobs:
           echo ""
           echo "--- Building armeabi-v7a ---"
           if flutter build apk --release --target-platform android-arm; then
-            echo "✓ armeabi-v7a build successful"
+            # Rename the APK to include architecture name
+            if [ -f build/app/outputs/flutter-apk/app-release.apk ]; then
+              mv build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
+              echo "✓ armeabi-v7a build successful and renamed"
+            fi
           else
             echo "✗ armeabi-v7a build failed"
           fi
           
-          # Build x86
-          echo ""
-          echo "--- Building x86 ---"
-          if flutter build apk --release --target-platform android-x86; then
-            echo "✓ x86 build successful"
-          else
-            echo "✗ x86 build failed"
-          fi
-          
-          # Build x86_64
+          # Build x86_64 (skip x86 as it's not commonly used)
           echo ""
           echo "--- Building x86_64 ---"
           if flutter build apk --release --target-platform android-x64; then
-            echo "✓ x86_64 build successful"
+            # Rename the APK to include architecture name
+            if [ -f build/app/outputs/flutter-apk/app-release.apk ]; then
+              mv build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/app-x86_64-release.apk
+              echo "✓ x86_64 build successful and renamed"
+            fi
           else
             echo "✗ x86_64 build failed"
           fi
@@ -225,15 +228,7 @@ jobs:
             echo "⚠ armeabi-v7a APK not found"
           fi
           
-          # Check and copy x86
-          if [ -f "build/app/outputs/flutter-apk/app-x86-release.apk" ]; then
-            cp "build/app/outputs/flutter-apk/app-x86-release.apk" "release-apks/Irage_${TAG}_x86.apk"
-            echo "✓ x86 APK copied"
-          else
-            echo "⚠ x86 APK not found"
-          fi
-          
-          # Check and copy x86_64
+          # Check and copy x86_64 (x86 skipped as it's not commonly used)
           if [ -f "build/app/outputs/flutter-apk/app-x86_64-release.apk" ]; then
             cp "build/app/outputs/flutter-apk/app-x86_64-release.apk" "release-apks/Irage_${TAG}_x86_64.apk"
             echo "✓ x86_64 APK copied"
@@ -269,7 +264,6 @@ jobs:
             
             - **arm64-v8a**: For modern 64-bit Android devices (recommended for most users)
             - **armeabi-v7a**: For older 32-bit Android devices
-            - **x86**: For x86 emulators and tablets
             - **x86_64**: For x86_64 emulators and tablets
             - **universal**: Includes all architectures (larger file size, compatible with all devices)
             
@@ -284,9 +278,8 @@ jobs:
             ### ✨ Features
             
             - Beautiful and modern UI with Persian language support
-            - Complete Iranian calendar (Jalali/Shamsi) integration
-            - Event management and reminders
-            - Customizable themes and settings
+            - Complete Iranian calendar (Shahanshahi/Jalali/Shamsi) integration
+            - Customizable calendar settings
             - Offline functionality
             - Lightweight and optimized performance
             
