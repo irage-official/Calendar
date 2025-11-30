@@ -77,61 +77,6 @@ jobs:
           flutter pub get
           echo "✓ Dependencies installed"
       
-      - name: Build Universal APK
-        run: |
-          echo "=== Building Universal APK ==="
-          echo "Flutter version:"
-          flutter --version
-          echo ""
-          echo "Flutter doctor:"
-          flutter doctor
-          echo ""
-          echo "Starting build..."
-          
-          # Build and capture output
-          set +e  # Don't exit on error immediately
-          flutter build apk --release 2>&1 | tee build.log
-          BUILD_EXIT_CODE=${PIPESTATUS[0]}
-          
-          if [ $BUILD_EXIT_CODE -ne 0 ]; then
-            echo ""
-            echo "✗✗✗ BUILD FAILED (Exit code: $BUILD_EXIT_CODE) ✗✗✗"
-            echo ""
-            echo "=== Last 150 lines of build log ==="
-            tail -150 build.log
-            echo ""
-            echo "=== Searching for ERROR keywords ==="
-            grep -i "error" build.log | tail -20 || echo "No 'error' found in log"
-            echo ""
-            echo "=== Searching for FAILED keywords ==="
-            grep -i "failed" build.log | tail -20 || echo "No 'failed' found in log"
-            echo ""
-            echo "=== Full build log saved above ==="
-            exit $BUILD_EXIT_CODE
-          fi
-          
-          echo "✓ Build command completed"
-          
-          # Verify APK was created
-          echo ""
-          echo "=== Verifying APK file ==="
-          if [ -f build/app/outputs/flutter-apk/app-release.apk ]; then
-            echo "✓ APK file found: build/app/outputs/flutter-apk/app-release.apk"
-            ls -lh build/app/outputs/flutter-apk/app-release.apk
-            file build/app/outputs/flutter-apk/app-release.apk
-          else
-            echo "✗ ERROR: APK file not found!"
-            echo "Searching for any APK files:"
-            find build -name "*.apk" -type f 2>/dev/null || echo "No APK files found anywhere"
-            echo ""
-            echo "Contents of build/app/outputs/:"
-            find build/app/outputs -type f 2>/dev/null | head -20
-            echo ""
-            echo "Build log (last 200 lines):"
-            tail -200 build.log || echo "No build log found"
-            exit 1
-          fi
-      
       - name: Build separate APKs for each architecture
         continue-on-error: true
         run: |
@@ -184,6 +129,23 @@ jobs:
           echo ""
           echo "=== APK file names ==="
           ls -1 build/app/outputs/flutter-apk/*.apk 2>/dev/null || echo "No APK files found"
+      
+      - name: Build Universal APK
+        run: |
+          echo "=== Building Universal APK ==="
+          echo "Building universal APK (includes all architectures)..."
+          
+          # Build universal APK
+          flutter build apk --release
+          
+          # Verify APK was created
+          if [ -f build/app/outputs/flutter-apk/app-release.apk ]; then
+            echo "✓ Universal APK built successfully"
+            ls -lh build/app/outputs/flutter-apk/app-release.apk
+          else
+            echo "✗ ERROR: Universal APK not found!"
+            exit 1
+          fi
       
       - name: Prepare APK for release
         run: |
