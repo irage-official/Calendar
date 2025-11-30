@@ -21,6 +21,7 @@ class UpdateService {
 
   static const String _lastEventsCheckKey = 'last_events_check';
   static const String _lastEventsVersionKey = 'last_events_version';
+  static const String _lastEventsUpdatedAtKey = 'last_events_updated_at';
 
   Future<bool> _hasNetworkConnection() async {
     try {
@@ -46,7 +47,8 @@ class UpdateService {
     try {
       final prefs = await SharedPreferences.getInstance();
       final lastVersion = prefs.getString(_lastEventsVersionKey);
-      AppLogger.info('UpdateService: Checking events update (last version: $lastVersion)');
+      final lastUpdatedAt = prefs.getString(_lastEventsUpdatedAtKey);
+      AppLogger.info('UpdateService: Checking events update (last version: $lastVersion, last updated_at: $lastUpdatedAt)');
 
       // Fetch events metadata from server with cache-busting headers
       final uri = Uri.parse(AppConfig.eventsMetadataUrl);
@@ -78,15 +80,23 @@ class UpdateService {
         // Update last check time
         await prefs.setString(_lastEventsCheckKey, DateTime.now().toIso8601String());
 
-        // Check if version changed
-        if (metadata.isDifferentFrom(lastVersion)) {
-          AppLogger.info('UpdateService: Version changed from "$lastVersion" to "${metadata.version}"');
-          // Don't update version here - only update after successful download
-          AppLogger.info('UpdateService: Events update available (version: ${metadata.version})');
+        // Check if version changed OR updated_at changed (even if version is same, updated_at change means content changed)
+        final versionChanged = metadata.isDifferentFrom(lastVersion);
+        final updatedAtChanged = lastUpdatedAt != null && lastUpdatedAt != metadata.updatedAt;
+        
+        if (versionChanged || updatedAtChanged) {
+          if (versionChanged) {
+            AppLogger.info('UpdateService: Version changed from "$lastVersion" to "${metadata.version}"');
+          }
+          if (updatedAtChanged) {
+            AppLogger.info('UpdateService: Updated_at changed from "$lastUpdatedAt" to "${metadata.updatedAt}"');
+          }
+          // Don't update version/updated_at here - only update after successful download
+          AppLogger.info('UpdateService: Events update available (version: ${metadata.version}, updated_at: ${metadata.updatedAt})');
           return true;
         }
 
-        AppLogger.info('UpdateService: Events are up to date (version: ${metadata.version})');
+        AppLogger.info('UpdateService: Events are up to date (version: ${metadata.version}, updated_at: ${metadata.updatedAt})');
         return false;
       } else {
         AppLogger.warning('UpdateService: Failed to fetch events metadata (status: ${response.statusCode})');
@@ -160,7 +170,8 @@ class UpdateService {
               final metadataData = json.decode(metadataResponse.body) as Map<String, dynamic>;
               final metadata = EventsMetadata.fromJson(metadataData);
               await prefs.setString(_lastEventsVersionKey, metadata.version);
-              AppLogger.info('UpdateService: Updated stored version to ${metadata.version}');
+              await prefs.setString(_lastEventsUpdatedAtKey, metadata.updatedAt);
+              AppLogger.info('UpdateService: Updated stored version to ${metadata.version} and updated_at to ${metadata.updatedAt}');
             }
           } catch (e) {
             AppLogger.error('UpdateService: Could not update version after download', error: e);
@@ -234,10 +245,11 @@ class UpdateService {
   /// Force check for events update (used by manual check in settings)
   Future<bool> forceCheckEventsUpdate() async {
     final prefs = await SharedPreferences.getInstance();
-    // Clear last check and version to force update
+    // Clear last check, version, and updated_at to force update
     await prefs.remove(_lastEventsCheckKey);
     await prefs.remove(_lastEventsVersionKey);
-    AppLogger.info('UpdateService: Force check - cleared cached version');
+    await prefs.remove(_lastEventsUpdatedAtKey);
+    AppLogger.info('UpdateService: Force check - cleared cached version and updated_at');
     return await checkEventsUpdate();
   }
 }
