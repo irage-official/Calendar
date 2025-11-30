@@ -42,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
       // Get current language from AppProvider
       final appProvider = context.read<AppProvider>();
       
-      // Check for events update
+      // Check for events update - ALWAYS check version, even if events are cached
       final updateService = UpdateService.instance;
       bool needsEventsUpdate = false;
       
@@ -58,7 +58,7 @@ class _SplashScreenState extends State<SplashScreen> {
           if (newEvents.isNotEmpty) {
             AppLogger.info('Splash screen: Downloaded ${newEvents.length} events, clearing cache and saving...');
             final eventService = EventService.instance;
-            // Clear all cache before saving new events
+            // Clear all cache before saving new events (including in-memory cache)
             await eventService.clearAllCache();
             await eventService.saveEvents(newEvents);
             // Reload events in provider
@@ -70,7 +70,7 @@ class _SplashScreenState extends State<SplashScreen> {
           }
         } else {
           AppLogger.info('Splash screen: No events update needed, loading existing events...');
-          // Load existing events
+          // Load existing events (from cache or assets)
           await context.read<EventProvider>().initialize();
         }
       } catch (e) {

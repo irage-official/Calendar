@@ -52,7 +52,9 @@ class UpdateService {
     try {
       final prefs = await SharedPreferences.getInstance();
       final lastVersion = prefs.getString(_lastEventsVersionKey);
-      AppLogger.info('UpdateService: Checking events update (last version: $lastVersion)');
+      AppLogger.info('UpdateService: Checking events update');
+      AppLogger.info('UpdateService: Last stored version: $lastVersion');
+      AppLogger.info('UpdateService: Fetching metadata from: ${AppConfig.eventsMetadataUrl}');
 
       // Fetch events metadata from server with cache-busting headers
       final uri = Uri.parse(AppConfig.eventsMetadataUrl);
@@ -61,6 +63,8 @@ class UpdateService {
         ...uri.queryParameters,
         '_t': DateTime.now().millisecondsSinceEpoch.toString(),
       });
+      
+      AppLogger.info('UpdateService: Request URL: $cacheBustUri');
       
       final response = await http
           .get(
@@ -74,6 +78,7 @@ class UpdateService {
           .timeout(const Duration(seconds: 10));
 
       AppLogger.info('UpdateService: Metadata response status: ${response.statusCode}');
+      AppLogger.info('UpdateService: Metadata response body: ${response.body}');
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body) as Map<String, dynamic>;
@@ -86,6 +91,7 @@ class UpdateService {
 
         // Check if version changed - this is the main indicator
         final versionChanged = metadata.isDifferentFrom(lastVersion);
+        AppLogger.info('UpdateService: Version comparison - last: "$lastVersion", remote: "${metadata.version}", changed: $versionChanged');
         
         if (versionChanged) {
           AppLogger.info('UpdateService: Version changed from "$lastVersion" to "${metadata.version}"');

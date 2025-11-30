@@ -209,12 +209,16 @@ class EventService {
     return originColors.toList();
   }
 
-  /// Clear all cache including SharedPreferences (for updates)
+  /// Clear all cache including SharedPreferences and in-memory cache (for updates)
   Future<void> clearAllCache() async {
     try {
+      // Clear in-memory cache first
       _cachedEvents = null;
+      
+      // Clear SharedPreferences cache
       final prefs = await SharedPreferences.getInstance();
       await prefs.remove('cached_events');
+      
       AppLogger.info('EventService: Cleared all cache (in-memory and SharedPreferences)');
     } catch (e) {
       AppLogger.error('EventService: Error clearing all cache', error: e);
