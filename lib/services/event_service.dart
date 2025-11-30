@@ -1,10 +1,16 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/event.dart';
 import '../config/constants.dart';
 import '../utils/logger.dart';
+
+/// Top-level function for decoding JSON in isolate (must be outside class)
+List<dynamic> _decodeJsonString(String jsonString) {
+  return json.decode(jsonString) as List<dynamic>;
+}
 
 /// Service for loading and managing calendar events
 class EventService {
@@ -33,7 +39,8 @@ class EventService {
         final savedEventsJson = prefs.getString('cached_events');
 
         if (savedEventsJson != null && savedEventsJson.isNotEmpty) {
-          final List<dynamic> jsonList = json.decode(savedEventsJson) as List<dynamic>;
+          // Decode JSON in isolate to avoid blocking main thread
+          final List<dynamic> jsonList = await compute(_decodeJsonString, savedEventsJson);
           _cachedEvents = jsonList
               .map((json) => Event.fromJson(json as Map<String, dynamic>))
               .where((event) => event.isActive)
@@ -51,7 +58,8 @@ class EventService {
     // Fallback to assets
     try {
       final String jsonString = await rootBundle.loadString('assets/data/events.json');
-      final List<dynamic> jsonList = json.decode(jsonString) as List<dynamic>;
+      // Decode JSON in isolate to avoid blocking main thread
+      final List<dynamic> jsonList = await compute(_decodeJsonString, jsonString);
 
       _cachedEvents = jsonList
           .map((json) => Event.fromJson(json as Map<String, dynamic>))
