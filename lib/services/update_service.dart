@@ -40,27 +40,48 @@ class UpdateService {
   /// Returns true if events need to be updated
   Future<bool> checkEventsUpdate() async {
     if (!await _hasNetworkConnection()) {
+      AppLogger.info('UpdateService: No network connection, skipping update check');
       return false;
     }
     try {
       final prefs = await SharedPreferences.getInstance();
       final lastVersion = prefs.getString(_lastEventsVersionKey);
+      AppLogger.info('UpdateService: Checking events update (last version: $lastVersion)');
 
-      // Fetch events metadata from server
+      // Fetch events metadata from server with cache-busting headers
+      final uri = Uri.parse(AppConfig.eventsMetadataUrl);
+      // Add timestamp query parameter to prevent caching
+      final cacheBustUri = uri.replace(queryParameters: {
+        ...uri.queryParameters,
+        '_t': DateTime.now().millisecondsSinceEpoch.toString(),
+      });
+      
       final response = await http
-          .get(Uri.parse(AppConfig.eventsMetadataUrl))
+          .get(
+            cacheBustUri,
+            headers: {
+              'Cache-Control': 'no-cache, no-store, must-revalidate',
+              'Pragma': 'no-cache',
+              'Expires': '0',
+            },
+          )
           .timeout(const Duration(seconds: 10));
+
+      AppLogger.info('UpdateService: Metadata response status: ${response.statusCode}');
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body) as Map<String, dynamic>;
         final metadata = EventsMetadata.fromJson(data);
+
+        AppLogger.info('UpdateService: Fetched metadata - version: ${metadata.version}, total_events: ${metadata.totalEvents}, updated_at: ${metadata.updatedAt}');
 
         // Update last check time
         await prefs.setString(_lastEventsCheckKey, DateTime.now().toIso8601String());
 
         // Check if version changed
         if (metadata.isDifferentFrom(lastVersion)) {
-          await prefs.setString(_lastEventsVersionKey, metadata.version);
+          AppLogger.info('UpdateService: Version changed from "$lastVersion" to "${metadata.version}"');
+          // Don't update version here - only update after successful download
           AppLogger.info('UpdateService: Events update available (version: ${metadata.version})');
           return true;
         }
@@ -82,14 +103,31 @@ class UpdateService {
   /// Returns list of events or empty list if download fails
   Future<List<Event>> downloadEvents() async {
     if (!await _hasNetworkConnection()) {
+      AppLogger.warning('UpdateService: No network connection, cannot download events');
       return [];
     }
     try {
       AppLogger.info('UpdateService: Downloading events from ${AppConfig.eventsUrl}');
       
+      // Add cache-busting to events URL as well
+      final uri = Uri.parse(AppConfig.eventsUrl);
+      final cacheBustUri = uri.replace(queryParameters: {
+        ...uri.queryParameters,
+        '_t': DateTime.now().millisecondsSinceEpoch.toString(),
+      });
+      
       final response = await http
-          .get(Uri.parse(AppConfig.eventsUrl))
+          .get(
+            cacheBustUri,
+            headers: {
+              'Cache-Control': 'no-cache, no-store, must-revalidate',
+              'Pragma': 'no-cache',
+              'Expires': '0',
+            },
+          )
           .timeout(const Duration(seconds: 30));
+
+      AppLogger.info('UpdateService: Events download response status: ${response.statusCode}');
 
       if (response.statusCode == 200) {
         final List<dynamic> jsonList = json.decode(response.body) as List<dynamic>;
@@ -98,7 +136,37 @@ class UpdateService {
             .where((event) => event.isActive)
             .toList();
 
-        AppLogger.info('UpdateService: Downloaded ${events.length} events');
+        AppLogger.info('UpdateService: Downloaded ${events.length} active events');
+        
+        // Update version only after successful download
+        if (events.isNotEmpty) {
+          try {
+            // Get the latest metadata version to save
+            final metadataResponse = await http
+                .get(
+                  Uri.parse(AppConfig.eventsMetadataUrl).replace(queryParameters: {
+                    '_t': DateTime.now().millisecondsSinceEpoch.toString(),
+                  }),
+                  headers: {
+                    'Cache-Control': 'no-cache, no-store, must-revalidate',
+                    'Pragma': 'no-cache',
+                    'Expires': '0',
+                  },
+                )
+                .timeout(const Duration(seconds: 10));
+            
+            if (metadataResponse.statusCode == 200) {
+              final prefs = await SharedPreferences.getInstance();
+              final metadataData = json.decode(metadataResponse.body) as Map<String, dynamic>;
+              final metadata = EventsMetadata.fromJson(metadataData);
+              await prefs.setString(_lastEventsVersionKey, metadata.version);
+              AppLogger.info('UpdateService: Updated stored version to ${metadata.version}');
+            }
+          } catch (e) {
+            AppLogger.warning('UpdateService: Could not update version after download', error: e);
+          }
+        }
+        
         return events;
       } else {
         AppLogger.error('UpdateService: Failed to download events (status: ${response.statusCode})');
@@ -123,8 +191,22 @@ class UpdateService {
 
       AppLogger.info('UpdateService: Checking app version (current: $currentVersion+$currentBuildNumber)');
 
+      // Add cache-busting to version URL as well
+      final uri = Uri.parse(AppConfig.versionUrl);
+      final cacheBustUri = uri.replace(queryParameters: {
+        ...uri.queryParameters,
+        '_t': DateTime.now().millisecondsSinceEpoch.toString(),
+      });
+
       final response = await http
-          .get(Uri.parse(AppConfig.versionUrl))
+          .get(
+            cacheBustUri,
+            headers: {
+              'Cache-Control': 'no-cache, no-store, must-revalidate',
+              'Pragma': 'no-cache',
+              'Expires': '0',
+            },
+          )
           .timeout(const Duration(seconds: 10));
 
       if (response.statusCode == 200) {
@@ -152,8 +234,10 @@ class UpdateService {
   /// Force check for events update (used by manual check in settings)
   Future<bool> forceCheckEventsUpdate() async {
     final prefs = await SharedPreferences.getInstance();
-    // Clear last check to force update
+    // Clear last check and version to force update
     await prefs.remove(_lastEventsCheckKey);
+    await prefs.remove(_lastEventsVersionKey);
+    AppLogger.info('UpdateService: Force check - cleared cached version');
     return await checkEventsUpdate();
   }
 }

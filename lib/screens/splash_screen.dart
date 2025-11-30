@@ -47,13 +47,16 @@ class _SplashScreenState extends State<SplashScreen> {
       bool needsEventsUpdate = false;
       
       try {
+        AppLogger.info('Splash screen: Starting events update check...');
         needsEventsUpdate = await updateService.checkEventsUpdate();
+        AppLogger.info('Splash screen: Update check result: needsUpdate=$needsEventsUpdate');
         
         if (needsEventsUpdate) {
           AppLogger.info('Splash screen: Events update available, downloading...');
           // Download and update events
           final newEvents = await updateService.downloadEvents();
           if (newEvents.isNotEmpty) {
+            AppLogger.info('Splash screen: Downloaded ${newEvents.length} events, clearing cache and saving...');
             final eventService = EventService.instance;
             // Clear all cache before saving new events
             await eventService.clearAllCache();
@@ -62,10 +65,11 @@ class _SplashScreenState extends State<SplashScreen> {
             await context.read<EventProvider>().reload();
             AppLogger.info('Splash screen: Events updated successfully (${newEvents.length} events)');
           } else {
-            AppLogger.warning('Splash screen: Failed to download events, using cached version');
+            AppLogger.warning('Splash screen: Failed to download events (empty list), using cached version');
             await context.read<EventProvider>().initialize();
           }
         } else {
+          AppLogger.info('Splash screen: No events update needed, loading existing events...');
           // Load existing events
           await context.read<EventProvider>().initialize();
         }
