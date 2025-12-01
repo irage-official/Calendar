@@ -19330,5 +19330,69 @@
     },
     "created_at": "2024-01-01T00:00:00.000Z",
     "updated_at": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "423",
+    "source": "system",
+    "type": "historical",
+    "origin": "iranian",
+    "image": null,
+    "title": {
+      "en": "The Day Iran Was Taken as Spoils",
+      "fa": "روزی که ایران به غنیمت گرفته شد"
+    },
+    "description": {
+      "fa": "۲۲ بهمن ۱۳۵۷ روزی است که ایران به دست ائتلافی از روحانیون مسلمان، گروه‌های مسلح، مجاهدین، و فعالین چپ سقوط کرد؛ گروه‌هایی که با آشوب، اعتصاب‌های سازمان‌یافته، تخریب، دروغ و ترور، بنیان کشور را هدف قرار دادند و در نهایت مردم را به گروگان یک حکومت ایدئولوژیک و خون‌ریز سپردند.\nآنچه جمهوری اسلامی آن را «انقلاب» می‌نامد، برای مردم ایران تسخیر کشور و شروع یکی از تاریک‌ترین دوران‌های تاریخ است؛ دورانی که با اعدام، شکنجه، سرکوب گسترده، تیراندازی به معترضان، نابودی اقتصاد، و خشکاندن ریشه‌های فرهنگ و طبیعت ایران همراه بوده است.\nاز همان روز نخست، حکومت جدید با قلع‌وقمع صداهای مخالف، محدود کردن حقوق زنان، و تبدیل ایران به یک پایگاه بی‌ثبات‌کننده در منطقه، چهرۀ واقعی خود را نشان داد: حاکمیتی که نه نماینده مردم، بلکه دشمن آزادی، زندگی و پیشرفت است.",
+      "en": "February 11, 1979 is the day Iran fell to a coalition of Muslim clerics, armed groups, the Mujahideen, and leftist activists; groups that targeted the country’s foundation with chaos, organized strikes, destruction, lies, and terror, ultimately holding the people hostage to an ideological and bloody regime.\nWhat the Islamic Republic calls a “revolution” is, for the Iranian people, the conquest of the country and the beginning of one of the darkest periods in history; a period marked by executions, torture, widespread repression, the shooting of protesters, the destruction of the economy, and the withering away of the roots of Iran’s culture and nature.\nFrom day one, the new government showed its true colors by crushing dissenting voices, restricting women’s rights, and turning Iran into a destabilizing outpost in the region: a government that is not a representative of the people, but an enemy of freedom, life, and progress."
+    },
+    "significance": {
+      "fa": "۲۲ بهمن یادآور لحظه‌ای است که کشور ما از مسیر توسعه و آزادی جدا شد و به دست کسانی افتاد که ایران را نه وطن، بلکه غنیمت جنگی می‌دیدند.",
+      "en": "February 11 wis a reminder of the moment when our country was separated from the path of development and freedom and fell into the hands of those who saw Iran not as a homeland, but as spoils of war."
+    },
+    "tags": {
+      "en": [
+        "seizure-of-iran",
+        "1979",
+        "22-bahman",
+        "historical",
+        "iran",
+        "dictatorship"
+      ],
+      "fa": [
+        "تسخیر-ایران",
+        "۲۲-بهمن",
+        "۱۳۵۷",
+        "تاریخی",
+        "ایران",
+        "استبداد"
+      ]
+    },
+    "location": {
+      "en": "Iran",
+      "fa": "ایران"
+    },
+    "date": {
+      "solar": "1357-11-22",
+      "gregorian": "1979-02-11"
+    },
+    "time": {
+      "isActive": false,
+      "start": null,
+      "end": null
+    },
+    "repeat": {
+      "isActive": true,
+      "interval": "yearly"
+    },
+    "visibility": {
+      "showInCalendar": true,
+      "showInFeed": true
+    },
+    "reminder": {
+      "enabled": false,
+      "offset_minutes": null
+    },
+    "created_at": "2024-01-01T00:00:00.000Z",
+    "updated_at": "2024-01-01T00:00:00.000Z"
   }
 ]
