@@ -62,9 +62,14 @@ class EventProvider extends ChangeNotifier {
 
   /// Reload events (clear cache and reload)
   Future<void> reload() async {
+    AppLogger.info('EventProvider: Starting reload...');
     await _eventService.clearAllCache();
     _isInitialized = false;
+    _events = null;
+    AppLogger.info('EventProvider: Cache cleared, reinitializing...');
     await initialize();
+    AppLogger.info('EventProvider: Reload complete, events count: ${_events?.length ?? 0}');
+    notifyListeners();
   }
 }
 

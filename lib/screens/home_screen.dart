@@ -75,17 +75,22 @@ class _HomeScreenState extends State<HomeScreen> {
       }
       
       // Ensure CalendarProvider is synced with AppProvider's preferences
-      final calendarProvider = context.read<CalendarProvider>();
-      calendarProvider.syncFromAppSettings(
-        calendarSystem: appProvider.calendarSystem,
-        startWeekOn: appProvider.effectiveStartWeekOn,
-        daysOff: appProvider.effectiveDaysOff,
-      );
-      final defaultView = appProvider.defaultCalendarView;
-      calendarProvider.applyDefaultCalendarView(
-        defaultView,
-        calendarSystem: appProvider.calendarSystem,
-      );
+      // Use postFrameCallback to avoid setState during build
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          final calendarProvider = context.read<CalendarProvider>();
+          calendarProvider.syncFromAppSettings(
+            calendarSystem: appProvider.calendarSystem,
+            startWeekOn: appProvider.effectiveStartWeekOn,
+            daysOff: appProvider.effectiveDaysOff,
+          );
+          final defaultView = appProvider.defaultCalendarView;
+          calendarProvider.applyDefaultCalendarView(
+            defaultView,
+            calendarSystem: appProvider.calendarSystem,
+          );
+        }
+      });
       
       AppLogger.info('HomeScreen initialized successfully');
     } catch (e) {

@@ -12,6 +12,7 @@ import '../config/theme_colors.dart';
 import '../config/theme_roles.dart';
 import '../providers/app_provider.dart';
 import '../providers/event_provider.dart';
+import '../utils/logger.dart';
 import '../widgets/header_page_widget.dart';
 import '../widgets/setting_item_widget.dart';
 import '../widgets/settings_bottom_sheet.dart';
@@ -1315,18 +1316,32 @@ class _SettingsScreenState extends State<SettingsScreen> {
       bool eventsUpdated = false;
       AppVersion? appVersion;
 
+      AppLogger.info('Settings: Starting manual update check...');
+      
       // Check events update
       final needsEventsUpdate = await updateService.forceCheckEventsUpdate();
+      AppLogger.info('Settings: Needs events update: $needsEventsUpdate');
+      
       if (needsEventsUpdate) {
+        AppLogger.info('Settings: Downloading events...');
         final newEvents = await updateService.downloadEvents();
+        AppLogger.info('Settings: Downloaded ${newEvents.length} events');
+        
         if (newEvents.isNotEmpty) {
           final eventService = EventService.instance;
+          AppLogger.info('Settings: Clearing cache and saving events...');
           // Clear all cache before saving new events
           await eventService.clearAllCache();
           await eventService.saveEvents(newEvents);
+          AppLogger.info('Settings: Events saved, reloading provider...');
           await context.read<EventProvider>().reload();
+          AppLogger.info('Settings: Provider reloaded, events count: ${context.read<EventProvider>().events?.length ?? 0}');
           eventsUpdated = true;
+        } else {
+          AppLogger.warning('Settings: Downloaded events list is empty!');
         }
+      } else {
+        AppLogger.info('Settings: No events update needed');
       }
 
       // Check app version

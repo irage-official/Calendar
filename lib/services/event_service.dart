@@ -35,15 +35,19 @@ class EventService {
         final savedEventsJson = prefs.getString('cached_events');
 
         if (savedEventsJson != null && savedEventsJson.isNotEmpty) {
+          AppLogger.info('EventService: Found cached events in SharedPreferences, length: ${savedEventsJson.length}');
           // Decode JSON in isolate to avoid blocking main thread
           final List<dynamic> jsonList = await compute(_decodeJsonString, savedEventsJson);
+          AppLogger.info('EventService: JSON decoded, items: ${jsonList.length}');
           _cachedEvents = jsonList
               .map((json) => Event.fromJson(json as Map<String, dynamic>))
               .where((event) => event.isActive)
               .toList();
 
-          AppLogger.info('EventService: Loaded ${_cachedEvents!.length} events from local cache (SharedPreferences)');
+          AppLogger.info('EventService: Loaded ${_cachedEvents!.length} active events from local cache (SharedPreferences)');
           return _cachedEvents!;
+        } else {
+          AppLogger.info('EventService: No cached events found in SharedPreferences');
         }
       } catch (e) {
         AppLogger.error('EventService: Error loading cached events', error: e);
@@ -79,9 +83,17 @@ class EventService {
   /// Save events to local storage (for remote events)
   Future<void> saveEvents(List<Event> events) async {
     try {
+      AppLogger.info('EventService: Saving ${events.length} events to SharedPreferences...');
       final prefs = await SharedPreferences.getInstance();
       final jsonList = events.map((e) => _eventToJson(e)).toList();
-      await prefs.setString('cached_events', json.encode(jsonList));
+      final jsonString = json.encode(jsonList);
+      AppLogger.info('EventService: JSON encoded, length: ${jsonString.length}');
+      await prefs.setString('cached_events', jsonString);
+      
+      // Verify it was saved
+      final saved = prefs.getString('cached_events');
+      AppLogger.info('EventService: Verification - saved events length: ${saved?.length ?? 0}');
+      
       // Clear in-memory cache to force reload from SharedPreferences next time
       _cachedEvents = null;
       AppLogger.info('EventService: Saved ${events.length} events to local storage (cleared in-memory cache)');
