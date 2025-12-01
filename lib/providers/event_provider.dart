@@ -60,13 +60,14 @@ class EventProvider extends ChangeNotifier {
     return _eventService.getEventColorsForSolarDate(year, month, day, events: _events!);
   }
 
-  /// Reload events (clear cache and reload)
+  /// Reload events (clear in-memory cache and reload from SharedPreferences)
   Future<void> reload() async {
     AppLogger.info('EventProvider: Starting reload...');
-    await _eventService.clearAllCache();
+    // Only clear in-memory cache, keep SharedPreferences
+    _eventService.clearInMemoryCache();
     _isInitialized = false;
     _events = null;
-    AppLogger.info('EventProvider: Cache cleared, reinitializing...');
+    AppLogger.info('EventProvider: In-memory cache cleared, reinitializing from SharedPreferences...');
     await initialize();
     AppLogger.info('EventProvider: Reload complete, events count: ${_events?.length ?? 0}');
     notifyListeners();

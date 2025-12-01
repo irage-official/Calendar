@@ -56,12 +56,13 @@ class _SplashScreenState extends State<SplashScreen> {
           // Download and update events
           final newEvents = await updateService.downloadEvents();
           if (newEvents.isNotEmpty) {
-            AppLogger.info('Splash screen: Downloaded ${newEvents.length} events, clearing cache and saving...');
+            AppLogger.info('Splash screen: Downloaded ${newEvents.length} events, saving...');
             final eventService = EventService.instance;
-            // Clear all cache before saving new events (including in-memory cache)
-            await eventService.clearAllCache();
+            // Clear in-memory cache first
+            eventService.clearInMemoryCache();
+            // Save new events to SharedPreferences
             await eventService.saveEvents(newEvents);
-            // Reload events in provider
+            // Reload events in provider (will load from SharedPreferences)
             await context.read<EventProvider>().reload();
             AppLogger.info('Splash screen: Events updated successfully (${newEvents.length} events)');
           } else {

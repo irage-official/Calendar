@@ -1329,13 +1329,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
         
         if (newEvents.isNotEmpty) {
           final eventService = EventService.instance;
-          AppLogger.info('Settings: Clearing cache and saving events...');
-          // Clear all cache before saving new events
-          await eventService.clearAllCache();
+          AppLogger.info('Settings: Saving events...');
+          // Clear in-memory cache first
+          eventService.clearInMemoryCache();
+          // Save new events to SharedPreferences
           await eventService.saveEvents(newEvents);
-          AppLogger.info('Settings: Events saved, reloading provider...');
+          AppLogger.info('Settings: Events saved to SharedPreferences, reloading provider...');
+          // Reload provider (will load from SharedPreferences)
           await context.read<EventProvider>().reload();
-          AppLogger.info('Settings: Provider reloaded, events count: ${context.read<EventProvider>().events?.length ?? 0}');
+          final finalEventsCount = context.read<EventProvider>().events?.length ?? 0;
+          AppLogger.info('Settings: Provider reloaded, events count: $finalEventsCount');
           eventsUpdated = true;
         } else {
           AppLogger.warning('Settings: Downloaded events list is empty!');
