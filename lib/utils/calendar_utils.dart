@@ -628,8 +628,10 @@ class CalendarUtils {
           // Check if this year is already part of a converted date
           final start = match.start;
           final end = match.end;
-          final before = start > 0 ? result.substring(start - 30, start) : '';
-          final after = end < result.length ? result.substring(end, end + 30) : '';
+          final beforeStart = start > 30 ? start - 30 : 0;
+          final before = start > 0 ? result.substring(beforeStart, start) : '';
+          final afterEnd = end + 30 < result.length ? end + 30 : result.length;
+          final after = end < result.length ? result.substring(end, afterEnd) : '';
           
           // Skip if it's part of a date we already converted
           final isPartOfDate = RegExp(
@@ -718,8 +720,10 @@ class CalendarUtils {
           // Check if this year is already part of a converted date
           final start = match.start;
           final end = match.end;
-          final before = start > 0 ? result.substring(start - 30, start) : '';
-          final after = end < result.length ? result.substring(end, end + 30) : '';
+          final beforeStart = start > 30 ? start - 30 : 0;
+          final before = start > 0 ? result.substring(beforeStart, start) : '';
+          final afterEnd = end + 30 < result.length ? end + 30 : result.length;
+          final after = end < result.length ? result.substring(end, afterEnd) : '';
           
           // Skip if it's part of a date we already converted
           final isPartOfDate = RegExp(
@@ -1186,8 +1190,10 @@ class CalendarUtils {
           // by checking the context around it
           final start = match.start;
           final end = match.end;
-          final before = start > 0 ? result.substring(start - 20, start) : '';
-          final after = end < result.length ? result.substring(end, end + 20) : '';
+          final beforeStart = start > 20 ? start - 20 : 0;
+          final before = start > 0 ? result.substring(beforeStart, start) : '';
+          final afterEnd = end + 20 < result.length ? end + 20 : result.length;
+          final after = end < result.length ? result.substring(end, afterEnd) : '';
           
           // Skip if it looks like it's part of a date we already converted
           // (e.g., if it's preceded by a Jalali month name)
