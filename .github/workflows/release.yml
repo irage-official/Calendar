@@ -77,36 +77,6 @@ jobs:
           flutter pub get
           echo "✓ Dependencies installed"
       
-      - name: Setup signing key
-        env:
-          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 || '' }}
-          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD || '' }}
-          KEY_ALIAS: ${{ secrets.KEY_ALIAS || '' }}
-          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD || '' }}
-        run: |
-          echo "=== Setting up signing key ==="
-          if [ -n "$KEYSTORE_BASE64" ] && [ -n "$KEYSTORE_PASSWORD" ] && [ -n "$KEY_ALIAS" ] && [ -n "$KEY_PASSWORD" ]; then
-            echo "✓ Using keystore from secrets"
-            # Decode keystore from base64
-            echo "$KEYSTORE_BASE64" | base64 -d > android/app/upload-keystore.jks
-            # Create key.properties file
-            cat > android/key.properties << EOF
-          storePassword=$KEYSTORE_PASSWORD
-          keyPassword=$KEY_PASSWORD
-          keyAlias=$KEY_ALIAS
-          storeFile=upload-keystore.jks
-          EOF
-            echo "✓ Keystore and key.properties created"
-          else
-            echo "⚠ WARNING: Keystore secrets not found. APK will be signed with debug key."
-            echo "⚠ This may cause installation issues on some devices."
-            echo "⚠ To fix this, add the following secrets to your GitHub repository:"
-            echo "   - KEYSTORE_BASE64: Base64 encoded keystore file"
-            echo "   - KEYSTORE_PASSWORD: Keystore password"
-            echo "   - KEY_ALIAS: Key alias"
-            echo "   - KEY_PASSWORD: Key password"
-          fi
-      
       - name: Build separate APKs for each architecture
         continue-on-error: true
         run: |

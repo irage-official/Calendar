@@ -1,5 +1,4 @@
 import java.util.Properties
-import java.io.FileInputStream
 
 plugins {
     id("com.android.application")
@@ -8,7 +7,7 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
-// Load keystore properties from key.properties file
+// Load keystore properties from key.properties file (only for CI/CD)
 val keystorePropertiesFile = rootProject.file("key.properties")
 val keystoreProperties = Properties()
 if (keystorePropertiesFile.exists()) {
@@ -29,7 +28,7 @@ android {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
-    // Configure signing configs
+    // Configure signing configs (only if keystore exists - for CI/CD)
     signingConfigs {
         if (keystorePropertiesFile.exists()) {
             create("release") {
@@ -72,7 +71,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            // Use release signing config if available, otherwise fall back to debug
+            // Use release signing config if available (CI/CD), otherwise use debug key (local build)
             signingConfig = if (keystorePropertiesFile.exists()) {
                 signingConfigs.getByName("release")
             } else {
