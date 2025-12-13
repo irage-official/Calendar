@@ -1405,30 +1405,38 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
         ),
         actions: [
-          if (!version.isCritical)
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text(
-                isPersian ? 'بعداً' : 'Later',
-                style: isPersian
-                    ? FontHelper.getYekanBakh()
-                    : FontHelper.getInter(),
-              ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(
+              isPersian ? 'بعداً' : 'Maybe Later',
+              style: isPersian
+                  ? FontHelper.getYekanBakh()
+                  : FontHelper.getInter(),
             ),
+          ),
           TextButton(
             onPressed: () async {
-              if (version.downloadUrl != null) {
-                final uri = Uri.parse(version.downloadUrl!);
-                if (await canLaunchUrl(uri)) {
-                  await launchUrl(uri, mode: LaunchMode.externalApplication);
-                }
+              // Use GitHub Releases URL if downloadUrl is not set or use it if available
+              String? downloadUrl = version.downloadUrl;
+              
+              // If no download URL, construct GitHub Releases URL
+              if (downloadUrl == null || downloadUrl.isEmpty) {
+                // Format: https://github.com/irage-official/Calendar/releases/latest
+                downloadUrl = 'https://github.com/irage-official/Calendar/releases/latest';
+              }
+              
+              final uri = Uri.parse(downloadUrl);
+              if (await canLaunchUrl(uri)) {
+                await launchUrl(uri, mode: LaunchMode.externalApplication);
+              } else {
+                AppLogger.error('Settings: Cannot launch URL: $downloadUrl');
               }
               if (!version.isCritical) {
                 Navigator.of(context).pop();
               }
             },
             child: Text(
-              isPersian ? 'آپدیت' : 'Update',
+              isPersian ? 'آپدیت' : 'Update Now',
               style: isPersian
                   ? FontHelper.getYekanBakh(fontWeight: FontWeight.bold)
                   : FontHelper.getInter(fontWeight: FontWeight.bold),

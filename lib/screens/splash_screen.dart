@@ -48,7 +48,8 @@ class _SplashScreenState extends State<SplashScreen> {
       
       try {
         AppLogger.info('Splash screen: Starting events update check...');
-        needsEventsUpdate = await updateService.checkEventsUpdate();
+        // Force check to ensure we always check the latest version from server
+        needsEventsUpdate = await updateService.forceCheckEventsUpdate();
         AppLogger.info('Splash screen: Update check result: needsUpdate=$needsEventsUpdate');
         
         if (needsEventsUpdate) {
@@ -189,13 +190,20 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
           TextButton(
             onPressed: () async {
-              if (version.downloadUrl != null) {
-                final uri = Uri.parse(version.downloadUrl!);
-                if (await canLaunchUrl(uri)) {
-                  await launchUrl(uri, mode: LaunchMode.externalApplication);
-                } else {
-                  AppLogger.error('Splash screen: Cannot launch URL: ${version.downloadUrl}');
-                }
+              // Use GitHub Releases URL if downloadUrl is not set or use it if available
+              String? downloadUrl = version.downloadUrl;
+              
+              // If no download URL, construct GitHub Releases URL
+              if (downloadUrl == null || downloadUrl.isEmpty) {
+                // Format: https://github.com/irage-official/Calendar/releases/latest
+                downloadUrl = 'https://github.com/irage-official/Calendar/releases/latest';
+              }
+              
+              final uri = Uri.parse(downloadUrl);
+              if (await canLaunchUrl(uri)) {
+                await launchUrl(uri, mode: LaunchMode.externalApplication);
+              } else {
+                AppLogger.error('Splash screen: Cannot launch URL: $downloadUrl');
               }
               if (version.isCritical) {
                 // For critical updates, keep dialog open until user updates
@@ -205,7 +213,7 @@ class _SplashScreenState extends State<SplashScreen> {
               }
             },
             child: Text(
-              isPersian ? 'آپدیت' : 'Update',
+              isPersian ? 'آپدیت' : 'Update Now',
               style: isPersian
                   ? FontHelper.getYekanBakh(
                       fontWeight: FontWeight.bold,
