@@ -200,36 +200,41 @@ class _EventDetailBottomSheetState extends State<EventDetailBottomSheet> {
   /// Build network image widget with proper error handling
   /// Uses compressed cache manager to reduce storage size
   Widget _buildNetworkImage(String imageUrl, BuildContext context) {
-    return CachedNetworkImage(
-      key: ValueKey('image_${_imageRetryKey}_$imageUrl'),
-      imageUrl: imageUrl,
-      fit: BoxFit.cover,
-      cacheManager: CompressedImageCacheManager.getInstance(),
-      httpHeaders: const {
-        'Accept': 'image/*',
-        'User-Agent': 'Mozilla/5.0',
-      },
-      // Reduced memory cache size for better performance
-      memCacheWidth: 800,
-      memCacheHeight: 600,
-      // Reduced disk cache size to save storage (images will be compressed)
-      maxWidthDiskCache: 800,
-      maxHeightDiskCache: 600,
-      fadeInDuration: const Duration(milliseconds: 300),
-      fadeOutDuration: const Duration(milliseconds: 100),
-      placeholder: (context, url) => Container(
-        color: TBg.card2(context),
-        child: Center(
-          child: CircularProgressIndicator(
-            color: TCnt.neutralTertiary(context),
+    return SizedBox.expand(
+      child: CachedNetworkImage(
+        key: ValueKey('image_${_imageRetryKey}_$imageUrl'),
+        imageUrl: imageUrl,
+        fit: BoxFit.cover,
+        alignment: Alignment.center,
+        width: double.infinity,
+        height: double.infinity,
+        cacheManager: CompressedImageCacheManager.getInstance(),
+        httpHeaders: const {
+          'Accept': 'image/*',
+          'User-Agent': 'Mozilla/5.0',
+        },
+        // Reduced memory cache size for better performance
+        memCacheWidth: 800,
+        memCacheHeight: 600,
+        // Reduced disk cache size to save storage (images will be compressed)
+        maxWidthDiskCache: 800,
+        maxHeightDiskCache: 600,
+        fadeInDuration: const Duration(milliseconds: 300),
+        fadeOutDuration: const Duration(milliseconds: 100),
+        placeholder: (context, url) => Container(
+          color: TBg.card2(context),
+          child: Center(
+            child: CircularProgressIndicator(
+              color: TCnt.neutralTertiary(context),
+            ),
           ),
         ),
+        errorWidget: (context, url, error) {
+          debugPrint('CachedNetworkImage error: $error for URL: $url');
+          // Show empty state with image icon
+          return _buildImageErrorState(context, imageUrl: url);
+        },
       ),
-      errorWidget: (context, url, error) {
-        debugPrint('CachedNetworkImage error: $error for URL: $url');
-        // Show empty state with image icon
-        return _buildImageErrorState(context, imageUrl: url);
-      },
     );
   }
 
@@ -488,6 +493,7 @@ class _EventDetailBottomSheetState extends State<EventDetailBottomSheet> {
                                       aspectRatio: 3 / 2.37,
                                       child: Container(
                                         width: double.infinity,
+                                        height: double.infinity,
                                         decoration: BoxDecoration(
                                           color: Theme.of(context).brightness == Brightness.dark
                                               ? Colors.transparent
@@ -498,6 +504,9 @@ class _EventDetailBottomSheetState extends State<EventDetailBottomSheet> {
                                             : Image.asset(
                                                 event.image!,
                                                 fit: BoxFit.cover,
+                                                width: double.infinity,
+                                                height: double.infinity,
+                                                alignment: Alignment.center,
                                                 errorBuilder: (context, error, stackTrace) {
                                                   return Container(
                                                     color: Theme.of(context).brightness == Brightness.dark
