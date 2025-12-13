@@ -1492,13 +1492,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   const SizedBox(width: 8),
                   ElevatedButton(
                     onPressed: () async {
-                      // Use GitHub Releases URL if downloadUrl is not set or use it if available
-                      String? downloadUrl = version.downloadUrl;
+                      // Always use GitHub Releases URL for direct APK download
+                      // Ignore downloadUrl from version.json if it points to Play Store
+                      String downloadUrl = 'https://github.com/irage-official/Calendar/releases/latest';
                       
-                      // If no download URL, construct GitHub Releases URL
-                      if (downloadUrl == null || downloadUrl.isEmpty) {
-                        // Format: https://github.com/irage-official/Calendar/releases/latest
-                        downloadUrl = 'https://github.com/irage-official/Calendar/releases/latest';
+                      // Only use custom URL if it's a GitHub releases URL
+                      if (version.downloadUrl != null && 
+                          version.downloadUrl!.isNotEmpty &&
+                          version.downloadUrl!.contains('github.com') &&
+                          version.downloadUrl!.contains('releases')) {
+                        downloadUrl = version.downloadUrl!;
                       }
                       
                       final uri = Uri.parse(downloadUrl);
