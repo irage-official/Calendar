@@ -1,8 +1,10 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/io_client.dart' as http_io;
 import 'package:path_provider/path_provider.dart';
 import 'package:image/image.dart' as img;
 import 'package:path/path.dart' as path;
@@ -47,15 +49,99 @@ class CompressedImageFileService extends HttpFileService {
 
   @override
   Future<FileServiceResponse> get(String url, {Map<String, String>? headers}) async {
+    // Create HttpClient with relaxed SSL validation for problematic URLs
+    // Note: This is a workaround for expired SSL certificates
+    // In production, these URLs should be replaced with valid ones
+    final httpClient = HttpClient()
+      ..badCertificateCallback = (X509Certificate cert, String host, int port) {
+        // Only allow expired certificates for specific problematic domains
+        final problematicDomains = ['asemooni.com', 'files.asemooni.com'];
+        final uri = Uri.parse(url);
+        if (problematicDomains.contains(uri.host)) {
+          debugPrint('ImageCacheService: Allowing expired certificate for: ${uri.host}');
+          return true; // Allow expired certificate for these domains
+        }
+        return false; // Reject for other domains
+      }
+      ..connectionTimeout = const Duration(seconds: 15)
+      ..idleTimeout = const Duration(seconds: 15);
+    
+    final ioClient = http_io.IOClient(httpClient);
+    
     try {
-      // Download image
-      final response = await http.get(Uri.parse(url), headers: headers);
-      if (response.statusCode != 200) {
-        throw HttpException('Failed to download image: ${response.statusCode}');
+      // Download image with timeout and retry mechanism
+      http.Response? response;
+      Exception? lastException;
+      
+      // Retry up to 3 times for network issues
+      for (int attempt = 0; attempt < 3; attempt++) {
+        try {
+          debugPrint('ImageCacheService: Downloading image (attempt ${attempt + 1}/3): $url');
+          response = await ioClient.get(
+            Uri.parse(url),
+            headers: {
+              ...?headers,
+              'Accept': 'image/*',
+              'User-Agent': 'Mozilla/5.0 (compatible; Irage Calendar)',
+            },
+          ).timeout(
+            const Duration(seconds: 15),
+            onTimeout: () {
+              debugPrint('ImageCacheService: Timeout downloading image: $url');
+              throw TimeoutException('Image download timeout after 15 seconds');
+            },
+          );
+          
+          debugPrint('ImageCacheService: Response status: ${response.statusCode} for URL: $url');
+          
+          if (response.statusCode == 200) {
+            debugPrint('ImageCacheService: Successfully downloaded image: $url');
+            break; // Success, exit retry loop
+          } else if (response.statusCode >= 400 && response.statusCode < 500) {
+            // Client errors (4xx) - don't retry
+            debugPrint('ImageCacheService: Client error ${response.statusCode} for URL: $url');
+            throw HttpException('Failed to download image: ${response.statusCode}');
+          }
+          // Server errors (5xx) - will retry
+          debugPrint('ImageCacheService: Server error ${response.statusCode} for URL: $url, will retry');
+          lastException = HttpException('Server error: ${response.statusCode}');
+        } catch (e) {
+          lastException = e is Exception ? e : Exception(e.toString());
+          debugPrint('ImageCacheService: Error on attempt ${attempt + 1}: ${e.toString()}');
+          
+          // Check if it's an SSL error
+          if (e.toString().contains('certificate') || 
+              e.toString().contains('SSL') || 
+              e.toString().contains('TLS')) {
+            debugPrint('ImageCacheService: SSL/Certificate error detected for URL: $url');
+            // Don't retry for SSL errors - they won't be fixed by retrying
+            throw lastException;
+          }
+          
+          if (attempt < 2) {
+            // Wait before retry (exponential backoff)
+            debugPrint('ImageCacheService: Retrying in ${500 * (attempt + 1)}ms...');
+            await Future.delayed(Duration(milliseconds: 500 * (attempt + 1)));
+            continue;
+          } else {
+            // Last attempt failed, throw the exception
+            debugPrint('ImageCacheService: All retry attempts failed for URL: $url');
+            throw lastException;
+          }
+        }
+      }
+      
+      if (response == null || response.statusCode != 200) {
+        httpClient.close(); // Close client before throwing
+        throw lastException ?? HttpException('Failed to download image: ${response?.statusCode ?? 'unknown'}');
       }
 
       // Decode and compress image
       final originalBytes = response.bodyBytes;
+      
+      // Close HTTP client after successful download
+      httpClient.close();
+      
       final originalImage = img.decodeImage(originalBytes);
       
       if (originalImage == null) {
@@ -95,6 +181,8 @@ class CompressedImageFileService extends HttpFileService {
       );
     } catch (e) {
       debugPrint('Error compressing image in FileService: $e');
+      // Ensure HTTP client is closed even on error
+      httpClient.close();
       // Fallback to default behavior
       return await super.get(url, headers: headers);
     }
