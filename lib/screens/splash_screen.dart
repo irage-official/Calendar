@@ -25,6 +25,8 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  bool _updateDialogShown = false;
+
   @override
   void initState() {
     super.initState();
@@ -81,9 +83,6 @@ class _SplashScreenState extends State<SplashScreen> {
         await context.read<EventProvider>().initialize();
       }
       
-      // Check for app version update (in background, don't block startup)
-      unawaited(_checkAppVersionUpdate(appProvider));
-      
       // Preload year cache for current calendar system only (optimize for Android)
       // Don't preload other calendar systems to avoid blocking startup
       final calendarProvider = context.read<CalendarProvider>();
@@ -106,6 +105,9 @@ class _SplashScreenState extends State<SplashScreen> {
       unawaited(yearCacheService.preloadYears(currentYear, calendarSystem: calendarSystemForPreload));
 
       AppLogger.info('Splash screen: App initialized successfully');
+      
+      // Check for app version update - wait for it to complete before navigating
+      await _checkAppVersionUpdate(appProvider);
     } catch (e) {
       AppLogger.error('Splash screen: Error initializing app', error: e);
       // Continue to app even if update fails
@@ -123,25 +125,33 @@ class _SplashScreenState extends State<SplashScreen> {
         await Future.delayed(remaining);
       }
       
+      // Navigate to home screen (update dialog is already handled in _checkAppVersionUpdate)
       if (mounted) {
-        // Navigate to home screen
         Navigator.of(context).pushReplacementNamed('/home');
       }
     }
   }
 
   /// Check for app version update and show dialog if needed
+  /// Returns a Completer that completes when dialog is dismissed
   Future<void> _checkAppVersionUpdate(AppProvider appProvider) async {
     try {
       final updateService = UpdateService.instance;
       final appVersion = await updateService.checkAppVersion();
       
       if (appVersion != null && mounted) {
-        // Wait a bit before showing dialog to ensure navigation is complete
+        // Wait a bit before showing dialog
         await Future.delayed(const Duration(milliseconds: 500));
         
         if (mounted) {
-          _showUpdateDialog(context, appVersion, appProvider);
+          setState(() {
+            _updateDialogShown = true;
+          });
+          // Show dialog and wait for it to be dismissed
+          await _showUpdateDialog(context, appVersion, appProvider);
+          setState(() {
+            _updateDialogShown = false;
+          });
         }
       }
     } catch (e) {
@@ -150,80 +160,153 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   /// Show update dialog based on update type
-  void _showUpdateDialog(BuildContext context, AppVersion version, AppProvider appProvider) {
+  /// Returns a Future that completes when dialog is dismissed
+  Future<void> _showUpdateDialog(BuildContext context, AppVersion version, AppProvider appProvider) async {
     final isPersian = appProvider.language == 'fa';
     final releaseNotes = version.getReleaseNotes(appProvider.language) ?? 
-        (isPersian ? 'آپدیت جدید در دسترس است' : 'New update is available');
+        (isPersian ? 'رفع باگ‌ها و بهبودها' : 'Bug fixes and improvements');
 
-    showDialog(
+    await showDialog(
       context: context,
       barrierDismissible: !version.isCritical,
-      builder: (context) => AlertDialog(
-        title: Text(
-          isPersian ? 'آپدیت جدید' : 'New Update',
-          style: isPersian
-              ? FontHelper.getYekanBakh(
-                  fontWeight: FontWeight.bold,
-                )
-              : FontHelper.getInter(
-                  fontWeight: FontWeight.bold,
-                ),
-        ),
-        content: SingleChildScrollView(
-          child: Text(
-            releaseNotes,
-            style: isPersian
-                ? FontHelper.getYekanBakh()
-                : FontHelper.getInter(),
+      barrierColor: Colors.black.withOpacity(0.5),
+      builder: (context) => Dialog(
+        backgroundColor: Colors.transparent,
+        insetPadding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Container(
+          decoration: BoxDecoration(
+            color: TBg.bottomSheet(context),
+            borderRadius: BorderRadius.circular(16),
           ),
-        ),
-        actions: [
-          if (!version.isCritical)
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text(
-                isPersian ? 'بعداً' : 'Later',
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Title
+              Text(
+                isPersian ? 'آپدیت جدید' : 'New Update',
                 style: isPersian
-                    ? FontHelper.getYekanBakh()
-                    : FontHelper.getInter(),
+                    ? FontHelper.getYekanBakh(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        color: TCnt.neutralMain(context),
+                        height: 1.4,
+                        letterSpacing: -0.4,
+                      )
+                    : FontHelper.getInter(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        color: TCnt.neutralMain(context),
+                        height: 1.4,
+                        letterSpacing: -0.4,
+                      ),
               ),
-            ),
-          TextButton(
-            onPressed: () async {
-              // Use GitHub Releases URL if downloadUrl is not set or use it if available
-              String? downloadUrl = version.downloadUrl;
               
-              // If no download URL, construct GitHub Releases URL
-              if (downloadUrl == null || downloadUrl.isEmpty) {
-                // Format: https://github.com/irage-official/Calendar/releases/latest
-                downloadUrl = 'https://github.com/irage-official/Calendar/releases/latest';
-              }
+              const SizedBox(height: 16),
               
-              final uri = Uri.parse(downloadUrl);
-              if (await canLaunchUrl(uri)) {
-                await launchUrl(uri, mode: LaunchMode.externalApplication);
-              } else {
-                AppLogger.error('Splash screen: Cannot launch URL: $downloadUrl');
-              }
-              if (version.isCritical) {
-                // For critical updates, keep dialog open until user updates
-                return;
-              } else {
-                Navigator.of(context).pop();
-              }
-            },
-            child: Text(
-              isPersian ? 'آپدیت' : 'Update Now',
-              style: isPersian
-                  ? FontHelper.getYekanBakh(
-                      fontWeight: FontWeight.bold,
-                    )
-                  : FontHelper.getInter(
-                      fontWeight: FontWeight.bold,
+              // Description
+              Text(
+                releaseNotes,
+                style: isPersian
+                    ? FontHelper.getYekanBakh(
+                        fontSize: 14,
+                        color: TCnt.neutralSecond(context),
+                        height: 1.6,
+                        letterSpacing: -0.098,
+                      )
+                    : FontHelper.getInter(
+                        fontSize: 14,
+                        color: TCnt.neutralSecond(context),
+                        height: 1.6,
+                        letterSpacing: -0.098,
+                      ),
+              ),
+              
+              const SizedBox(height: 24),
+              
+              // Buttons row
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    style: TextButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                     ),
-            ),
+                    child: Text(
+                      isPersian ? 'بعداً' : 'Maybe Later',
+                      style: isPersian
+                          ? FontHelper.getYekanBakh(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: TCnt.neutralSecond(context),
+                              height: 1.4,
+                              letterSpacing: -0.28,
+                            )
+                          : FontHelper.getInter(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: TCnt.neutralSecond(context),
+                              height: 1.4,
+                              letterSpacing: -0.28,
+                            ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  ElevatedButton(
+                    onPressed: () async {
+                      // Use GitHub Releases URL if downloadUrl is not set or use it if available
+                      String? downloadUrl = version.downloadUrl;
+                      
+                      // If no download URL, construct GitHub Releases URL
+                      if (downloadUrl == null || downloadUrl.isEmpty) {
+                        // Format: https://github.com/irage-official/Calendar/releases/latest
+                        downloadUrl = 'https://github.com/irage-official/Calendar/releases/latest';
+                      }
+                      
+                      final uri = Uri.parse(downloadUrl);
+                      if (await canLaunchUrl(uri)) {
+                        await launchUrl(uri, mode: LaunchMode.externalApplication);
+                      } else {
+                        AppLogger.error('Splash screen: Cannot launch URL: $downloadUrl');
+                      }
+                      if (!version.isCritical) {
+                        Navigator.of(context).pop();
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: ThemeColors.primary500,
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: Text(
+                      isPersian ? 'آپدیت' : 'Update Now',
+                      style: isPersian
+                          ? FontHelper.getYekanBakh(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                              height: 1.4,
+                              letterSpacing: -0.28,
+                            )
+                          : FontHelper.getInter(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                              height: 1.4,
+                              letterSpacing: -0.28,
+                            ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
