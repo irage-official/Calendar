@@ -220,6 +220,8 @@ class TBg {
       Theme.of(context).brightness == Brightness.dark ? DarkBg.card4 : LightBg.card4;
   static Color neutralButton(BuildContext context) =>
       Theme.of(context).brightness == Brightness.dark ? DarkBg.neutralButton : LightBg.neutralButton;
+  static Color brandMain(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark ? DarkBg.brandMain : LightBg.brandMain;
 }
 
 class TCnt {

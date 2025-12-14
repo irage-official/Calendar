@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import '../config/app_icons.dart';
 import '../config/theme_colors.dart';
 import '../widgets/loading_lines_animation.dart';
@@ -14,6 +15,7 @@ import '../services/year_cache_service.dart';
 import '../services/update_service.dart';
 import '../services/event_service.dart';
 import '../models/app_version.dart';
+import '../widgets/update_modal_widget.dart';
 import '../utils/calendar_utils.dart';
 import '../utils/font_helper.dart';
 
@@ -163,153 +165,25 @@ class _SplashScreenState extends State<SplashScreen> {
   /// Returns a Future that completes when dialog is dismissed
   Future<void> _showUpdateDialog(BuildContext context, AppVersion version, AppProvider appProvider) async {
     final isPersian = appProvider.language == 'fa';
-    final releaseNotes = version.getReleaseNotes(appProvider.language) ?? 
-        (isPersian ? 'رفع باگ‌ها و بهبودها' : 'Bug fixes and improvements');
+    
+    // Get current version
+    String currentVersion = '0.9.0';
+    try {
+      final packageInfo = await PackageInfo.fromPlatform();
+      currentVersion = packageInfo.version;
+    } catch (e) {
+      AppLogger.error('Splash screen: Error getting current version', error: e);
+    }
 
     await showDialog(
       context: context,
       barrierDismissible: !version.isCritical,
       barrierColor: Colors.black.withOpacity(0.5),
-      builder: (context) => Dialog(
-        backgroundColor: Colors.transparent,
-        insetPadding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Container(
-          decoration: BoxDecoration(
-            color: TBg.bottomSheet(context),
-            borderRadius: BorderRadius.circular(16),
-          ),
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Title
-              Text(
-                isPersian ? 'آپدیت جدید' : 'New Update',
-                style: isPersian
-                    ? FontHelper.getYekanBakh(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                        color: TCnt.neutralMain(context),
-                        height: 1.4,
-                        letterSpacing: -0.4,
-                      )
-                    : FontHelper.getInter(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                        color: TCnt.neutralMain(context),
-                        height: 1.4,
-                        letterSpacing: -0.4,
-                      ),
-              ),
-              
-              const SizedBox(height: 16),
-              
-              // Description
-              Text(
-                releaseNotes,
-                style: isPersian
-                    ? FontHelper.getYekanBakh(
-                        fontSize: 14,
-                        color: TCnt.neutralSecond(context),
-                        height: 1.6,
-                        letterSpacing: -0.098,
-                      )
-                    : FontHelper.getInter(
-                        fontSize: 14,
-                        color: TCnt.neutralSecond(context),
-                        height: 1.6,
-                        letterSpacing: -0.098,
-                      ),
-              ),
-              
-              const SizedBox(height: 24),
-              
-              // Buttons row
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    style: TextButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                    ),
-                    child: Text(
-                      isPersian ? 'بعداً' : 'Maybe Later',
-                      style: isPersian
-                          ? FontHelper.getYekanBakh(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: TCnt.neutralSecond(context),
-                              height: 1.4,
-                              letterSpacing: -0.28,
-                            )
-                          : FontHelper.getInter(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: TCnt.neutralSecond(context),
-                              height: 1.4,
-                              letterSpacing: -0.28,
-                            ),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  ElevatedButton(
-                    onPressed: () async {
-                      // Always use GitHub Releases URL for direct APK download
-                      // Ignore downloadUrl from version.json if it points to Play Store
-                      String downloadUrl = 'https://github.com/irage-official/Calendar/releases/latest';
-                      
-                      // Only use custom URL if it's a GitHub releases URL
-                      if (version.downloadUrl != null && 
-                          version.downloadUrl!.isNotEmpty &&
-                          version.downloadUrl!.contains('github.com') &&
-                          version.downloadUrl!.contains('releases')) {
-                        downloadUrl = version.downloadUrl!;
-                      }
-                      
-                      final uri = Uri.parse(downloadUrl);
-                      if (await canLaunchUrl(uri)) {
-                        await launchUrl(uri, mode: LaunchMode.externalApplication);
-                      } else {
-                        AppLogger.error('Splash screen: Cannot launch URL: $downloadUrl');
-                      }
-                      if (!version.isCritical) {
-                        Navigator.of(context).pop();
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: ThemeColors.primary500,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    child: Text(
-                      isPersian ? 'آپدیت' : 'Update Now',
-                      style: isPersian
-                          ? FontHelper.getYekanBakh(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                              height: 1.4,
-                              letterSpacing: -0.28,
-                            )
-                          : FontHelper.getInter(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                              height: 1.4,
-                              letterSpacing: -0.28,
-                            ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
+      builder: (context) => UpdateModalWidget(
+        version: version,
+        currentVersion: currentVersion,
+        isPersian: isPersian,
+        isCritical: version.isCritical,
       ),
     );
   }

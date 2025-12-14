@@ -152,11 +152,11 @@ jobs:
           echo "=== Preparing APK for release ==="
           VERSION="${{ needs.check-version-change.outputs.app-version }}"
           BUILD="${{ needs.check-version-change.outputs.build-number }}"
-          TAG="v${VERSION}+${BUILD}"
+          TAG="v${VERSION}"
           
           echo "Version: $VERSION"
           echo "Build: $BUILD"
-          echo "Tag: $TAG"
+          echo "Tag: $TAG (version only, without build number)"
           
           mkdir -p release-apks
           
@@ -213,10 +213,10 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: v${{ needs.check-version-change.outputs.app-version }}+${{ needs.check-version-change.outputs.build-number }}
-          name: Release v${{ needs.check-version-change.outputs.app-version }}+${{ needs.check-version-change.outputs.build-number }}
+          tag_name: v${{ needs.check-version-change.outputs.app-version }}
+          name: Release v${{ needs.check-version-change.outputs.app-version }}
           body: |
-            ## Irage Calendar v${{ needs.check-version-change.outputs.app-version }}+${{ needs.check-version-change.outputs.build-number }}
+            ## Irage Calendar v${{ needs.check-version-change.outputs.app-version }}
             
             A professional Iranian Heritage Calendar app with cross-platform support.
             
