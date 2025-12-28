@@ -296,7 +296,7 @@ class _SplashScreenState extends State<SplashScreen> {
                               // Description
                               Text(
                                 isPersian 
-                                  ? 'اولین تقویم ملی و سنت‌های فرهنگی ایران، به همراه بزرگداشت کسانی که برای آزادی ما جنگیدند.'
+                                  ? 'اولین گاه‌شمار ملی و سنت‌های فرهنگی ایران، به همراه بزرگداشت کسانی که برای آزادی ما جنگیدند.'
                                   : 'The first national calendar and cultural traditions of Iran, along with honoring those who fought for our freedom.',
                                 textAlign: TextAlign.center,
                                 style: isPersian

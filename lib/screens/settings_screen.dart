@@ -230,7 +230,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             SettingItem(
               icon: AppIcons.calendarDays,
-              title: isPersian ? 'تقویم و رویدادها' : 'Calendar & Events',
+              title: isPersian ? 'گاه‌شمار و رویدادها' : 'Calendar & Events',
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
@@ -377,7 +377,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       case 'system':
         return isPersian ? 'سیستم (خودکار)' : 'System (Auto)';
       case 'fa':
-        return 'فارسی';
+        return 'پارسی';
       case 'en':
         return 'English';
       default:
@@ -454,7 +454,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               children: [
                 // System (Auto) option
                 CustomRadioButton(
-                  label: isPersian ? 'سیستم (خودکار)' : 'System (Auto)',
+                  label: isPersian ? 'پیش فرض سیستم (خودکار)' : 'System (Auto)',
                   isSelected: appProvider.language == 'system',
                   onTap: () {
                     appProvider.setLanguage('system');
@@ -470,7 +470,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 const SizedBox(height: 8),
                 // English option
                 CustomRadioButton(
-                  label: isPersian ? 'انگلیسی (EN)' : 'English (EN)',
+                  label: isPersian ? 'انگلیسی' : 'English',
                   isSelected: appProvider.language == 'en',
                   onTap: () {
                     appProvider.setLanguage('en');
@@ -480,7 +480,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 const SizedBox(height: 8),
                 // Persian option
                 CustomRadioButton(
-                  label: 'فارسی (Persian)',
+                  label: isPersian ? 'پارسی' : 'Persian (پارسی)',
                   isSelected: appProvider.language == 'fa',
                   onTap: () {
                     appProvider.setLanguage('fa');
@@ -1209,7 +1209,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               number: '1',
               title: isPersian ? 'معرفی' : 'Introduction',
               content: isPersian 
-                  ? 'این اپلیکیشن، ایراژ (میراث ایران)، یک ابتکار غیرانتفاعی پیشگام است که به عنوان اولین تقویم ملی ایران طراحی شده است. با استفاده از این اپلیکیشن، شما این شرایط و ضوابط را تأیید و می‌پذیرید. ما شما را به مطالعه کامل آنها تشویق می‌کنیم.'
+                  ? 'این اپلیکیشن، ایراژ (میراث ایران)، یک ابتکار غیرانتفاعی پیشگام است که به عنوان اولین گاه‌شمار ملی ایران طراحی شده است. با استفاده از این اپلیکیشن، شما این شرایط و ضوابط را تأیید و می‌پذیرید. ما شما را به مطالعه کامل آنها تشویق می‌کنیم.'
                   : 'This application, Irage (Iranian Heritage), is a pioneering non-profit initiative designed as the first national calendar of Iran. By using this app, you acknowledge and accept these terms and conditions. We encourage you to read them in full.',
             ),
             
@@ -1417,16 +1417,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Future<void> _shareApp(BuildContext context, bool isPersian) async {
     try {
       final String shareText = isPersian 
-          ? '''🕊️ ایراژ (میراث ایرانی) - تقویم یادبود و مستندسازی
+          ? '''🕊️ ایراژ (میراث ایرانی) - گاه‌شمار یادبود و مستندسازی
 
-یک تقویم یادبود برای حفظ حافظه و مستندسازی جنایات انجام شده توسط رژیم جمهوری اسلامی. این برنامه تاریخ‌های مهم، رویدادها و سوابق مربوط به قربانیان خشونت دولتی را ثبت می‌کند.
+یک گاه‌شمار یادبود برای حفظ حافظه و مستندسازی جنایات انجام شده توسط رژیم جمهوری اسلامی. این برنامه تاریخ‌های مهم، رویدادها و سوابق مربوط به قربانیان خشونت دولتی را ثبت می‌کند.
 
-هر تاریخ در این تقویم حامل خاطره زندگی گرفته شده، داستان خاموش شده، یا حقیقتی پنهان شده است.
+هر تاریخ در این گاه‌شمار حامل خاطره زندگی گرفته شده، داستان خاموش شده، یا حقیقتی پنهان شده است.
 
 📱 دانلود برنامه:
 https://ir-heritage.com/download
 
-#میراث_ایرانی #حافظه_مقاومت #تقویم_یادبود'''
+#میراث_ایرانی #حافظه_مقاومت #گاه‌شمار_یادبود'''
           : '''🕊️ Irage (Iranian Heritage) - Memorial and Documentation Calendar
 
 A memorial calendar to preserve memory and document crimes committed by the Islamic Republic regime. This app records important dates, events, and records related to victims of state violence.
@@ -1440,7 +1440,7 @@ https://ir-heritage.com/download
       
       await Share.share(
         shareText,
-        subject: isPersian ? '🕊️ ایراژ (میراث ایرانی) - تقویم یادبود' : '🕊️ Irage (Iranian Heritage) - Memorial Calendar',
+        subject: isPersian ? '🕊️ ایراژ (میراث ایرانی) - گاه‌شمار یادبود' : '🕊️ Irage (Iranian Heritage) - Memorial Calendar',
       );
     } catch (e) {
       if (context.mounted) {

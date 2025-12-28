@@ -25,7 +25,7 @@ void showAboutBottomSheet(BuildContext context, {required bool isPersian}) {
           buildRichTextWithIrage(
             context,
             isPersian
-                ? 'ایراژ (میراث ایران) یک برنامه تقویم مستقل و ساخته شده توسط جامعه است که توسط افرادی که به ایران - ایران واقعی - اعتقاد دارند، ایجاد شده است.'
+                ? 'ایراژ (میراث ایران) یک برنامه گاه‌شمار مستقل و ساخته شده توسط جامعه است که توسط افرادی که به ایران - ایران واقعی - اعتقاد دارند، ایجاد شده است.'
                 : 'The Irage (Iranian Heritage) is a community-built, independent calendar app created by people who believe in Iran — the real Iran.',
           ),
           const SizedBox(height: 16),
@@ -48,7 +48,7 @@ void showAboutBottomSheet(BuildContext context, {required bool isPersian}) {
           const SizedBox(height: 24),
           Text(
             isPersian
-                ? 'ما اولین برنامه تقویم ملی‌گرای ایرانی هستیم و هیچ ارتباطی با جمهوری اسلامی ندارد.'
+                ? 'ما اولین برنامه گاه‌شمار ملی‌گرای ایرانی هستیم و هیچ ارتباطی با جمهوری اسلامی ندارد.'
                 : 'We are the first Iranian nationalist calendar app with zero connection to the Islamic Republic.',
             style: isPersian
                 ? FontHelper.getYekanBakh(
@@ -312,8 +312,8 @@ void showAboutBottomSheet(BuildContext context, {required bool isPersian}) {
           const SizedBox(height: 6),
           Text(
             isPersian
-                ? 'این فقط یک اپلیکیشن نیست. این یک آرشیو زنده است. یک تقویم از آنچه بوده‌ایم و آنچه هنوز هستیم. این به ما کمک می‌کند که تاریخ واقعی را در دسترس نگه داریم، از قهرمانان خود یاد کنیم و از عزیزانی که از دست داده‌ایم مراقبت کنیم.'
-                : 'This isn’t just an app. It’s a living archive. A calendar of who we were and who we still are. It helps us keep our real history accessible, honor our heroes, and care for those we’ve lost.',
+                ? 'این فقط یک اپلیکیشن نیست. این یک آرشیو زنده است. یک گاه‌شمار از آنچه بوده‌ایم و آنچه هنوز هستیم. این به ما کمک می‌کند که تاریخ واقعی را در دسترس نگه داریم، از قهرمانان خود یاد کنیم و از عزیزانی که از دست داده‌ایم مراقبت کنیم.'
+                : "This isn't just an app. It's a living archive. A calendar of who we were and who we still are. It helps us keep our real history accessible, honor our heroes, and care for those we've lost.",
             style: isPersian
                 ? FontHelper.getYekanBakh(
                     fontSize: 14,
@@ -333,7 +333,7 @@ void showAboutBottomSheet(BuildContext context, {required bool isPersian}) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  isPersian ? '• این فقط یک تقویم نیست.' : '• This isn\'t just a calendar.',
+                  isPersian ? '• این فقط یک گاه‌شمار نیست.' : '• This isn\'t just a calendar.',
                   style: isPersian
                       ? FontHelper.getYekanBakh(
                           fontSize: 14,

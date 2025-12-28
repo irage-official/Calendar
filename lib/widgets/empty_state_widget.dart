@@ -48,7 +48,7 @@ class EmptyStateWidget extends StatelessWidget {
             
             // Title - font size 14, semi-bold, neutral main, line height 140%, letter spacing -2%
             Text(
-              isPersian ? 'یک روز آرام در تقویم' : 'A Quiet Day on the Calendar.',
+              isPersian ? 'یک روز آرام در گاه‌شمار' : 'A Quiet Day on the Calendar.',
               style: isPersian
                   ? FontHelper.getYekanBakh(
                       fontSize: 14,

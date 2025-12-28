@@ -394,7 +394,7 @@ class _CalendarEventsSettingsScreenState
           ),
           const SizedBox(height: 6),
           Text(
-            isPersian ? 'تقویم و رویدادها' : 'Calendar & Events',
+            isPersian ? 'گاه‌شمار و رویدادها' : 'Calendar & Events',
             style: isPersian
                 ? FontHelper.getYekanBakh(
                     fontSize: 20,
@@ -414,7 +414,7 @@ class _CalendarEventsSettingsScreenState
           const SizedBox(height: 6),
           Text(
             isPersian 
-                ? 'تنظیم کنید که تقویم شما چگونه به نظر برسد و رویدادها چگونه نمایش داده شوند — ساده و واضح امکان‌پذیر است.'
+                ? 'تنظیم کنید که گاه‌شمار شما چگونه به نظر برسد و رویدادها چگونه نمایش داده شوند — ساده و واضح امکان‌پذیر است.'
                 : 'Set how your calendar looks and how events appear — simple, clear, and made for you.',
             style: isPersian
                 ? FontHelper.getYekanBakh(
@@ -452,7 +452,7 @@ class _CalendarEventsSettingsScreenState
         // Padding(
         //   padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 0),
         //   child: Text(
-        //     isPersian ? 'تنظیمات تقویم' : 'Calendar Settings',
+        //     isPersian ? 'تنظیمات گاه‌شمار' : 'Calendar Settings',
         //     style: AppTextStyles.bodyMedium.copyWith(
         //       fontSize: 14,
         //       fontWeight: FontWeight.w500,
@@ -501,7 +501,7 @@ class _CalendarEventsSettingsScreenState
               ),
               _buildCalendarSettingItem(
                 context: context,
-                title: isPersian ? 'سیستم تقویم' : 'Calendar System',
+                title: isPersian ? 'سیستم گاه‌شمار' : 'Calendar System',
                 subtitle: _getCurrentCalendarSystemText(
                     _calendarSystem ?? appProvider.calendarSystem, isPersian),
                 onTap: () => _showCalendarSystemBottomSheet(context, isPersian),
@@ -563,7 +563,7 @@ class _CalendarEventsSettingsScreenState
         //   padding: const EdgeInsets.symmetric(horizontal: 16.0),
         //   child: Text(
         //     isPersian 
-        //         ? 'تنظیم کنید که تقویم شما چگونه نمایش داده شود و هفته از کدام روز شروع شود.'
+        //         ? 'تنظیم کنید که گاه‌شمار شما چگونه نمایش داده شود و هفته از کدام روز شروع شود.'
         //         : 'Set how your calendar is displayed and which day the week starts on.',
         //     style: AppTextStyles.bodySmall.copyWith(
         //       fontSize: 12,
@@ -1027,9 +1027,9 @@ class _CalendarEventsSettingsScreenState
         builder: (context, appProvider, child) {
           final currentCalendarSystem = _calendarSystem ?? appProvider.calendarSystem;
           return SettingsBottomSheet(
-            title: isPersian ? 'تغییر تقویم' : 'Change Calendar',
+            title: isPersian ? 'تغییر گاه‌شمار' : 'Change Calendar',
             description: isPersian
-                ? 'سیستم تقویمی را بر اساس نیازتان انتخاب کنید.'
+                ? 'سیستم گاه‌شماری را بر اساس نیازتان انتخاب کنید.'
                 : 'Choose the calendar system that fits your preference.',
             content: Column(
               children: [
@@ -1162,7 +1162,7 @@ class _CalendarEventsSettingsScreenState
         return SettingsBottomSheet(
           title: isPersian ? 'حالت نمایش' : 'Default Calendar View',
           description: isPersian
-              ? 'نوع نمایش پیش‌فرض تقویم را انتخاب کنید.'
+              ? 'نوع نمایش پیش‌فرض گاه‌شمار را انتخاب کنید.'
               : 'Select your preferred default calendar layout for the Home screen.',
           content: Column(
             children: [
@@ -1619,7 +1619,7 @@ class _CalendarEventsSettingsScreenState
             return SettingsBottomSheet(
               title: isPersian ? 'منابع' : 'Origins',
               description: isPersian
-                  ? 'منبع رویدادهایی را که می‌خواهید در تقویم شما نمایش داده شوند انتخاب کنید.'
+                  ? 'منبع رویدادهایی را که می‌خواهید در گاه‌شمار شما نمایش داده شوند انتخاب کنید.'
                   : 'Choose the origin of events you want to appear in your calendar.',
               content: Column(
                 children: allOrigins.map((origin) {
@@ -1727,7 +1727,7 @@ class _CalendarEventsSettingsScreenState
             return SettingsBottomSheet(
               title: isPersian ? 'انواع رویداد' : 'Event Types',
               description: isPersian
-                  ? 'دسته‌بندی‌های رویدادهایی را که ترجیح می‌دهید در تقویم خود ببینید انتخاب کنید.'
+                  ? 'دسته‌بندی‌های رویدادهایی را که ترجیح می‌دهید در گاه‌شمار خود ببینید انتخاب کنید.'
                   : 'Choose the categories of events you prefer to see on your calendar.',
               content: Column(
                 children: allTypes.map((type) {
