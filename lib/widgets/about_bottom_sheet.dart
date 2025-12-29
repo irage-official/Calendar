@@ -528,8 +528,8 @@ void showAboutBottomSheet(BuildContext context, {required bool isPersian}) {
                           context: context,
                           iconPath: AppIcons.xSocial,
                           onTap: () async {
-                            final Uri appUri = Uri.parse('twitter://user?screen_name=irage_official');
-                            final Uri webUri = Uri.parse('https://x.com/irage_official');
+                            final Uri appUri = Uri.parse('twitter://user?screen_name=irage_site');
+                            final Uri webUri = Uri.parse('https://x.com/irage_site');
                             try {
                               if (await canLaunchUrl(appUri)) {
                                 await launchUrl(appUri, mode: LaunchMode.externalApplication);
